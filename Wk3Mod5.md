@@ -3,11 +3,11 @@
 JavaScript has two built-in _associative array_ data types to help us store and work with collections of values: Arrays, which are collections of values accessible at sequential integer keys...
 
 ```javascript
-var my_array = ["one", "two", "three"]
+var myArray = ["one", "two", "three"]
 
-my_array[0]
-my_array[1]
-my_array[2] = "not three"
+myArray[0]
+myArray[1]
+myArray[2] = "not three"
 ```
 
 ... and Objects, which are collections of values accessible at arbitrary string keys:
@@ -85,30 +85,30 @@ console.log(contactObject.getName());
 **As a group**: On lines ending '??', figure out what the expression will evaluate to. First form a hypthosis, then try it in the console.
 
 ```javascript
-var demo_object = {
+var demoObject = {
     one: 1,
     two: 2,
     three: 3
 }
 var one = "three"
 
-demo_object['two'] // ??
-demo_object[one] // ??
+demoObject['two'] // ??
+demoObject[one] // ??
 
-var state_capitals = {
+var stateCapitals = {
     California: 'Sacramento',
     Texas: 'Austin'
 }
 
 var place = 'California'
 
-state_capitals['place'] // ??
-state_capitals.place   // ??
-state_capitals[place] // ??
+stateCapitals['place'] // ??
+stateCapitals.place   // ??
+stateCapitals[place] // ??
 
-state_capitals['California'] // ??
-state_capitals.California   // ??
-state_capitals[California] // ??
+stateCapitals['California'] // ??
+stateCapitals.California   // ??
+stateCapitals[California] // ??
 ```
 
 ---
@@ -226,7 +226,7 @@ for(var contactType in contactObject){
 Just like arrays, objects can hold values of any data type. That includes arrays, objects, and functions.
 
 ```javascript
-var complex_object = {
+var complexObject = {
   string: "I'm a string!",
   number: 42,
   array: ["all sorts of stuff", 10, true, undefined, {me: "an object", more: "find me in here!"}, function(){console.log('beepity-beep')}],
@@ -238,10 +238,10 @@ var complex_object = {
   }
 }
 
-complex_object.string
-complex_object.array[4]
-complex_object.simple_object.name
-complex_object.fn("stuff", "more stuff", "even more stuff!")
+complexObject.string
+complexObject.array[4]
+complexObject.simple_object.name
+complexObject.fn("stuff", "more stuff", "even more stuff!")
 ```
 
 ---

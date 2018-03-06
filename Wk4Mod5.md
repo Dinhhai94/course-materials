@@ -28,9 +28,11 @@ We've covered:
 + custom functions
 + customizing complex data types
 + using Object properties and methods
++ use Constructor functions to create new Objects
++ prototypal inheritance
 + closure, scope, and `this`
-+ AJAX calls
-+ our very first asynchronous JavaScript function!
++ Promises
++ RESTful APIs, JSON, and AJAX
 
 So what else is there to learn about?
 
@@ -45,21 +47,22 @@ So what else is there to learn about?
 
 **JavaScript**:
 + ECMAScript 2015 (_a.k.a._ ES6, ES2015)
-+ _more_ asynchronous JavaScript (`async`, `await`, Promises)
++ _more_ asynchronous JavaScript (`async`, `await`)
 + _so many built-in functions_ (check out MDN)
-+ more animations (jQueryUI, animation packs)
++ more animations (jQueryUI, animation packs, GreenSock)
 + more functional programming (underscore, lodash, ramda)
 + design patterns (module pattern, pub-sub, MV*)
 + frameworks (Backbone, Vue, Angular, React)
++ back-end development with Node.js (Express, Koa, Hapi)
 
 **Everything Else**:
 + _more_ command-line utilities (`ssh`, `wget`, `curl`, etc. etc.)
-+ build tools (`grunt`, `gulp`, `browserify`)
-+ build processes ( minification, uglification, templating)
++ build tools like `gulp` and `webpack` (for more information on Webpack, see [this presentation](https://presentations.alexpear.com/decks/bundles-of-fun-with-webpack) and [this repo](https://github.com/nalexpear/webpack-by-example))
++ build processes (minification, uglification, templating)
 + "sysadmin"-y stuff (get comfortable with Linux!)
-+ databases (MySQL, MongoDB, PostGRE)
-+ testing (Mocha, Chai, Jasmine)
-+ automation/"DevOps" (Selenium, Jenkins, lots of Linux)
++ databases (MySQL, MongoDB, PostGRES)
++ testing (Mocha, Chai, Jasmine, Jest)
++ automation/"DevOps" (Docker, Kubernetes, Jenkins, lots of Linux)
 
 ---
 
@@ -81,9 +84,9 @@ Our job is to put our best foot forward and engage with the hiring process in go
     + have good file and folder structure
     + add comments explaining complex code
     + use descriptive variable names
-    + remove console.logs and unused, commented-out code
+    + remove `console.logs` and unused, commented-out code
     + indent and space consitently
-    + create a professional-looking README.md that displays when you open the repo on GitHub
+    + create a professional-looking `README.md` that displays when you open the repo on GitHub
 2. Collect all of the random code snippets you've written during exercises, etc into a single repo and add it as something innoculous like code-experiments
 3. Post to Slack, asking classmates to star and watch your marquee repo. Do the same for them.
 
@@ -100,7 +103,7 @@ Our job is to put our best foot forward and engage with the hiring process in go
     + CSS
     + JavaScript
     + jQuery
-    + Underscore.js
+    + Front-End Web Development
     + AJAX
     + JSON
     + Any other languages, libraries, or technologies you've used
