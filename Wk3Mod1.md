@@ -37,27 +37,26 @@ The following lists the core web development skills that you should feel comfort
   + `<div>` and `<span>`
   + ordered and unordered lists
   + images and links
-  + horizontal rule and line break
 4. Using a style attribute on an HTML element, then a `<style>` tag in the head, then a `<link>` tag to a separate `.css` document to include CSS styles in your page. Try to use the following CSS properties at a minimum:
   + `color, background-color, background-image`
   + `font-size, font-family`
   + `height, width, max-width`
-  + `margin, padding, border, border-radius`
+  + `margin, padding, border`
 5. Refactoring your code to use classes and ids.
 6. Using some complex CSS selectors, like descendent selectors
 7. Using an `iframe` to embed videos or maps on your page
 8. Using `float` and and `position:fixed` to position some elements
 9. Creating an HTML form incorporating various inputs (`text, password, email, textarea, radio, checkbox, select menu, submit`, etc)
 10. Making your form live using Formspree
-11. Using the Bootstrap grid system to lay out your page
-12. Using some pre-written Bootstrap CSS classes on various elements of your page
+11. Using the CSS grid system to lay out your page
+12. Using some pre-written styles from CSS libraries like Milligram on various elements of your page
 13. Using `alert()`, `prompt()`, and `console.log()` where appropriate
 14. Setting and retrieving values from JavaScript variables
 15. Using `document.querySelector()` in conjunction with `.textContent` and `.innerHTML` to retrieve and place content on the page
-16. Using `if`, `elseif` and `else` to implement branching logic on the basis of comparing variables and values
+16. Using `if`, `else if` and `else` to implement branching logic on the basis of comparing variables and values
 17. Using logical and (`&&`), logical or (`||`), and the ternary operator
 18. Using `while` loops to do work multiple times until a condition is met
-19. Using the `Math` object and `parseInt()`.
+19. Using the `Math` Object.
 20. Using jQuery to select existing HTML elements on the page
 21. Use jQuery's `.css()`, `.attr()`, `.text()`, `.html()`, `.append()`, and `.val()` to both get and set values
 22. Use some jQuery effects like `.show()`, `.slideDown()` and `.fadeOut()`
@@ -68,7 +67,7 @@ The following lists the core web development skills that you should feel comfort
 
 Let's go through the following steps, dividing up tasks as a team, to get this new mega-store launched. Good luck:
 
-1. To start, make sure your boilerplate code has jQuery, `reset.css`, and `minimal.css` included.
+1. To start, make sure your boilerplate code has jQuery and `normalize.css`.
 2. Make sure that there is a header, a nav bar, a content area, and a footer.
 3. Inside the content area create `<div id="book1">` and `<div id="book2">` and place information about a book for sale in each div. Each product should have the following properties:
     ```
@@ -84,7 +83,7 @@ Let's go through the following steps, dividing up tasks as a team, to get this n
 5. Add some css styles to make each section of the page stand out. Try to use as many different css selectors and css properties as you can.
 6. Now add some content to the header and footer. Notice that we had to do this same work in two different places. As the complexity of an application grows, having to keep information in sync like this isn't just tedious, it leads to big problems if we update information in one place but forget to update the other. The rule is Don't Repeat Yourself!
 7. Now, let's refactor this site to be a **Single Page Application** (i.e. We load all of the HTML, CSS, and JS once, and then dynamically change the page state using JS).
-9. Now take all the information about our books and make them into JavaScript Objects. Create variables `book1`, `book2`, `album1`, and `album2`. Set each equal to an object with keys `name`, `author`, and `picture_url`, which hold string values, `price` and `id`, which holds a number value, and `selling_points`, which is an array of strings. EXAMPLE:
+9. Now take all the information about our books and make them into JavaScript Objects. Create variables `book1`, `book2`, `album1`, and `album2`. Set each equal to an object with keys `name`, `author`, and `pictureUrl`, which hold string values, `price` and `id`, which holds a number value, and `sellingPoints`, which is an array of strings. EXAMPLE:
 
 ```javascript
 var book1 = {
