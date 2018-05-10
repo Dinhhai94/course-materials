@@ -56,10 +56,6 @@ The following lists the core web development skills that you should feel comfort
 16. Using `if`, `else if` and `else` to implement branching logic on the basis of comparing variables and values
 17. Using logical and (`&&`), logical or (`||`), and the ternary operator
 18. Using `while` loops to do work multiple times until a condition is met
-19. Using the `Math` Object.
-20. Using jQuery to select existing HTML elements on the page
-21. Use jQuery's `.css()`, `.attr()`, `.text()`, `.html()`, `.append()`, and `.val()` to both get and set values
-22. Use some jQuery effects like `.show()`, `.slideDown()` and `.fadeOut()`
 
 ---
 
@@ -101,18 +97,18 @@ var book1 = {
 ```
 
 10. You may also want to give your objects unique id properties such as `book1` to more easily generate id attributes for their `divs` on the page.
-11. Leaving the HTML tags intact, remove your existing text content (and image `src`) about each product from the HTML. Now use jQuery to add the information about each product back onto the page immediately upon page load. So:
+11. Leaving the HTML tags intact, remove your existing text content (and image `src`) about each product from the HTML. Now use JavaScript to add the information about each product back onto the page immediately upon page load. So:
 
 ```javascript
-$('#book1 .name').text(book1.name)
+document.querySelector('#book1 .name').textContent = book1.name;
 ```
 
-12. Refactor your code so that you can call a function `addToPage(book1)`, passing in an object, and that object will be placed using jQuery into the html page. Now you should just call `addToPage` for each book and the `addToPage` function will place it on the page for you.
+12. Refactor your code so that you can call a function `addToPage(book1)`, passing in an object, and that object will be placed using JavaScript into the html page. Now you should just call `addToPage` for each book and the `addToPage` function will place it on the page for you.
 
 To make this work, make sure that `addtoPate` constructs and appends new HTML elements into the content area of the page. So:
 
 ```javascript
-$('#content').append($("<div id='book" + book1.id + "'>").html( $('<div class=name>').text(book1.name)))
+document.querySelector('#content').innerHTML += "<div id='book" + book1.id + "'>" + book1.name + "</div>"
 ```
 13. Make sure each book or album's div has the appropriate class and id attributes generated for it. __You should not have to change any css while refactoring__.
 14. Now that we can call `addToPage` for each item, how can we use a `for` loop to append any number of books or albums to the page? How would we arrange our data to facilitate adding all of this data to the page? In this case, we'll be looking for an Array of Objects!
