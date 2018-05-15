@@ -307,11 +307,11 @@ function remainder( num1, num2 ){
 
 Nice work with functions today! For our last activity, we'll implement a Sentence Scrambler as one of our Portfolio Exercises. Build a new page with a `<div id="output">`, and then add the following in a `scrambler.js` file attached to your new page:
 
-1. Write a function called `stringPrinter` that takes a string as an argument and uses `$('#output').text()` to place it into a specific `<div>` on the web page. HINT:
+1. Write a function called `stringPrinter` that takes a string as an argument and uses `textContent` to place it into a specific `<div>` on the web page. HINT:
 
 ```javascript
 function stringPrinter( starterString ){
-  $('#output').text( starterString )
+  document.querySelector('#output').textContent = starterString;
 }
 ```
 2. Call `starterString` multiple times with different strings from the console.
