@@ -19,19 +19,6 @@ document.querySelector('#target').addEventListener('click', function saySameDeal
 });
 ```
 
-Ok, that's the native JavaScript syntax for adding event handlers to the page. Now let's see jQuery's way! Try this in your console as well:
-
-```javascript
-$('div').on('click', function logOnClick(){
-  console.log('A div has been clicked!')
-})
-
-// shortcut
-$('p').click(function makeBoom(){
-  $('p').show().css('color', 'red').text('boom goes the dynamite!')
-});
-```
-
 ---
 
 ### A new syntax (part 2)
@@ -42,12 +29,12 @@ As you see in the examples above, they can be fairly tedious to write out. To he
 
 ```javascript
 // original syntax
-$( "div" ).on( "click", function logOnClick(){
+document.querySelector( "div" ).addEventListener( "click", function logOnClick(){
   console.log( "A div has been clicked!" );
 })
 
 // arrow function
-$( "div" ).on( "click", () => console.log( "A div has been clicked" ) );
+document.querySelector( "div" ).addEventListener( "click", () => console.log( "A div has been clicked" ) );
 ```
 
 
@@ -77,7 +64,6 @@ $('#profile-pic').on('click', () => {
   $('#hidden-blurb').slideDown(); // only works if #hidden-blurb has display:none; in its CSS
 });
 ```
-4. Add at least one more jQuery animation effect on click!
 
 ---
 
