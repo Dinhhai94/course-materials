@@ -9,7 +9,7 @@ HTML forms are used to collect user input. The `<form>` element defines an HTML 
 
 Let's create a new contact page for your website!
 
-1. Use the same method we've used for our `media`, `projects`, and `blog` pages to create a `contact` page. When you're finished, your site's directory structure should look like this:
+1. Use the same method we've used for our `projects` and `blog` pages to create a `contact` page. When you're finished, your site's directory structure should look like this:
 
   ```
   / (root)
@@ -22,9 +22,6 @@ Let's create a new contact page for your website!
   |
   |-css/
   |   |-style.css
-  |
-  |-media/
-  |   |-index.html
   |
   |-projects/
   |   |-index.html
@@ -198,7 +195,7 @@ The layout above is a very common layout for blogs... much like the blog that we
 2. Let's change the unordered list (`<ul>`) of navigation links into an actual horizontal bar instead of a vertical bullet-pointed list. Try the following in your navigation bar (with a `class` of `navigation`, for this example):
 
   ```css
-  .navigation > ul > li {
+  #navigation > ul > li {
     display: inline;
     list-style: none;
   }
@@ -206,7 +203,7 @@ The layout above is a very common layout for blogs... much like the blog that we
 3. Now let's make our navigation bar 'sticky' by **fixing** its **position** in the viewport. Try the following CSS:
 
   ```css
-  .navigation {
+  #navigation {
     position: fixed;
     top: 0;
     left: 0;
@@ -215,7 +212,7 @@ The layout above is a very common layout for blogs... much like the blog that we
 4. Add a `margin-top` value to next page element to keep navigation from overlapping useful content. If the next section has a `class` of `header`, your CSS might look like this up to this point:
 
   ```css
-  .navigation {
+  #navigation {
     position: fixed;
     top: 0;
     left: 0;
@@ -223,7 +220,7 @@ The layout above is a very common layout for blogs... much like the blog that we
     width: 100vw;
   }
 
-  .navigation > ul > li {
+  #navigation > ul > li {
     display: inline;
     list-style: none;
   }
@@ -241,46 +238,46 @@ The layout above is a very common layout for blogs... much like the blog that we
       <li><a href="#">First Project</a></li>
       <li><a href="#">Second Project</a></li>
       <li><a href="#">Third Project</a></li>
-    </ul> 
+    </ul>
   </li>
   ```
 6. There are two issues with this `dropdown` as-written: first, the dropdown is always visible. Second, the dropdown is affecting the height of the navigation bar, when we'd rather have the dropdown "float" over the rest of the content in the header. Let's tackle the first issue with `display` and `:hover`:
 
   ```css
-  .navigation .dropdown {
+  #navigation .dropdown {
     display: none; // this hides the dropdown menu by default
   }
 
-  .navigation a:hover + .dropdown {
+  #navigation a:hover + .dropdown {
     display: block; // shows the any dropdown that is a direct sibling of a hovered anchor tag in the navigation bar
   }
   ```
 7. But how to tackle the page flow issue? We can't use `position: fixed`, because we don't always know where this dropdown's associated `projects` link is going to be relative to the viewport. Instead, we'll use `position: absolute` in combination with `position: relative` to make sure that our dropdown menu "tracks" its parent.
 
   ```css
-  .navigation > ul > li {
+  #navigation > ul > li {
     position: relative; // required for absolute positioning
     display: inline;
     list-style: none;
   }
 
-  .navigation .dropdown {
+  #navigation .dropdown {
     position: absolute; // tracks nearest relatively-positioned ancestor
     top: 1em; // positions according to the ancestor
     right: 0;
     display: none;
   }
 
-  .navigation a:hover + .dropdown {
+  #navigation a:hover + .dropdown {
     display: block;
   }
   ```
 
 7. Now it's time to fix our navigation menu to be a bit more responsive! To do that, we're going to use a newer CSS property called **flex-box**. Flex-box helps us align, justify, and wrap content within a container of variable width. Let's see if we can create a navigation menu that wraps automatically on smaller screens!
-  1. Change your `.navigation` CSS to the following:
+  1. Change your `#navigation` CSS to the following:
 
   ```css
-  .navigation {
+  #navigation {
     position: fixed;
     top: 0;
     left: 0;
@@ -288,11 +285,11 @@ The layout above is a very common layout for blogs... much like the blog that we
     width: 100vw;
   }
   ```
-  2. If you haven't already, give the `<ul>` in your `.navigation` section a class of `.container` to center the useful links on a large screen. We also need to add some CSS to our `ul.container` element. CSS for the whole `.navigation` family is going to look like this:
+  2. If you haven't already, give the `<ul>` in your `#navigation` section a class of `.container` to center the useful links on a large screen. We also need to add some CSS to our `ul.container` element. CSS for the whole `#navigation` family is going to look like this:
 
   ```css
-  
-  .navigation {
+
+  #navigation {
     position: fixed;
     top: 0;
     left: 0;
@@ -300,24 +297,24 @@ The layout above is a very common layout for blogs... much like the blog that we
     width: 100vw;
   }
 
-  .navigation > ul > li {
+  #navigation > ul > li {
     position: relative;
     display: inline;
     list-style: none;
   }
 
-  .navigation .dropdown {
+  #navigation .dropdown {
     position: absolute;
     top: 1em;
     right: 0;
     display: none;
   }
 
-  .navigation a:hover + .dropdown {
+  #navigation a:hover + .dropdown {
     display: block;
   }
 
-  .navigation > ul.container {
+  #navigation > ul.container {
     //these styles will extend the styles already contained in the .container class
     display: flex;
     flex-direction: row;

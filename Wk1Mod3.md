@@ -26,7 +26,7 @@ The `<span>` element is a generic inline element which defines a section of your
 
 Let's add another page to our growing Portfolio Project! This page will be for your future personal blog.
 
-1. Repeat the same steps we went through to build the `projects` and `media` pages. We'll call the blog page `blog` (makes sense, right?). Once you've finished creating the blog page, your site's directory structure should look this:
+1. Repeat the same steps we went through to build the `projects` page. We'll call the blog page `blog` (makes sense, right?). Once you've finished creating the blog page, your site's directory structure should look this:
 
    ```
     / (root)
@@ -277,7 +277,7 @@ Let's create a stylesheet for our Portfolio Project that applies to all of our p
     <!-- for all other pages -->
     <link type="text/css" rel="stylesheet" href="../css/style.css"/>
     ```
-    *Do you know why we need different `href` values for our landing page and our media, projects, and blog pages?*
+    *Do you know why we need different `href` values for our landing page and our projects and blog pages?*
 3. At this point, there shouldn't be any difference in the way your pages look or behave, since there's nothing in `style.css`. For now, you should stage, commit, push, and deploy your page to make sure that everything looks the same in the browser.
 4. Now we need to refactor all of the styles across pages. Copy all of the styles from each page into `style.css` page-by-page, starting with your blog page. Make sure you get each page looking like you'd like it. Remember that all CSS properties from here on out are shared between pages! If you need to make changes to your HTML to better organize your styles, that's OK, too.
 5. Once every page is looking good, stage, commit, push, and deploy your changes. And congrats on your pretty new Portfolio site!
