@@ -1,16 +1,15 @@
-# CLIs, `git`, GitHub, and "Hello, World"
+# CLIs, `git`, and "Hello, World"
 ## Welcome to the first class!
 
 ### Housekeeping
 
 To get things started, we need to download a few things for our __development environment__. These include the following:
 
-1. An OS-specific package management system
-2. A bash-friendly command-line interface
-3. Version control systems
-4. A text editor
-5. Helpful editor plugins
-6. Slack!
+1. A bash-friendly command-line interface
+2. A version-control system
+3. A text editor
+4. A dependency-management utility
+5. A native client for Slack
 
 The process for each of these things should depend a bit on your operating system, but should help us work together in a consistent environment for the rest of the course.
 
@@ -24,76 +23,53 @@ We'll set them up together as we work through tonight's materials.
 
 ### Building a Dev Environment
 
-Whenever we work on a project, we want to make sure that we are using a consistent set of tools. But installing those tools in a way that is consistent is a tough problem! To help out with installing the pieces of our development environment, we rely on package managers to help us maintain a consistent set of __environment dependencies__.
+Whenever we work on a project, we want to make sure that we are using a consistent set of tools. But installing those tools in a way that is consistent across operating systems is a tough problem! Most web developers use tools that are modeled after the UNIX family of operating systems. These tools are usually packaged as a form of __terminal emulator__. 
 
-> ENVIRONMENT DEPENDENCIES are programs that we depend on to help us create software in our development environment
-
-Because each operating system is so different, we'll need to install a different command-line package manager for each OS (more on the "command-line" in a minute). They are:
+Because each operating system is so different, we'll need to install a different set of tools to emulate the UNIX terminal through our command-line (more on "command-lines" and "terminals" in a minute):
 
 #### Linux
-  + all Ubuntu-flavored distributions ship with `apt`, which will work perfectly out-of-the-box!
-  + Arch Linux comes with `pacman`, and it's a good idea to add [`yaourt`](https://www.ostechnix.com/install-yaourt-arch-linux/) as well.
-  + RPM-based distributions should use `yum`
+  + Most Linux distributions ship with their own, fully-featured UNIX-based
+    terminal emulators. Popular examples include GNOME Terminal, xterm, or
+    Konsole (depending on your desktop environment).
+  + If you're using a minimalist distribution like Arch,
+    please use [kitty](https://sw.kovidgoyal.net/kitty/), installed through your
+    distribution's package manager (e.g. `pacman -S kitty` for Arch users).
 
 #### macOS
-  + [Homebrew](https://brew.sh/) is the package manager of choice for macOS
-  + to install, open up the `Terminal` application from Finder, and paste the following into the box:
-
-  `/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
-
-  + ...then just follow the prompts to install!
+  + For Mac users, the Terminal application works well as a UNIX-compliant
+    command-line.
+  + If you would like a command-line application with more features, [iTerm2](https://www.iterm2.com/)
+    is the _de facto_ choice of many devs.
+  + For some versions of macOS, you will also need to consent to using XCode
+    features. To trigger this installation/consent process, type in `git
+    --version` and hit `ENTER`. If a version number is output to the screen,
+    you're good to go. Otherwise, follow the prompts to make sure that you're
+    set up with Terminal dev tools.
 
 #### Windows
-  + [Chocolatey](https://chocolatey.org/install) is the package manager of choice for Windows.
-  + To install, open the PowerShell application as an administrator, then run the following to install Chocolatey:
-
-  `Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))`
+  + Windows is the tough one...the windows command line is notoriously _wrong_
+    for web development. Luckily, the folks behind `git` have come up with a
+      solution: `git-bash`, a UNIX-esque terminal emulator for Windows packaged
+      with `git`!
+  + Do download both `git` and `git-bash`, head to [git-scm.com](https://git-scm.com/downloads), hit the "Downloads for Windows" button, and go through the prompts to complete the installation process.
+  + Once the installation process above is complete, use the Windows key to
+    search for "Git Bash". Use this command-line for the duration of this
+    course.
 
 
 ### Interfacing with Computers
 
-The operating system is the program (series of instructions) that runs when you turn on your computer. It handles inputs (keyboard, mouse, camera, network connections) and outputs (monitor, speakers, network connections), manages shared access to computing resources and memory, and reads and writes data to the file system on behalf of any number of simultaneously running applications (web browser, code editor, text document, music player, etc). We interact with the computer through the operating system, usually by TYPING, TOUCHING, or CLICKING.
+The operating system is the program (series of instructions) that runs when you turn on your computer. It handles inputs (keyboard, mouse, camera, network connections) and outputs (monitor, speakers, network connections), manages shared access to computing resources and memory, and reads and writes data to the file system on behalf of any number of simultaneously running applications (web browser, code editor, terminal emulator, music player, etc). We interact with the computer through the operating system, usually by TYPING, TOUCHING, or CLICKING.
 
-Computers can receive user input through either a command line interface (CLI) or a graphical user interface (GUI). In a command line interface (A.K.A. "Console", "Terminal", or "Shell"), the user types commands using the keyboard to tell the computer to take an action. The computer will display the results of the operation by writing text to the screen.
+Computers can receive user input through either a command line interface (CLI) or a graphical user interface (GUI). In a command line interface (A.K.A. "Console", "Command Line", "Terminal", or "Shell"), the user types commands using the keyboard to tell the computer to take an action. The computer will display the results of the operation by writing text to the screen.
 
 ![Command-Line GIF](http://reactorprep.herokuapp.com/assets/images/cli.gif)
 
-GOAL FOR THE COURSE: All navigation should be done using **words** instead of **pictures**.
+GOAL FOR THE COURSE: All navigation should be done using **words** instead of **pictures**, usually through our terminal emulators.
 
 > "When I was a child, I used a computer by looking at the pictures. When I grew up, I learned to read and write."
 > -William Shotts, Jr.
 > Linux Command.org
-
-There are lots of applications that are built to be a command-line interface. Many of them are specific to different operating systems. The most commonly-used CLIs are based on the Unix shell, and there are a number of options available for each operating system.
-
-#### Linux (all distributions)
-  + Built-in Desktop Environment Terminals (Konsole, GNOME shell, etc.)
-  + Termite, Terminator, Tilda, etc.
-
-  __to install__:
-
-  If you're using Linux, you already have a unix-style terminal installed! Any will do for this course, but you may use your distribution's package manager to install another if you're so inclined.
-
-#### macOS
-  + iTerm2
-
-  __to install__:
-
-  `brew cask install iterm2`
-
-#### Windows
-  + Linux Subsystem for Windows terminal
-  + PowerShell
-  + git bash
-
-  __to install__:
-
-  If at all possible (on an updated Windows 10 machine) install the [Linux Subsystem on Windows](https://msdn.microsoft.com/en-us/commandline/wsl/install-win10). This gives you access to most of the functionality of a Linux system called Ubuntu, which includes a wonderful terminal emulator and package manager.
-
-  However, this can be time-consuming to install, so we will get started tonight with the Git Bash terminal that's packaged with `git`, our version control system. We'll download that with the following code in PowerShell to get us started:
-
-  `choco install git -params '"/GitAndUnixToolsOnPath"'`
-
 
 > __NOTE__: From here on out, we'll use the terms `terminal`, `command-line`, and `CLI` interchangeably
 
@@ -115,49 +91,58 @@ We will start out by using the CLI to navigate through the file system on our pe
 
 ---
 
+### Developer Accounts
+
+There are a number of different online services that help us be productive. Here are three that we'll use for this class.
+
+#### Slack
+All of our communication will go through the class-specific Slack channel! Please sign up for an account (if you haven't already) and download the slack client for your OS through your package manager.
+
+#### GitHub
+[GitHub](https://github.com) profiles are like a combination of LinkedIn and Facebook for developers, as well as a place to back up and store code. We'll learn more about how git and GitHub work later, but for now, it's important to create an account. When you've created an account, post a link to Slack, and follow the profiles of your classmates and instructors!
+
+#### Netlify
+Once you have a GitHub account, you can sign up for [Netlify](https://www.netlify.com/). We'll use Netlify for [Continuous Delivery](https://en.wikipedia.org/wiki/Continuous_delivery)
+
+---
+
 ### More Environment Tools
 
 Beyond a package manager and CLI, we need a few more tools to help us work more efficiently.
 
 #### Git
-As developers, we can't manage file saving (_a.k.a._ version control) the same way as everyone else. We need a command-line program called `git` to help us out! You can install `git` through your OS's package manager, e.g.:
+Most Linux distributions come with `git` pre-installed, as does macOS. For
+Windows users, we already installed `git` as a part of downloading `git-bash` as
+your terminal emulator.
 
-Linux: `sudo apt install git` or `sudo pacman -S git`
-macOS: `brew install git`
-Windows: `choco install git -params '"/GitAndUnixToolsOnPath"'` (this should already be installed)
+Verify that you have `git` installed by typing `git --version` into your
+terminal. You should see some numbers (e.g. `2.17.1`).
 
 
-#### Atom
-The text editor that we'll be using for this course is called [Atom](https://atom.io). It's a modular editor built for web development, maintained by GitHub, and contributed to by a large Open Source community.
+#### Visual Studio Code
+The text editor that we'll be using for this course is called [Visual Studio Code](https://code.visualstudio.com/) (_not_ Visual Studio, which is only available for Windows). It's a modular editor built for web development, maintained by Microsoft, and contributed to by a large Open Source community.
 
-Linux: `sudo apt install atom` or `sudo pacman -S atom`
-macOS: `brew cask install atom`
-Windows: `choco install atom`
+Visit the link above to install VSCode (as it's colloquially known) to your
+machine. Linux users can also use their distribution's package manager.
 
-Once you've installed Atom, you should be able to open it from the Start Menu (or Finder). Then, follow these steps to install a few helpful packages/extensions to Atom!
+Once you've installed VSCode, you should be able to open it from your terminal by typing `code` or by searching through your applications. Then, follow these steps to configure your editor!
 
-1. Open up the Settings in Atom (File > Settings or `ctrl + comma`)
-2. Go to 'Install' and install the following packages:
-  1. [atom-live-server](https://atom.io/packages/atom-live-server)
-  2. [emmet](https://atom.io/packages/emmet)
-  3. [file-icons](https://atom.io/packages/file-icons)
-  4. [javascript-snippets](https://atom.io/packages/javascript-snippets)
-  5. [linter-eslint](https://atom.io/packages/linter-eslint)
-3. If you're on macOS, install shell commands (Atom > Install Shell Commands)
-4. Restart Atom
+1. Open up the Settings (`CTRL + ,`)
+2. This is how we configure VSCode's internal settings, including things like
+   font size and family, syntax highlighting theme, and indentation guides. Be
+   sure to set "eslint.autoFixOnSave" to `true`
+3. If you're on macOS, install shell commands from the command pallette (`CMD +
+   SHIFT + P`) by selecting the `Install 'code' command in PATH` option.
+   ![command-palette](https://code.visualstudio.com/assets/docs/setup/mac/shell-command.png)
+4. Use quick-open (`CTRL + P`) and enter `ext install MS-vsliveshare.vsliveshare` to install [Live Share](https://marketplace.visualstudio.com/items?itemName=MS-vsliveshare.vsliveshare) for real-time collaboration.
 ---
 
 #### EXERCISE 2
 1. Navigate to your `SavvyCoders` directory using your CLI
-2. You can open specific directories in Atom using the `atom` command from your command line! If you have already navigated inside the `SavvyCoders` directory, you can open folder using `atom .`
-3. Also in your CLI, use the command `touch haiku.txt` to create a new text file named `haiku.txt` inside of `SavvyCoders`.
-4. Write a short haiku using Atom! (And don't forget the 5-7-5 syllable structure):
-
-  ```
-  Haikus are easy,
-  But endings are difficult.
-  Refrigerator.
-  ```
+2. You can open specific directories in VSCode using the `code` command from your command line! If you have already navigated inside the `SavvyCoders` directory, you can open folder using `code .`
+3. Also in your CLI, use the command `touch intro.txt` to create a new text file named `intro.txt` inside of `SavvyCoders`.
+4. Write a short personal introduction using VSCode! Include some contact
+   information and a favorite quote:
 
 ---
 
@@ -167,7 +152,7 @@ Formatted text is nice, but clicking buttons will never scale. We need to be abl
 
 Markdown is a markup language. Markup languages mix in special sequences of coded characters to specify the intended layout and style of their text.
 
-Copy this Markdown code into your Atom code editor and search for 'markdown preview' to have it parsed and rendered:
+Copy this Markdown code into your VSCode code editor and search for 'markdown preview' to have it parsed and rendered:
 
 ```markdown
 # This is a header
@@ -223,34 +208,17 @@ w/ sub-lists
 [I'm a link to a web page!](http://www.google.com)
 
 ![alt text](https://i.imgur.com/81qyN1y.jpg)
-
-![local photo](assets/profile.png)
 ```
 
 #### EXERCISE 3
 
-1. Now it's time to format haiku.txt with Markdown! Let's `mv` `haiku.txt` to a new file called `haiku.md` with the command `mv haiku.txt haiku.md`
-2. Create a title for your haiku and format it as a header with `#`
-3. Italicize the first two lines with `* *`.
-4. Italicize and bold the last line with `*** ***`.
-5. Create a horizontal rule after the haiku using `---`.
-6. Create a list of authors as an unordered list using `+ `.
+1. Now it's time to format intro.txt with Markdown! Let's `mv` `intro.txt` to a new file called `intro.md` with the command `mv intro.txt intro.md`
+2. Create a title for your portfolio project and format it as a header with `#`
+3. Format your quote using italicization and bold.
+6. Create a list of contact information as an unordered list using `+ `. Make
+   each means of contact a link rather than plain text (e.g. `[some
+   link](some-url.com)`)
 7. Find a relevant photo online and insert it using the syntax `![ ]( )` (see the Markdown above for full syntax)
-
----
-
-### Developer Accounts
-
-There are a number of different online services that help us be productive. Here are three that we'll use for this class.
-
-#### Slack
-All of our communication will go through the class-specific Slack channel! Please sign up for an account (if you haven't already) and download the slack client for your OS through your package manager.
-
-#### GitHub
-[GitHub](https://github.com) profiles are like a combination of LinkedIn and Facebook for developers, as well as a place to back up and store code. We'll learn more about how git and GitHub work later, but for now, it's important to create an account. When you've created an account, post a link to Slack, and follow the profiles of your classmates and instructors!
-
-#### Netlify
-Once you have a GitHub account, you can sign up for [Netlify](https://www.netlify.com/). We'll use Netlify for [Continuous Delivery](https://en.wikipedia.org/wiki/Continuous_delivery)
 
 ---
 
@@ -259,18 +227,11 @@ Once you have a GitHub account, you can sign up for [Netlify](https://www.netlif
 Over the course of this class, you are going to build a Portfolio Page to practice your skills, introduce yourself to others, and demo all of the exercises and challenges that you complete in the next 4 weeks. To get started on this project, do the following:
 
 1. Make a new directory called `FirstnameLastname` (with YOUR first and last name, of course) inside the `SavvyCoders` directory. (HINT: `mkdir FirstnameLastname`).
-2. Navigate into your Portfolio Project directory (HINT: `cd FirstnameLastname`) and create a new Markdown document called `README.md`.
-3. Open `FirstnameLastname` in Atom (HINT: `atom .`) and start editing `README.md`.
-4. In `README.md`, mock out a quick introduction for those stumbling upon your future Portfolio Project. Be sure to include:
-  1. a picture of yourself
-  2. a heading
-  3. a greeting paragraph
-  4. a list of quick facts about you
-  5. a list of links to your social media profiles like:
-    + GitHub
-    + LinkedIn
-    + Facebook
-    + Twitter
+2. Navigate into your Portfolio Project directory (HINT: `cd
+   FirstnameLastname`).
+3. Remember your `intro.md` file in your Porfolio Project's parent directory?
+   Let's turn that into a `README.md` file with the `mv` command: `e.g. mv
+   ../intro.md README.md`. What does the `..` in front of `intro.md` represent?
 
 ---
 
@@ -371,7 +332,7 @@ For your very first website, we're going to complete a quick `Hello, World` usin
 2. Be sure to name your Netlify site whatever you'd like (instead of the randomly-generated name provided).
 3. Now we're going to make a landing page for your new site!
   1. Create a landing page with the command `touch ~/Code/SavvyCoders/FirstnameLastname/index.html`
-  2. In Atom, open up that new `index.html` file
+  2. In VSCode, open up that new `index.html` file
   3. Type in `!`, then hit `TAB`
   4. You should now have some HTML boilerplate!
   5. Inside the `<body>` tags, type in `h1{Hello, world!}` and hit `TAB` to see your very first HTML text.
