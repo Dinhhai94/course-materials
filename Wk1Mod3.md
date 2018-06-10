@@ -34,9 +34,6 @@ Let's add another page to our growing Portfolio Project! This page will be for y
     |-/blog
     |   |-index.html
     |
-    |-/media
-    |   |-index.html
-    |
     |-/projects
     |   |-index.html
     |
@@ -45,7 +42,7 @@ Let's add another page to our growing Portfolio Project! This page will be for y
     ```
 2. Inside of your new `blog/index.html` file, create a short blog post welcoming readers to your blog (no more than 5 sentences of content). More important than the content will be the *page structure* and *layout*. Make sure to include the following elements in your post as separate `<div>`s:
     1. A header area (with your blog title/subtitle, and maybe a splash photo)
-    2. A nav bar area (with links to other pages in your Portfolio site)
+    2. A navigation bar area (with links to other pages in your Portfolio site)
     3. A content area for the text content of your post.
     4. A footer with some contact info and copyright information.
 3. Inside the content area, make sure that you've used at least one of each of the following:
@@ -165,7 +162,7 @@ As our documents grow, we'll need to leverage more complex CSS selection syntax.
 3. *The Direct Decendant Selector*
 
     ```css
-    div>p {
+    div > p {
         //css that only applies to direct child elements (no grand-children) of an element
         //in this case, all of the child paragraph elements of divs across the page
     }
@@ -255,7 +252,7 @@ As a quick rule of thumb, look at a selector, and put a number in the correct bo
 
 ![example specificity calculation 2](https://css-tricks.com/wp-content/csstricks-uploads/cssspecificity-calc-2.png)
 
-In this example, there are more component parts in the second example, but the first is still more specific (and would take precendent over the second in the event of a rule collision) because of the power of the ID `#nav` 
+In this example, there are more component parts in the second example, but the first is still more specific (and would take precendent over the second in the event of a rule collision) because of the power of the ID `#nav`
 
 ---
 
