@@ -1,7 +1,4 @@
 ## Building a Bookstore Part 1
-### Halfway Hack-A-Thon!
-
-**Congratulations!** Today we are at the halfway point in our class. Let's celebrate with a hackathon! A hackathon is a great opportunity to work on a larger, real-world(ish) project, while reviewing and solidifying the core concepts that we've covered in the first half of the course.
 
 Today is the day we finally *MONETIZE*! We will build either an e-commerce store for our community site or a new hot startup to compete with Amazon.com. This will be a group project using the same GitHub workflow that we used for the Student Showcase website.
 

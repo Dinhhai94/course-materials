@@ -1,331 +1,252 @@
-## Fun with Functions
-### Delving Deeper in to Functions
+## `while`
+### Fun with loops!
 
-We've already seen a variety of functions, from built-on functions like `console.log()`, to functions from external libraries like `$()` from jQuery, to a few of our own built using `var functionName = function(){}`. We've also already learned how to _invoke_ or _execute_ functions with `()`, as well as passing in a few simple arguments (like we've done with `.css("property", "value")`). Let's dig into these a bit deeper.
+The `while` loop looks a lot like an `if` statement. They both execute their associated code block based on the result of their conditional expression. The difference being, the `while` loop will repeatedly check its conditional expression and continue to run its code block as long as it evaluates to `true`. Give it a try:
 
----
-### a new syntax (part 1)
+ ```javascript
+ var n = 0
 
-Up to this point, we've been writing functions like this:
+ console.log("I am called the Count... because I really love to count!")
 
-```javascript
-var someFunction = function someFunction(){}
-```
+ while (n < 10) {
+   console.log(n, "ha-ha-ha")
+   n++
+ }
 
-While it's clear what's going on here, we have another way writing functions that's a bit cleaner. It's called a _named functional expression_, and it looks like this:
-
-```javascript
-function someFunction(){}
-```
-
-While there are some technical differences between the two ways of declaring functions, the latter is used much more widely than the former, and is generally a bit easier to read. As long as we treat the functional expression the same way we were treating it's `var`-based cousin, we should be fine (and save ourselves a few keystrokes in the process).
-
-
-### the `return` keyword
-
-Here's a function that `return`s a value without any side effects:
-
-```javascript
-function greeter() {
-  return 'Hello'
-}
-
-// saving the return value
-var greeting = greeter();
-
-// using the return value to compose larger expressions
-console.log( greeting + ", nice to meet you." )
-
-// what's the difference here?
-console.log( greeter() + ", nice to meet you." )
-```
-The result of evaluating an expression consisting of a function reference followed by an invocation operator is the value to the right of the keyword `return` inside the function. Easy peasy, right?
-
-```javascript
-function sayingGenerator() {
-  var phrase = "Heeey, " + "it's the " + " Fonz."
-  return phrase
-}
-
-// What is the return value?
-var saying = sayingGenerator()
-
-function brokenSayingGenerator() {
-  var phrase = "Heeey, " + "it's the " + " Fonz."
-  phrase
-}
-
-// What about now?
-var brokenSaying = brokenSayingGenerator()
-```
-
-### Exercise 1
-### Testing Your Choose-Your-Own-Adventure Choices
-
-When we left our Choose-Your-Own-Adventure game, we had a `runStory` function that looked like this:
-
-```javascript
-function runStory( branch ){
-    var chapter = story[branch];
-    var choices = chapter.choices;
-    var isValidChoice = false;
-    var choice;
-
-    if( choices ){
-        choice = prompt( chapter.text );
-
-        for( var i = 0; i < choices.length; i++ ){
-            if( choice === choices[i] ){
-                isValidChoice = true;
-            }
-        }
-
-        if( isValidChoice ){
-            runStory( choice );
-        }
-        else{
-            runStory( branch );
-        }
-    }
-    else{
-        document
-            .querySelector( "#output" )
-            .textContent = chapter.text;
-    }
-};
-```
-
-While this works, it has a complexity (or number of possible branches) of more than 4. This is tough to read and tough to debug. How can we reduce the complexity of this function through `return` values?
-
-1. Let's start with choice validation. How can we wrap up the choice-checking logic in a function that `return`s a single Boolean value? How about:
-
-```javascript
-function validateChoice( choice, choices ){
-  var isValidChoice = false;
-
-  for( var i = 0; i < choices.length; i++ ){
-      if( choice === choices[i] ){
-          isValidChoice = true;
-      }
-  }
-
-  return isValidChoice;
-}
-```
-
-2. Once we've re-written our `validateChoice` logic, we can refactor `runStory` into something like this:
-
-```javascript
-function runStory( branch ){
-    var chapter = story[branch];
-    var choices = chapter.choices;
-    var choice;
-
-    if( choices ){
-        choice = prompt( chapter.text );
-
-        if( validateChoice( choice, choices ) ){
-            runStory( choice );
-        }
-        else{
-            runStory( branch );
-        }
-    }
-    else{
-        document
-            .querySelector( "#output" )
-            .textContent = chapter.text;
-    }
-};
-
-```
-
-Notice how we're able to use the `return`ed value from `validateChoice` as the truthy (or falsey) value in our second `if` statement. That should knock down our complexity a notch while letting us abstract away our choice logic for the future. Now we can manipulate our choice-checking logic however we'd like without touching our original `runStory` function. Pretty cool! But what else can we do to make this function simpler?
-
-How about getting rid of the nested `if` statement entirely? Let's try it!
-
-```javascript
-function handleChoices( choices ){
-    var choice = prompt( chapter.text );
-
-    if( validateChoice( choice, choices ) ){
-        runStory( choice );
-    }
-    else{
-        runStory( branch );
-    }
-}
-
-function runStory( branch ){
-    var chapter = story[branch];
-    var choices = chapter.choices;
-
-    if( choices ){
-        handleChoices( choices );
-    }
-    else{
-        document
-            .querySelector( "#output" )
-            .textContent = chapter.text;
-    }
-};
-```
-
-Now we have the additional mental overhead of multiple functions, with the added benefit of clearer intent and less per-function complexity. What do you think?
-
----
-
-### Arguments
-
-During every function invocation, you have access to the `arguments` keyword, which contains all the inputs to the function invocation. Play with this concept until you're sure you understand it.
-
-```javascript
-function inspector() {
-  console.log( arguments )
-}
-
-// try each invocation individually and ponder the result
-inspector(3)
-
-inspector(3 + 7)
-inspector(3, 7)
-
-inspector("hello")
-inspector("hello" + " " + "how are you")
-inspector("hello", "how are you")
-
-inspector("hello", 7, true, undefined, null, 3 + 12, "nice to" + " meet you")
-```
-
-### Exercise 2:
-
-1. In your dev console, create a function `logAndReturn` that `console.log`s all of its inputs and then `return`s them. HINT:
-
-```javascript
-function logAndReturn(){
-  console.log(arguments);
-
-  return arguments;
-}
-```
-
-2. Store the `return` value as a variable `returnedValues`. HINT:
-
-```javascript
-var returnedValues = logAndReturn();
-```
-
-3. Pass that variable as an argument to a second invocation of `logAndReturn`. HINT:
-
-```javascript
-logAndReturn( returnedValues );
-```
-
----
-
-### Parameters
-It's unwieldy to work with the arguments keyword directly. Usually we use named parameters to give our inputs (arguments) variable names for the length of the function invocation
-
-```javascript
-function valueLogger(value) {
-  console.log(value)
-}
-
-valueLogger("Howdy ho, neighborino!")
-
-// parameters and variables defined in function invocations are local to that invocation
-value     // ReferenceError: No variable 'value' exists
-
-
-valueLogger(3 + 7)
-
-// where's the seven?
-valueLogger(3, 7)
-
-function doubler(num) {
-  return num * 2
-}
-
-// is it ten?
-var shouldBeTen = doubler(5)
-
-function doubleValueLogger(value1, value2) {
-  console.log(value1, value2)
-}
-
-doubleValueLogger("hello", "how are you")
-
-// what is value2?
-doubleValueLogger("hello")
-
-function add(num1, num2){
-  return num1 + num2
-}
-
-var sum = add(7, 12)
-```
-
-### Exercise 3
-#### Simple Math
-
-1. Write a function called `tripler` that takes a number and returns triple the value. HINT:
-
-```javascript
-function tripler( num ){
-  return num * 3;
-}
-```
-2. Create a function `multiply` that takes two numbers as inputs and returns their product. HINT:
-
-```javascript
-function multiply( num1, num2 ){
-  return num1 * num2;
-}
-```
-3. Create a function `divide` that takes two numbers as inputs and returns the result of dividing the first by the second
-
-```javascript
-function divide( num1, num2 ){
-  return num1 / num2;
-}
-```
-
-4. Create a function `remainder` that takes two numbers as inputs and returns the result of modulo the first by the second
-
-```javascript
-function remainder( num1, num2 ){
-  return num1 % num2;
-}
-```
-
-5. Using only the functions you wrote above, and no operators, calculate the value of tripling 5, multiplying that by 12, dividing by 2 and then finding the remainder of dividing that by 3.
-
----
+ console.log('fin!')
+ ```
 
 ### Portfolio Project 1
-#### Sentence Scrambler
+#### Looping Page
 
-Nice work with functions today! For our last activity, we'll implement a Sentence Scrambler as one of our Portfolio Exercises. Build a new page with a `<div id="output">`, and then add the following in a `scrambler.js` file attached to your new page:
+For the rest of today's exercises, we're going to create a very simple HTML document that will demonstrate our looping prowess. To begin, follow the same process used for the `greeting` and `choose-your-own-adventure` pages to create a `while` page, and link that page to your `media` page in your Portfolio project. Make sure to also include a `while.js` file in your `while` directory and link it to your `while` HTML page!
 
-1. Write a function called `stringPrinter` that takes a string as an argument and uses `textContent` to place it into a specific `<div>` on the web page. HINT:
+Then work through the following exercises as a group, implementing each in your `while.js` document.
+
+1. **EXERCISE 1**: Create a `while` loop that logs numbers 1 through 10 to the console. HINT:
 
 ```javascript
-function stringPrinter( starterString ){
-  document.querySelector('#output').textContent = starterString;
+var n = 1;
+
+while (n <= 10) {
+    console.log(n);
+    n++;
 }
 ```
-2. Call `starterString` multiple times with different strings from the console.
-3. Does `starterString` use a side effect or a return value?
-4. Write a function called `funnySentence` that takes a noun, an adjective, a verb, and an adverb as inputs, and constructs a string of html text and uses `$('#output').append()` to place it on the page. HINT:
+
+2. **EXERCISE 2**: Create a `while` loop that logs every _even_ number from 2 through 20 to the console. HINT:
 
 ```javascript
-function funnySentence( noun, adjective, verb, adverb ){
-  var sentence = "The " + adjective + " " + noun + " " + verb + " " + adverb + ".";
+var n = 2;
 
-  stringPrinter(sentence);
+while (n <= 20) {
+    console.log(n);
+    n += 2;
+}
+```
+
+3. **EXERCISE 3**: Create a `while` loop that `console.log`s a running total of the cumulative sum of numbers from 1 to `n`. HINT:
+
+```javascript
+var n = 100;
+var i = 1;
+var sum = 0;
+
+while (i < n) {
+    sum += i;
+    console.log(sum);
+    i++;
+}
+```
+
+4. **EXERCISE 4**: In your HTML document, create a separate `div` for each exercise. Then, in addition to `console.log`-ing each iteration, append all of the results to their respective divs using an unordered list. HINT (for exercise 1... try the others on your own):
+
+```javascript
+var n = 1;
+var outputTarget = document.querySelector("#exercise-1");
+var outputHtml = "<ul>";
+
+while (n <= 10) {
+    console.log(n);
+    ouputHtml += "<li>" + n + "</li>";
+    n++;
+}
+
+outputHtml += "</ul>";
+
+outputTarget.innerHTML = outputHtml;
+```
+5. **EXERCISE 5**: We can also combine `if` and `else` statements in our loops to respond to different input states. For this exercise, count _down_ from 15 by ones. For each number, log "even" or "odd" to the console and to a new div for Exercise 5. HINT:
+
+```javascript
+var n = 15;
+var outputTarget = document.querySelector("#exercise-5");
+var outputHtml = "<ul>";
+
+while (n > 0) {
+    console.log(n);
+    if ( n % 2 === 0) {
+        outputHtml += "<li>even</li>";
+    } else {
+        outputHtml += "<li>odd</li>";
+    }
+    n--;
+}
+
+ouputHtml = "</ul>";
+
+outputTarget.innerHTML = outputHTML;
+```
+6. **EXERCISE 6**: Let's extend the idea of `if` and `else` in `while` loops with a pretty common exercise called FizzBuzz. For this exercise, log and output "Fizz" if a number is divisible by 3, "Buzz" if a number by 5, and "FizzBuzz" if a number is divisible by both 3 and 5. If a number is not divisible by 3 or 5, then just output the number. For this exercise, count up from 1 to 100. HINT:
+
+```javascript
+var n = 1;
+var outputTarget = document.querySelector("#exercise-6");
+var outputHtml = "<ul>";
+
+while (n <= 100) {
+    if(n % 3 === 0 && n % 5 == 0){
+        console.log("FizzBuzz");
+        outputHtml += "<li>FizzBuzz</li>";
+    } else if (n % 3 === 0) {
+        console.log("Fizz");
+        outputHtml += "<li>Fizz</li>";
+    } else if (n % 5 === 0) {
+        console.log("Buzz");
+        outputHtml += "<li>Buzz</li>";
+    } else {
+        console.log(n);
+        ouputHtml += "<li>" + n + "</li>";
+    }
+
+    n++;
+}
+
+ouputHtml = "</ul>";
+
+outputTarget.innerHTML = outputHTML;
+```
+
+Nice work! Be sure to commit all of your stage and `commit` all of your changes before pushing them to GitHub and `deploy`-ing to your live site.
+
+### Exercise 1
+#### the Math Object
+
+We've been using Objects pretty frequently already. Every time you've typed `document.querySelector()` or `console.log()`, you've been accessing functions that are attached to the `document` and `console` objects, respecively. These are built into the browser, and we can use any of the pre-built properties on these Objects using dot notation.
+
+There are lots of additional Objects that come packaged within JavaScript, too. One of them is called `Math`. Try out the following in a console:
+
+```javascript
+    Math
+    Math.PI
+    Math.E
+    Math.pow(9, 2)
+    Math.random()
+    Math.floor(7.2)
+    Math.ceil(7.2)
+    Math.ceil( Math.random() * 10 )
+    Math.ceil( Math.random() * 10 )
+```
+
+### Portfolio Project 2 (Bonus)
+#### Rock, Paper, Scissors
+
+Use `prompt()` to create a Rock, Paper, Scissors game for visitors to your portfolio. Make a new page, linked to your media page, with a `rps.js` file linked in (just like you did with the Choose Your Own Adventure game).
+
+1. Ask for input until the user enters either "R", "P", or "S". HINT:
+
+```javascript
+var userChoice = prompt("Choose Rock, Paper, or Scissors by typing 'R', 'P', or 'S'");
+```
+2. Use `Math.random()` to choose a play for the computer after you've gathered input. HINT:
+
+```javascript
+var rng = Math.random();
+var computerChoice = "R";
+
+if(rng > 0.66) {
+    computerChoice = "P";
+} else if (rng > 0.33) {
+    computerChoice = "S";
+}
+```
+3. Tell the user what the outcome of the hand was with an `alert()`. There are _lots_ of ways to compare hands, try out a few! HINT (as an example):
+
+```javascript
+var userWins = "You win!";
+var computerWins = "The computer wins!";
+
+if(computerChoice !== userChoice){
+    if(computerChoice === "R"){
+        if (userChoice === "S") {
+            alert(computerWins);
+        } else {
+            alert(userWins);
+        }
+    } else if (computerChoice === "P") {
+        if( userChoice === "R") {
+            alert(computerWins);
+        } else {
+            alert(userWins);
+        }
+    } else {
+        if( userChoice === "P") {
+            alert(computerWins);
+        } else {
+            alert(userWins);
+        }
+    }
+} else {
+    alert('Tie!');
+}
+```
+4. Use a `while` loop to repeat the process five times. HINT:
+
+```javascript
+var userWins = "You win!";
+var computerWins = "The computer wins!";
+var roundCounter = 0;
+
+var gameRound = function(){
+    var userChoice = prompt("Choose Rock, Paper, or Scissors by typing 'R', 'P', or 'S'");
+    var computerChoice = "R";
+    var rng = Math.random();
+
+    if(rng > 0.66) {
+        computerChoice = "P";
+    } else if (rng > 0.33) {
+        computerChoice = "S";
+    }
+
+    if(computerChoice !== userChoice){
+        if(computerChoice === "R"){
+            if (userChoice === "S") {
+                alert(computerWins);
+            } else {
+                alert(userWins);
+            }
+        } else if (computerChoice === "P") {
+            if( userChoice === "R") {
+                alert(computerWins);
+            } else {
+                alert(userWins);
+            }
+        } else {
+            if( userChoice === "P") {
+                alert(computerWins);
+            } else {
+                alert(userWins);
+            }
+        }
+    } else {
+        alert('Tie!');
+    }
 };
 
+while (roundCounter < 5) {
+    gameround();
+    roundCounter++;
+}
+
 ```
-5. Put each word argument you pass in into spans that have css rules that styles them differently to make them stand out.
-6. Invoke `funnySentence` 5 times.
-Extra Credit: Create a version of `funnySentence` that takes no inputs, but rather constructs a funny sentence on its own from an array of randomly-chosen words
+Once you like the way your RPS game is working, `add`, `commit`, `push`, and `deploy` your project. Good work!
