@@ -1,4 +1,4 @@
-## Basic DOM review, String Interpolation, modules, and bundlers 
+## Basic DOM review, String Interpolation, modules, and bundlers
 ### ...plus type coercion and booleans!
 
 Up to this point, our JavaScript exercises have added a bit of flair to some existing websites, but haven't really been 'programs' in the their own right. Today we change that! But first, a bit more info about the Boolean data type:
@@ -143,14 +143,14 @@ To start working with modules in our own application, we're going to use a bundl
 Let's use `parcel` to serve our content instead of `http-server` to see what happens! You can start bundling and serving your project with the command `parcel index.html`. If everything is working correctly, you should see something like this output to the terminal:
 
 ```shell
-Server running at http://localhost:1234 
+Server running at http://localhost:1234
 ✨  Built in 3.41s.
 ```
 
 This should look similar to the output we've gotten from `http-server`, just running on a different port. When you visit `localhost:1234` in your browser, everything should look the same as when served up by `http-server`. So what's the big deal? Let's do a bit of refactoring to find out!
 
 ### Portfolio Project 2
-### Building a component library
+#### Building a component library
 
 At this point, your landing page should include four top-level components: navigation, header, content, and footer. These pieces should be static HTML, but you'll notice that they are components that can be shared across your entire application (for the most part). Let's see if we can turn these HTML components into something that we share across our application with JavaScript!
 
@@ -235,32 +235,7 @@ document
       ${Footer}
     `;
 ```
+> NOTE: don't forget to modify your CSS to keep your fancy grid aligned!
+
 
 Pretty cool, huh? Now imagine that we could re-use these components across multiple "pages" of content. I say "pages", because we're beginning to refactor this project into what's called a Single-Page Application: a web application that uses JavaScript to modify the state through components rather than a set of HTML documents. More on this concept later!
-
----
-
-### Portfolio Project 2
-#### Choose-Your-Own-Adventure Game
-
-Let's spend the rest of class creating a "choose your own adventure" style text adventure game by using multiple prompts and branching if/ else conditional statements. Write a story into an HTML document on the basis of the user's responses to the prompts. The story will be a bit open-ended, but you should set up your game like so:
-
-1. In your `projects` directory, add a new directory named `choose-your-own-adventure`.
-2. Add an `index.html` file to the root of the CYOA directory and set it up according to best practices.
-3. In your media AND home pages (the `index.html` document at the root of the `media` directory and your root directory), add a link to the CYOA page.
-4. Create a `cyoa.js` document and link it to your CYOA `HTML` document with a `<script>` tag.
-5. Use `prompt()` to lead visitors down different story paths. Something like this:
-
-```javascript
-var response = prompt("You walk into a room with a chair and a window. Type 'sit' to sit in the chair, type 'gaze' to gaze wistfully out the window and sigh");
-
-if(response === "sit"){
-    response = prompt("Here's a new prompt, with new options");
-} else if (response === "gaze") {
-    response = prompt("Here's a new prompt, with new options");    
-} else {
-    alert("Please type in a valid input! Refresh the page to try again.");
-}
-```
-
-Try to add some options that include responses for multiple options using the `||` and `&&` operators. Good luck! When you like your story, be sure to `add`, `commit`, and `push` your commits to GitHub, then `deploy` your changes to your live site.
