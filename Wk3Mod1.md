@@ -113,27 +113,27 @@ document
 14. Now let's make this form work! We'll do that by hooking into the `submit` event:
 
 ```javascript
-    document
-        .querySelector('form')
-        .addEventListener(
-            'submit',
-            (event) => {
-                var data = event.target.elements;
-                var newProduct = {
-                    'name': data[0].value,
-                    'author': data[1].value,
-                    'pictureURL': data[2].value,
-                    'price': data[3].value
+document
+    .querySelector('form')
+    .addEventListener(
+        'submit',
+        (event) => {
+            var data = event.target.elements;
+            var newProduct = {
+                'name': data[0].value,
+                'author': data[1].value,
+                'pictureURL': data[2].value,
+                'price': data[3].value
 
-                    // we'll learn how to handle sellingPoints next
-                    'sellingPoints': []
-                };
+                // we'll learn how to handle sellingPoints next
+                'sellingPoints': []
+            };
 
-                document
-                    .querySelector('#content')
-                    .innerHTML += addToPage(newProduct);
-            }
-        );
+            document
+                .querySelector('#content')
+                .innerHTML += addToPage(newProduct);
+        }
+    );
 ```
 
 In whatever time remains, make sure that this site looks as good as we can make it!

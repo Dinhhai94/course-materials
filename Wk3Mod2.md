@@ -16,12 +16,10 @@ The `while` loop looks a lot like an `if` statement. They both execute their ass
  console.log('fin!')
  ```
 
-### Portfolio Project 1
-#### Looping Page
+### Exercise 1
+#### Looping in the developer tools
 
-For the rest of today's exercises, we're going to create a very simple HTML document that will demonstrate our looping prowess. To begin, follow the same process used for the `greeting` and `choose-your-own-adventure` pages to create a `while` page, and link that page to your `media` page in your Portfolio project. Make sure to also include a `while.js` file in your `while` directory and link it to your `while` HTML page!
-
-Then work through the following exercises as a group, implementing each in your `while.js` document.
+Work through the following exercises as a group, implementing each in your developer console when viewing your landing page.
 
 1. **EXERCISE 1**: Create a `while` loop that logs numbers 1 through 10 to the console. HINT:
 
@@ -59,28 +57,26 @@ while (i < n) {
 }
 ```
 
-4. **EXERCISE 4**: In your HTML document, create a separate `div` for each exercise. Then, in addition to `console.log`-ing each iteration, append all of the results to their respective divs using an unordered list. HINT (for exercise 1... try the others on your own):
+4. **EXERCISE 4**: Then, in addition to `console.log`-ing each iteration, append all lists to the document body. HINT (for exercise 1... try the others on your own):
 
 ```javascript
 var n = 1;
-var outputTarget = document.querySelector("#exercise-1");
 var outputHtml = "<ul>";
 
 while (n <= 10) {
     console.log(n);
-    ouputHtml += "<li>" + n + "</li>";
+    ouputHtml += `<li>${n}</li>`;
     n++;
 }
 
 outputHtml += "</ul>";
 
-outputTarget.innerHTML = outputHtml;
+document.body.innerHTML += outputHtml;
 ```
 5. **EXERCISE 5**: We can also combine `if` and `else` statements in our loops to respond to different input states. For this exercise, count _down_ from 15 by ones. For each number, log "even" or "odd" to the console and to a new div for Exercise 5. HINT:
 
 ```javascript
 var n = 15;
-var outputTarget = document.querySelector("#exercise-5");
 var outputHtml = "<ul>";
 
 while (n > 0) {
@@ -95,13 +91,12 @@ while (n > 0) {
 
 ouputHtml = "</ul>";
 
-outputTarget.innerHTML = outputHTML;
+document.body.innerHTML += outputHTML;
 ```
 6. **EXERCISE 6**: Let's extend the idea of `if` and `else` in `while` loops with a pretty common exercise called FizzBuzz. For this exercise, log and output "Fizz" if a number is divisible by 3, "Buzz" if a number by 5, and "FizzBuzz" if a number is divisible by both 3 and 5. If a number is not divisible by 3 or 5, then just output the number. For this exercise, count up from 1 to 100. HINT:
 
 ```javascript
 var n = 1;
-var outputTarget = document.querySelector("#exercise-6");
 var outputHtml = "<ul>";
 
 while (n <= 100) {
@@ -116,7 +111,7 @@ while (n <= 100) {
         outputHtml += "<li>Buzz</li>";
     } else {
         console.log(n);
-        ouputHtml += "<li>" + n + "</li>";
+        ouputHtml += `<li>${n}</li>`;
     }
 
     n++;
@@ -124,129 +119,97 @@ while (n <= 100) {
 
 ouputHtml = "</ul>";
 
-outputTarget.innerHTML = outputHTML;
+document.body.innerHTML += outputHTML;
 ```
 
-Nice work! Be sure to commit all of your stage and `commit` all of your changes before pushing them to GitHub and `deploy`-ing to your live site.
+## Portfolio Project 1
+### Better Navigation with `while`
 
-### Exercise 1
-#### the Math Object
-
-We've been using Objects pretty frequently already. Every time you've typed `document.querySelector()` or `console.log()`, you've been accessing functions that are attached to the `document` and `console` objects, respecively. These are built into the browser, and we can use any of the pre-built properties on these Objects using dot notation.
-
-There are lots of additional Objects that come packaged within JavaScript, too. One of them is called `Math`. Try out the following in a console:
+When we left off, our SPA's navigation code looked something like this:
 
 ```javascript
-    Math
-    Math.PI
-    Math.E
-    Math.pow(9, 2)
-    Math.random()
-    Math.floor(7.2)
-    Math.ceil(7.2)
-    Math.ceil( Math.random() * 10 )
-    Math.ceil( Math.random() * 10 )
-```
+function startapp(state){
+    root.innerhtml = `
+      ${navigation(state)}
+      ${header(state)}
+      ${content(state)}
+      ${footer(state)}
+    `;
 
-### Portfolio Project 2 (Bonus)
-#### Rock, Paper, Scissors
+    var links = document.queryselectorall('#navigation a')
 
-Use `prompt()` to create a Rock, Paper, Scissors game for visitors to your portfolio. Make a new page, linked to your media page, with a `rps.js` file linked in (just like you did with the Choose Your Own Adventure game).
+    links[0].addEventListener(
+        'click',
+        handlenavigation
+    );
 
-1. Ask for input until the user enters either "R", "P", or "S". HINT:
+    links[1].addEventListener(
+        'click',
+        handlenavigation
+    );
 
-```javascript
-var userChoice = prompt("Choose Rock, Paper, or Scissors by typing 'R', 'P', or 'S'");
-```
-2. Use `Math.random()` to choose a play for the computer after you've gathered input. HINT:
-
-```javascript
-var rng = Math.random();
-var computerChoice = "R";
-
-if(rng > 0.66) {
-    computerChoice = "P";
-} else if (rng > 0.33) {
-    computerChoice = "S";
+    links[2].addEventListener(
+        'click',
+        handlenavigation
+    );
 }
 ```
-3. Tell the user what the outcome of the hand was with an `alert()`. There are _lots_ of ways to compare hands, try out a few! HINT (as an example):
+
+Not the worst code in the world, but it had two big problems: first, there could only ever be three navigation links (no more, no less). And those navigation links couldn't change like our page title could. Let's see if we can make this code cleaner and more versatile with a `while` loop.
+
+1. Use a `while` loop to add a `click` event listener to every anchor tag in the `navigation` element.
 
 ```javascript
-var userWins = "You win!";
-var computerWins = "The computer wins!";
+function startapp(state){
+    root.innerhtml = `
+      ${navigation(state)}
+      ${header(state)}
+      ${content(state)}
+      ${footer(state)}
+    `;
 
-if(computerChoice !== userChoice){
-    if(computerChoice === "R"){
-        if (userChoice === "S") {
-            alert(computerWins);
-        } else {
-            alert(userWins);
-        }
-    } else if (computerChoice === "P") {
-        if( userChoice === "R") {
-            alert(computerWins);
-        } else {
-            alert(userWins);
-        }
-    } else {
-        if( userChoice === "P") {
-            alert(computerWins);
-        } else {
-            alert(userWins);
-        }
+    var i = 0;
+    var links = document.queryselectorall('#navigation a')
+
+    // every Array has a length property that we can access
+    while(i < links.length) {
+        links[i].addEventListener(
+            'click',
+            handlenavigation
+        );
+
+        i++;
     }
-} else {
-    alert('Tie!');
 }
 ```
-4. Use a `while` loop to repeat the process five times. HINT:
+2. Much better! And what about varying the links themselves? How about letting our `Navigation` extract those from our `state`s. In `Navigation.js`:
 
 ```javascript
-var userWins = "You win!";
-var computerWins = "The computer wins!";
-var roundCounter = 0;
+function buildLinks(linkArray){
+    var i = 0;
+    var links = '';
 
-var gameRound = function(){
-    var userChoice = prompt("Choose Rock, Paper, or Scissors by typing 'R', 'P', or 'S'");
-    var computerChoice = "R";
-    var rng = Math.random();
+    while(i < linkArray.length){
+        links += `
+            <li>
+                <a href='/${linkArray[i]}'>${linkArray[i]}</a>
+            </li>
+        `;
 
-    if(rng > 0.66) {
-        computerChoice = "P";
-    } else if (rng > 0.33) {
-        computerChoice = "S";
+        i++;
     }
 
-    if(computerChoice !== userChoice){
-        if(computerChoice === "R"){
-            if (userChoice === "S") {
-                alert(computerWins);
-            } else {
-                alert(userWins);
-            }
-        } else if (computerChoice === "P") {
-            if( userChoice === "R") {
-                alert(computerWins);
-            } else {
-                alert(userWins);
-            }
-        } else {
-            if( userChoice === "P") {
-                alert(computerWins);
-            } else {
-                alert(userWins);
-            }
-        }
-    } else {
-        alert('Tie!');
-    }
-};
-
-while (roundCounter < 5) {
-    gameround();
-    roundCounter++;
+    return links;
 }
 
+export default function Navigation(state){
+    return `
+    <div id="navigation">
+        <ul>
+            ${buildLinks(state.links)}
+        </ul>
+    </div>
+    `;
+}
 ```
-Once you like the way your RPS game is working, `add`, `commit`, `push`, and `deploy` your project. Good work!
+3. Then we just need to include an Array of `links` in each state Object. Give it a try!
