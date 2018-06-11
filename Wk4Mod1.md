@@ -37,6 +37,43 @@ Remember last week's bookstore Hack-A-Thon? This week, we're going to give it an
   addToPage( book1 );
   addToPage( book2 );
   ```
+3. Now that we can call `addToPage` for each item, how can we use a `for` loop to append any number of books or albums to the page? How would we arrange our data to facilitate adding all of this data to the page? In this case, we'll be looking for an Array of Objects!
+
+Let's refactor our book objects into a `books` array. HINT:
+
+```javascript
+var books = [
+    {
+        "id": 1,
+        "name": "Lasagna: A Retrospective",
+        "author": "Garfield"
+        "pictureUrl": "http://graphics8.nytimes.com/images/2015/10/15/dining/15RECIPE20DIN/15RECIPE20DIN-articleLarge.jpg",
+        "price": 24,
+        "sellingPoints": [
+            "Lasagna is delicious.",
+            "The essential guide to Italian casseroles of all types.",
+            "Real G's move silent, like Lasagna. -Lil Wayne"
+        ]
+    },
+    {
+        "id": 2,
+        "name": "Another book",
+        "author": "Another author"
+        "pictureUrl": "http://graphics8.nytimes.com/images/2015/10/15/dining/15RECIPE20DIN/15RECIPE20DIN-articleLarge.jpg",
+        "price": 25,
+        "sellingPoints": [
+            "Yet another book!"
+        ]
+    }
+]
+```
+15. With the new data structure, we should be able to use a `for` loop to add each book to the page in turn. HINT:
+
+```javascript
+for( var i = 0; i < books.length; i++ ){
+    appendToPage( books[i] );
+}
+```
 3. Up until last week, we didn't really know how to deal with an array of selling points. But now we know that we can loop over that array with `.forEach()`. Try using a loop within `addToPage()` to add `selling_points` to your page as an ordered list. HINT:
 
   ```javascript
