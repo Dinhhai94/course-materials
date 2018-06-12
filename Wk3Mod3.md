@@ -1,60 +1,76 @@
+## Third-Party Dependencies
+### Advanced modules and library usage
 
+One of the wonderful things about the modern JavaScript ecosystem is that there are literally _thousands_ of libraries for us to use, solving any number of complex problems we might encounter in the realm of web development. Learning how to install, manage, and `import` these third-party dependencies is a key part of being an effective web developer.
 
-## Portfolio Project 1
-### Adding Effects
+### More Modules
 
-There are _lots_ of events to learn about. Let's try a few by adding them to the JavaScript files for the landing page of our Portfolio Projects.
-
-1. Add some CSS rules for a class called `highlighted`. Maybe make the text bolder, or change color, or change the opacity of the background... it's up to you!
-2. Add the following to your JavaScript file:
-
-```javascript
-$('li').on('mouseover', () => {
-  $('li').addClass('highlighted')
-})
-$('li').on('mouseleave', () => {
-  $('li').removeClass('highlighted')
-})
-```
-
-How does this work?
-3. Let's add a click handler for your face. When users click on your photo on your profile page, a previously-hidden blurb should be revealed with a jQuery animation. There are lots of options here, but something like this should work:
+You'll recall that we've been working with our own library of components through by `import`-ing and `export`-ing `default` chunks of JavaScript. But there are a few variations on this these syntaxes that will help us keep our code organized as our applications begin to pull in third-party dependencies. Here's a quick overview:
 
 ```javascript
-$('#profile-pic').on('click', () => {
-  $('#hidden-blurb').slideDown(); // only works if #hidden-blurb has display:none; in its CSS
-});
+// import the default export from a module
+import toolbox from 'toolbox';
+
+// import a single export (of many) from a module
+import { tool } from 'toolbox'; 
+
+// import many exports at once from a module
+import * from 'toolbox';
+
+// import many exports as a named Object from a module
+import * as tools from 'toolbox';
+
+// export a single, default chunk from a module
+export default 'toolbox';
+
+// export a single chunk (of many) from a module
+export 'tool';
 ```
 
----
+Let's see how these `import`/`export` variations might help us organize our large state and content trees in our portfolio projects.
 
-## `this` and `event`
+### Portfolio Project 1
+#### Modular State and Content
 
-We've already seen once before how we can pass in an `event` Object to an event handler. That argument has a few properties associated with it, like `.preventDefault()` (take a look at the Hack-A-Thon code to see what we mean.) One of those properties is the __calling context__ of the event... the thing that is triggering the event. Try modifying your code from your Portfolio Project to something like this:
+When last we left our state tree, it was beginning to look something like this:
 
 ```javascript
-$('li').on('mouseover', (event) => {
-  var target = event.target;
-  $(target).addClass('highlighted');
-})
-$('li').on('mouseleave', (event) => {
-  var target = event.target;
-  $(target).removeClass('highlighted');
-})
+var states = {
+    'Home': {
+        'links': [
+            'Blog',
+            'Contact',
+            'Projects'
+        ],
+        'title': 'Welcome to my Portfolio'
+    },
+    'Blog': {
+        'links': [
+            'Home',
+            'Contact',
+            'Projects'
+        ],
+        'title': 'Welcome to my Blog'
+    },
+    'Contact': {
+        'links': [
+            'Home',
+            'Blog',
+            'Projects'
+        ],
+        'title': 'Contact Me'
+    },
+    'Projects': {
+        'links': [
+            'Home',
+            'Blog',
+            'Contact',
+            'Choose-Your-Own-Adventure',
+            'Rock-Paper-Scissors'
+        ],
+        'title': 'Check out some of my projects'
+    }
+};
 ```
-Now only the hovered-over element is highlighted (which is very much the behavior that we're really looking for in a highlighter). This operation is so common with events (and with functions in general), that JavaScript generalizes the calling context for any function into a `this` keyword. In the case of jQuery events, the calling context of the function is equal to the DOM node from which the event originated (a.k.a. the `event.target` from the previous example). Try the following refactor (it should work the same as `event.target` in this case):
 
-```javascript
-$('li').on('mouseover', function highlight(){ // notice: no arrow function!
-  $(this).addClass('highlighted')
-})
-$('li').on('mouseleave', function highlight(){
-  $(this).removeClass('highlighted')
-})
-```
----
-
-## Portfolio Project 2
-### Adding `this` effects
-
-With the time remaining in class, try out a few of jQuery's built-in event shortcuts, including `.click()`, `.hover()`, `.submit()`, and `.keypress()`. Add an effect or animation on each event using `this` to capture the calling context of the target element. When you're happy with your fancy new event-driven site, push your changes to your GitHub profile and live to Netlify!
+This is pretty ungainly. Let's see if we can clean this up by extracting all of these disparate states into their own modules.
