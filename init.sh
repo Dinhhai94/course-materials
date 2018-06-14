@@ -26,7 +26,7 @@ if [ $(which python) ]; then
 
   nvm install node;
 elif [ ! $(which node) ]; then
-  WINDOWS_VERSION="node-v10.4.1-win-x86"
+  WINDOWS_VERSION="node-v10.4.1-win-x86";
   curl "https://nodejs.org/dist/latest/$WINDOWS_VERSION.zip" --output node-install.zip;
   unzip ./node-install.zip -d ~/$WINDOWS_VERSION;
   mv ~/$WINDOWS_VERSION/* ~/.node;
