@@ -10,6 +10,10 @@ elif [ ! -f ~/.bashrc ]; then
   touch ~/.bashrc;
 fi
 
+if [ ! $(cat ~/.bash_profile | grep bashrc) ]; then
+  echo "[[ -r ~/.bashrc ]] && . ~/.bashrc;" >> ~/.bash_profile;
+fi
+
 # Install latest node and npm versions
 if [ $(which python) ]; then
   # Install NVM (Node Version Manager)
