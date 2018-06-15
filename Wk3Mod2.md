@@ -128,29 +128,29 @@ document.body.innerHTML += outputHTML;
 When we left off, our SPA's navigation code looked something like this:
 
 ```javascript
-function startapp(state){
-    root.innerhtml = `
+function startApp(state){
+    root.innerHTML = `
       ${navigation(state)}
       ${header(state)}
       ${content(state)}
       ${footer(state)}
     `;
 
-    var links = document.queryselectorall('#navigation a')
+    var links = document.querySelectorAll('#navigation a')
 
     links[0].addEventListener(
         'click',
-        handlenavigation
+        handleNavigation
     );
 
     links[1].addEventListener(
         'click',
-        handlenavigation
+        handleNavigation
     );
 
     links[2].addEventListener(
         'click',
-        handlenavigation
+        handleNavigation
     );
 }
 ```
@@ -160,8 +160,8 @@ Not the worst code in the world, but it had two big problems: first, there could
 1. Use a `while` loop to add a `click` event listener to every anchor tag in the `navigation` element.
 
 ```javascript
-function startapp(state){
-    root.innerhtml = `
+function startApp(state){
+    root.innerHTML = `
       ${navigation(state)}
       ${header(state)}
       ${content(state)}
@@ -169,13 +169,13 @@ function startapp(state){
     `;
 
     var i = 0;
-    var links = document.queryselectorall('#navigation a')
+    var links = document.querySelectorAll('#navigation a')
 
     // every Array has a length property that we can access
     while(i < links.length) {
         links[i].addEventListener(
             'click',
-            handlenavigation
+            handleNavigation
         );
 
         i++;
