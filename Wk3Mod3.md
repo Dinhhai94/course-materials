@@ -104,3 +104,48 @@ import * as states from './store';
 console.log(states); // what's the data type here?
 ```
 5. We should now be able to access any piece of our `states` tree, just as before! Except that this time, all of the complexity of our application state is hidden away behind our module system (which is a _good_ thing). 
+6. Now that we've ironed out navigation, let's see if we can finally get our _content_ to change in response to our user input! You should still have HTML files that represent content for your `Blog`, `Content`, and `Projects` landing pages that we haven't yet incorporated into our new Single-Page architecture. Let's convert those pieces of HTML into their own `component`s. To start, let's create a `Pages` directory inside our `components` directory. This is a common pattern when dealing with a group of similar components. In this case, we're grouping all of the different page-level (or content-level) templates.
+7. Let's repeat the export pattern from our `states`. That means creating an `index.js` file next to a `Blog.js`, `Contact.js`, `Home.js`, and `Projects.js` file inside of `components/Pages`. Each Page component should `export` some HTML as a template literal, e.g.:
+
+```javascript
+export default `
+  <form>
+    <input type="text" name="test">
+    <input type="submit">
+  </form>
+`;
+```
+...and re-`export` those `default`s with a name from `components/Pages/index.js`, e.g.:
+
+```
+export { default as Contact } from './Contact';
+```
+8. Now each `state` component can import a template directly from the `components/Pages` directory. Let's attach that content to each state component as a `body` property. For example, our `Blog` state might become:
+
+```javascript
+import { Blog } from '../components/Pages';
+
+export default {
+    'body': Blog,
+    'links': [
+        'Home',
+        'Contact',
+        'Projects'
+    ],
+    'title': 'Welcome to my Blog'
+};
+```
+Notice the single non-`default` `import` of the `Blog` component.
+9. Once you've associated some content with each piece of the state tree, it's time to change our `Content` component to allow for variation in the `body` property of a `state` parameter. That means our `Content` component becomes:
+
+```javascript
+export default function Content(state){
+    return `
+        <div id="content">
+            ${state.body}
+        </div>
+    `;
+};
+```
+
+Now you should have a Single-Page application that behaves almost exactly like our old HTML page-based site, but with a lot more flexibility and some real performance wins for our users.
