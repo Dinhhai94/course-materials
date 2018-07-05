@@ -130,10 +130,10 @@ When we left off, our SPA's navigation code looked something like this:
 ```javascript
 function startApp(state){
     root.innerHTML = `
-      ${navigation(state)}
-      ${header(state)}
-      ${content(state)}
-      ${footer(state)}
+      ${Navigation(state)}
+      ${Header(state)}
+      ${Content(state)}
+      ${Footer(state)}
     `;
 
     var links = document.querySelectorAll('#navigation a')

@@ -1,27 +1,17 @@
 ## Building a Bookstore Part 1
 
-Today is the day we finally *MONETIZE*! We will build either an e-commerce store for our community site or a new hot startup to compete with Amazon.com. This will be a group project using the same GitHub workflow that we used for the Student Showcase website.
+Today is the day we finally *MONETIZE*! Our billion-dollar idea: we're going head-to-head with Amazon's book store. This will be a group project using the same GitHub workflow that we used for the Student Showcase website.
 
 ---
 
-## Step 1: Make a Plan
-
-1. Take a few minutes to brainstorm some project ideas related to the design of our bookstore. While we have a pretty solid step-by-step outlined below, there's still room for your team to decide how to divide up tasks and implement individual requirements with a bit of flair.
-2. Some examples might include: will you use a CSS framework? What will the color scheme be? Which tasks should be taken by which team member?
-3. Review the Step 3: Coding section below to consider the different concepts that we hope to practice during this project.
-4. In your group, hold a standup meeting to present your plan of what you'd like to accomplish, and potential stumbling blocks.
-5. If someone mentions being concerned about a concept that you feel solid on, offer to be a resource for them if they have questions.
-
----
-
-## Step 2: Set up a GitHub repo
+## Step 1: Set up a GitHub repo
 
 1. Fork and clone your integration manager/instructor's boilerplate for this project, and make sure that your remotes are set up correctly for the GitHub workflow!
-2. If you or your team needs to review, take a look at Wk1Mod5.md.
+2. If you or your team needs to review, take a look at the student showcase.
 
 ---
 
-## Step 3: Self-Reflection
+## Step 2: Self-Reflection
 
 The following lists the core web development skills that you should feel comfortable using in your project thus far:
 
@@ -34,50 +24,35 @@ The following lists the core web development skills that you should feel comfort
   + `<div>` and `<span>`
   + ordered and unordered lists
   + images and links
-4. Using a style attribute on an HTML element, then a `<style>` tag in the head, then a `<link>` tag to a separate `.css` document to include CSS styles in your page. Try to use the following CSS properties at a minimum:
-  + `color, background-color, background-image`
-  + `font-size, font-family`
-  + `height, width, max-width`
-  + `margin, padding, border`
+4. Using a style attribute on an HTML element, then a `<style>` tag in the head, then a `<link>` tag to a separate `.css` document to include CSS styles in your page. 
 5. Refactoring your code to use classes and ids.
 6. Using complex CSS selectors
-7. Using an `iframe` to embed videos or maps on your page
-8. Using `position`s `fixed`, `absolute`, and `sticky` to position elements
-9. Creating an HTML form incorporating various inputs (`text, password, email, textarea, radio, checkbox, submit`, etc)
-10. Making your form live using Formspree
-11. Using `display: flex` to build dynamic containers in 2 dimensions
-12. Using the CSS grid system to lay out your page
-13. Using `alert()`, `prompt()`, and `console.log()` where appropriate
-14. Setting and retrieving values from JavaScript variables and complex data types like Arrays and Objects
-15. Using `document.querySelector()` in conjunction with `.textContent` and `.innerHTML` to retrieve and place content on the page
-16. Using `if`, `else if` and `else` to implement branching logic on the basis of comparing variables and values
-17. Using logical and (`&&`), logical or (`||`), and the ternary operator
-18. Composing functions with `return` values
-19. Using basic `event`s to help users interact with your page
+7. Using `position`s `fixed`, `absolute`, and `sticky` to position elements
+8. Creating an HTML form incorporating various inputs (`text, password, email, textarea, radio, checkbox, submit`, etc)
+9. Making your form live using Formspree
+10. Using `display: flex` to build dynamic containers in 2 dimensions
+11. Using the CSS grid system to lay out your page
+12. Using built-in global functions like `console.log`
+13. Setting and retrieving values from JavaScript variables and complex data types like Arrays and Objects
+14. Using `document.querySelector()` in conjunction with `.textContent` and `.innerHTML` to retrieve and place content on the page
+15. Using `if`, `else if` and `else` to implement branching logic
+16. Using logical and (`&&`), logical or (`||`), and boolean negation (`!`)
+17. Composing functions with `return` values
+18. Using basic `event`s to help users interact with your page
 
 ---
 
-## Step 4: Coding!
+## Step 3: Coding!
 
 Let's go through the following steps, dividing up tasks as a team, to get this new mega-store launched. Good luck:
 
-1. To start, make sure your boilerplate code has `normalize.css`.
-2. Make sure that there is a header, a navgation bar, a content area, and a footer.
-3. Inside the content area create `<div id="book1">` and `<div id="book2">` and place information about a book for sale in each div. Each product should have the following properties:
-    ```
-    id
-    name
-    author
-    price
-    picture
-    a list of selling points
-    ```
-4. Give the outermost div an id of `book` plus that book's `id`, e.g. `<div id='book1'>` (for a book with an `id` of `1`). Give the inner HTML elements the appropriate class to match the information they hold (i.e `<div class="name">`, `<div class="category">`, `<div class="price">`, etc).
-5. Create a `<form>` element that will allow a user to input a new book (eventually). Make sure that each field has a `name` attribute that's _exactly the same_ as the corresponding property listed above (you'll see why in a minute).
-5. Add some css styles to make each section of the page stand out. Try to use as many different css selectors and css properties as you can.
-6. Now add some content to the header and footer. Notice that we had to do this same work in two different places. As the complexity of an application grows, having to keep information in sync like this isn't just tedious, it leads to big problems if we update information in one place but forget to update the other. The rule is Don't Repeat Yourself!
-7. Now, let's refactor this site to be a **Single Page Application** (i.e. We load all of the HTML, CSS, and JS once, and then dynamically change the page state using JS).
-9. Now take all the information about our books and make them into JavaScript Objects. Create variables `book1`, `book2`, `album1`, and `album2`. Set each equal to an object with keys `name`, `author`, and `pictureUrl`, which hold string values, `price` and `id`, which holds a number value, and `sellingPoints`, which is an Array of Strings. EXAMPLE:
+1. To start, make sure you've properly forked and set up your project repo.
+2. Create `Navigation`, `Header`, `Content`, and `Footer` components to inject into a `div` with an `id` of `root`. Use `parcel` and the module system to organize these components! You should be able to create the entire application with a single `startApp` function.
+3. Now add some content to the header and footer components.
+4. Add layout CSS using `position`s and/or `grid`.
+5. Add some css styles to make each component stand out. 
+6. Create a `<form>` element that will allow a user to input a new book (eventually). Make sure that each field has a `name` attribute that's _exactly the same_ as the corresponding property listed above (you'll see why in a minute).
+7. Now take all the information about our books and make them into JavaScript Objects. Create variables `book1`, `book2`, etc. Set each equal to an object with keys `name`, `author`, and `pictureUrl`, which hold string values, `price` and `id`, which holds a number value, and `sellingPoints`, which is an Array of Strings. EXAMPLE:
 
 ```javascript
 var book1 = {
@@ -94,23 +69,11 @@ var book1 = {
 }
 ```
 
-10. Leaving the HTML tags intact, remove your existing text content (and image `src`) about each product from the HTML. Now use JavaScript to add the information about each product back onto the page immediately upon page load. So:
-
-```javascript
-document.querySelector('#book1 .name').textContent = book1.name;
-```
-
-12. Refactor your code so that you can call a function `addToPage(book1)`, passing in an Object, and that Object will be placed using JavaScript into the html page. Now you should just call `addToPage` for each book and the `addToPage` function will place it on the page for you.
-
-To make this work, make sure that `addtoPage` treats each product Object as a representation of state to be injected into a template. So you should be able to do something like:
-
-```javascript
-document
-    .querySelector('#content')
-    .innerHTML += addToPage(book1)
-```
-13. Make sure each book or album's div has the appropriate class and id attributes generated for it. __You should not have to change any css while refactoring__.
-14. Now let's make this form work! We'll do that by hooking into the `submit` event:
+8. Create a `Book` stateless functional component that takes in a book Object (like the one above) and outputs that book's information in card-like markup.
+9. Make sure that the `Book` component has corresponding styles!
+10. `import` the `Book` component into your `Content` component, using it to transform each `book` Object into useable markup. What are the limitations of this approach?
+11. Instead of `import`-ing `Book` into `Content`, let's feed all of the book Objects into `Content` in `index.js`. How could you organize those book Objects into a single complex data type to give to `Content`? And how could we handle that complex data type in `Content`
+12. Now let's make this form work! We'll do that by hooking into the `submit` event:
 
 ```javascript
 document
@@ -129,11 +92,12 @@ document
                 'sellingPoints': []
             };
 
-            document
-                .querySelector('#content')
-                .innerHTML += addToPage(newProduct);
+            // this might be a hint for number 11
+            booksArray[booksArray.length] = newProduct;
+
+            startApp(booksArray);
         }
     );
 ```
 
-In whatever time remains, make sure that this site looks as good as we can make it!
+In whatever time remains, make sure that this bookstore looks as good as we can make it!
