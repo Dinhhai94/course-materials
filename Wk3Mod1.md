@@ -47,7 +47,7 @@ The following lists the core web development skills that you should feel comfort
 Let's go through the following steps, dividing up tasks as a team, to get this new mega-store launched. Good luck:
 
 1. To start, make sure you've properly forked and set up your project repo.
-2. Create `Navigation`, `Header`, `Content`, and `Footer` components to inject into a `div` with an `id` of `root`. Use `parcel` and the module system to organize these components! You should be able to create the entire application with a single `startApp` function.
+2. Create `Navigation`, `Header`, `Content`, and `Footer` components to inject into a `div` with an `id` of `root`. Use `parcel` and the module system to organize these components! You should be able to create the entire application with a single `render` function.
 3. Now add some content to the header and footer components.
 4. Add layout CSS using `position`s and/or `grid`.
 5. Add some css styles to make each component stand out. 
@@ -95,7 +95,7 @@ document
             // this might be a hint for number 11
             booksArray[booksArray.length] = newProduct;
 
-            startApp(booksArray);
+            render(booksArray);
         }
     );
 ```

@@ -120,13 +120,11 @@ export default `
 ```
 export { default as Contact } from './Contact';
 ```
-8. Now each `state` component can import a template directly from the `components/Pages` directory. Let's attach that content to each state component as a `body` property. For example, our `Blog` state might become:
+8. Now each `state` component can point to a component from the `components/Pages` directory. Let's use a String to connect that content to each state component as a `body` property. For example, our `Blog` state might become:
 
 ```javascript
-import { Blog } from '../components/Pages';
-
 export default {
-    'body': Blog,
+    'body': 'Blog',
     'links': [
         'Home',
         'Contact',
@@ -135,14 +133,15 @@ export default {
     'title': 'Welcome to my Blog'
 };
 ```
-Notice the single non-`default` `import` of the `Blog` component.
 9. Once you've associated some content with each piece of the state tree, it's time to change our `Content` component to allow for variation in the `body` property of a `state` parameter. That means our `Content` component becomes:
 
 ```javascript
+import * as pages from './Pages';
+
 export default function Content(state){
     return `
         <div id="content">
-            ${state.body}
+            ${pages[state.body]} // why do we need square brackets?
         </div>
     `;
 };

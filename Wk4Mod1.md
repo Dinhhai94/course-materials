@@ -1,12 +1,12 @@
 ## Building a Bookstore Part 2
-### Halfway-er Hack-A-Thon!
 
-Remember last week's bookstore Hack-A-Thon? This week, we're going to give it another go using more of our complex data types, loops, and events! Good Luck:
+Remember our billion-dollar Bookstore Hack-A-Thon? This week, we're going to connect the Bookstore to an honest-to-goodness RESTful JSON API. Good Luck:
 
-1. Start where you left off with Part One of our bookstore project. You should have a few books set up with jQuery, a way of submitting new books through a basic form, and some basic book objects (which should make a lot more sense after last week's lessons on Objects). Remember, book objects should take the form:
+1. Start where you left off with Part One of our bookstore project. We should have a number of books set up in an Array, plus a `form` element that can be used to add a new book to the existing product list. Remember, book Array (and Objects) should take the form:
 
   ```javascript
-  var book1 = {
+  var books = [
+    {
       "id": 1,
       "name": "Lasagna: A Retrospective",
       "author": "Garfield"
@@ -17,225 +17,232 @@ Remember last week's bookstore Hack-A-Thon? This week, we're going to give it an
           "The essential guide to Italian casseroles of all types.",
           "Real G's move silent, like Lasagna. -Lil Wayne"
       ]
-  }
+    },
+    // plus a few more Objects
+  ];
   ```
 
-2. Make sure that you have an `addToPage` function that is called on page load for each book object and `append`s content to the page. Something like:
+2. Make sure that you have functional components that can be rendered with a single `render` function. Something like:
 
   ```javascript
-  var addToPage = function( obj ){
-    var contentId = 'book' + obj.id;
-    var $contentNode = $('#' + contentId); // the "$" here is just a naming convention
+  function render(state) {
+    root.innerHTML = `
+      ${Navigation()}
+      ${Header()}
+      ${Content(state)}
+      ${Form()}
+      ${Footer()}
+    `;
+  }
 
-    $('#content').append($("<div id='" + contentId + "'></div>");
-    $contentNode.append($("<div class='name'>").text(obj.name));
-    $contentNode.append($("<div class='author'>").text(obj.author));
-    $contentNode.append($("<div class='price'>").text(obj.price));
-    $contentNode.append($("<div class='cover'>").html("<img src='" + obj.picture_url + "'>"))
-  };
-
-  addToPage( book1 );
-  addToPage( book2 );
+  render(books);
   ```
-3. Now that we can call `addToPage` for each item, how can we use a `for` loop to append any number of books or albums to the page? How would we arrange our data to facilitate adding all of this data to the page? In this case, we'll be looking for an Array of Objects!
-
-Let's refactor our book objects into a `books` array. HINT:
-
+3. At this point, `Content` should be able to handle the Array of `books`. Last time, we didn't know about loops of any kind, so the `Book` component looked something like:
 ```javascript
-var books = [
-    {
-        "id": 1,
-        "name": "Lasagna: A Retrospective",
-        "author": "Garfield"
-        "pictureUrl": "http://graphics8.nytimes.com/images/2015/10/15/dining/15RECIPE20DIN/15RECIPE20DIN-articleLarge.jpg",
-        "price": 24,
-        "sellingPoints": [
-            "Lasagna is delicious.",
-            "The essential guide to Italian casseroles of all types.",
-            "Real G's move silent, like Lasagna. -Lil Wayne"
-        ]
-    },
-    {
-        "id": 2,
-        "name": "Another book",
-        "author": "Another author"
-        "pictureUrl": "http://graphics8.nytimes.com/images/2015/10/15/dining/15RECIPE20DIN/15RECIPE20DIN-articleLarge.jpg",
-        "price": 25,
-        "sellingPoints": [
-            "Yet another book!"
-        ]
-    }
-]
-```
-15. With the new data structure, we should be able to use a `for` loop to add each book to the page in turn. HINT:
+import Book from './Book';
 
-```javascript
-for( var i = 0; i < books.length; i++ ){
-    appendToPage( books[i] );
+export default function Content(books) {
+  return `
+    <div id="content">
+      ${Book(books[0])}
+      ${Book(books[1])}
+      ${Book(books[2])}
+    </div>
+  `;
 }
 ```
-3. Up until last week, we didn't really know how to deal with an array of selling points. But now we know that we can loop over that array with `.forEach()`. Try using a loop within `addToPage()` to add `selling_points` to your page as an ordered list. HINT:
+Let's refactor this to use `.map` and `.join`, e.g.:
+```javascript
+import Book from './Book';
+
+function mapBooks(books){
+  return books
+    .map(book => Book(book))
+    .join('');
+}
+
+export default function Content(books) {
+  return `
+    <div id="content">
+      ${mapBooks(books)}
+    </div>
+  `;
+}
+```
+Now we can have an _unlimited_ number of books, just like our favorite big-box bookstores!
+4. We can do the same thing with the `sellingPoints` Array in our `Book` component. HINT:
 
   ```javascript
-  var addToPage = function( obj ){
-    var contentId = 'book' + obj.id;
-    var $contentNode = $('#' + contentId); // the "$" here is just a naming convention
+  function mapSellingPoints(sellingPoints){
+    return sellingPoints
+      .map(point => `<li>${point}</li>`)
+      .join('');
+  }
 
-    var sellingPointsListItems = ''; // placeholder for all selling point list items
-    obj.selling_points.forEach( function(sellingPoint){
-      sellingPointsListItems += "<li>" + sellingPoint + "</li>";
-    } );
-
-    $('#content').append($("<div id='" + contentId + "'></div>");
-    $contentNode.append($("<div class='name'>").text(obj.name));
-    $contentNode.append($("<div class='author'>").text(obj.author));
-    $contentNode.append($("<div class='price'>").text(obj.price));
-    $contentNode.append($("<div class='cover'>").html("<img src='" + obj.picture_url + "'>"));
-
-    // new div containing an ordered list appending selling points
-    $contentNode.append($("<div class='selling-points'").html("<ol>" + sellingPointsListItems + "</ol>"));
-  };
+  export default function Book(book) {
+    return `
+      <div>
+        <h1>${book.name}</h1>
+        <h2>${book.author}</h2>
+        <h3>${book.price}</h3>
+        <ol>
+          ${mapSellingPoints(book.sellingPoints)}        
+        </ol>
+        <img src="${book.pictureUrl}">
+      </div>
+    `;
+  }
   ```
-
-4. We know from our work last week that it can be pretty inefficient to call `addToPage()` on each object individually. Who knows how many books we'll eventually have... wouldn't it be better if we could loop over them? To do that, let's add our `book` objects to an array called `products`. HINT:
-
-  ```javascript
-  var products = [book1, book2];
-  ```
-5. Now we can loop over our `products` array on page load to call `addToPage()`! Give it a try. HINT:
-
-  ```javascript
-  products.forEach( function(product){
-    addToPage(product);
-  } );
-  ```
-6. You should already have a form for adding new books to the page. If not, add one now! You can also re-use the code that we worked with last week to get the form to do some work for us:
+5. Now that we're a bit more comfortable with Array superpowers like `.forEach`, `.map`, and `.join`, we can introduce a String superpower called `.split()`. This function can be called on any String to "split" that String into an Array of smaller strings. Let's turn our users' `sellingPoints` into a _comma-separated_ Array of `sellingPoints` on form submit. That would be something like:
 
 ```javascript
-    var count = 2;
+// other form submit event stuff here
 
-    $("form").on("submit", function(event) {
-        event.preventDefault(); // prevents default page re-routing on form submit
+sellingPoints: data[4].value.split(',');
 
-        var data = $(this).serializeArray(); // jQuery function that parses form data
-        var formObject = {}; // an empty product object to be returned later
-
-        formObject.id = ++count; // id incrementer for nth object
-        data.forEach( function(field){
-            formObject[field.name] = field.value; // loop that rearranges data object
-        } );
-
-        addToPage(formObject); // use jQuery to add new object to the page
-    });
+// even more form submit stuff here
 ```
-7. Hopefully the code from last week makes a bit more sense now that we have events, arrays, and Objects under our belts. But we still have to hard-code a `count` variable and append an individual product to the page. We don't really want either. How can we refactor this code to work without hard-coding elements? Try the following:
+6. Our last iteration of the form `submit` event handler was a bit repetetive. How can it be refactored to make our `newProduct` construction a bit more `DRY`? HINT:
+
+```javascript
+document
+  .querySelector('form')
+  .addEventListener(
+    'submit',
+    (event) => {
+      var newProduct = event
+        .target
+        .elements
+        .reduce(
+          (acc, product) => {
+            if(product.name === 'sellingPoints'){
+              acc.sellingPoints = product.value.split(',');
+            }
+            else {
+              acc[product.name] = product.value;
+            }
+
+            return acc;
+          }
+          {},
+        )
+      }
+
+      books.push(newProduct);
+
+      render(books);
+    );
+```
+Now, _that_ is a fancy event handler. Make sure you understand it before we get much farther in this Hack-A-Thon!
+
+7. This is a lot of work for three books. What's the advantage to doing all of this work in JavaScript? While we could argue about the quality of the developer experience in JavaScript-land vs HTML-land, one this is certain: if we want to use _external_ data instead of hard-coded book Objects, we need to use JavaScript. More specifically, we need to use AJAX.
+
+We've set up an API to query at https://api.savvycoders.com/books that will return an Array of `book` Objects structured identically to the ones we've been hard-coding up to this point. See if you can render the bookstore with data from this API. HINT:
 
   ```javascript
-  $("form").on("submit", function(event) {
-      event.preventDefault();
-
-      var data = $(this).serializeArray();
-      var formObject = {};
-
-      formObject.id = products.length++; // measures the length of the global products array
-      data.forEach( function(field){
-          formObject[field.name] = field.value;
-      } );
-
-      $('#content').empty(); // jQuery function that refreshes the #content div
-
-      products.push(formObject); // adds the new product to the global products array
-      products.forEach( function(product){
-        addToPage(product); // re-renders each product in the array
-      } );
-  });
-  ```
-8. Take a minute to think about our code above... it's gotten pretty difficult to reason about, and our event handler is doing a lot of tasks. How can we divide up responsibilities for this function and make things a bit more read-able and repeat-able? Here's an example (but your refactor might look different):
-
-  ```javascript
-  var parseProductForm = function( form ){
-    var data = $(form).serializeArray();
-    var formObject = {};
-
-    formObject.id = products.length++; // measures the length of the global products array
-    data.forEach( function(field){
-        formObject[field.name] = field.value;
-    } );
-
-    return formObject;
-  };
-
-  var renderNewProduct = function( formObject ){
-    $('#content').empty(); // jQuery function that refreshes the #content div
-
-    products.push(formObject); // adds the new product to the global products array
-    products.forEach( function(product){
-      addToPage(product); // re-renders each product in the products array
-    } );
-  };
-
-  // Now our submit event is much more readable, and each function only does one thing!
-
-  $("form").on("submit", function(event) {
-      event.preventDefault();
-      var formObject = parseProductForm(this);
-      renderNewProduct(formObject);
-  });
+  axios // don't forget to npm install this!
+    .get('https://api.savvycoders.com/books')
+    .then(response => render(response.data))
   ```
 
-9. This all works great for just books, but what if we wanted to add music to our store? We'll need another refactor! How could we re-organize our `products` data to account for the differences between types of products? Let's try turning `products` into an object with product arrays divided by type. HINT:
+9. This all works great for just books, but what if we wanted to add music to our store? We'll need another refactor! How could we re-organize our product data to account for the differences between types of products? Let's try adding our `books` Array to a new `products` Object that includes `books` and `albums` Arrays. HINT:
   ```javascript
   var products = {
     "books": [book1, book2],
-    "music": [album1, album2] // albums should be identical to book objects
+    "albums": [album1, album2] // albums should be identical to book objects
   }
   ```
-10. Add a few albums to your new `products` object to go along with your books!
-11. So `products` is now nicely organized, but now we have some bugs that keeps items from rendering! Let's think about each function and re-write as needed:
-    1. `addToPage()` should be mostly fine, except for the `contentId` variable. Not every product is a book any more! In this case, it would be easiest to add a `productType` property to each of our products. Go through your existing products and add a product type, then modify `addToPage()` to include that type in `contentId`. HINT:
-      ```javascript
-      var addToPage = function( obj ){
-        var contentId = obj.productType + obj.id;
+10. You'll be happy to see that there is an `/albums` route in our Savvy Coders API, too. But how do we render _both_ `books` and `albums` on initial page load? We could delay rendering _anything_ until we get both `books` and `albums`, but that doesn't make things better for our users. We could also delay rendering an _products_ until we have both books and albums, but that also delays our time-to-first-meaningful-interaction, irritating users. What if we rendered whatever came back first from our API, then re-render whenever the second batch comes in? Then we can use our `products` Object as a `state` store and do the following:
+```javascript
+var products = {
+  "books": [],
+  "albums": []
+};
 
-        // THE REST OF THE FUNCTION SHOULD BE THE SAME...
-      };
-      ```
-    2. Since we abstracted away the `parseProductForm()` and `renderNewProduct()` fuctions from our `submit` event, we won't need to change anything in our form submission event!
-    3. `parseProductForm()` needs to change, though... now that `products` has changed into an Object of multiple arrays, we want the length of the `books` or `music` arrays instead. Let's a assume that form data will include a `type` property, then refactor. HINT:
-      ```javascript
-      var parseProductForm = function( form ){
-        var data = $(form).serializeArray();
-        var formObject = {};
-        var productArray; // create variable for "books" or "music" array
+axios
+  .get('https://api.savvycoders.com/books')
+  .then(response => {
+    response.data.forEach(book => products.books.push(book));
 
-        data.forEach( function(field){
-            formObject[field.name] = field.value;
-        } );
+    render(products);
+  });
 
-        productArray = products[formObject.type]; // grabs specific product array by type
-        formObject.id = productArray.length++; // set id to the length of a type of product's array
+axios
+  .get('https://api.savvycoders.com/albums')
+  .then(response => {
+    response.data.forEach(album => products.albums.push(album));
 
-        return formObject;
-      };
-      ```
-    4. Now we can finish up with `renderFormObject()`. Here we need to change the `push` location and the way that products are rendered. Let's try the following:
-      ```javascript
-      var renderNewProduct = function( formObject ){
-        var productType = formObject.type; // will be either "music" or "books"
-        $('#content').empty();
+    render(products);
+  });
 
-        products[productType].push(formObject); // adds the new product to the proper product Array
+render(products); // this should be the first render
+```
+You should also need to modify the `Content`
+11. If everything went as planned, you should have a variety of different products rendered on the page! But now our `form` is broken again... we'll push _every_ product to the `books` Array, which wouldn't make much sense. Let's add an `input` of type `radio` to let users choose between types of `book` or `album`, then modify our form's `submit` event handler to account for the new field. It should be a one-line change! HINT:
 
-        for(var productType in products){ // re-renders each product in the products Object
-          productType.forEach( function(product){
-            addToPage(product);
-          } );
-        }
-      };
-      ```
-    5. The last thing to do is make sure that our form includes a radio button with values set to "books" and "music". HINT:
-      ```html
-      <input type="radio" name="type" value="books"> Book</br>
-      <input type="radio" name="type" value="music"> Album</br>
-      ```
-12. If everything went as planned, you should have a variety of different products rendered on the page! In the time remaining, add some styles to each element, deploy your project live, and add a link to this project from your portfolio page. Good work!
+```javascript
+// form submit event stuff
+
+// notice the String interpolation!
+product[`${newProduct.type}s`].push(newProduct);
+
+// even more form submit event stuff
+```
+12. Now let's let users filter between Books and Albums when they click on the `books` and `albums` links in the `Navigation` component. What might that look like? HINT:
+
+```javascript
+var links = document.querySelectorAll('#navigation a');
+
+links[0].addEventListener(
+  'click',
+  (event) => {
+    var filteredProducts = { // why do we need to do this?
+      books: products.books,
+      albums: []
+    };
+
+    event.preventDefault();
+
+    render(filteredProducts);
+  }
+);
+
+links[1].addEventListener(
+  'click',
+  (event) => {
+    var filteredProducts = { 
+      books: [],
+      albums: products.albums
+    };
+
+    event.preventDefault();
+
+    render(filteredProducts);
+  }
+);
+```
+13. Now our bookstore has quite a few features! It's missing _one last thing_ (besides, you know, a checkout system, or a business plan): notice that new books that we add don't yet persist beyond page refreshes. We can still pull down data from our API, but that data doesn't reflect any of the work that we've done so far! Let's fix that with a `POST` request to our API in the form's event handler. What does this do?
+
+```javascript
+// form submit stuff here
+
+var pluralizedType = `${newProduct.type}s`;
+
+products[pluralizedType].push(newProduct);
+
+axios.post(
+  `https://api.savvycoders.com/${pluralizedType}`,
+  newProduct,
+);
+
+// more form submit stuff here
+
+```
+Once this is done, we should be able to persist our product data between page refreshes. Go team!
+14. In the time remaining (or as extra credit on your own), see if you can implement some of the following features:
+  + Can you filter `products` by `title` using a Search `input` and a `keyup` event listener?
+  + Can you delete books from the front end on `click`?
+  + Can you delete books from the back-end database using a `DELETE` request (e.g. `axios.delete`)?
+  + Can you add the ability to edit books on the front end?
+  + Can you persist book edits to the API using a `PATCH` request (e.g. `axios.patch`)?
+  + Can you add loading indicators using Font Awesome spinners and fa-spin?

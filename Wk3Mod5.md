@@ -13,7 +13,7 @@ You've come a long way from you very first bits of code! As you've progressed, y
 One of the hallmarks of an interactive application is that we, as developers, have a much more fluid interaction with time than we do in steps 1 through 5. Events can happen at any time, in any order, and it's up to us to "listen" to and "handle" any event whenever they end up happening. Up to this point, though, we've been operating under the assumption that the only "delays" that might occur came from users, rather than from within our own application processes. But what happens when we aren't sure how long it'll take for our code to execute? Think about the following:
 
 ```javascript
-var randomFinish = function( label ){
+function randomFinish ( label ){
     var randomTime = Math.random() * 1000;
 
     setTimeout(
@@ -150,3 +150,100 @@ fetch("https://jsonplaceholder.typicode.com/posts" )
 
 The library that we'll use for the remainder of the course is called [axios](https://github.com/axios/axios). It's like `fetch`, but works in _and_ out of the browser, has a number of more sensible defaults that are missing from `fetch`, and is just a bit more convenient for those complex requests. Let's try using `axios` to fetch some blog posts for our `Blog` page!
 
+1. `axios` is a third-party library, so we'll need to include it as a dependency through `npm`:
+
+```
+npm install --save axios
+
+```
+2. Let's re-write the first part of Exercise 1 with `axios`. You'll notice that it looks pretty similar, but doesn't require `fetch`'s unwrapping/JSON parsing step:
+```javascript
+axios
+  .get("https://jsonplaceholder.typicode.com/posts")
+  .then(response => console.log(response.posts));
+```
+3. That was easy! But now how do we use this data in our application? You'll recall that we've set up our entire application as a single relationship between our application `state` and the way that application is presented. So using this new data is as simple as augmenting our `state` and re-rendering the app. That will look something like this:
+```javascript
+import * as states from './store';
+
+state.posts = []; // initializes empty piece of state
+
+axios
+  .get("https://jsonplaceholder.typicode.com/posts")
+  .then(response => response.data.forEach(post => state.posts.push(post)));
+```
+
+The code above defines a piece of our `state` Object just for our posts. If the `Blog` page is the first thing to be rendered, there won't be any errors on initial page load, and there will be a slight delay while all of the posts are fetched. 
+4. The next thing is to re-render the application with the updated state! You'll recall that the router is handling most of our application rendering, so let's leverage that route handling to re-render the application once we've received some data from this external API:
+```javascript
+axios
+  .get("https://jsonplaceholder.typicode.com/posts")
+  .then((response) => {
+      var params = router.lastRouteResolved().params;
+
+      response.data.forEach((post) => state.posts.push(post));
+
+      if(params){ // required for the home page
+        handleRoute(params);
+      }
+  });
+
+```
+This uses `lastRouteResolved` to query the router for the last route that's been handled (which is the same thing as "the current page" from the user's perspective), then sends those `params` down the pipeline to route handler after the `state` has been augmented with our new `post` data. 
+5. Now our `startApp` function is being called at the correct time, but what about our stateless functional components? How can we use our existing components to parse this new piece of the `state` tree? Don't forget that it's components all the way down! Let's see what happens when we turn the `body` components that we made earlier into a functional component that can handle `state` as well. Our `Content` component becomes:
+
+```javascript
+import * as pages from './Pages';
+
+export default function Content(state){
+  return `
+    <div>
+      ${pages[state.body](state)} // pass that state!
+    </div>
+  `;
+}
+
+```
+You should see some `Blog is not a function` errors until we change the `Blog` component into a stateless functional component, e.g.:
+
+```javascript
+export default function Blog(state) {
+  return state
+    .posts
+    .??? // what to do here?
+}
+```
+6. But what to do with these `posts` now? What we really want to do is _transform_ these post Objects into a single post String, right? To do that, let's create another function that we can use to generate individual posts. Something like:
+
+```javascript
+function mapPost(post) {
+  return `
+    <div>
+      <h3>${post.title}</h3>
+      <p>${post.body}</p>
+    </div>
+  `;
+}
+```
+Notice how any function that generates new markup follows a similar pattern: `state` (or a piece of `state`) in, HTML (as a JavaScript String) out.
+7. To bring it all together, our new `Blog` function becomes:
+
+```javascript
+function mapPost(post){
+  return `
+    <div>
+      <h3>${post.title}</h3>
+      <p>${post.body}</p>
+    </div>
+  `;
+}
+
+export default function Blog(state){
+  return state
+    .posts
+    .map(mapPost)
+    .join(''); // this condenses an Array into a String
+}
+```
+
+Now we see how to render subcomponents through the entire component tree _and_ we see how to do it with asynchronous data. This is a big part of being a web developer, and you should feel accomplished for getting to this point!
