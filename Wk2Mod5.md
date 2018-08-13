@@ -1,219 +1,324 @@
-## jQuery
-### Making the DOM Great Again
+## Single Page Applications
+### and Stateless Functional Components
 
-jQuery is a library (a bunch of pre-written code), written in JavaScript, designed to make it easier to manipulate a web page and do various web-related work. [Open it up](https://code.jquery.com/jquery-2.1.1.js) and skim over it. How many lines of code is it?
+You may have noticed that we're only able to view our _landing_ page when serving content with `parcel`. That's because `parcel` assumes that all of your content will be rendered dynamically with JavaScript... it isn't built to handle multiple HTML files.
 
----
-
-### The `$` Character
-
-We've already been working with a lot of Objects. `Math`, `window`, `console`, `document`, and so on. To work with the jQuery library, we work through the jQuery Object. In the same way that `window` stores an object with a bunch of properties and methods related to the web page, jQuery uses the `$` variable to store an object that contains the library's functionality. To see if jQuery is included on the page, type `$` into the JavaScript console. You should see the following in reply:
-
->`function jQuery(selector, context)`
-
-`$()` is a function designed to take in a string- a css selector- such as `$('#primary')` as input, and return all matching elements, wrapped with jQuery super powers... _i.e._, the jQuery Object. To access jQuery's properties and methods, we'll use the same dot notation we've used up to this point. e.g.:
-
-```javascript
-$("p").text("Here's some text!"); //equivalent to .textContent
-$("body").html("<div id='content'><h1>Here's a new title!</h1></div>"); //equivalent to .innerHTML
-```
-
-Besides replacing HTML, jQuery is also good at modifying the styles and `css` associated with DOM elements using the `css()` method:
-
-```javascript
-$("#header").css("background-color", "#07c4dd");
-$("h1").css("color", "pink");
-$("div.container").css("padding", "20px");
-```
-
-We'll use all three of these methods in the next exercise.
+This kind of application is called a Single-Page Application, or SPA. The idea is to listen for user interaction and respond quickly, without needing to make another network request for a set of assets. Let's see if we can get this to work with our current portfolio project! But before we do, there's a bit more that we need to learn about _callbacks_ and the `event` Object.
 
 ---
 
-### Exercise 1
-#### `text` and `html`
+### Callbacks
 
-For this next exercise, we've created a document that will act as a bit of a sandbox for you. You can find the link [here](https://savvycoders.com/class-slides/class-materials/week-2/module-4/jquery/jquery-selecting.html). When you've navigated there in your browser, take a look at the source code.
+With events, we've come across our very first __callback functions__. This is a common pattern in JavaScript based on the idea that functions are first-class citizens; functions can be `return`ed from other functions, can be invoked at any time, and can be passed in as arguments to other functions. When a function is given to another function as an argument for later invocation, that function argument is called a callback. Here's a simple example:
 
-Everything should look pretty normal until you get to the closing `<script>` tag. You should see
+```javascript
+function callWithFive(callback) {
+  return callback(5);
+}
+```
 
-```html
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+We've now created a function that calls its argument with `5`, come hell or high water. That `callback` could be _any_ function... maybe it's `console.log`, maybe it's a `multiplyByThree` function that multiplies its argument by `3`, maybe it's a function that doesn't do anything at all. The only thing we can be certain of is that the `callback` function will _always_ be called with `5` as its first (and only) argument.
+
+This pattern might eventually help us out with rendering components! Think about how this might work:
+
+```javascript
+function invokeWithState(state, Component) {
+  return Component(state);
+}
 ```
 
-This is a standard JavaScript file that's been _minified_ (hence the `.min`). To save space, all of the variable names have been shortened and whitespace removed. It works just like any other JavaScript file that you or I might write, though. This library is linked using Google's _CDN_, or Content Delivery Network. This is a common way of bringing common external libraries (like jQuery) into your project.
-
-To make sure that jQuery has been loaded into the page, open up the console and type `$`. If you get an error, something has gone wrong... otherwise, you're all set to start using jQuery!
-
-Try the following in the console:
-
-1. Turn all `h1` text `blue`. HINT:
-```javascript
-$("h1").css("color", "blue");
-```
-2. Turn the `body`'s `background-color` to `red`. HINT:
-```javascript
-$("body").css("background-color", "red");
-```
-3. Increase the `font-size` of the element with an `id` of `everything`. HINT:
-```javascript
-$("#everything").css("font-size", "120%");
-```
-4. Add a `border` to all elements with a `class` of `holder`. HINT:
-```javascript
-$(".holder").css("border", "2px solid black");
-```
-5. Change the `font-weight` of all `li` elements to `bold`. HINT:
-```javascript
-$("li").css("font-weight", "bold");
-```
-6. Change the `color` of all `p` elements that come directly after the `h1` element to `green`. HINT:
-```javascript
-$("h1+p").css("color", "green");
-```
-7. Change the `#secret` to a hidden element with `display: none;`. HINT:
-```javascript
-$("#secret").css("display", "none");
-```
-8. Replace the text content of `#change-me` with "I feel like a new sentence". HINT:
-```javascript
-$("#change-me").text("I feel like a new sentence");
-```
-9. Put the new contents of `#change-me` into some paragraph tags. HINT:
-```javascript
-$("#change-me").html("<p>I feel like a new sentence</p>");
-```
+Now we've created a wrapper that passes a `state` Object to any functional `Component`. We could implement this in our portfolio right now, although we're going to hold off for a minute. Instead, think about how this might relate to the `addEventListener` function. As you might recall, the second argument to `addEventListener` is a callback function that's executed whenever the first argument (e.g. `click`) occurs. If you understand that, you might be wondering: are there any arguments passed to the event handler/callback when the associated event is triggered? The answer is __yes__, and that argument is an Object called the `event` Object.
 
 ---
 
-### Exercise 2
-#### `append`, `prepend`, `hide`, and `show`
+### `event` Object
 
-Sometimes, we don't want to overwrite all of the text or HTML contents of an element. Instead, we just want to tack some text or HTML to the end or beginning of that element. That's where `.append()` and `.prepend()` come in!
-
-If we start out with the following HTML:
-
-```html
-<p>I'm a sentence</p>
-```
-
-...we can add content to the front and tail of the sentence like so:
+Try the following in your developer console:
 
 ```javascript
-$("p").append("!"); //<p>I'm a sentence!</p>
-$("p").prepend("Behold, "); //<p>Behold, I'm a sentence!</p>
+function logEventObject(event) {
+  console.log(event);
+}
 
-//or chained together:
-$("p").prepend("Behold, ").append("!");
+document.body.addEventListener('click', logEventObject);
 ```
 
-This is usually much easier to read and use than String concatenation.
+You should now see a very large Object logged to the console whenever you click on a page. Let's take a look at two of the most important properties of this Object.
 
-It's also very common to want to show and hide elements on the page. We already tried this with `.css("display", "none")`, and this works just fine. But we use this so often that jQuery has given us a shorthand in `.show()` and `.hide()`.
+#### `event.preventDefault`
+
+In a previous exercise, you were tasked with adding event listeners to some of the links in your `Navigation` component. You might have done so like this:
 
 ```javascript
-// long form
-$("div.toggle-stuff").css("display", "none"); // invisible
-$("div.toggle-stuff").css("display", "block"); // visible
+document
+  .querySelector('#navigation a')
+  .addEventListener(
+    'click',
+    () => console.log('the first link was clicked!')
+  );
 
-// shortcut
-$("div.toggle-stuff").hide(); // invisible
-$("div.toggle-stuff").show(); // visible
 ```
 
-Now, using the same sandbox page we used for Exercise 1, try the following:
-
-1. Show and hide the `#secret` element with `.show()` and `.hide()` from the console!
-2. `append` a calling card with your name to the end of the page. HINT:
+You may have noticed, however, that the default link behavior took over in this case, and that the phrase `the first link was clicked!` was never output to the console. How could we prevent that default anchor tag action of reloading the page? Try something like this:
 
 ```javascript
-var callingCard = "<div><b>Alex was here</b></div>";
-$("body").append(callingCard);
+document
+  .querySelector('#navigation a')
+  .addEventListener(
+    'click',
+    (event) => {
+      event.preventDefault();
+
+      console.log('the first link was clicked!');
+    }
+  );
 ```
 
-3. `prepend` a greeting to the beginning of the page's `body`. HINT:
+`preventDefault` is a function that can be invoked to make sure that the built-in event behavior of a particular HTML element doesn't occur. This allows us to change the way that things like anchor tags and forms behave in the context of a Single-Page Application. Try it out in your portfolio project!
 
-```javascript
-var greeting = "<h1>Welcome to the jQuery SandBox</h1>";
-$("body").prepend(greeting);
-```
-
----
-
-### Exercise 3
-#### Basic Animation
-
-While jQuery simplifies basic DOM operations, it adds also adds some unique animations of its own! Try the following in the same Sandbox we used for Exercises 1 and 2:
-
-```javascript
-$('ol li').fadeIn() // fade in a set of matched elements over time
-$('p .comments').fadeOut() // fade out as set of matched elements over time
-$('div#thing').slideDown() // animate an element sliding down over time
-$('#message').slideUp() // animate an element sliding up over time
-$('.alert').slideToggle() // toggle between an element sliding up or down over time depending on whether it's visible or not
-$('#change-me').animate("font-size", "200%") // animate a CSS property of your choosing!
-```
-
----
-
-### Exercise 4
-#### Complex option parameters
-
-We've already seen how to pass in _arguments_ to two functions: `.css()` and `.animate()`. Like most methods in jQuery, these two operations can take a variety of inputs (check the documentation for [`css`](https://api.jquery.com/css/) and [`animate`](https://api.jquery.com/animate/) for a better understanding of all possible inputs.) Both of these methods will behave differently based on if they are passed no arguments, a property name only, a property and a value as strings, or with an Object of properties and values.
-
-You'll recall from earlier in the week that Objects are sets of key/value pairs that can be defined explicitly using curly brackets. e.g.:
-
-```javascript
-var myObject = { propertyTheFirst: "This is a value", propertyTheSecond: "This is a different value" };
-```
-
-So far we've been using methods on pre-built Objects (like the Object returned by `$()`) through dot notation. But we can also create Objects of our own to be passed into functions (inlucding `.css()` and `.animate()`). In this case, we'll use an Object to pass in a series of properties and values to change!
-
-Try the following in the Sandbox:
-
-1. Change three CSS properties on `#change-me` when the page loads. HINT:
-```javascript
-// inlined
-$("#change-me").css({
-    "width": "80%",
-    "margin-left": "auto",
-    "margin-right": "auto"
-});
-
-// separated
-var options = {
-    "width": "80%",
-    "margin-left": "auto",
-    "margin-right": "auto"
-};
-
-$("#change-me").css( options );
-```
-2. Now _animate_ three CSS properties on `#change-me` when the page loads. Not every CSS property is animate-able... try to figure out which can be animated, and which can't! HINT:
-```javascript
-// inlined
-$("#change-me").animate({
-    "font-size": "300%",
-    "margin-left": "200px",
-    "padding": "50px"
-});
-
-// separated
-var options = {
-    "font-size": "300%",
-    "margin-left": "200px",
-    "padding": "50px"
-};
-
-$("#change-me").animate( options );
-```
----
 
 ### Portfolio Project 1
-#### SandBox from Scratch (bonus)
+#### SPA navigation
 
-> If you want to make an apple pie from scratch, you must first create the Universe.
+Up to this point, we haven't been able to see any of our other pages. Let's see if we can render the contents of these other by mimicking the routing behavior of the browser!
 
-For today's final exercise, we're going to bring all of our jQuery work together to create an entirely new set of HTML for display. Starting with the standard `index.html` boilerplate, build each part of today's sandbox on page load in the `body` of a page. We'll link this project to our Portfolio page just like `choose-your-own-adventure`. You can use `.html()` and `.text()` to add text content, and add some style with `.css()`... or even `.animate()`!
+1. Let's start by wrapping all of our rendering logic into a single function:
 
-Once you like your _new_ Sandbox, `stage`, `commit`, `push`, and `deploy` your project.
+```javascript
+// change our original state to home-specific state
+var home = {
+  'title': "Welcome to my Savvy Coders Portfolio"
+};
+
+var root = document.querySelector('#root'); // this doesn't need to be queried every time we re-render
+
+function startApp(state){
+  root.innerHTML = `
+    ${Navigation(state)}
+    ${Header(state)}
+    ${Content(state)}
+    ${Footer(state)}
+  `;
+}
+
+startApp(home); // start by rendering the landing page
+```
+2. If everything from part 1 went as planned, you should see no difference on your landing page. Let's start by coming up with a new state for your first link. Perhaps:
+
+```javascript
+// assuming your first link is to your blog page
+var blog = {
+  'title': 'Welcome to my blog!'
+}
+```
+3. Now where should put our event listeners? We can't put them _before_ `startApp`, since we can't apply listeners to elements before they've been rendered. And we also need to _re-apply_ listeners after each render. That means that we should include the event listeners inside of `startApp`, but after `innerHTML` has been overwritten, _a la_:
+
+```javascript
+function startApp(state) {
+  root.innerHTML = `
+    ${Navigation(state)}
+    ${Header(state)}
+    ${Content(state)}
+    ${Footer(state)}
+  `;
+
+  document
+    .querySelector('#navigation a') // grabs first link only
+    .addEventListener(
+      'click',
+      (event) => {
+        event.preventDefault(); // stops page reload
+
+        startApp(blog); // re-render on click
+      }
+    );
+}
+```
+
+4. Let's repeat the process for your `contact` and `projects` links! As you work through this problem set, can you think of some limitations with this approach? Before we progress much further, we need to learn about `event.target`.
+
+#### `event.target`
+
+The SPA navigation implementation above is certainly working, but it doesn't scale very well, and certainly isnt very `DRY` (i.e. it fails the first law of programming: Don't Repeat Yourself). To make this more abstract, though, we need to be able to get some information out of the anchor tag that was the source of the `click` event in the first place. We can extract this information with `event.target`. Try the following in your dev tools:
+
+```javascript
+document
+  .querySelector('#navigation a')
+  .addEventListener(
+    'click',
+    (event) => {
+      event.preventDefault();
+
+      console.log(event.target);
+    }
+  );
+```
+
+You should find that the DOM representation of anchor tag is logged out to the console! This is the exact same JavaScript Object that's returned from something like `document.querySelector` in the first place, so you can get all sorts of information out of `event.target`. Try the following:
+
+```javascript
+document
+  .querySelector('#navigation a')
+  .addEventListener(
+    'click',
+    (event) => {
+      event.preventDefault();
+
+      console.log(event.target.textContent);
+      console.log(event.target.outerHTML);
+      console.log(event.target.href);
+    }
+  );
+```
+
+Let's use this new tool to improve our SPA navigation.
+
+### Portfolio Project 2
+#### Better SPA Navigation
+
+At the end of the last exercise, your `startApp` function probably looked something like this:
+
+```javascript
+function startApp(state){
+    root.innerHTML = `
+      ${Navigation(state)}
+      ${Header(state)}
+      ${Content(state)}
+      ${Footer(state)}
+    `;
+
+    document
+        .querySelector('#navigation a')
+        .addEventListener(
+            'click',
+            (event) => {
+                event.preventDefault();
+
+                startApp(blog);
+            }
+        );
+
+    document
+        .querySelector('#navigation li:nth-child(2) > a')
+        .addEventListener(
+            'click',
+            (event) => {
+                event.preventDefault();
+
+                startApp(contact);
+            }
+        );
+
+    document
+        .querySelector('#navigation li:nth-child(3) > a')
+        .addEventListener(
+            'click',
+            (event) => {
+                event.preventDefault();
+
+                startApp(projects);
+            }
+        );
+}
+```
+
+That's neither `DRY` nor pretty... just look as those nasty selectors that we need to select each anchor tag in turn. Let's see if we can clean this up using the power of `event.target`.
+
+1. First, let's refactor our states. You probably have four separate state Objects by this point. If we combine them into one flat state Object, then it will be easier to leverage the power of `event.target`. Let's do something like this:
+
+```javascript
+// notice the capitalized property names!
+
+var state = {
+  'Blog': {
+    'title': 'Welcome to my Blog'
+  },
+  'Home': {
+    'title': 'Wecome to my Portfolio'
+  },
+  'Contact': {
+    'title': 'Contact Me'
+  },
+  'Projects': {
+    'title': 'Check out my Projects'
+  }
+}
+```
+2. Now we can extract the click event handler into its own function:
+
+```javascript
+function handleNavigation(event){
+  // pull the component name from the text in the anchor tag
+  var component = event.target.textContent;
+
+  event.preventDefault();
+
+  // select a piece of the state tree by component
+  startApp(state[component]);
+}
+```
+3. This already helps us clean things up. Check out our new `startApp` function:
+
+```javascript
+function startApp(state){
+    root.innerHTML = `
+      ${Navigation(state)}
+      ${Header(state)}
+      ${Content(state)}
+      ${Footer(state)}
+    `;
+
+    document
+        .querySelector('#navigation a')
+        .addEventListener(
+            'click',
+            handleNavigation
+        );
+
+    document
+        .querySelector('#navigation li:nth-child(2) > a')
+        .addEventListener(
+            'click',
+            handleNavigation
+        );
+
+    document
+        .querySelector('#navigation li:nth-child(3) > a')
+        .addEventListener(
+            'click',
+            handleNavigation
+        );
+}
+```
+4. Our last optimization will be to reduce the number of DOM queries every re-render. We're currently querying the entire `document` three times every time `startApp` is called. We can do better by using `querySelectorAll`, like so:
+
+
+```javascript
+function startApp(state){
+    root.innerHTML = `
+      ${Navigation(state)}
+      ${Header(state)}
+      ${Content(state)}
+      ${Footer(state)}
+    `;
+
+    var links = document.querySelectorAll('#navigation a')
+
+    links[0].addEventListener(
+        'click',
+        handleNavigation
+    );
+
+    links[1].addEventListener(
+        'click',
+        handleNavigation
+    );
+
+    links[2].addEventListener(
+        'click',
+        handleNavigation
+    );
+}
+```
+
+Now we have a pretty clean navigation system that doesn't require page refreshes! How else can we improve on this system?

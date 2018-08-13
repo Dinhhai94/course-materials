@@ -1,9 +1,9 @@
 ## Advanced Objects
 ### Object-Oriented Programming and Design Patterns
 
-Organizing code structures around objects rather than functions is called Object Oriented programming.
+Organizing code structures around Objects rather than functions is called Object-Oriented Programming (or OOP).
 
-As we've seen already, object can have keys which are strings, and values which can any data type: strings, numbers, arrays, objects... even functions!
+As we've seen already, Objects can have keys which are Strings, and values which can be any data type: Strings, Numbers, Arrays, Objects... even functions!
 
 ```javascript
 var person = {
@@ -15,7 +15,7 @@ var person = {
     name: "mr fuzzles",
     hobbies: [ "being inert", "nudging things off tables" ]
   },
-  party: function(){
+  party: function throwParty(){
     console.log('dance, dance, dance!')
   }
 }
@@ -32,14 +32,14 @@ person.party() // how about this?
 And as we've briefly seen before, Objects can use the `this` keyword to access their calling context. Review the following in your console:
 
 ```javascript
-var freestanding_fn = function(){
+function logContext(){
   console.log(arguments, this)
 }
 
-freestanding_fn("These are the arguments...", "What is the calling context? -->")
+logContext("These are the arguments...", "What is the calling context? -->")
 ```
 
-Now what happens when we call a function in the context of an object?
+Now what happens when we call a function in the context of an Object?
 
 ```javascript
 var obj = {
@@ -56,7 +56,7 @@ obj.method();
 So how is this useful?
 
 ```javascript
-person.work = function(){
+person.work = function work(){
     console.log("Welcome to McDonald's, I'm " + this.name + ". May I take your order?")
     console.log("Enjoy this beautiful day in " + this.location)
     console.log("Would you like to hear a story about " + this.cat.name + " and his " + this.cat.hobbies[1])
@@ -76,7 +76,7 @@ We can also change our object properties by referencing them with `this`:
 var car = {
     type: "Honda Civic",
     position: 1,
-    move: function(){
+    move: function move(){
         var prev = this.position;
         this.position = this.position + 1;
         console.log(this.type + " is moving from " + prev + " to " + this.position);
@@ -93,7 +93,7 @@ var car = {
     type: "Honda Civic",
     position: 1,
     speed: 8,
-    move: function(){
+    move: function move(){
       var prev = this.position;
       this.position = this.position + this.speed;
       console.log(this.type + " is moving from " + prev + " to " + this.position);
@@ -102,7 +102,7 @@ var car = {
   ```
 5. Instead of defining the method inline, it can be useful to have it defined first and referenced as a variable in the object instantiation. This will allow us to share the function between multiple objects later. Try this out with the `move()` method. HINT:
   ```javascript
-  var moveCar = function(){
+function moveCar(){
     var prev = this.position;
     this.position = this.position + this.speed;
     console.log(this.type + " is moving from " + prev + " to " + this.position);
@@ -117,7 +117,7 @@ var car = {
   ```
 6. Now share the `moveCar` function with a brand new car object! Then try invoking the `.move()` method a few times. HINT:
   ```javascript
-  var moveCar = function(){
+function moveCar(){
     var prev = this.position;
     this.position = this.position + this.speed;
     console.log(this.type + " is moving from " + prev + " to " + this.position);
@@ -147,23 +147,23 @@ var car = {
 When we pass an object as an input to a function which adds functionality to it, we call this code structure the _Decorator Pattern_.
 
 ```javascript
-var reverse_adder = function(car){
-    car.reverse = function() {
+function addReverse(car){
+    car.reverse = function reverse() {
       this.position = this.position - this.speed
     }
 }
 
-reverse_adder(car1);
-reverse_adder(car2);
+addReverse(car1);
+addReverse(car2);
 ```
 ---
 
 #### Factory Pattern
 
-When we use a function to instantiate new objects of a certain type, we call this code structure the _Factory Pattern_.
+When we use a function to instantiate new Objects of a certain type, we call this code structure the _Factory Pattern_.
 
 ```javascript
-var car_factory = function (type, speed) {
+function buildCar(type, speed) {
   var car = {};
 
   car.position = 0;
@@ -177,50 +177,10 @@ var car_factory = function (type, speed) {
   return car;
 };
 
-var new_toyota = car_factory('Toyota Hilux', 3);
-var new_honda = car_factory('Honda Accord', 5);
+var newToyota = buildCar('Toyota Hilux', 3);
+var newHonda = buildCar('Honda Accord', 5);
 ```
 
-Try creating a car factory that can create car objects like the ones you created already!
+Try creating a car factory that can create car Objects like the ones you created already!
 
 ---
-
-### Exercise 2
-#### Warrior Factory
-
-1. Create a warrior factory that take arguments of a `name` and a `weapon`. HINT:
-  ```javascript
-  var warriorFactory = function(name, weapon){
-    var warrior = {};
-
-    warrior.name = name;
-    warrior.weapon = weapon;
-
-    return warrior;
-  };
-  ```
-2. It should return a warrior with those properties as well as...
-  1. Each warrior should have an `attack` method that references the `name` and `weapon`.
-  2. Each warrior should have an `adventure` method that calls the `attack` method multiple times, along with a legendary adventure.
-
-HINT:
-```javascript
-var warriorFactory = function(name, weapon){
-  var warrior = {};
-
-  warrior.name = name;
-  warrior.weapon = weapon;
-
-  warrior.attack = function(){
-    return this.name + " attacks with their " + this.weapon + "!";
-  };
-
-  warrior.adventure = function(){
-    return "Behold, the great warrior " + this.name + ", foremost of all warriors. They draw forth to face the Dragon of Kalamazar. Watch as " + this.attack() + ". Such bravery!";
-  };
-
-  return warrior;
-};
-
-warriorFactory( "Olav the Destroyer of Weaklings", "Spiked Deathmaul of Lamentation");
-```

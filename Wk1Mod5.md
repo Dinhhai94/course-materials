@@ -1,118 +1,178 @@
-## Resets, Frameworks, and Student Showcase
-### `reset.css`, `minimal.css`, and the GitHub workflow
+## CDNs, Third-Party Dependencies, and Responsive Grids
 
 Okay, so we've learned that doing layout with CSS by hand is confusing, inconsistent between different browsers, resolutions and devices and just generally a great, big pain in the button. Luckily, CSS frameworks exist!
 
 You should consider using a framework or library to do the following:
 
 + standardize CSS styles across browsers
-+ import some pre-built components (like buttons or forms)
++ import some pre-built components (like buttons or icons)
 + make your page look nice
 
-Many frameworks do all three. For the purposes of today's mini-Hack-A-Thon, though, we're going to focus on the first two points.
+Many frameworks do all three. For today, we'll take a look at some external resources that will help us with each point in turn. But first: how do we include these third-party libraries? In the case of CSS libraries, we'll use something called a __CDN__.
+
+### CDNs
+
+Content Delivery Networks are distributed networks that focus on minimizing the distance between your users and the assets that your site needs to render correctly. Think of CDNs as a giant interconnected set of servers around the world, responding as quickly as possible to users near them. This can be a great performance boost when using third-party libraries!
+
+There are a number of popular CDNs, but the one we'll be using is called [CDNJS](//cdnjs.com). It's the world's largest open-source CDN, with its source code available for free [on GitHub](https://github.com/cdnjs/cdnjs).
+
+There are thousands of open-source JavaScript and CSS libraries available from CDNJS, but we'll start out with [normalize.css](https://cdnjs.com/libraries/normalize).
 
 ---
 
-### `reset.css`
+### `normalize.css`
 
 Remember the default styles applied to common elements like `<h1>` and `<ul>`? Well, those styles are sometimes different across browsers, and they're usually filled to the brim with quirky (or bug-causing) behavior. We want to have control over every aspect of our style across every browser. To do that, we need to normalize or reset styles to make sure that every browser treats our elements the same. We can also use a reset to modernize some out-dated features (like `box-sizing : border-box;`).
 
-A very basic reset that we'll use today will be [`reset.css`](http://meyerweb.com/eric/tools/css/reset/reset.css). This boilerplate can be tweaked for use in all of your projects. Just make sure that it's the first CSS file in your document!
+To do this, we'll add `normalize.css` from CDNJS in the `head` of our HTML files, like so:
 
----
-
-### `minimal.css` and CSS de-bugging
-
-While reset is useful, it doesn't give us much of a **framework**. Frameworks can act as the 'scaffolding' of a project, making our builds faster and our styles consistent. A lightweight framework that we'll use for today's project will be [`minimal.css`](http://minimalcss.com/). This framework will help style our page and create a grid for us to work with! Let's explore this framework with the developer console in Chrome:
-
-1. Open the [Minimal CSS demo page](http://minimalcss.com/).
-2. Open the Chrome Developer Tools and inspect various `.row` and `.col-n` elements. Where did they get those styles?
-
-![dev tools](http://reactorprep.herokuapp.com/assets/images/minimal_css.png)
-
-3. In the graphic above, a `div` with `class="col-6"` has been selected from the example site. Here's what we've learned about this element:
-
-  + It has no styles applied directly to it by an HTML style attribute
-  + On line 37 of the linked stylesheet `minimal.css` there is a rule that applies only to the class `col-6` that sets its width.
-  + On line 28 of `minimal.css` it picks up more styles from a rule that is applied to multiple column classes.
-  + On line 7 of `minimal.cs`s it gets its` margin` and `padding` from a rule applied to all elements on the page.
-  + It is a `div`, so the browser displays it as a block element.
-
----
-
-### The GitHub workflow
-
-It's almost time to use what we've learned above to create a Student Showcase for you and your classmates. First, though, we need to learn about how to work on shared codebases through `git` and GitHub. While this can be pretty complicated, you'll find that it gives us a lot of power as a team!
-
-![the GitHub workflow](https://camo.githubusercontent.com/0951c54f2f51742fb106fa9146082f41af4d894a/68747470733a2f2f677561726469616e70726f6a6563742e696e666f2f77702d636f6e74656e742f75706c6f6164732f323031332f31312f696e746567726174696f6e5f6d616e616765725f776f726b666c6f772d333030783132312e706e67)
-
-For all of our group projects at Savvy Coders, we'll be using the 'Blessed Repository' workflow, simplified a bit for our needs. The important thing to remember with this workflow is that there will be LOTS of copies of the same codebase with little variations between each copy. The copies shown in the chart above are:
-
-1. **The Blessed Repository**: this is the "product"... the fully-merged and up-to-date codebase that will be managed by your instructor. Each student will have the ability to copy (or `fetch`) data from this repository, but won't be able to directly change (or `push`) anything on the Blessed Repository. *This repository is hosted on GitHub*
-2. **Integration Manager's Personal Copy**: "integration manager" is a fancy term for the person in charge of merging everyone's changes together. Developers don't have direct access of any kind to the IM's personal copy of the Blessed Repository. The IM will be your instructor/team leader for the night!
-3. **Developer's Public Copy**: each of you will have a copy (or 'fork') of the project hosted on GitHub. All changes made to Blessed Repository will have to be submitted through your public project repo (more on that later).
-4. **Developer's Private Copy**: GitHub will only store your code. You'll need a local copy to edit files, and you'll sync that local copy with your public repository and the Blessed Repository.
-
-The goal will be to keep your Public and Private copies as close to the Blessed Repository as possible at all times without causing merge conflicts or overwriting your work!
-
----
-
-## Student Showcase Project Part 1:
-### Setting up project repos
-
-Follow these steps to get a copy of the boilerplate code set up on your GitHub profile and your local machine.
-
-1. Your instructor will have a forked copy of our boilerplate code on their GitHub profile. You will need to go to your GitHub profile and fork your instructor's copy. You now have your public copy set up!
-2. Next, you'll need to `clone` your public copy onto your local machine. In your public repository, find the button that lets you copy down an https address pointing to your public repo. Then use that address on your local machine. To clone the repo at that address, fire up a terminal, navigate to your `SavvyCoders` directory, and type in:
-
-```shell
-git clone [address you copied from GitHub]
+```html
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.css">
 ```
-3. Now you should have a copy of the entire GitHub repository on your local environment. Try to `cd` into that directory, then open it with the command `atom .`
-4. In this repository, there is a README.md file that introduces the class to the outside world. Add your name to the list of contributors, then `add`, `stage`, `commit`, and `push` your changes to your public copy on GitHub. 
-5. Next, it's time to get those changes incorporated into the rest of the group's codebase. To do that, you'll need to submit a **pull request** to your instructor's account. That means going to your GitHub account, clicking on the 'Pull Request' button, and waiting for your instructor to merge your changes.
-6. Once your pull request has been accepted and closed, you'll need to refresh your copies of the codebase with the newly-merged changes on your instructor's account. To do that, you'll need to set up that account as a `remote`. If you type in `git remote`, you should see a single remote, called `origin`, availabe to you. This remote was set up automatically when you ran `git clone`, and points to your public copy on GitHub. Anyone can set up a `remote` to `pull` from any repository, but only *you* have `push` access to the repositories on your GitHub account. The same applies to your instructor's copy: you can set up a remote to `pull` data, but you can't use that remote to `push` to it. To set up that remote, navigate to your instructor's public copy of the codebase on GitHub, copy that repo's https address (just like you did on your own account with `clone`), and type the following into your console:
+---
 
-```shell
-git remote add merged [url for the instructor's repository]
+### Web Fonts
+
+By now, we've learned about `font-family`, including a few of the web's built-in fonts. There are a number of families that can be used across operating systems, but it's sometimes difficult to pick a set of families that will work identically across all browsers all the time.
+
+If you're using built-in fonts, be sure to check [cssfontstack.com](https://www.cssfontstack.com/) to make sure that you're getting good font coverage.
+
+The alternative would be to use a third-party font! There are a number of ways to do this. We could:
+
+1. Serve up a custom font to our users through the [`@font-face`](https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face) CSS directive
+2. Use another CDN that focuses on serving fonts
+
+For this course (and for 90% of projects out there), we'll be using a CDN hosted by Google called [fonts.google.com](//fonts.google.com).
+
+![google fonts](https://i.imgur.com/dYgjrAj.png)
+
+Here, once again, we can pick all the fonts that we would like to include, bundle them up as a single CSS dependency, and add them to the `<head>` of our documents as `<link>` tags.
+
+Give it a try!
+
+---
+
+### Icons and Font Awesome
+
+Some fonts are used not for typography, but for _iconography_. Think of how many interactions on the web are based on recongnizeable pictures instead of words... checkmarks, social media icons, back arrows, email icons, etc. Just like with fonts, there are a few different ways of getting using icons like these on the web:
+
+1. We could use built-in [unicode characters](http://www.fileformat.info/info/unicode/char/a.htm)
+2. We could use [emoji](http://caniemoji.com/)
+3. We could use a third-party font library hosted from a CDN
+
+For a number of different reasons (all similar to our reasons for using `fonts.google.com` instead of a default web font), we'll go with option 3. The third-party font service that we'll use for this class is called [Font Awesome](https://fontawesome.com/).
+
+Take a look at [this page](https://fontawesome.com/get-started/web-fonts-with-css) for a snippet that we'll use to add icon fonts to our projects.
+
+Once the snippet above has been added to the `<head>`, you'll now have access to [all of these icons](https://fontawesome.com/cheatsheet) through the `.fas` and `.fa-*` classes applied to an `<i>` element.
+
+### Portfolio Project 1
+
+1. Apply a Google-hosted font to all of a single type of `h*` element. Make sure that font applies to every instance of that element across your site!
+2. Add social icons (like `.fa-github`) to your footer. Can you make them links to your actual social media profiles? HINT:
+
+```html
+<a href="some-social-media.com">
+    <i class="fas fa-some-social-media"></i>
+</a>
 ```
-7. Now, when you type `git remote`, you should see two remotes: `merged` and `origin`. To update your copies from the instructor's repository, follow the following steps:
-    1. `fetch` all of the data from your remotes:
-    ```shell
-    git fetch --all
-    ```
-    2. `reset` your current copy to the `master` branch from the `merged` repository:
-    ```shell
-    git reset --hard merged/master
-    ```
-8. At this point, you should see all of your classmates' names in your README.md file! Now, whenever you would like to make a change to the group's project, you can use your `remote`s to `push` `commit`s, make a pull request through GitHub, and `fetch` data from the `merged` remote to `reset` your local codebase.
 
+---
 
-### Building the Student Showcase
+### Grids
 
-Now that you've messed with the README.md, it's time to add your own face to the Student Showcase! The Student Showcase is built using the same minimal.css library we visited earlier. Each block should represent one of you, and link to your portfolio website. Go through the following steps to add your information to the Showcase:
+Generally speaking, CSS from the last decade has worked with the paradigm of "boxes"; content would have some padding, a border, and some margin, and it was up to each piece of content to declare how those parts of their individual box would interact with the content dimensions and the dimensions of that content's parent elements. This worked well enough for layouts while websites were simple and could be thought of as "pages" (like a newspaper).
 
-1. Choose a block! Everyone gets a block, but you need to communicate which is yours. Don't touch blocks that aren't yours! If two people modify the same code, there will be merging conflicts (which will make your instructor sad).
-2. Add your content! Every block should be a click-able link to your portfolio page, and it should include:
-    1. the same picture used on your portfolio page
-    2. the same unordered-list of contact information
-    3. a funny quote
-Make sure that you have all of that content in before you start to style the page!
-3. Now make sure that each block has a unique ID, and add some unique styles to your block in the group's CSS stylesheet. 
-4. Be sure to commit your work periodically, submit new features as pull requests, and `fetch` data from the `merged` repository after every pull request. 
+But as it turns out, this model does _not_ work so well when web _pages_ become more interactive web _applications_. Nor does this model work well when screen sizes vary not by a few hundred pixels, but by a factor of 10 (i.e. 320px for the smallest mobile phones to 3440px for ultra-wide monitors).
 
-When class is done, your instructor will deploy your site through Netlify for your viewing pleasure. Good luck!
+To create more complex layouts, developers needed better tools that were able to _respond_ in more flexible ways to user input and varying environments. We've already encounted a few of those tools in the use of `%` as a unit, and in the use of `display: flex` in two-dimensional containers. But what about layouts?
 
+For responsive layouts, we now have `display: grid`. Grids make it easier than ever to wildly adjust the arrangement and layout of a web application without needing to use JavaScript. Let's work through an example!
 
+### Portfolio Project 2
 
+Currently, our page layouts are using a sticky navigation bar optimized for mobile layout. But that mobile-optimized navigation bar takes up precious vertical space on wide monitors, all while restricting space for the content to a narrow field. What if we could turn that sticky navigation bar into a more useful sidebar when the user's screen is wide enough?
 
+1. Let's start by getting rid of all `position: fixed` and `width` rules on the `#navigation` and `#footer` elements. We'll delegate that responsibility to the grid!
+2. You'll notice that last step probably broke our layout a bit. Let's see if we can get that top-to-bottom flow back with `display: grid`. Start by adding the following CSS rules to the `body` of your page, like so:
 
+```css
+body {
+  display: grid;
+  grid-template-areas:
+    "navigation"
+    "header"
+    "content"
+    "footer"
+}
+```
+3. Look at that wild syntax! This will make more sense in a minute, but imagine each line as a row in our layout, and each set of quotes a column. So this is a four-row, single-column grid. Take a look at your developer tools in the browser: you'll notice that the names we've used above are also used to distinguish the areas of our layout. That'll come in handy soon!
+4. You'll also notice that our content is scrunched up towards the top of the page. Let's make sure that this `body` element is allowed to grow taller than the viewport, but is never smaller than 100% of the viewport height. That would mean that our `body` CSS is now:
 
+```css
+body {
+  display: grid;
+  grid-template-areas:
+    "navigation"
+    "header"
+    "content"
+    "footer"
+  min-height: 100vh;
+}
+```
+5. This is closer, but the content of each template area is taking up exactly 1/4 of the vertical height of the screen. That's not what we want, either! What we want is for every element to take up the minimum possible height allowed by its content, except for the `content` area, which should fill up whatever remains after the `navigation`, `header`, and `footer` areas have alloted space for their content. We can accomplish this with the `grid-template-rows` rule, which defines how our four rows should behave. In this case, our `body` CSS will now look like this:
 
+```css
+body {
+  display: grid;
+  grid-template-rows: min-content min-content auto min-content;
+  grid-template-areas:
+    "navigation"
+    "header"
+    "content"
+    "footer"
+  min-height: 100vh;
+}
+```
 
+6. Now our spacing is correct, but we've lost the `fixed` behavior of our toolbars. But we can't use `position: fixed` on our navigation and footer sections, since that would pull those sections out of the grid that we just set up to control the relative dimensions of that element. Instead, we're going to use something called `position: sticky` to allow for our toolbars to "stick" to the edge of the viewport without destroying the grid. Try something like this:
 
+```css
+#navigation {
+  position: sticky;
+  top: 0;
+}
 
+#footer {
+  bottom: 0;
+  position: sticky;
+}
+```
 
+7. You'll recognize the `top` and `bottom` attributes from our previous efforts with `position: fixed`, but now those constraints only take affect when our element makes contact with the edge of a viewport. So we've regained, now, our previous feature set, but we haven't yet added a way of turning our navigation bar into a sidebar for wide screens. To do that, we'll need something called a __media query__, which will have the following format:
 
+```css
+@media (min-width: 612px) {
+  body {
+    // some CSS that only apply when the viewport width > 612px
+    background-color: hotpink;
+  }
+}
+```
 
+8. Make sure to put the media query from step 7 at the very bottom of the page, since we don't want to battle specificity for these viewport-width-specific CSS rules! What rules could we modify to bring the navigation bar over to the side of our content? Try the following:
+
+```css
+@media (min-width: 612px) {
+  body {
+    grid-template-columns: 10rem auto;
+    grid-template-rows: min-content auto min-content;
+    grid-template-areas:
+      "navigation header"
+      "navigation content"
+      "navigation footer"
+  }
+}
+```
+9. And with that, we should now have containers that are mobile-responsive! Spend whatever time remains in class making sure that your dropdown menus and links to other pages still work, and make sure that these rules apply to your landing, blog, and project pages.
 

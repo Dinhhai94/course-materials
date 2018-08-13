@@ -121,24 +121,7 @@ Now we have bits of data stored in memory for us to manipulate, which is nice. B
 
 So the console is fun, but it's still not connected to the HTML that we know and love in a way that end-users could ever see. How can we add JavaScript to one of our web pages?
 
-1. Create an entirely new HTML document somewhere in your `SavvyCoders` directory (perhaps in an `exercises` directory?). Remeber to use `emmet`'s `!` + `TAB` shortcut to whip up some HTML boilerplate. Save the document as `greeter.html`.
-2. Once you've created `greeter.html`, use atom's `open-in-browser` plugin to preview the page.
-3. Your `greeter.html` document should look something like this:
-
-  ```html
-  <!doctype html>
-  <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <title>Greeter</title>
-  </head>
-  <body>
-
-  </body>
-  </html>
-
-  ```
-  At the bottom of the `<body>` tag, add the following:
+1. In your landing page, at the bottom of the `<body>` tag, add the following:
 
   ```html
   <script type="text/javascript">
@@ -147,7 +130,7 @@ So the console is fun, but it's still not connected to the HTML that we know and
   ```
 
   When you reload your preview page, you should see 'Hello world!' in your console. You've now added JavaScript to your page!
-4. The function `console.log()` is a built-in function recognized by browsers everywhere. Some functions are so commonly used that they're simply a part of the language spec... otherwise we'd have to replicate those functions in nearly every JavaScript project. Let's make our greeting a bit more obnoxious using the built-in function `alert()`.
+2. The function `console.log()` is a built-in function recognized by browsers everywhere. Some functions are so commonly used that they're simply a part of the language spec... otherwise we'd have to replicate those functions in nearly every JavaScript project. Let's make our greeting a bit more obnoxious using the built-in function `alert()`.
 
   ```html
   <script type="text/javascript">
@@ -155,7 +138,7 @@ So the console is fun, but it's still not connected to the HTML that we know and
   </script>
   ```
   You should notice that, just like `console.log()`, `alert()` takes a String of data as an *argument*, listed between the parens when the function is invoked. We'll learn much more about arguments later, but just remember for the time being that arguments are the bits of data that are passed directly into a function without needing to be saved to a *global* variable accessible by every other function (like `myCountry` was in the previous example).
-5. What about user input? Luckily, we have another obnoxious built-in function called `prompt()`. This function can also take a String as an argument. Try this:
+3. What about user input? Luckily, we have another obnoxious built-in function called `prompt()`. This function can also take a String as an argument. Try this:
 
   ```html
   <script type="text/javascript">
@@ -173,7 +156,7 @@ So the console is fun, but it's still not connected to the HTML that we know and
   </script>
   ```
   Neat, huh? `prompt()` actually returns a String for us to play around with. We just need to use that value instead of letting it float off into space. In this example, we saved the String from our `prompt()` into a variable called `name`. Then, because it's a String, we can concatenate the value of `name` into the String used in `alert()`.
-6. This works great, but what happens when a user neglects to actually enter a value in the `prompt()`? Try it out! ... you should see that we still have an output of `Hello ` (that's the word `Hello` with a single space after it). How could we check to make sure that a user isn't entering a blank name into the `prompt()`? How about something like this:
+4. This works great, but what happens when a user neglects to actually enter a value in the `prompt()`? Try it out! ... you should see that we still have an output of `Hello ` (that's the word `Hello` with a single space after it). How could we check to make sure that a user isn't entering a blank name into the `prompt()`? How about something like this:
 
   ```html
   <script type="text/javascript">
@@ -186,7 +169,7 @@ So the console is fun, but it's still not connected to the HTML that we know and
     alert('Hello ' + name);
   </script>
   ```
-7. Notice that we can over-write the value of `name` at any point in our codebase, including when the `prompt()` returns an empty String. But what are some gaps in this implementation? For one, we probably want to check that the user is actually giving us a value _even if the user repeatedly chooses that empty value_. To do that, we need to do two things: First, we need to abstract our name-checking logic to a `function`, then we need to re-write our code such that the `function` calls itself until a condition is met. This is called recursion, and it looks like this:
+5. Notice that we can over-write the value of `name` at any point in our codebase, including when the `prompt()` returns an empty String. But what are some gaps in this implementation? For one, we probably want to check that the user is actually giving us a value _even if the user repeatedly chooses that empty value_. To do that, we need to do two things: First, we need to abstract our name-checking logic to a `function`, then we need to re-write our code such that the `function` calls itself until a condition is met. This is called recursion, and it looks like this:
 
   ```html
   <script type="text/javascript">
@@ -205,9 +188,9 @@ So the console is fun, but it's still not connected to the HTML that we know and
     alert('Hello ' + name);
   </script>
   ```
-8. Now we've implemented a bit of 'inline' JavaScript on our page! Just like working with CSS, though, it's more typical to see scripts in their own separate document. This is especially important for large codebases with thousands of lines of JavaScript code. Let's try it with our greeter page:
-    1. Just like saving HTML files as `.html` and CSS files as `.css`, JavaScript files are saved as `.js`. Create a file called `greeter.js`.
-    2. Copy the contents of the `<script>` tag (NOT the `<script>` tag itself!) over to `greeter.js`. HINT: the entire document should look like:
+6. Now we've implemented a bit of 'inline' JavaScript on our page! Just like working with CSS, though, it's more typical to see scripts in their own separate document. This is especially important for large codebases with thousands of lines of JavaScript code. Let's try it with our greeter page:
+    1. Just like saving HTML files as `.html` and CSS files as `.css`, JavaScript files are saved as `.js`. Create a file called `index.js`.
+    2. Copy the contents of the `<script>` tag (NOT the `<script>` tag itself!) over to `index.js`. HINT: the entire document should look like:
 
     ```javascript
     var name = prompt('What is your name?');
@@ -224,9 +207,9 @@ So the console is fun, but it's still not connected to the HTML that we know and
 
     alert('Hello ' + name);
     ```
-    3. Modify the rest of your `<script>` tag in `greeter.html` to look like this:
+    3. Modify the rest of your `<script>` tag in your landing page to look like this:
     ```html
-    <script type="text/javascript" src="greeter.js"></script>
+    <script type="text/javascript" src="index.js"></script>
     ```
     Now, when you reload the page, you should get the same result as when you in-lined all of your JavaScript.
-  8. Once you page is complete, try adding more prompts, alerts, and console.logs. When you're satisfied with your progress, stage, commit, and push your changes!
+  7. Once you page is complete, try adding more prompts, alerts, and console.logs. When you're satisfied with your progress, stage, commit, and push your changes!

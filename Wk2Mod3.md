@@ -1,4 +1,4 @@
-## DOM Review and Choose-Your-Own Adventure
+## Basic DOM review, String Interpolation, modules, and bundlers
 ### ...plus type coercion and booleans!
 
 Up to this point, our JavaScript exercises have added a bit of flair to some existing websites, but haven't really been 'programs' in the their own right. Today we change that! But first, a bit more info about the Boolean data type:
@@ -50,8 +50,8 @@ These are perhaps a bit strange, but they allow us to write some fairly terse co
 
 In the last class, we worked on making a greeter for visitors to our website. Now let's add some extra logic to make our program more useful!
 
-1. First, open up your Portfolio Project in Atom and navigate to the `index.html` file in your `media` directory.
-2. Make sure that you've styled the `#greeting` section and have a `greeting.js` document that contains the following:
+1. First, open up your `FirstnameLastname` directory in VSCode, serve with `http-server`, and take a look at your landing page.
+2. Make sure that you've styled the `#greeting` section and have a `index.js` document that contains the following:
 
 ```javascript
 var name = prompt("Hi there! What's your name?");
@@ -59,7 +59,7 @@ var output = document.querySelector('#greeting');
 output.innerHTML = "<p>Thanks for visiting, " + name + ".</p>";
 ```
 
-3. Now let's make sure that users have actually input a name! We'll do that using a neat trick of JavaScript, where strings evaluate to `true`, but _empty_ strings evaluate to `false`. Try the following in `greeting.js`:
+3. Now let's make sure that users have actually input a name! We'll do that using a neat trick of JavaScript, where strings evaluate to `true`, but _empty_ strings evaluate to `false`. Try the following in `index.js`:
 
 ```javascript
 var name = prompt("Hi there! What's your name?");
@@ -96,27 +96,146 @@ var output = document.querySelector('#greeting');
 output.innerHTML = "<p>Thanks for visiting, " + firstName + " " + lastName + ".</p>";
 ```
 
-### Portfolio Project 2
-#### Choose-Your-Own-Adventure Game
+---
 
-Let's spend the rest of class creating a "choose your own adventure" style text adventure game by using multiple prompts and branching if/ else conditional statements. Write a story into an HTML document on the basis of the user's responses to the prompts. The story will be a bit open-ended, but you should set up your game like so:
+### String Interpolation
 
-1. In your `projects` directory, add a new directory named `choose-your-own-adventure`.
-2. Add an `index.html` file to the root of the CYOA directory and set it up according to best practices.
-3. In your media AND home pages (the `index.html` document at the root of the `media` directory and your root directory), add a link to the CYOA page.
-4. Create a `cyoa.js` document and link it to your CYOA `HTML` document with a `<script>` tag.
-5. Use `prompt()` to lead visitors down different story paths. Something like this:
+As we dig deeper into HTML-in-JavaScript, you'll notice that standard String concatenation gets to be a bit cumbersome. Instead of using the concatenation operator (`+`), most String manipulation in modern JS is done with [__template literals__](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) and String interpolation. The idea is that we can inject variables or expressions directly into a _template_, rather than piecing together substrings manually. The template literal version of the exercise above would look like this:
 
 ```javascript
-var response = prompt("You walk into a room with a chair and a window. Type 'sit' to sit in the chair, type 'gaze' to gaze wistfully out the window and sigh");
+var firstName = prompt("Hi there! What's your first name?") || "Visitor";
+var lastName = prompt("What's your last name?") || "McDefaultson";
+var output = document.querySelector('#greeting');
 
-if(response === "sit"){
-    response = prompt("Here's a new prompt, with new options");
-} else if (response === "gaze") {
-    response = prompt("Here's a new prompt, with new options");    
-} else {
-    alert("Please type in a valid input! Refresh the page to try again.");
-}
+output.innerHTML = `<p>Thanks for visiting, ${firstName} ${lastName}.</p>`;
+
 ```
 
-Try to add some options that include responses for multiple options using the `||` and `&&` operators. Good luck! When you like your story, be sure to `add`, `commit`, and `push` your commits to GitHub, then `deploy` your changes to your live site.
+Notice how this syntax maintains the structure of our HTML more accurately. This is true of multi-line HTML chunks as well, since template strings take newlines into account! If we wanted to make our `output`'s `innerHTML`' a bit more fancy, we could have re-written that last line like so:
+
+```javascript
+output.innerHTML = `
+  <div>
+    <p>
+      Thanks for visiting,
+      <span class="some-class">
+        ${firstName} ${lastName}
+      </span>
+    </p>
+  </div>
+`
+```
+
+Which is much nicer, don't you think? You can imagine how we might be able to turn all of our existing HTML into a set of fancier templates using this method. Try refactoring all of your concatenated Strings into interpolated template literals instead!
+
+---
+
+### Modules and bundlers
+
+If we can divide up our markup into different pieces with template literals, hopefully you can imagine a world where we can divide our JavaScript into different pieces at the file level as well. This idea of abstracting pieces of your application into __modules__ is one that's prevalent in the programming world across a variety of languages. For a long time, though, JavaScript lacked a module system of any kind! To get around this issue, JavaScript developers came up with a syntax for `import`-ing and `export`-ing pieces of JavaScript with the use of a command-line tool called a __bundler__.
+
+After many years of back-and-forth, the JavaScript module syntax has [finally settled](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) and is the default module system supported by the many bundlers that are used by developers.
+
+To start working with modules in our own application, we're going to use a bundler called [`parcel`](//parceljs.com). You might recognize this from the first week of class, as it was one of the first dependencies installed by our initialization script as we set up our developer environment.
+
+> NOTE: to double-check that you've still got `parcel` installed correctly, input `which parcel` to your terminal and check that a file path is returned
+
+Let's use `parcel` to serve our content instead of `http-server` to see what happens! You can start bundling and serving your project with the command `parcel index.html`. If everything is working correctly, you should see something like this output to the terminal:
+
+```shell
+Server running at http://localhost:1234
+✨  Built in 3.41s.
+```
+
+This should look similar to the output we've gotten from `http-server`, just running on a different port. When you visit `localhost:1234` in your browser, everything should look the same as when served up by `http-server`. So what's the big deal? Let's do a bit of refactoring to find out!
+
+### Portfolio Project 2
+#### Building a component library
+
+At this point, your landing page should include four top-level components: navigation, header, content, and footer. These pieces should be static HTML, but you'll notice that they are components that can be shared across your entire application (for the most part). Let's see if we can turn these HTML components into something that we share across our application with JavaScript!
+
+1. First, let's create a new directory to handle these components. How about `components`?
+2. Inside of that `components` directory, let's create a `Navigation.js` component (notice the capitalization). The capitalized first letter is a convention in most JS component systems.
+3. Your navigation bar probably has markup that looks something like this (very simplified):
+
+```html
+  <div id="navigation">
+      <ul>
+          <li>First</li>
+          <li>Second</li>
+          <li>Third</li>
+      </ul>
+  </div>
+```
+
+Let's take that markup and turn it into an JS module! In `Navigation.js`, convert your navigation bar markup to something like this:
+
+```javascript
+export default `
+  <div id="navigation">
+      <ul>
+          <li>First</li>
+          <li>Second</li>
+          <li>Third</li>
+      </ul>
+  </div>
+`;
+```
+4. We should recognize the template literal here (although we aren't yet doing any sort of interpolation). The two keywords are part of JavaScript's module syntax: `export` is defining the stuff to be exposed to be other parts of our application, `default` is saying that this module should `export` the template by default in one big chunk (rather than a set of pieces... more on that later). To verify that this `export` statement is working as expected let's try `import`-ing this component into our top-level `index.js` file:
+
+```javascript
+import Navigation from './components/Navigation'
+
+console.log(Navigation); // just to test that our import is working
+```
+5. This should be spitting a String of HTML to the console, but how do prepend this content to the `document.body`? If we remember that this new component is just a string, it becomes a bit clearer:
+
+```javascript
+import Navigation from './components/Navigation'
+
+var initialHTML = document.body.innerHTML; // store the original HTML from the body
+
+document.body.innerHTML = `${Navigation}${initialHTML}`;
+```
+6. Repeat the process above for the rest of your components! In the end, you should have something like this:
+
+```javascript
+import Navigation from './components/Navigation';
+import Header from './components/Header';
+import Content from './components/Content';
+import Footer from './components/Footer';
+
+var initialHTML = document.body.innerHTML;
+
+document
+    .body
+    .innerHTML = `
+      ${Navigation}
+      ${Header}
+      ${Content}
+      ${Footer}
+      ${initialHTML} // we still need this
+    `;
+
+```
+7. You'll notice that we need to perform that somewhat-hacky `initialHTML` trick to make sure that our `<script>` tag isn't clobbered by our over-writing of the `body`'s `innerHTML`. Instead of doing that, let's wrap our visible application in a placeholder `div` with an `id` of `root`. That means adding `<div id="root"></div>` to your `index.html` and modifying your `index.js` to look something like:
+
+```javascript
+import Navigation from './components/Navigation';
+import Header from './components/Header';
+import Content from './components/Content';
+import Footer from './components/Footer';
+
+document
+    .querySelector('#root')
+    .innerHTML = `
+      ${Navigation}
+      ${Header}
+      ${Content}
+      ${Footer}
+    `;
+```
+> NOTE: don't forget to modify your CSS to keep your fancy grid aligned!
+
+
+Pretty cool, huh? Now imagine that we could re-use these components across multiple "pages" of content. I say "pages", because we're beginning to refactor this project into what's called a Single-Page Application: a web application that uses JavaScript to modify the state through components rather than a set of HTML documents. More on this concept later!
