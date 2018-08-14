@@ -21,7 +21,7 @@ So far we've only used one very basic programming language from the command line
 This can be a pretty complex process, so we've created a shell script (an executable file written in the shell scripting language) that helps you a bit with the installation process for these tools. You can download that remote file and `pipe` it to your terminal with the following command:
 
 ```shell
-curl -o- https://raw.githubusercontent.com/NAlexPear/savvy-course-materials/parcel-axios-update/init.sh | bash
+curl -o- https://raw.githubusercontent.com/NAlexPear/savvy-course-materials/master/init.sh | bash
 ```
 
 This script is a bit advanced for right now, but feel free to go to the URL above, and try to figure out what's going on behind the scenes!
