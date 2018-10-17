@@ -1,7 +1,9 @@
 ## node, `npm`, developing with `localhost`, HTML5, style, and CSS
 
 ---
+
 ### Warm Up:
+
 1. Use VSCode to add a fun fact about yourself to the `README.md` file in your project directory.
 2. `stage`, `commit`, and `push` your changes to GitHub
 3. In `index.html`, add a line of `lorem ipsum`.
@@ -54,17 +56,20 @@ The key realization here is that there is a 1:1 relationship between our file st
 > NOTE: At this point, you might be thinking, "what about our `index.html` file? Why isn't our url `http://localhost:1234/index.html`"?The answer is that browsers know to look for `index.html` files by _default_. This is, incidentally, one of the ways that we're able to generate pretty URLs like `http://example.com/blog` instead of `http://example.com/blog.html`.
 
 ### HTML
+
 HTML (Hyper-Text Markup Language) is a markup language for describing the structure and content of web documents (web pages). It is comprised of markup tags and text content nested inside each other.
 ![standard HTML structure](http://reactorprep.herokuapp.com/assets/images/html_breakdown.png).
 
 HTML tags are keywords (tag names) surrounded by angle brackets:
 
 #### `<tagname> content </tagname>`
-+ HTML tags normally come in pairs like `<p>` and `</p>`
-+ The first tag in a pair is the start tag, the second tag is the end tag
-+ The end tag is written like the start tag, but with a slash before the tag name
+
+- HTML tags normally come in pairs like `<p>` and `</p>`
+- The first tag in a pair is the start tag, the second tag is the end tag
+- The end tag is written like the start tag, but with a slash before the tag name
 
 By following the proscribed rules of HTML, a web browser understands this to be a document with a heading and a paragraph. Here is what the browser interpreter thinks when given (this code):
+
 ```html
 <!DOCTYPE html>
 <html>
@@ -77,66 +82,69 @@ By following the proscribed rules of HTML, a web browser understands this to be 
   </body>
 </html>
 ```
-+ The `!DOCTYPE` declaration defines the document type to be HTML
-+ The text between `<html>` and `</html>` describes an HTML document
-+ The text between `<head>` and `</head>` provides information about the document
-+ The text between `<title>` and `</title>` provides a title for the document
-+ The text between `<body>` and `</body>` describes the visible page content
-+ The text between `<h1>` and `</h1>` describes a heading
-+ The text between `<p>` and `</p>` describes a paragraph
+
+- The `!DOCTYPE` declaration defines the document type to be HTML
+- The text between `<html>` and `</html>` describes an HTML document
+- The text between `<head>` and `</head>` provides information about the document
+- The text between `<title>` and `</title>` provides a title for the document
+- The text between `<body>` and `</body>` describes the visible page content
+- The text between `<h1>` and `</h1>` describes a heading
+- The text between `<p>` and `</p>` describes a paragraph
 
 ---
 
 #### EXERCISE 1
 
 It's time to take a look at how browsers (like Chrome) render HTML content!
+
 1. Create a new `example.html` file and paste in the following:
-  ```html
-  <!DOCTYPE html>
+
+```html
+<!DOCTYPE html>
 <html>
 <head>
-  <title>HTML EXAMPLE</title>
+<title>HTML EXAMPLE</title>
 </head>
 <body>
 
-  <h1>HTML Example 1</h1>
-  <p>[CMD + OPT + U] to view the source code of this HTML document.</p>
-  <p>Now close the source code and inspect the document in the Elements panel of your Chrome Developer Tools [CMD + OPT + I] instead</p>
-  <p>Use the magnifying glass in the top left to select elements in the window area.</p>
-  <p>
-    W  O  A  h
-      WHAT'S
-    GO  -  ING
-                      on
+<h1>HTML Example 1</h1>
+<p>[CMD + OPT + U] to view the source code of this HTML document.</p>
+<p>Now close the source code and inspect the document in the Elements panel of your Chrome Developer Tools [CMD + OPT + I] instead</p>
+<p>Use the magnifying glass in the top left to select elements in the window area.</p>
+<p>
+  W  O  A  h
+    WHAT'S
+  GO  -  ING
+                    on
 
 
-    h   e   r   e
-                !
-          !
-    !
-  </p>
-  <!-- ALERT: THIS IS JUST A COMMENT -->
+  h   e   r   e
+              !
+        !
+  !
+</p>
+<!-- ALERT: THIS IS JUST A COMMENT -->
 
-  <!--
+<!--
 
-      SECRET: Developers often use comments to annotate their code.
+    SECRET: Developers often use comments to annotate their code.
 
-              ...or complain about their bosses. They aren't rendered on the page.
-              So only people who view the source code get to see them. Fun!
+            ...or complain about their bosses. They aren't rendered on the page.
+            So only people who view the source code get to see them. Fun!
 
-  -->
+-->
 </body>
 </html>
+```
 
-  ```
 2. Open up Chrome's Dev Tools and take a look at Elements and their associated STYLES:
-  ![dev tools](http://reactorprep.herokuapp.com/assets/images/elements.png)
+   ![dev tools](http://reactorprep.herokuapp.com/assets/images/elements.png)
 
 3. ANSWER AS A GROUP:
-  1. What `font-size` does the browser give an `<h1>` element by default?
-  2. What `font-weight` does the browser give an `<h1>` element by default?
-  3. How does the browser render the extra spaces and new lines in the last paragraph?
-  4. Are there any parts of the body that are not rendered into the browser window?
+4. What `font-size` does the browser give an `<h1>` element by default?
+5. What `font-weight` does the browser give an `<h1>` element by default?
+6. How does the browser render the extra spaces and new lines in the last paragraph?
+7. Are there any parts of the body that are not rendered into the browser window?
 
 ---
 
@@ -147,25 +155,27 @@ Now it's time to turn your `README.md` into a landing page for your portfolio si
 1. Make sure that you're inside your portfolio project directory (called `FirstnameLastname`).
 2. All browsers look for an `index.html` file to display by default. You can name other pages whatever you'd like, but the landing page for every site should always be `index.html`. We created this file last time, but verify that it's still there with the content you expect.
 3. Edit `index.html` in VSCode. Make sure that it includes the following BEFORE we start porting in text from `README.md`:
-  1. `<!DOCTYPE HTML>`
-  2. `<html>`,`<head>`, and `<body>` tags
-  3. `<title>` tags and a title of `Firstname Lastname | Web Developer`
+4. `<!DOCTYPE HTML>`
+5. `<html>`,`<head>`, and `<body>` tags
+6. `<title>` tags and a title of `Firstname Lastname | Web Developer`
 
-  *HINT: you can use emmet's HTML boilerplate by typing* `!` *then pressing* `TAB`
+_HINT: you can use emmet's HTML boilerplate by typing_ `!` _then pressing_ `TAB`
 
 4. Then you can start moving content from `README.md` into `index.html`
-  1. Use `<h1>` for headings
-  2. Use `<p>` for paragraphs of text
-  3. Use `<ul>` for unordered lists (and use `<li>` for each nested list element)
-  4. Use `<hr>` to create an horizontal rule
-  5. Use `<br>` to add extra line breaks between elements
-  6. Make sure you've saved the file!
-  7. Preview the file at `localhost:8080`
+1. Use `<h1>` for headings
+1. Use `<p>` for paragraphs of text
+1. Use `<ul>` for unordered lists (and use `<li>` for each nested list element)
+1. Use `<hr>` to create an horizontal rule
+1. Use `<br>` to add extra line breaks between elements
+1. Make sure you've saved the file!
+1. Preview the file at `localhost:8080`
 
-  ---
+---
 
 ### More HTML tags
+
 #### EXERCISE 3
+
 Now let's replace the contents of your `example.html` file with this:
 
 ```html
@@ -209,6 +219,7 @@ Now let's replace the contents of your `example.html` file with this:
   </body>
 </html>
 ```
+
 Then go to `localhost:8080/example.html` and answer the following:
 
 1. What `font-size` does the browser give an `<h2>` element by default?
@@ -217,8 +228,8 @@ Then go to `localhost:8080/example.html` and answer the following:
 4. What `text-decoration` does the browser give an `<a>` element by default?
 5. What `list-style-type` does the browser give a `<li>` element?
 
-
 #### Attributes
+
 This link tag has an attribute whose name is `href` and whose value is a `url`:
 ![anchor tag](http://reactorprep.herokuapp.com/assets/images/links.png)
 
@@ -241,17 +252,16 @@ While it's possible to link to HTML documents in your website with any name (as 
 1. If you're already in the Portfolio page's root (or top-level) directory, make a new directory called 'projects' (HINT: `mkdir projects`). Remember that different capitalizations are different addresses, so keep a consistent naming convention for all folders (i.e. don't capitalize any words, and separate multi-word directory names with hyphens, e.g. `my-favorite-directory` instead of `MyFavoriteDirectory`).
 2. Now navigate into your newly-created projects folder (HINT: `cd projects`) and create another `index.html` file (HINT: `touch index.html`).
 3. Use VSCode to edit your new `projects/index.html` file.
-  1. Set the page up just like any other HTML document (see the emmet shortcut).
-  2. Give the page a `<title>` of `Firstname Lastname | Projects`.
-  3. Add an **ordered list** (`<ol>`) of the following projects (hint: `ol>li*3 + TAB`):
-    + Class Showcase
-    + Choose Your Own Adventure
-    + Web Store Hack-A-Thon
-4. Now go back to your landing page (`/index.html`), and edit that file to include the following:
-  1. The profile image from `README.md`
-  2. The social media links from `README.md`
-  3. A "navigation list" at the top of your landing page, with links to 'Home' (`/`) and 'Projects' (`/projects`).
-  4. At least one comment for future developers (or you!) using the syntax `<!-- comment text -->`
+4. Set the page up just like any other HTML document (see the emmet shortcut).
+5. Give the page a `<title>` of `Firstname Lastname | Projects`.
+6. Add an **ordered list** (`<ol>`) of the following projects (hint: `ol>li*3 + TAB`):
+   - Class Showcase
+   - Web Store Hack-A-Thon
+7. Now go back to your landing page (`/index.html`), and edit that file to include the following:
+8. The profile image from `README.md`
+9. The social media links from `README.md`
+10. A "navigation list" at the top of your landing page, with links to 'Home' (`/`) and 'Projects' (`/projects`).
+11. At least one comment for future developers (or you!) using the syntax `<!-- comment text -->`
 
 ---
 
@@ -259,9 +269,9 @@ While it's possible to link to HTML documents in your website with any name (as 
 
 There are three ways to give HTML content some styles:
 
-+ inline styles (the `style` attribute)
-+ style tags (`<style>` in document `<head>`)
-+ stylesheets (external documents linked with `<link>`)
+- inline styles (the `style` attribute)
+- style tags (`<style>` in document `<head>`)
+- stylesheets (external documents linked with `<link>`)
 
 Today, we're going to take a look at inline styles. Inline styles are generally avoided in production websites, but you'll still see them in the wild in old codebases or in some niche applications (like MailChimp templates). To get a feel for inline styles, take a look at the following code:
 
@@ -274,9 +284,11 @@ Today, we're going to take a look at inline styles. Inline styles are generally 
     <img src="https://i.imgur.com/81qyN1y.jpg" style="height:100px;width:100px">
   </body>
 ```
+
 Try writing it out in a new HTML document in your `exercises` directory, then previewing the result in your browser.
 
 So what have we learned?
+
 1. The value of the HTML attribute named style styles HTML elements
 2. The styles are described using a language called CSS. Here are the rules of CSS:
 3. CSS rules are key-value pairs (similar to HTML attributes)
@@ -286,7 +298,7 @@ So what have we learned?
 7. Each key-value pair is separated with a semi-colon
 8. Colors can be described by name, as eight digit hex (base 16) values between 0 (black) and F (white), or as Red Green Blue triplets from 0 to 255
 9. We can use the following css colors for our background-color and color attributes:
-![css color table](http://reactorprep.herokuapp.com/assets/images/css_colors.jpg)
+   ![css color table](http://reactorprep.herokuapp.com/assets/images/css_colors.jpg)
 
 ---
 
@@ -295,10 +307,12 @@ So what have we learned?
 Let's create a theme for your Portfolio Project's landing page.
 
 1. Use the following attributes somewhere on the page:
-  + `background-color`
-  + `color`
-  + `width`
-  + `height`
+
+- `background-color`
+- `color`
+- `width`
+- `height`
+
 2. Make sure that all styles are inlined with the syntax `style=" "`
 3. Stage and commit your changes using `git`.
 4. Push your committed changes to your GitHub account.
@@ -313,7 +327,9 @@ Let's try out a few more styles. We won't get to every CSS property today (or in
   <p style="color:green;">This <i style="font-size:300%;">is</i> a paragraph.</p>
   <p style="color:green;font-size:40px;text-align:center;font-family:'Times New Roman';">This is a paragraph.</p>
 ```
+
 What did we learn?
+
 1. Styles applied to parent elements effect their children (nested) elements, unless that style is overwritten.
 2. We can put a lot of styles on a single HTML element, but it gets messy.
 3. We can apply the same style to every tag of a particular type (all paragraphs should be green), but we have to reapply it on each element.
@@ -350,7 +366,6 @@ We begin with a selector to indicate which elements the rules apply to. Then, in
     <p style="font-size:300%;text-align:center;font-family:'Times New Roman';">This is by far the most important part of the page!</p>
   </body>
 </html>
-
 ```
 
 Ok, so far, so good. We have styles common to tags of the same type as shared styles. How can we represent all the extra styling on that last `<p>` tag?
@@ -387,6 +402,7 @@ Here's how we might apply extra styling to the important `<p>` tag in this examp
   </body>
 </html>
 ```
+
 Okay, now what about the two oranged elements?
 
 Every HTML element can also carry one or more `class` names in a `class` attribute to identify several elements as being different from the other elements on the page. The css selector to match for a class starts with a period (`.`). Here's how we might add a class to our example:
@@ -443,9 +459,10 @@ Now we have separated **presentation** from **content**. We can easily read the 
 ### Portfolio Project 3
 
 Now it's time to add a few more elements to our Portfolio Project pages.
+
 1. Anchor tags (`<a href=""></a>`) have been used already to link to websites using `http` or `https`. They can also be used to automatically draft an email and open it in a browser window for users to send! Try the following:
-    1. On your landing page, add a 'Contact Me' link.
-    2. Inside the `href` attribute, use `mailto:` + your email address instead of `http:` + a website URL. Your new element should look something like `<a href="mailto:your.email@example.com?Subject=Contact%20Form">Contact Me</a>`.
+   1. On your landing page, add a 'Contact Me' link.
+   2. Inside the `href` attribute, use `mailto:` + your email address instead of `http:` + a website URL. Your new element should look something like `<a href="mailto:your.email@example.com?Subject=Contact%20Form">Contact Me</a>`.
 2. Stage, Commit, Push and Deploy your new landing page!
 
 ---

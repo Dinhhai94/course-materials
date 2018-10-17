@@ -1,22 +1,24 @@
 ## `while`
+
 ### Fun with loops!
 
 The `while` loop looks a lot like an `if` statement. They both execute their associated code block based on the result of their conditional expression. The difference being, the `while` loop will repeatedly check its conditional expression and continue to run its code block as long as it evaluates to `true`. Give it a try:
 
- ```javascript
- var n = 0
+```javascript
+var n = 0;
 
- console.log("I am called the Count... because I really love to count!")
+console.log("I am called the Count... because I really love to count!");
 
- while (n < 10) {
-   console.log(n, "ha-ha-ha")
-   n++
- }
+while (n < 10) {
+  console.log(n, "ha-ha-ha");
+  n++;
+}
 
- console.log('fin!')
- ```
+console.log("fin!");
+```
 
 ### Exercise 1
+
 #### Looping in the developer tools
 
 Work through the following exercises as a group, implementing each in your developer console when viewing your landing page.
@@ -27,8 +29,8 @@ Work through the following exercises as a group, implementing each in your devel
 var n = 1;
 
 while (n <= 10) {
-    console.log(n);
-    n++;
+  console.log(n);
+  n++;
 }
 ```
 
@@ -38,8 +40,8 @@ while (n <= 10) {
 var n = 2;
 
 while (n <= 20) {
-    console.log(n);
-    n += 2;
+  console.log(n);
+  n += 2;
 }
 ```
 
@@ -51,9 +53,9 @@ var i = 1;
 var sum = 0;
 
 while (i < n) {
-    sum += i;
-    console.log(sum);
-    i++;
+  sum += i;
+  console.log(sum);
+  i++;
 }
 ```
 
@@ -64,15 +66,16 @@ var n = 1;
 var outputHtml = "<ul>";
 
 while (n <= 10) {
-    console.log(n);
-    ouputHtml += `<li>${n}</li>`;
-    n++;
+  console.log(n);
+  ouputHtml += `<li>${n}</li>`;
+  n++;
 }
 
 outputHtml += "</ul>";
 
 document.body.innerHTML += outputHtml;
 ```
+
 5. **EXERCISE 5**: We can also combine `if` and `else` statements in our loops to respond to different input states. For this exercise, count _down_ from 15 by ones. For each number, log "even" or "odd" to the console and to a new div for Exercise 5. HINT:
 
 ```javascript
@@ -80,19 +83,20 @@ var n = 15;
 var outputHtml = "<ul>";
 
 while (n > 0) {
-    console.log(n);
-    if ( n % 2 === 0) {
-        outputHtml += "<li>even</li>";
-    } else {
-        outputHtml += "<li>odd</li>";
-    }
-    n--;
+  console.log(n);
+  if (n % 2 === 0) {
+    outputHtml += "<li>even</li>";
+  } else {
+    outputHtml += "<li>odd</li>";
+  }
+  n--;
 }
 
 ouputHtml = "</ul>";
 
 document.body.innerHTML += outputHTML;
 ```
+
 6. **EXERCISE 6**: Let's extend the idea of `if` and `else` in `while` loops with a pretty common exercise called FizzBuzz. For this exercise, log and output "Fizz" if a number is divisible by 3, "Buzz" if a number by 5, and "FizzBuzz" if a number is divisible by both 3 and 5. If a number is not divisible by 3 or 5, then just output the number. For this exercise, count up from 1 to 100. HINT:
 
 ```javascript
@@ -100,21 +104,21 @@ var n = 1;
 var outputHtml = "<ul>";
 
 while (n <= 100) {
-    if(n % 3 === 0 && n % 5 == 0){
-        console.log("FizzBuzz");
-        outputHtml += "<li>FizzBuzz</li>";
-    } else if (n % 3 === 0) {
-        console.log("Fizz");
-        outputHtml += "<li>Fizz</li>";
-    } else if (n % 5 === 0) {
-        console.log("Buzz");
-        outputHtml += "<li>Buzz</li>";
-    } else {
-        console.log(n);
-        ouputHtml += `<li>${n}</li>`;
-    }
+  if (n % 3 === 0 && n % 5 == 0) {
+    console.log("FizzBuzz");
+    outputHtml += "<li>FizzBuzz</li>";
+  } else if (n % 3 === 0) {
+    console.log("Fizz");
+    outputHtml += "<li>Fizz</li>";
+  } else if (n % 5 === 0) {
+    console.log("Buzz");
+    outputHtml += "<li>Buzz</li>";
+  } else {
+    console.log(n);
+    ouputHtml += `<li>${n}</li>`;
+  }
 
-    n++;
+  n++;
 }
 
 ouputHtml = "</ul>";
@@ -123,35 +127,27 @@ document.body.innerHTML += outputHTML;
 ```
 
 ## Portfolio Project 1
+
 ### Better Navigation with `while`
 
 When we left off, our SPA's navigation code looked something like this:
 
 ```javascript
-function startApp(state){
-    root.innerHTML = `
+function startApp(state) {
+  root.innerHTML = `
       ${Navigation(state)}
       ${Header(state)}
       ${Content(state)}
       ${Footer(state)}
     `;
 
-    var links = document.querySelectorAll('#navigation a')
+  var links = document.querySelectorAll("#navigation a");
 
-    links[0].addEventListener(
-        'click',
-        handleNavigation
-    );
+  links[0].addEventListener("click", handleNavigation);
 
-    links[1].addEventListener(
-        'click',
-        handleNavigation
-    );
+  links[1].addEventListener("click", handleNavigation);
 
-    links[2].addEventListener(
-        'click',
-        handleNavigation
-    );
+  links[2].addEventListener("click", handleNavigation);
 }
 ```
 
@@ -160,50 +156,48 @@ Not the worst code in the world, but it had two big problems: first, there could
 1. Use a `while` loop to add a `click` event listener to every anchor tag in the `navigation` element.
 
 ```javascript
-function startApp(state){
-    root.innerHTML = `
+function startApp(state) {
+  root.innerHTML = `
       ${navigation(state)}
       ${header(state)}
       ${content(state)}
       ${footer(state)}
     `;
 
-    var i = 0;
-    var links = document.querySelectorAll('#navigation a')
+  var i = 0;
+  var links = document.querySelectorAll("#navigation a");
 
-    // every Array has a length property that we can access
-    while(i < links.length) {
-        links[i].addEventListener(
-            'click',
-            handleNavigation
-        );
+  // every Array has a length property that we can access
+  while (i < links.length) {
+    links[i].addEventListener("click", handleNavigation);
 
-        i++;
-    }
+    i++;
+  }
 }
 ```
+
 2. Much better! And what about varying the links themselves? How about letting our `Navigation` extract those from our `state`s. In `Navigation.js`:
 
 ```javascript
-function buildLinks(linkArray){
-    var i = 0;
-    var links = '';
+function buildLinks(linkArray) {
+  var i = 0;
+  var links = "";
 
-    while(i < linkArray.length){
-        links += `
+  while (i < linkArray.length) {
+    links += `
             <li>
                 <a href='/${linkArray[i]}'>${linkArray[i]}</a>
             </li>
         `;
 
-        i++;
-    }
+    i++;
+  }
 
-    return links;
+  return links;
 }
 
-export default function Navigation(state){
-    return `
+export default function Navigation(state) {
+  return `
     <div id="navigation">
         <ul>
             ${buildLinks(state.links)}
@@ -212,4 +206,5 @@ export default function Navigation(state){
     `;
 }
 ```
+
 3. Then we just need to include an Array of `links` in each state Object. Give it a try!

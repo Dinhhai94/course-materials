@@ -7,16 +7,17 @@ We've seen Arrays since our first day of complex data types, and we've been usin
 Arrays have associated with them some properties, like `.length`, and methods, like `.push()`, to help us use our collections of data more effectively.
 
 ```javascript
-var arr = ['stuff', 'more stuff', 'even more stuff']
+var arr = ["stuff", "more stuff", "even more stuff"];
 
-arr.length
+arr.length;
 
-arr.push("More on the end!!!")
-var lastItem = words.pop()
+arr.push("More on the end!!!");
+var lastItem = words.pop();
 
-arr.unshift("More at the beginning!!")
-var firstItem = words.shift()
+arr.unshift("More at the beginning!!");
+var firstItem = words.shift();
 ```
+
 ---
 
 ### `.forEach()`
@@ -24,41 +25,43 @@ var firstItem = words.shift()
 Up to this point, we've been using `while` loops to iterate over Arrays. But often it's cleaner to use Array's native `.forEach()` method to run a given function once for each item in the Array, passing that item in as an argument.
 
 ```javascript
-function logMe(word){
-  console.log(`logging ${word}`)
+function logMe(word) {
+  console.log(`logging ${word}`);
 }
 
-words.forEach(logMe)
+words.forEach(logMe);
 ```
 
 ### Portfolio Project 2
+
 #### Replacing `while`
 
 1. Let's turn the `while` loop in our `Navigation` component's `buildLinks` function into a `.forEach` loop instead! HINT:
 
 ```javascript
-function buildLinks(linkArray){
-    var i = 0;
-    var links = '';
-    var route = ''; // changed for clarity
+function buildLinks(linkArray) {
+  var i = 0;
+  var links = "";
+  var route = ""; // changed for clarity
 
-    linkArray.forEach((link) => {
-        if(link !== 'Home'){
-            route = lowerCase(link);
-        }
+  linkArray.forEach(link => {
+    if (link !== "Home") {
+      route = lowerCase(link);
+    }
 
-        links += `
+    links += `
             <li>
                 <a href='/${route}' data-navigo>
                     ${link}
                 </a>
             </li>
         `;
-    });
+  });
 
-    return links;
+  return links;
 }
 ```
+
 2. See if you can replace some of the other `while` loops you've created in the past with `.forEach`!
 
 ---
@@ -75,7 +78,7 @@ Remember how `while` loops are avoided because of a floating count variable? e.g
 var i = 0; // awkward counter
 var limit = 10; // or some other number
 
-while( i < limit ){
+while (i < limit) {
   // do something
   i++; // increments i outside of scope of while loop.
 }
@@ -89,8 +92,8 @@ But `.forEach` doesn't _actually_ solve all of `while`'s problems. Think about h
 var myArray = [1, 2, 3, 4, 5];
 var doubledNumbers = [];
 
-myArray.forEach( function(num){
-  doubledNumbers.push( num * 2 );
+myArray.forEach(function(num) {
+  doubledNumbers.push(num * 2);
 });
 ```
 
@@ -114,8 +117,8 @@ var myArray = [1, 2, 3, 4, 5];
 var oddNumbers = [];
 
 myArray.forEach(num => {
-  if(num % 2 !== 0){
-    oddNumbers.push( num );
+  if (num % 2 !== 0) {
+    oddNumbers.push(num);
   }
 });
 ```
