@@ -110,13 +110,15 @@ Once you have a GitHub account, you can sign up for [Netlify](https://www.netlif
 
 Beyond a package manager and CLI, we need a few more tools to help us work more efficiently.
 
-#### Git
+#### `git`
 Most Linux distributions come with `git` pre-installed, as does macOS. For
 Windows users, we already installed `git` as a part of downloading `git-bash` as
 your terminal emulator.
 
 Verify that you have `git` installed by typing `git --version` into your
 terminal. You should see some numbers (e.g. `2.17.1`).
+
+In some versions of macOS, you will need to install XCode tools before using `git`. This can be done in response to a series of prompts that will appear when you type `git --version` for the first time.
 
 
 #### Visual Studio Code
@@ -134,7 +136,7 @@ Once you've installed VSCode, you should be able to open it from your terminal b
 3. If you're on macOS, install shell commands from the command pallette (`CMD +
    SHIFT + P`) by selecting the `Install 'code' command in PATH` option.
    ![command-palette](https://code.visualstudio.com/assets/docs/setup/mac/shell-command.png)
-4. Use quick-open (`CTRL + P`) and enter `ext install MS-vsliveshare.vsliveshare` to install [Live Share](https://marketplace.visualstudio.com/items?itemName=MS-vsliveshare.vsliveshare) for real-time collaboration.
+4. Click the boxy icon on left-hand side of your screento install two _extensions_: [Live Share](https://marketplace.visualstudio.com/items?itemName=MS-vsliveshare.vsliveshare) for real-time collaboration and [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) for code formatting in JavaScript-land.
 ---
 
 #### EXERCISE 2
