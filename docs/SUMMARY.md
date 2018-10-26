@@ -6,7 +6,7 @@
 * [CSS and larger documents](Wk1Mod3.md)
 * [Forms and positioning](Wk1Mod4.md)
 * [Dependencies, Flexbox, and Grids](Wk1Mod5.md)
-* [Hack-a-thon #1: Student Showcase](projects/StudentShowcase.md)
+* [Hack-a-thon #1: Student Showcase](StudentShowcase.md)
 * [Intro to JavaScript](Wk2Mod1.md)
 * [Complex Data Types and DOM Interactions](Wk2Mod2.md)
 * [Modules, and Bundlers](Wk2Mod3.md)
