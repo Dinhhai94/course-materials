@@ -1,6 +1,6 @@
 ## Single Page Applications
 
-### and Stateless Functional Components
+### Stateless Functional Components
 
 You may have noticed that we're only able to view our _landing_ page when serving content with `parcel`. That's because `parcel` assumes that all of your content will be rendered dynamically with JavaScript... it isn't built to handle multiple HTML files.
 
@@ -84,7 +84,7 @@ var home = {
 
 var root = document.querySelector("#root"); // this doesn't need to be queried every time we re-render
 
-function startApp(state) {
+function render(state) {
   root.innerHTML = `
     ${Navigation(state)}
     ${Header(state)}
@@ -93,7 +93,7 @@ function startApp(state) {
   `;
 }
 
-startApp(home); // start by rendering the landing page
+render(home); // start by rendering the landing page
 ```
 
 2. If everything from part 1 went as planned, you should see no difference on your landing page. Let's start by coming up with a new state for your first link. Perhaps:
@@ -105,10 +105,10 @@ var blog = {
 };
 ```
 
-3. Now where should put our event listeners? We can't put them _before_ `startApp`, since we can't apply listeners to elements before they've been rendered. And we also need to _re-apply_ listeners after each render. That means that we should include the event listeners inside of `startApp`, but after `innerHTML` has been overwritten, _a la_:
+3. Now where should put our event listeners? We can't put them _before_ `render`, since we can't apply listeners to elements before they've been rendered. And we also need to _re-apply_ listeners after each render. That means that we should include the event listeners inside of `render`, but after `innerHTML` has been overwritten, _a la_:
 
 ```javascript
-function startApp(state) {
+function render(state) {
   root.innerHTML = `
     ${Navigation(state)}
     ${Header(state)}
@@ -121,7 +121,7 @@ function startApp(state) {
     .addEventListener("click", event => {
       event.preventDefault(); // stops page reload
 
-      startApp(blog); // re-render on click
+      render(blog); // re-render on click
     });
 }
 ```
@@ -158,10 +158,10 @@ Let's use this new tool to improve our SPA navigation.
 
 #### Better SPA Navigation
 
-At the end of the last exercise, your `startApp` function probably looked something like this:
+At the end of the last exercise, your `render` function probably looked something like this:
 
 ```javascript
-function startApp(state) {
+function render(state) {
   root.innerHTML = `
       ${Navigation(state)}
       ${Header(state)}
@@ -172,7 +172,7 @@ function startApp(state) {
   document.querySelector("#navigation a").addEventListener("click", event => {
     event.preventDefault();
 
-    startApp(blog);
+    render(blog);
   });
 
   document
@@ -180,7 +180,7 @@ function startApp(state) {
     .addEventListener("click", event => {
       event.preventDefault();
 
-      startApp(contact);
+      render(contact);
     });
 
   document
@@ -188,7 +188,7 @@ function startApp(state) {
     .addEventListener("click", event => {
       event.preventDefault();
 
-      startApp(projects);
+      render(projects);
     });
 }
 ```
@@ -226,14 +226,14 @@ function handleNavigation(event) {
   event.preventDefault();
 
   // select a piece of the state tree by component
-  startApp(state[component]);
+  render(state[component]);
 }
 ```
 
-3. This already helps us clean things up. Check out our new `startApp` function:
+3. This already helps us clean things up. Check out our new `render` function:
 
 ```javascript
-function startApp(state) {
+function render(state) {
   root.innerHTML = `
       ${Navigation(state)}
       ${Header(state)}
@@ -255,10 +255,10 @@ function startApp(state) {
 }
 ```
 
-4. Our last optimization will be to reduce the number of DOM queries every re-render. We're currently querying the entire `document` three times every time `startApp` is called. We can do better by using `querySelectorAll`, like so:
+4. Our last optimization will be to reduce the number of DOM queries every re-render. We're currently querying the entire `document` three times every time `render` is called. We can do better by using `querySelectorAll`, like so:
 
 ```javascript
-function startApp(state) {
+function render(state) {
   root.innerHTML = `
       ${Navigation(state)}
       ${Header(state)}

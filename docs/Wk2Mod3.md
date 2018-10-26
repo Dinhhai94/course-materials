@@ -131,6 +131,8 @@ output.innerHTML = `
 
 Which is much nicer, don't you think? You can imagine how we might be able to turn all of our existing HTML into a set of fancier templates using this method. Try refactoring all of your concatenated Strings into interpolated template literals instead!
 
+> NOTE: missing `emmet` support and HTML syntax highlighting? Try using the [Template Literal Editor Extension](https://marketplace.visualstudio.com/items?itemName=plievone.vscode-template-literal-editor) for Visual Studio Code
+
 ---
 
 ### Modules and bundlers
@@ -141,9 +143,9 @@ After many years of back-and-forth, the JavaScript module syntax has [finally se
 
 To start working with modules in our own application, we're going to use a bundler called [`parcel`](//parceljs.com). You might recognize this from the first week of class, as it was one of the first dependencies installed by our initialization script as we set up our developer environment.
 
-> NOTE: to double-check that you've still got `parcel` installed correctly, input `which parcel` to your terminal and check that a file path is returned
+> NOTE: to double-check that you've still got `parcel` installed correctly, look at the `package.json` file that was generated for you earlier. You should see `parcel` listed under something called `devDependencies`. To double-double-check, you can also run `npx parcel --version` from the command line to check for errors/output.
 
-Let's use `parcel` to serve our content instead of `http-server` to see what happens! You can start bundling and serving your project with the command `parcel index.html`. If everything is working correctly, you should see something like this output to the terminal:
+Let's use `parcel` to serve our content instead of `http-server` to see what happens! Since `parcel` is what we call a _local_ dependency, we need to call it with a special `npm` command named `npx` (think of it as '`npm` execute `$some-local-dependency`'). You can start bundling and serving your project with the command `npx parcel index.html`. If everything is working correctly, you should see something like this output to the terminal:
 
 ```shell
 Server running at http://localhost:1234
@@ -242,3 +244,35 @@ document.querySelector("#root").innerHTML = `
 > NOTE: don't forget to modify your CSS to keep your fancy grid aligned!
 
 Pretty cool, huh? Now imagine that we could re-use these components across multiple "pages" of content. I say "pages", because we're beginning to refactor this project into what's called a Single-Page Application: a web application that uses JavaScript to modify the state through components rather than a set of HTML documents. More on this concept later!
+
+---
+
+### Continuous Delivery
+
+So far, our Netlify/GitHub integration has allowed us to seamlessly serve a new set of static assets (HTML files) without needing to directly access the server or infrastructure. But now, by bundling our applications from multiple modules into a single, distributable file, we've introduced a _build step_. This build step is required if we want to generate the same sorts of static assets that we've been writing by hand up to this point. To see what happens when we build static assets with `parcel`, try:
+
+```
+npx parcel build index.html
+```
+
+If you've done this correctly, you should see a new `/dist/` directory that contains all of the HTML, CSS, and JavaScript that our project will need! 
+
+> NOTE: if the command above failed, it's almost certainly due to filepath issues. Make sure that your asset paths are _relative_ instead of absolute! Since Netlify's build process takes place on another machine, we can't be sure that that machine will treat the `/` the same way that we've come to expect from `http-server` and `parcel` on our local machines.
+
+We'll want Netlify to be able to run a similar command on our behalf during the deployment process, too. To do this, we need to configure our project in a couple of different places:
+
+1. First, we can leverage another feature of `npm`: the `scripts` hash. This piece of our `package.json` file allows us to run otherwise long commands from the command line using local project dependencies. So let's add a `build` command to `package.json`, such that your `scripts` configuration looks like this:
+
+```json
+{
+  "build": "parcel build index.html && cp _redirects ./dist/",
+}
+```
+
+> NOTE: we need to include `cp _redirects ./dist/` for reasons that will become clear soon.
+
+You can run the above command with `npm run build`. This should be a bit more ergonomic than typing out the entire command by hand!
+
+2. Next, we'll modify our deploy settings on Netlify! You can find those settings at `https://app.netlify.com/sites/$YOUR_SITE_NAME/settings/deploys`. You'll need to add a build command of `npm run build` and a publish directory of `dist`. All of your other settings should be able to stay the same.
+
+Once both steps are done, try staging, committing, and pushing your newly-configured application to Netlify!

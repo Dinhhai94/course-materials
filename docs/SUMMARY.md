@@ -9,7 +9,7 @@
 * [Hack-a-thon #1: Student Showcase](StudentShowcase.md)
 * [Intro to JavaScript](Wk2Mod1.md)
 * [Complex Data Types and DOM Interactions](Wk2Mod2.md)
-* [Modules, and Bundlers](Wk2Mod3.md)
+* [Modules and Bundlers](Wk2Mod3.md)
 * [Complex `function`s](Wk2Mod4.md)
 * [Single Page Applications and Functional Components](Wk2Mod5.md)
 * [Hack-a-thon #2: Building a Bookstore](Wk3Mod1.md)
