@@ -6,7 +6,7 @@ HTML forms are used to collect user input. The `<form>` element defines an HTML 
 
 ---
 
-## Portfolio Project 1
+### Portfolio Project 1
 
 Let's create a new contact page for your website!
 
@@ -41,7 +41,7 @@ Let's create a new contact page for your website!
 
 ---
 
-## Portfolio Project 2
+### Portfolio Project 2
 
 The heart of your contact page will almost certainly be a form. Let's try out a very basic form to get started:
 
@@ -156,7 +156,7 @@ We can also use HTML attributes to change the behavior of form elements or do fo
 
 ---
 
-## Portfolio Project 3
+### Portfolio Project 3
 
 Let's add some form validation to your contact form.
 
