@@ -1,4 +1,5 @@
 ## Basic DOM review, String Interpolation, modules, and bundlers
+
 ### ...plus type coercion and booleans!
 
 Up to this point, our JavaScript exercises have added a bit of flair to some existing websites, but haven't really been 'programs' in the their own right. Today we change that! But first, a bit more info about the Boolean data type:
@@ -29,23 +30,24 @@ false || false
 But wait, there's more! While `true` and `false` are the only truly Boolean values, statements like `if` or the no-so-strict equality operator `==` are a bit more flexible. They're looking for values that are "truthy" or "falsey". These are values that are _coerced_ into `true` or `false` (respectively). We can see this coercion in action by using the negation operator `!` twice. Try a few of the following to see if they're "truthy" or "falsey":
 
 ```javascript
-!!""
-!!"Hello"
-!!0
-!!123
-!![]
-!![1,2,3]
-!!{}
-!!{ "foo": "bar" }
+!!"";
+!!"Hello";
+!!0;
+!!123;
+!![];
+!![1, 2, 3];
+!!{};
+!!{ foo: "bar" };
 
-0 == false
-1 == "1"
-2 == {}
+0 == false;
+1 == "1";
+2 == {};
 ```
 
 These are perhaps a bit strange, but they allow us to write some fairly terse conditional expressions. As an example: can you see where we can re-write our `greeter.js` from a previous module with one of these "falsey" values?
 
 ### Portfolio Project 1
+
 #### Greeter 3.0
 
 In the last class, we worked on making a greeter for visitors to our website. Now let's add some extra logic to make our program more useful!
@@ -55,7 +57,7 @@ In the last class, we worked on making a greeter for visitors to our website. No
 
 ```javascript
 var name = prompt("Hi there! What's your name?");
-var output = document.querySelector('#greeting');
+var output = document.querySelector("#greeting");
 output.innerHTML = "<p>Thanks for visiting, " + name + ".</p>";
 ```
 
@@ -63,12 +65,12 @@ output.innerHTML = "<p>Thanks for visiting, " + name + ".</p>";
 
 ```javascript
 var name = prompt("Hi there! What's your name?");
-var output = document.querySelector('#greeting');
+var output = document.querySelector("#greeting");
 
-if(name){
-    output.innerHTML = "<p>Thanks for visiting, " + name + ".</p>";
+if (name) {
+  output.innerHTML = "<p>Thanks for visiting, " + name + ".</p>";
 } else {
-    output.innerHTML = "<p>Please tell us your name!</p>";
+  output.innerHTML = "<p>Please tell us your name!</p>";
 }
 ```
 
@@ -77,12 +79,13 @@ if(name){
 ```javascript
 var firstName = prompt("Hi there! What's your first name?");
 var lastName = prompt("What's your last name?");
-var output = document.querySelector('#greeting');
+var output = document.querySelector("#greeting");
 
-if(firstName && lastName){
-    output.innerHTML = "<p>Thanks for visiting, " + firstName + " " + lastName + ".</p>";
+if (firstName && lastName) {
+  output.innerHTML =
+    "<p>Thanks for visiting, " + firstName + " " + lastName + ".</p>";
 } else {
-    output.innerHTML = "<p>Please tell us your first and last names!</p>";
+  output.innerHTML = "<p>Please tell us your first and last names!</p>";
 }
 ```
 
@@ -91,24 +94,24 @@ if(firstName && lastName){
 ```javascript
 var firstName = prompt("Hi there! What's your first name?") || "Visitor";
 var lastName = prompt("What's your last name?") || "McDefaultson";
-var output = document.querySelector('#greeting');
+var output = document.querySelector("#greeting");
 
-output.innerHTML = "<p>Thanks for visiting, " + firstName + " " + lastName + ".</p>";
+output.innerHTML =
+  "<p>Thanks for visiting, " + firstName + " " + lastName + ".</p>";
 ```
 
 ---
 
 ### String Interpolation
 
-As we dig deeper into HTML-in-JavaScript, you'll notice that standard String concatenation gets to be a bit cumbersome. Instead of using the concatenation operator (`+`), most String manipulation in modern JS is done with [__template literals__](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) and String interpolation. The idea is that we can inject variables or expressions directly into a _template_, rather than piecing together substrings manually. The template literal version of the exercise above would look like this:
+As we dig deeper into HTML-in-JavaScript, you'll notice that standard String concatenation gets to be a bit cumbersome. Instead of using the concatenation operator (`+`), most String manipulation in modern JS is done with [**template literals**](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) and String interpolation. The idea is that we can inject variables or expressions directly into a _template_, rather than piecing together substrings manually. The template literal version of the exercise above would look like this:
 
 ```javascript
 var firstName = prompt("Hi there! What's your first name?") || "Visitor";
 var lastName = prompt("What's your last name?") || "McDefaultson";
-var output = document.querySelector('#greeting');
+var output = document.querySelector("#greeting");
 
 output.innerHTML = `<p>Thanks for visiting, ${firstName} ${lastName}.</p>`;
-
 ```
 
 Notice how this syntax maintains the structure of our HTML more accurately. This is true of multi-line HTML chunks as well, since template strings take newlines into account! If we wanted to make our `output`'s `innerHTML`' a bit more fancy, we could have re-written that last line like so:
@@ -123,7 +126,7 @@ output.innerHTML = `
       </span>
     </p>
   </div>
-`
+`;
 ```
 
 Which is much nicer, don't you think? You can imagine how we might be able to turn all of our existing HTML into a set of fancier templates using this method. Try refactoring all of your concatenated Strings into interpolated template literals instead!
@@ -132,7 +135,7 @@ Which is much nicer, don't you think? You can imagine how we might be able to tu
 
 ### Modules and bundlers
 
-If we can divide up our markup into different pieces with template literals, hopefully you can imagine a world where we can divide our JavaScript into different pieces at the file level as well. This idea of abstracting pieces of your application into __modules__ is one that's prevalent in the programming world across a variety of languages. For a long time, though, JavaScript lacked a module system of any kind! To get around this issue, JavaScript developers came up with a syntax for `import`-ing and `export`-ing pieces of JavaScript with the use of a command-line tool called a __bundler__.
+If we can divide up our markup into different pieces with template literals, hopefully you can imagine a world where we can divide our JavaScript into different pieces at the file level as well. This idea of abstracting pieces of your application into **modules** is one that's prevalent in the programming world across a variety of languages. For a long time, though, JavaScript lacked a module system of any kind! To get around this issue, JavaScript developers came up with a syntax for `import`-ing and `export`-ing pieces of JavaScript with the use of a command-line tool called a **bundler**.
 
 After many years of back-and-forth, the JavaScript module syntax has [finally settled](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) and is the default module system supported by the many bundlers that are used by developers.
 
@@ -150,6 +153,7 @@ Server running at http://localhost:1234
 This should look similar to the output we've gotten from `http-server`, just running on a different port. When you visit `localhost:1234` in your browser, everything should look the same as when served up by `http-server`. So what's the big deal? Let's do a bit of refactoring to find out!
 
 ### Portfolio Project 2
+
 #### Building a component library
 
 At this point, your landing page should include four top-level components: navigation, header, content, and footer. These pieces should be static HTML, but you'll notice that they are components that can be shared across your entire application (for the most part). Let's see if we can turn these HTML components into something that we share across our application with JavaScript!
@@ -181,61 +185,60 @@ export default `
   </div>
 `;
 ```
+
 4. We should recognize the template literal here (although we aren't yet doing any sort of interpolation). The two keywords are part of JavaScript's module syntax: `export` is defining the stuff to be exposed to be other parts of our application, `default` is saying that this module should `export` the template by default in one big chunk (rather than a set of pieces... more on that later). To verify that this `export` statement is working as expected let's try `import`-ing this component into our top-level `index.js` file:
 
 ```javascript
-import Navigation from './components/Navigation'
+import Navigation from "./components/Navigation";
 
 console.log(Navigation); // just to test that our import is working
 ```
+
 5. This should be spitting a String of HTML to the console, but how do prepend this content to the `document.body`? If we remember that this new component is just a string, it becomes a bit clearer:
 
 ```javascript
-import Navigation from './components/Navigation'
+import Navigation from "./components/Navigation";
 
 var initialHTML = document.body.innerHTML; // store the original HTML from the body
 
 document.body.innerHTML = `${Navigation}${initialHTML}`;
 ```
+
 6. Repeat the process above for the rest of your components! In the end, you should have something like this:
 
 ```javascript
-import Navigation from './components/Navigation';
-import Header from './components/Header';
-import Content from './components/Content';
-import Footer from './components/Footer';
+import Navigation from "./components/Navigation";
+import Header from "./components/Header";
+import Content from "./components/Content";
+import Footer from "./components/Footer";
 
 var initialHTML = document.body.innerHTML;
 
-document
-    .body
-    .innerHTML = `
+document.body.innerHTML = `
       ${Navigation}
       ${Header}
       ${Content}
       ${Footer}
       ${initialHTML} // we still need this
     `;
-
 ```
+
 7. You'll notice that we need to perform that somewhat-hacky `initialHTML` trick to make sure that our `<script>` tag isn't clobbered by our over-writing of the `body`'s `innerHTML`. Instead of doing that, let's wrap our visible application in a placeholder `div` with an `id` of `root`. That means adding `<div id="root"></div>` to your `index.html` and modifying your `index.js` to look something like:
 
 ```javascript
-import Navigation from './components/Navigation';
-import Header from './components/Header';
-import Content from './components/Content';
-import Footer from './components/Footer';
+import Navigation from "./components/Navigation";
+import Header from "./components/Header";
+import Content from "./components/Content";
+import Footer from "./components/Footer";
 
-document
-    .querySelector('#root')
-    .innerHTML = `
+document.querySelector("#root").innerHTML = `
       ${Navigation}
       ${Header}
       ${Content}
       ${Footer}
     `;
 ```
-> NOTE: don't forget to modify your CSS to keep your fancy grid aligned!
 
+> NOTE: don't forget to modify your CSS to keep your fancy grid aligned!
 
 Pretty cool, huh? Now imagine that we could re-use these components across multiple "pages" of content. I say "pages", because we're beginning to refactor this project into what's called a Single-Page Application: a web application that uses JavaScript to modify the state through components rather than a set of HTML documents. More on this concept later!

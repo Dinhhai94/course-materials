@@ -1,6 +1,6 @@
 ## Building a Bookstore Part 1
 
-Today is the day we finally *MONETIZE*! Our billion-dollar idea: we're going head-to-head with Amazon's book store. This will be a group project using the same GitHub workflow that we used for the Student Showcase website.
+Today is the day we finally _MONETIZE_! Our billion-dollar idea: we're going head-to-head with Amazon's book store. This will be a group project using the same GitHub workflow that we used for the Student Showcase website.
 
 ---
 
@@ -18,13 +18,15 @@ The following lists the core web development skills that you should feel comfort
 1. Using Markdown to create a README.md file introducing your project.
 2. Pushing to GitHub and seeing it rendered on your repository's main page.
 3. Creating an HTML document using the following HTML tags:
-  + `<html>`, `<head>`, `<title>`, `<body>`
-  + header and paragraph tags
-  + bold and italic tags
-  + `<div>` and `<span>`
-  + ordered and unordered lists
-  + images and links
-4. Using a style attribute on an HTML element, then a `<style>` tag in the head, then a `<link>` tag to a separate `.css` document to include CSS styles in your page. 
+
+- `<html>`, `<head>`, `<title>`, `<body>`
+- header and paragraph tags
+- bold and italic tags
+- `<div>` and `<span>`
+- ordered and unordered lists
+- images and links
+
+4. Using a style attribute on an HTML element, then a `<style>` tag in the head, then a `<link>` tag to a separate `.css` document to include CSS styles in your page.
 5. Refactoring your code to use classes and ids.
 6. Using complex CSS selectors
 7. Using `position`s `fixed`, `absolute`, and `sticky` to position elements
@@ -50,7 +52,7 @@ Let's go through the following steps, dividing up tasks as a team, to get this n
 2. Create `Navigation`, `Header`, `Content`, and `Footer` components to inject into a `div` with an `id` of `root`. Use `parcel` and the module system to organize these components! You should be able to create the entire application with a single `render` function.
 3. Now add some content to the header and footer components.
 4. Add layout CSS using `position`s and/or `grid`.
-5. Add some css styles to make each component stand out. 
+5. Add some css styles to make each component stand out.
 6. Create a `<form>` element that will allow a user to input a new book (eventually). Make sure that each field has a `name` attribute that's _exactly the same_ as the corresponding property listed above (you'll see why in a minute).
 7. Now take all the information about our books and make them into JavaScript Objects. Create variables `book1`, `book2`, etc. Set each equal to an object with keys `name`, `author`, and `pictureUrl`, which hold string values, `price` and `id`, which holds a number value, and `sellingPoints`, which is an Array of Strings. EXAMPLE:
 

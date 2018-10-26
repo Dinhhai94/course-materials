@@ -4,11 +4,11 @@ Okay, so we've learned that doing layout with CSS by hand is confusing, inconsis
 
 You should consider using a framework or library to do the following:
 
-+ standardize CSS styles across browsers
-+ import some pre-built components (like buttons or icons)
-+ make your page look nice
+- standardize CSS styles across browsers
+- import some pre-built components (like buttons or icons)
+- make your page look nice
 
-Many frameworks do all three. For today, we'll take a look at some external resources that will help us with each point in turn. But first: how do we include these third-party libraries? In the case of CSS libraries, we'll use something called a __CDN__.
+Many frameworks do all three. For today, we'll take a look at some external resources that will help us with each point in turn. But first: how do we include these third-party libraries? In the case of CSS libraries, we'll use something called a **CDN**.
 
 ### CDNs
 
@@ -29,6 +29,7 @@ To do this, we'll add `normalize.css` from CDNJS in the `head` of our HTML files
 ```html
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.css">
 ```
+
 ---
 
 ### Web Fonts
@@ -103,9 +104,10 @@ body {
     "navigation"
     "header"
     "content"
-    "footer"
+    "footer";
 }
 ```
+
 3. Look at that wild syntax! This will make more sense in a minute, but imagine each line as a row in our layout, and each set of quotes a column. So this is a four-row, single-column grid. Take a look at your developer tools in the browser: you'll notice that the names we've used above are also used to distinguish the areas of our layout. That'll come in handy soon!
 4. You'll also notice that our content is scrunched up towards the top of the page. Let's make sure that this `body` element is allowed to grow taller than the viewport, but is never smaller than 100% of the viewport height. That would mean that our `body` CSS is now:
 
@@ -120,6 +122,7 @@ body {
   min-height: 100vh;
 }
 ```
+
 5. This is closer, but the content of each template area is taking up exactly 1/4 of the vertical height of the screen. That's not what we want, either! What we want is for every element to take up the minimum possible height allowed by its content, except for the `content` area, which should fill up whatever remains after the `navigation`, `header`, and `footer` areas have alloted space for their content. We can accomplish this with the `grid-template-rows` rule, which defines how our four rows should behave. In this case, our `body` CSS will now look like this:
 
 ```css
@@ -149,7 +152,7 @@ body {
 }
 ```
 
-7. You'll recognize the `top` and `bottom` attributes from our previous efforts with `position: fixed`, but now those constraints only take affect when our element makes contact with the edge of a viewport. So we've regained, now, our previous feature set, but we haven't yet added a way of turning our navigation bar into a sidebar for wide screens. To do that, we'll need something called a __media query__, which will have the following format:
+7. You'll recognize the `top` and `bottom` attributes from our previous efforts with `position: fixed`, but now those constraints only take affect when our element makes contact with the edge of a viewport. So we've regained, now, our previous feature set, but we haven't yet added a way of turning our navigation bar into a sidebar for wide screens. To do that, we'll need something called a **media query**, which will have the following format:
 
 ```css
 @media (min-width: 612px) {
@@ -170,9 +173,9 @@ body {
     grid-template-areas:
       "navigation header"
       "navigation content"
-      "navigation footer"
+      "navigation footer";
   }
 }
 ```
-9. And with that, we should now have containers that are mobile-responsive! Spend whatever time remains in class making sure that your dropdown menus and links to other pages still work, and make sure that these rules apply to your landing, blog, and project pages.
 
+9. And with that, we should now have containers that are mobile-responsive! Spend whatever time remains in class making sure that your dropdown menus and links to other pages still work, and make sure that these rules apply to your landing, blog, and project pages.
