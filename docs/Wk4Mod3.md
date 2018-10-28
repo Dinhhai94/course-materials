@@ -1,202 +1,55 @@
-## Advanced Objects
+## Advanced API Integration
 
-### Object-Oriented Programming and Design Patterns
+We've seen how useful it can be to integrate other developers' code into our projects through the use of libraries and open-source modules. But it can also be helpful to leverage the same RESTful API pattern we saw in the Bookstore Hack-a-thon to include _data_ from third parties as well. 
 
-Organizing code structures around Objects rather than functions is called Object-Oriented Programming (or OOP).
-
-As we've seen already, Objects can have keys which are Strings, and values which can be any data type: Strings, Numbers, Arrays, Objects... even functions!
-
-```javascript
-var person = {
-  name: "Bob",
-  location: "Los Angeles",
-  age: 56,
-  hobbies: ["working", "partying"],
-  cat: {
-    name: "mr fuzzles",
-    hobbies: ["being inert", "nudging things off tables"]
-  },
-  party: function throwParty() {
-    console.log("dance, dance, dance!");
-  }
-};
-person.name;
-person.age;
-
-person.hobbies[0];
-person.cat.name;
-
-person.party; // what does this do?
-person.party(); // how about this?
-```
-
-And as we've briefly seen before, Objects can use the `this` keyword to access their calling context. Review the following in your console:
-
-```javascript
-function logContext() {
-  console.log(arguments, this);
-}
-
-logContext("These are the arguments...", "What is the calling context? -->");
-```
-
-Now what happens when we call a function in the context of an Object?
-
-```javascript
-var obj = {
-  key1: "value 1",
-  key2: "value 2",
-  method: function() {
-    console.log("I'm being invoked in the context of...", this);
-  }
-};
-
-obj.method();
-```
-
-So how is this useful?
-
-```javascript
-person.work = function work() {
-  console.log(
-    "Welcome to McDonald's, I'm " + this.name + ". May I take your order?"
-  );
-  console.log("Enjoy this beautiful day in " + this.location);
-  console.log(
-    "Would you like to hear a story about " +
-      this.cat.name +
-      " and his " +
-      this.cat.hobbies[1]
-  );
-};
-
-person.work();
-```
+There are many open APIs, but most of them are not _quite_ as open as the bookstore hack-a-thon API that we worked with earlier. While computing power is cheap, it's not _free_, and most APIs require at least a little bit of hoop-jumping to get to their data.
 
 ---
 
-### Exercise 1
+### Query Params
 
-#### Here in my car
+In a RESTful API, a resource is usually accessed by name at a unique route, e.g. `https://api.savvycoders.com/books` vs `https://api.savvycoders.com/albums`. We know that these are going to be different "things", so they get different endpoints. But what about when we want to add some extra data to our "query" of this resource? One common pattern is to use a _query param_.You can see a query param in action when you perform a Google search, for example. If you search for "Adorable Puppies", your results page probably has a URL of something like `https://google.com/?q=Adorable+Puppies` (plus some other query params with info about you). Everything after the `?` represents a bit of extra information about your search! We might implement a similar pattern to filter our `/books` in the hack-a-thon API, e.g. `/books?author=Ernest+Hemingway`. 
 
-We can also change our object properties by referencing them with `this`:
+Let's see how `openweather.com` uses query params to protect and refine responses from their weather API.
 
-```javascript
-var car = {
-  type: "Honda Civic",
-  position: 1,
-  move: function move() {
-    var prev = this.position;
-    this.position = this.position + 1;
-    console.log(this.type + " is moving from " + prev + " to " + this.position);
-  }
-};
-```
 
-1. Invoke car's `move` method and see what happens.
-2. Invoke it a few more times. Then check its `position` property.
-3. Add a `speed` property (an integer) to car.
-4. When a car moves, adjust its position by adding its speed. HINT:
+#### Portfolio Project 1
+
+OpenWeatherMap is a service that includes a free-to-use API that can give you information about weather conditions anywhere around the world. This is pretty powerful for developers, but the maintainers of this API need some way of making sure that users don't abuse this system or bring down the API by making too many requests at once! To manage traffic, OpenWeatherMap uses something called an _API key_. This is a unique identifier that allows `api.openweathermap.org` to restrict its responses to users with an account (which bots tend not to have) and to stop responding if users send too many requests in a short amount of time.
+
+1. First, register for an API key at `openweathermap.org`.
+2. Second, visit `https://api.openweathermap.org/data/2.5/weather` in your browser. What's the response?
+3. Try again, but this time use an `APPID` query param to access the restricted endpoint (i.e. `https://api.openweathermap.org/data/2.5/weather?APPID=$YOUR_API_KEY`).
+4. You should now be getting _some_ kind of response, but it's not very localized. How do we make our `weather` query more specific? Let's add a `zip` parameter and try again. You can chain together query params with an `&`, like so: `https://api.openweathermap.org/data/2.5/weather?APPID=$YOUR_API_KEY&zip=63108`
+5. That's more like it! How can we store this in application state? Let's try to `dispatch` an `action` in our project's `index.js` file, like so:
 
 ```javascript
-var car = {
-  type: "Honda Civic",
-  position: 1,
-  speed: 8,
-  move: function move() {
-    var prev = this.position;
-    this.position = this.position + this.speed;
-    console.log(this.type + " is moving from " + prev + " to " + this.position);
-  }
-};
+axios
+  .get(/* your API endpoint from above */)
+  .then(response => store.dispatch(state => assign(state, { weather: response.data })));
 ```
-
-5. Instead of defining the method inline, it can be useful to have it defined first and referenced as a variable in the object instantiation. This will allow us to share the function between multiple objects later. Try this out with the `move()` method. HINT:
-
-```javascript
-function moveCar() {
-  var prev = this.position;
-  this.position = this.position + this.speed;
-  console.log(this.type + " is moving from " + prev + " to " + this.position);
-}
-
-var car = {
-  type: "Honda Civic",
-  position: 1,
-  speed: 8,
-  move: moveCar
-};
-```
-
-6. Now share the `moveCar` function with a brand new car object! Then try invoking the `.move()` method a few times. HINT:
-
-```javascript
-function moveCar() {
-  var prev = this.position;
-  this.position = this.position + this.speed;
-  console.log(this.type + " is moving from " + prev + " to " + this.position);
-}
-
-var honda = {
-  type: "Honda Civic",
-  position: 1,
-  speed: 8,
-  move: moveCar
-};
-
-var lambo = {
-  type: "Lamborghini Murcielago",
-  position: 1,
-  speed: 20,
-  move: moveCar
-};
-
-honda.move();
-lambo.move();
-```
-
-### Design Patterns
-
-#### The Decorator Pattern
-
-When we pass an object as an input to a function which adds functionality to it, we call this code structure the _Decorator Pattern_.
-
-```javascript
-function addReverse(car) {
-  car.reverse = function reverse() {
-    this.position = this.position - this.speed;
-  };
-}
-
-addReverse(car1);
-addReverse(car2);
-```
+6. Now you can create a piece of state called `weather`, and you can consume that `weather` somewhere in your application! See if you can create a `Weather` component that displays the current weather somewhere on your homepage.
 
 ---
 
-#### Factory Pattern
+### Request Headers and Authorization
 
-When we use a function to instantiate new Objects of a certain type, we call this code structure the _Factory Pattern_.
+Sometimes, APIs will use query params and API keys to limit usage. More often, though, secure requests are made with the use of _request headers_. Every network request in your browser includes some extra information about that request by default. This extra information can include things like the type of content that's expected in a response, the origin of the request, and, perhaps, some type of semi-secret information about the application making a request (like an API key!). When you inspect one of these requests in a browser's dev tools, you can read any of these request headers. See if you can find the request headers that are made when your browser requests your main `index.html` file when developing locally.
+
+
+#### Portfolio Project 2
+
+The GitHub API uses an `Authorization` header to restrict access to much of its API. We can implement custom headers in our application with `axios` through a second parameter given to to `get`.Let's give it a whirl!
+
+1. Sign up for a GitHub personal token. We'll use this token as an API key through the `Authorization` header.
+2. Let's see if you can query your own GitHub account for information about your public repositories with the following syntax:
 
 ```javascript
-function buildCar(type, speed) {
-  var car = {};
-
-  car.position = 0;
-  car.type = type;
-  car.speed = speed;
-
-  car.move = function() {
-    this.position += this.speed;
-  };
-
-  return car;
-}
-
-var newToyota = buildCar("Toyota Hilux", 3);
-var newHonda = buildCar("Honda Accord", 5);
+axios
+  .get('https://api.github.com/users/$YOUR_GITHUB_USERNAME/repos', {
+    'headers': {
+      'Authorization': `token $YOUR_API_KEY`
+    }
+  })
+  .then(/* handle the response */);
 ```
-
-Try creating a car factory that can create car Objects like the ones you created already!
-
----
