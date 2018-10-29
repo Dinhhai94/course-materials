@@ -48,8 +48,19 @@ The GitHub API uses an `Authorization` header to restrict access to much of its 
 axios
   .get('https://api.github.com/users/$YOUR_GITHUB_USERNAME/repos', {
     'headers': {
-      'Authorization': `token $YOUR_API_KEY`
+      'Authorization': `token ${$YOUR_API_KEY}`
     }
   })
   .then(/* handle the response */);
 ```
+3. But how, exactly, are we supposed to `handle the response`? By `dispatch`-ing a reducer function that applies this new data to state, e.g.:
+```javascript
+axios
+  .get('https://api.github.com/users/$YOUR_GITHUB_USERNAME/repos', {
+    'headers': {
+      'Authorization': `token ${$YOUR_API_KEY}`
+    }
+  })
+  .then(response => store.dispatch(state => assign(state, { repos: response.data })));
+```
+4. BONUS: can you render that data with a `Repo` component? Where do you need to include that new piece of state?
