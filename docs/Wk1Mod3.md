@@ -45,13 +45,13 @@ Let's add another page to our growing Portfolio Project! This page will be for y
    ```
 
 2. Inside of your new `blog/index.html` file, create a short blog post welcoming readers to your blog (no more than 5 sentences of content). More important than the content will be the _page structure_ and _layout_. Make sure to include the following elements in your post as separate `<div>`s:
-   1. A header area (with your blog title/subtitle, and maybe a splash photo)
-   2. A navigation bar area (with links to other pages in your Portfolio site)
-   3. A content area for the text content of your post.
-   4. A footer with some contact info and copyright information.
+   - A header area (with your blog title/subtitle, and maybe a splash photo)
+   - A navigation bar area (with links to other pages in your Portfolio site)
+   - A content area for the text content of your post.
+   - A footer with some contact info and copyright information.
 3. Inside the content area, make sure that you've used at least one of each of the following:
-   1. A heading (e.g. `<h2>`)
-   2. A paragraph tag (`<p>`)
+   - A heading (e.g. `<h2>`)
+   - A paragraph tag (`<p>`)
 4. In a `<style>` tag in the head of the document, add some style for default HTML elements (`<body>`, `<div>`, `<h1>`, `<h2>`, `<p>`, and whatever else you've included in your HTML up to this point).
 5. Give each `<div>` section its own unique `id` (e.g. `navigation`, `header`, etc.), and give each `id` some unique styles in the `<style>` tag. Maybe different `width`s or `background-color`s?
 6. Add some `<span>` tags to some of the important text in your post, and give those `<span>` elements a `class` of `highlight`. Then add some special styles to those elements to make them stand out a bit from the rest of your post.
@@ -112,17 +112,18 @@ Try putting a border around each "boxed" element while you try out a few of the 
 
     The same shorthand rules that worked for `padding` also work for `margin`.
 
-3.  We can also manually set the width and height of the element itself. When you do this, you'll want to set the `box-sizing` for obscure reasons:
+3.  We can also manually set the width and height of the element itself. 
 
         ```css
         div {
-            box-sizing: border-box;
             width: 300px;
             height: 200px;
         }
         ```
 
-    **What's the difference?** Check it out in the Elements panel of Chrome Dev Tools [CMD + OPTION + I] to inspect the spacing around the element.
+    **What's the difference?** Check it out in the Elements panel of Chrome Dev Tools to inspect the spacing around the element.
+
+    > NOTE: you can open the Elements panel with `CMD + Option + I` in macOS or with `CTRL + I` in Linux or Windows
 
 ---
 
@@ -142,17 +143,9 @@ Now let's add some structure and spacing in our blog post! Try out the following
 
    What does this do? How does it work? And why would we want to do this?
 
-3. If you haven't already, define an `html` selector in your `<style>` tag and set `box-sizing` to `border-box`, like so:
-
-   ```css
-   html {
-     box-sizing: border-box;
-   }
-   ```
-
-4. For the rest of your already-defined elements, add some `padding` and `margin` values to give everything some space.
-5. Add some borders using the `border` property, like we did in the first exercise.
-6. Once you like the look of the page, stage, commit, push, and deploy your well-spaced site!
+3. For the rest of your already-defined elements, add some `padding` and `margin` values to give everything some space.
+4. Add some borders using the `border` property, like we did in the first exercise.
+5. Once you like the look of the page, stage, commit, push, and deploy your well-spaced site!
 
 ---
 

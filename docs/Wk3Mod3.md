@@ -169,7 +169,7 @@ npm install --save lodash
 import { lowerCase } from "lodash";
 ```
 
-3. `lowerCase` is a function that turns any String into its lower-cased variant. Since lower-case routes are much more common than the upper-case routes that we've been using so far, let's tturn our `buildLinks` function into something that looks like this instead:
+3. `lowerCase` is a function that turns any String into its lower-cased variant. Since lower-case routes are much more common than the upper-case routes that we've been using so far, let's turn our `buildLinks` function into something that looks like this instead:
 
 ```javascript
 import { lowerCase } from "lodash";
@@ -195,7 +195,7 @@ function buildLinks(linkArray) {
 }
 ```
 
-4. Along with the changes to `buildLinks, we'll also need to capitalize our component names in`handleNavigation`in our`index.js`file. That's as simple as adding`import { capitalize } from 'lodash';`to the top of the file before modifying`handleNavigation`to be:
+4. Along with the changes to `buildLinks`, we'll also need to capitalize our component names in `handleNavigation` in our `index.js` file. That's as simple as adding `import { capitalize } from 'lodash';` to the top of the file before modifying `handleNavigation` to be:
 
 ```javascript
 function handleNavigation(event) {
@@ -229,7 +229,8 @@ import Navigo from "navigo";
 3. `Navigo` is a special type of function that can be used to create a new Object (more on these later). To create the `router` Object that we'll use to route requests, create a `router` variable like so:
 
 ```javascript
-var router = new Navigo();
+// origin is required to help our router handle localhost addresses
+var router = new Navigo(window.location.origin);
 ```
 
 4. `router` works by chaining a number of different functions together (more on this idea of chaining functions later, too). The two that we'll use are `on` and `resolve`. `on` uses a callback structure: whenever a URL matches the pattern given to `on` as its first argument, the function provided as the second argument is called. We use `resolve` at the end of the chain to kick off the client-side routing process. Try this on `index.js`:

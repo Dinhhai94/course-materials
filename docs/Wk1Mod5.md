@@ -65,16 +65,16 @@ For a number of different reasons (all similar to our reasons for using `fonts.g
 
 Take a look at [this page](https://fontawesome.com/get-started/web-fonts-with-css) for a snippet that we'll use to add icon fonts to our projects.
 
-Once the snippet above has been added to the `<head>`, you'll now have access to [all of these icons](https://fontawesome.com/cheatsheet) through the `.fas` and `.fa-*` classes applied to an `<i>` element.
+Once the snippet above has been added to the `<head>`, you'll now have access to [all of these icons](https://fontawesome.com/cheatsheet) through the `.fas` and `.fas-*` classes applied to an `<i>` element.
 
-### Portfolio Project 1
+#### Portfolio Project 1
 
 1. Apply a Google-hosted font to all of a single type of `h*` element. Make sure that font applies to every instance of that element across your site!
-2. Add social icons (like `.fa-github`) to your footer. Can you make them links to your actual social media profiles? HINT:
+2. Add social icons (like `.fas-github`) to your footer. Can you make them links to your actual social media profiles? HINT:
 
 ```html
 <a href="some-social-media.com">
-    <i class="fas fa-some-social-media"></i>
+    <i class="fas fas-some-social-media"></i>
 </a>
 ```
 
@@ -90,7 +90,7 @@ To create more complex layouts, developers needed better tools that were able to
 
 For responsive layouts, we now have `display: grid`. Grids make it easier than ever to wildly adjust the arrangement and layout of a web application without needing to use JavaScript. Let's work through an example!
 
-### Portfolio Project 2
+#### Portfolio Project 2
 
 Currently, our page layouts are using a sticky navigation bar optimized for mobile layout. But that mobile-optimized navigation bar takes up precious vertical space on wide monitors, all while restricting space for the content to a narrow field. What if we could turn that sticky navigation bar into a more useful sidebar when the user's screen is wide enough?
 

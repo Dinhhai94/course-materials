@@ -2,7 +2,7 @@
 
 ### Working with Time
 
-You've come a long way from you very first bits of code! As you've progressed, you've learned to think and develop with increasing levels of abstraction, all while responding to more and more interaction from your users. Let's take a look back through your journey so far:
+You've come a long way from your very first bits of code! As you've progressed, you've learned to think and develop with increasing levels of abstraction, all while responding to more and more interaction from your users. Let's take a look back through your journey so far:
 
 1. First, we had plain-text content.
 2. Next, we added additional attributes and information to that content through HTML and CSS.

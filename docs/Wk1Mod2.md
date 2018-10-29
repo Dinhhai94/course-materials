@@ -18,7 +18,7 @@ As we delve deeper into the world of web development, we'll find that the struct
 
 #### `node` and `npm`
 
-So far we've only used one very basic programming language from the command line. That's right, all of those `ls` and `cd` commands are run through a basic programming interface called shell scripting. It's a language all its own, although we won't dig too much deeper into its more powerful features. But you can also use a number of other programming languages in the command line, including JavaScript! `http-server` happens to be built with JavaScript, so we'll need to install the JavaScript command-line runtime environment (called `node`) and its dependency management system (called `npm`).
+So far we've only used one very basic programming language from the command line. That's right, all of those `ls` and `cd` commands are run through a basic programming interface. It's a language all its own, although we won't dig too much deeper into its more powerful features. But you can also use a number of other programming languages in the command line, including JavaScript! `http-server` happens to be built with JavaScript, so we'll need to install the JavaScript command-line runtime environment (called `node`) and its dependency management system (called `npm`).
 
 This can be a pretty complex process, so we've created a shell script (an executable file written in the shell scripting language) that helps you a bit with the installation process for these tools. You can download that remote file and `pipe` it to your terminal with the following command:
 
@@ -140,35 +140,33 @@ It's time to take a look at how browsers (like Chrome) render HTML content!
 2. Open up Chrome's Dev Tools and take a look at Elements and their associated STYLES:
    ![dev tools](http://reactorprep.herokuapp.com/assets/images/elements.png)
 
-3. ANSWER AS A GROUP:
-4. What `font-size` does the browser give an `<h1>` element by default?
-5. What `font-weight` does the browser give an `<h1>` element by default?
-6. How does the browser render the extra spaces and new lines in the last paragraph?
-7. Are there any parts of the body that are not rendered into the browser window?
+3. What `font-size` does the browser give an `<h1>` element by default?
+4. What `font-weight` does the browser give an `<h1>` element by default?
+5. How does the browser render the extra spaces and new lines in the last paragraph?
+6. Are there any parts of the `body` that are not rendered into the browser window?
 
 ---
 
-### Portfolio Project 1
+#### Portfolio Project 1
 
 Now it's time to turn your `README.md` into a landing page for your portfolio site! Since browsers don't work with Markdown by default, we want to use HTML for our Portfolio on the web. Go through the following steps to get started:
 
 1. Make sure that you're inside your portfolio project directory (called `FirstnameLastname`).
 2. All browsers look for an `index.html` file to display by default. You can name other pages whatever you'd like, but the landing page for every site should always be `index.html`. We created this file last time, but verify that it's still there with the content you expect.
 3. Edit `index.html` in VSCode. Make sure that it includes the following BEFORE we start porting in text from `README.md`:
-4. `<!DOCTYPE HTML>`
-5. `<html>`,`<head>`, and `<body>` tags
-6. `<title>` tags and a title of `Firstname Lastname | Web Developer`
+  -. `<!DOCTYPE HTML>`
+  -. `<html>`,`<head>`, and `<body>` tags
+  -. `<title>` tags and a title of `Firstname Lastname | Web Developer`
 
 _HINT: you can use emmet's HTML boilerplate by typing_ `!` _then pressing_ `TAB`
 
 4. Then you can start moving content from `README.md` into `index.html`
-1. Use `<h1>` for headings
-1. Use `<p>` for paragraphs of text
-1. Use `<ul>` for unordered lists (and use `<li>` for each nested list element)
-1. Use `<hr>` to create an horizontal rule
-1. Use `<br>` to add extra line breaks between elements
-1. Make sure you've saved the file!
-1. Preview the file at `localhost:8080`
+  1. Use `<h1>` for headings
+  1. Use `<p>` for paragraphs of text
+  1. Use `<ul>` for unordered lists (and use `<li>` for each nested list element)
+  1. Use `<hr>` to create an horizontal rule
+5. Make sure you've saved the file!
+6. Preview the file at `localhost:8080`
 
 ---
 
@@ -243,7 +241,7 @@ Image tags (`<img>`) have an attribute named `src` whose value is the location o
 
 ---
 
-### Portfolio Project 2
+#### Portfolio Project 2
 
 Let's expand on the landing page we've already made for our online portfolio!
 
@@ -257,6 +255,7 @@ While it's possible to link to HTML documents in your website with any name (as 
 6. Add an **ordered list** (`<ol>`) of the following projects (hint: `ol>li*3 + TAB`):
    - Class Showcase
    - Web Store Hack-A-Thon
+   - Demo Day Project
 7. Now go back to your landing page (`/index.html`), and edit that file to include the following:
 8. The profile image from `README.md`
 9. The social media links from `README.md`
@@ -302,7 +301,7 @@ So what have we learned?
 
 ---
 
-### Portfolio Project 1
+#### Portfolio Project 3
 
 Let's create a theme for your Portfolio Project's landing page.
 
@@ -338,7 +337,7 @@ The last two points are reasons why inlining styles is generally frowned upon. S
 
 ---
 
-## The `<style>` tag
+### The `<style>` tag
 
 So let's begin to refactor the mess above. CSS rules can be applied to an HTML page by placing them inside a `<style>` element inside the `<head>` element of the page.
 
@@ -444,7 +443,7 @@ Now we have separated **presentation** from **content**. We can easily read the 
 
 ---
 
-### Portfolio Project 2
+#### Portfolio Project 4
 
 **You will be judged** by professional developers for placing styles directly on HTML elements. Let's fix your Portfolio Project to reflect proper CSS design patterns:
 
@@ -454,9 +453,9 @@ Now we have separated **presentation** from **content**. We can easily read the 
 
 ---
 
-## More HTML elements
+### More HTML elements
 
-### Portfolio Project 3
+#### Portfolio Project 5
 
 Now it's time to add a few more elements to our Portfolio Project pages.
 

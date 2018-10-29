@@ -10,7 +10,7 @@ After the last module, we've mastered the art of the irritating pop-up. But how 
 
 Now that we're editing standalone JavaScript files, we get to use one of the most important tools in the developer's arsenal: the _linter_. This tool will point at grammatical and syntactical errors in our JavaScript as we write it, and fix most errors on save (rather than forcing us to chase down wayward commas, parens, or curly brackets).
 
-We already downloaded the `linter-eslint` package, but this package needs a special configuration file to work. This file is called `.eslintrc.json`, and provides hundreds of customizeable rules to help you maintain a consistent JavaScript style. For the remainder of this course, we'll use the `.eslintrc` file found [here](./.eslintrc). You may copy this file into your own project directory, and you should immediately start getting hints from your editor as you type. Pay attention to these warnings, and your code should be free of an entire class of basic typing errors!
+Configuration of our linter is driven by a `.eslintrc` file. This should have been built and configured during the second class where we installed our project dependencies with `init.sh`, but double-check that you do, in fact, have that configuration file.
 
 ### Exercise 1
 

@@ -189,18 +189,6 @@ right into **your paragraph.** Pretty cool, right!
 - Item
 - Another item
 
-or
-
-- Item
-- Item
-- One more item
-
-or
-
-- Item
-- Item
-- One last item
-
 1. Item one
 2. Item two
 3. Item three
@@ -226,7 +214,7 @@ w/ sub-lists
 1. Now it's time to format intro.txt with Markdown! Let's `mv` `intro.txt` to a new file called `intro.md` with the command `mv intro.txt intro.md`
 2. Create a title for your portfolio project and format it as a header with `#`
 3. Format your quote using italicization and bold.
-4. Create a list of contact information as an unordered list using `+`. Make
+4. Create a list of contact information as an unordered list using `-`. Make
    each means of contact a link rather than plain text (e.g. `[some link](some-url.com)`)
 5. Find a relevant photo online and insert it using the syntax `![ ]( )` (see the Markdown above for full syntax)
 
@@ -287,21 +275,19 @@ $ git init
 
 3. That _should_ have created a `.git` folder, which is hidden by default. There are two ways to make sure that our `git init` command worked. Try these both out:
 
-- list all of the hidden folders (including `.git`) in `exercises`:
+- list all of the hidden folders (including `.git`) in `FirstnameLastname`:
 
 ```shell
 $ ls -a
 ```
 
-You should see a folder called `.git` in the output.
-
-- try running a simple `git` command:
+You should see a folder called `.git` in the output.  Now try running a simple `git` command:
 
 ```shell
 $ git status
 ```
 
-If you get `FATAL: exercises is not a git repository`, something has gone wrong. If everything worked, you should see something like this:
+If you get `FATAL: FirstnameLastname is not a git repository`, something has gone wrong. If everything worked, you should see something like this:
 
 ```
 $ git status
