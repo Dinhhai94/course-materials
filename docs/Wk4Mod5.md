@@ -43,6 +43,7 @@ So what else is there to learn about?
 **CSS**:
 
 - SASS (Seriously Awesome Style Sheets)
+- Stylus
 - CSS directives (`calc()` and `transform()`)
 - _so many properties_ (check out MDN)
 - more CSS frameworks (Bootstrap, skel)
