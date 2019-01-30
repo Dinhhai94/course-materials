@@ -58,7 +58,6 @@ The key realization here is that there is a 1:1 relationship between our file st
 ### HTML
 
 HTML (Hyper-Text Markup Language) is a markup language for describing the structure and content of web documents (web pages). It is comprised of markup tags and text content nested inside each other.
-![standard HTML structure](http://reactorprep.herokuapp.com/assets/images/html_breakdown.png).
 
 HTML tags are keywords (tag names) surrounded by angle brackets:
 
@@ -138,7 +137,7 @@ It's time to take a look at how browsers (like Chrome) render HTML content!
 ```
 
 2. Open up Chrome's Dev Tools and take a look at Elements and their associated STYLES:
-   ![dev tools](http://reactorprep.herokuapp.com/assets/images/elements.png)
+   ![dev tools](https://www.dropbox.com/s/2v91mwk7js0y9kd/Screenshot%202019-01-29%2020.29.15.png?dl=0)
 
 3. What `font-size` does the browser give an `<h1>` element by default?
 4. What `font-weight` does the browser give an `<h1>` element by default?
@@ -229,7 +228,7 @@ Then go to `localhost:8080/example.html` and answer the following:
 #### Attributes
 
 This link tag has an attribute whose name is `href` and whose value is a `url`:
-![anchor tag](http://reactorprep.herokuapp.com/assets/images/links.png)
+`<a href="http://www.somewebsite.com">Some text for user to see on page</a>`
 
 Attributes provide additional information about an element. They appear on the opening tag of the element and are made up of two parts: a **name** and a **value**, separated by an equals sign.
 
@@ -297,7 +296,7 @@ So what have we learned?
 7. Each key-value pair is separated with a semi-colon
 8. Colors can be described by name, as eight digit hex (base 16) values between 0 (black) and F (white), or as Red Green Blue triplets from 0 to 255
 9. We can use the following css colors for our background-color and color attributes:
-   ![css color table](http://reactorprep.herokuapp.com/assets/images/css_colors.jpg)
+   ![css color table](https://en.wikipedia.org/wiki/Web_colors#/media/File:SVG_Recognized_color_keyword_names.svg)
 
 ---
 
