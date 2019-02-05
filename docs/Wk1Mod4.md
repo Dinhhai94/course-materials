@@ -263,7 +263,7 @@ The layout above is a very common layout for blogs... much like the blog that we
 }
 
 #navigation a:hover + .dropdown {
-  display: block; // shows the any dropdown that is a direct sibling of a hovered anchor tag in the navigation bar
+  display: block; // opens/displays only DIRECT SIBLING .dropdown when hovering over <a>
 }
 ```
 
