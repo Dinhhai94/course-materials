@@ -175,6 +175,22 @@ Let's add some form validation to your contact form.
 
 ---
 
+## Specificity
+
+Up to this point, you've heard all about the 'cascade' in _Cascading Style Sheets_. That cascade refers to the way in which styles are applied in a cascading pattern of increasing [**specificity**](https://css-tricks.com/specifics-on-css-specificity/). Up to this point, you've heard the term "specificity" used colloquially, but here we're going to give you a quick way of putting a number value on a given selector's specificity.
+
+![specificity diagram](https://css-tricks.com/wp-content/csstricks-uploads/specificity-calculationbase.png)
+
+As a quick rule of thumb, look at a selector, and put a number in the correct box that corresponds to the number of each selector's component parts. As an example:
+
+![example specificity calculation](https://css-tricks.com/wp-content/csstricks-uploads/cssspecificity-calc-1.png)
+
+![example specificity calculation 2](https://css-tricks.com/wp-content/csstricks-uploads/cssspecificity-calc-2.png)
+
+In this example, there are more component parts in the second example, but the first is still more specific (and would take precendent over the second in the event of a rule collision) because of the power of the ID `#nav`
+
+---
+
 ## CSS Layouts and Positioning
 
 Up until this point, we've worked only with single-column HTML documents. What if we want more complex layouts. Maybe a snazzy sidebar, like this? And what about a drop-down menus in the navigation bar?
