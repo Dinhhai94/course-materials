@@ -1,4 +1,4 @@
-## node, `npm`, developing with `localhost`, and HTML5
+## node, `npm`, developing with `localhost`, and HTML
 
 ---
 
