@@ -6,7 +6,7 @@ One of the wonderful things about the modern JavaScript ecosystem is that there 
 
 ### More Modules
 
-You'll recall that we've been working with our own library of components through by `import`-ing and `export`-ing `default` chunks of JavaScript. But there are a few variations on this these syntaxes that will help us keep our code organized as our applications begin to pull in third-party dependencies. Here's a quick overview:
+You'll recall that we've been working with our own library of components through `import`-ing and `export`-ing `default` chunks of JavaScript. But there are a few variations on this these syntaxes that will help us keep our code organized as our applications begin to pull in third-party dependencies. Here's a quick overview:
 
 ```javascript
 // import the default export from a module
