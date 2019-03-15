@@ -28,13 +28,13 @@ Use `prompt()` to create a Rock, Paper, Scissors game for visitors to your portf
 1. Ask for input until the user enters either "R", "P", or "S". HINT:
 
 ```javascript
-var userChoice = prompt("Choose Rock, Paper, or Scissors by typing 'R', 'P', or 'S'");
+const userChoice = prompt("Choose Rock, Paper, or Scissors by typing 'R', 'P', or 'S'");
 ```
 2. Use `Math.random()` to choose a play for the computer after you've gathered input. HINT:
 
 ```javascript
-var rng = Math.random();
-var computerChoice = "R";
+const rng = Math.random();
+const computerChoice = "R";
 
 if(rng > 0.66) {
     computerChoice = "P";
@@ -45,8 +45,8 @@ if(rng > 0.66) {
 3. Tell the user what the outcome of the hand was with an `alert()`. There are _lots_ of ways to compare hands, try out a few! HINT (as an example):
 
 ```javascript
-var userWins = "You win!";
-var computerWins = "The computer wins!";
+const userWins = "You win!";
+const computerWins = "The computer wins!";
 
 if(computerChoice !== userChoice){
     if(computerChoice === "R"){
@@ -75,14 +75,14 @@ if(computerChoice !== userChoice){
 4. Use a `while` loop to repeat the process five times. HINT:
 
 ```javascript
-var userWins = "You win!";
-var computerWins = "The computer wins!";
-var roundCounter = 0;
+const userWins = "You win!";
+const computerWins = "The computer wins!";
+const roundCounter = 0;
 
-var gameRound = function(){
-    var userChoice = prompt("Choose Rock, Paper, or Scissors by typing 'R', 'P', or 'S'");
-    var computerChoice = "R";
-    var rng = Math.random();
+const gameRound = function(){
+    const userChoice = prompt("Choose Rock, Paper, or Scissors by typing 'R', 'P', or 'S'");
+    const computerChoice = "R";
+    const rng = Math.random();
 
     if(rng > 0.66) {
         computerChoice = "P";

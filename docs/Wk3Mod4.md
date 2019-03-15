@@ -7,15 +7,15 @@ We've seen Arrays since our first day of complex data types, and we've been usin
 Arrays have associated with them some properties, like `.length`, and methods, like `.push()`, to help us use our collections of data more effectively.
 
 ```javascript
-var arr = ["stuff", "more stuff", "even more stuff"];
+const arr = ["stuff", "more stuff", "even more stuff"];
 
 arr.length;
 
 arr.push("More on the end!!!");
-var lastItem = words.pop();
+const lastItem = words.pop();
 
 arr.unshift("More at the beginning!!");
-var firstItem = words.shift();
+const firstItem = words.shift();
 ```
 
 ---
@@ -40,9 +40,9 @@ words.forEach(logMe);
 
 ```javascript
 function buildLinks(linkArray) {
-  var i = 0;
-  var links = "";
-  var route = ""; // changed for clarity
+  const i = 0;
+  const links = "";
+  const route = ""; // changed for clarity
 
   linkArray.forEach(link => {
     if (link !== "Home") {
@@ -75,8 +75,8 @@ Since JavaScript treats functions as first-class citizens, it can be treated as 
 Remember how `while` loops are avoided because of a floating count variable? e.g.
 
 ```javascript
-var i = 0; // awkward counter
-var limit = 10; // or some other number
+const i = 0; // awkward counter
+const limit = 10; // or some other number
 
 while (i < limit) {
   // do something
@@ -89,8 +89,8 @@ This is no good in large applications because that `i` variable could easily get
 But `.forEach` doesn't _actually_ solve all of `while`'s problems. Think about how many times we've done something like this:
 
 ```javascript
-var myArray = [1, 2, 3, 4, 5];
-var doubledNumbers = [];
+const myArray = [1, 2, 3, 4, 5];
+const doubledNumbers = [];
 
 myArray.forEach(function(num) {
   doubledNumbers.push(num * 2);
@@ -100,8 +100,8 @@ myArray.forEach(function(num) {
 See how `doubledNumbers` is separated from the loop that populates it? It's the same order-specific implementation that we generally ought to avoid. What if, instead, we had a function that could create `doubledNumbers` directly? Well, we do! And that function is `.map()`, which is built into the `Array` data type. Try this:
 
 ```javascript
-var myArray = [1, 2, 3, 4, 5];
-var doubledNumbers = myArray.map(num => num * 2);
+const myArray = [1, 2, 3, 4, 5];
+const doubledNumbers = myArray.map(num => num * 2);
 
 console.log(doubledNumbers);
 ```
@@ -113,8 +113,8 @@ Now there's no doubt that `doubledNumbers` comes from `myArray`, and there's no 
 How about this scenario:
 
 ```javascript
-var myArray = [1, 2, 3, 4, 5];
-var oddNumbers = [];
+const myArray = [1, 2, 3, 4, 5];
+const oddNumbers = [];
 
 myArray.forEach(num => {
   if (num % 2 !== 0) {
@@ -126,8 +126,8 @@ myArray.forEach(num => {
 We can _filter_ values in the same way using the `.filter()` method! `.filter()` expects a `return` value that filters out some results.
 
 ```javascript
-var myArray = [1, 2, 3, 4, 5];
-var oddNumbers = myArray.filter(num => num % 2 !== 0);
+const myArray = [1, 2, 3, 4, 5];
+const oddNumbers = myArray.filter(num => num % 2 !== 0);
 ```
 
 ### `.reduce()`
@@ -135,8 +135,8 @@ var oddNumbers = myArray.filter(num => num % 2 !== 0);
 Of the three functions we're learning today, `reduce` is the most complex, but it's so useful that it's important to learn it! Let's think about this situation:
 
 ```javascript
-var myArray = [1, 2, 3, 4, 5];
-var myArraySum = 0; // variable that keeps a sum of all values in myArray
+const myArray = [1, 2, 3, 4, 5];
+const myArraySum = 0; // variable that keeps a sum of all values in myArray
 
 myArray.forEach(num => {
   myArraySum += num;
@@ -146,8 +146,8 @@ myArray.forEach(num => {
 Now let's try to `.reduce()` this array from left to right in a similar way. `.reduce()` takes four possible arguments, but we're going to use the first two (the running total, and the next value to add to that running total... [see the docs for more information](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce)).
 
 ```javascript
-var myArray = [1, 2, 3, 4, 5];
-var myArraySum = myArray.reduce((previousValue, currentValue) => {
+const myArray = [1, 2, 3, 4, 5];
+const myArraySum = myArray.reduce((previousValue, currentValue) => {
   return previousValue + currentValue;
 });
 ```

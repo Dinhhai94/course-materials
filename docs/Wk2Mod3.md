@@ -56,16 +56,16 @@ In the last class, we worked on making a greeter for visitors to our website. No
 2. Make sure that you've styled the `#greeting` section and have a `index.js` document that contains the following:
 
 ```javascript
-var name = prompt("Hi there! What's your name?");
-var output = document.querySelector("#greeting");
+const name = prompt("Hi there! What's your name?");
+const output = document.querySelector("#greeting");
 output.innerHTML = "<p>Thanks for visiting, " + name + ".</p>";
 ```
 
 3. Now let's make sure that users have actually input a name! We'll do that using a neat trick of JavaScript, where strings evaluate to `true`, but _empty_ strings evaluate to `false`. Try the following in `index.js`:
 
 ```javascript
-var name = prompt("Hi there! What's your name?");
-var output = document.querySelector("#greeting");
+const name = prompt("Hi there! What's your name?");
+const output = document.querySelector("#greeting");
 
 if (name) {
   output.innerHTML = "<p>Thanks for visiting, " + name + ".</p>";
@@ -77,9 +77,9 @@ if (name) {
 4. Let's make things a little more complicated by asking users for their first _and_ last names. The following will only output a visitor's name if they provide both a first _and_ last name. Try this:
 
 ```javascript
-var firstName = prompt("Hi there! What's your first name?");
-var lastName = prompt("What's your last name?");
-var output = document.querySelector("#greeting");
+const firstName = prompt("Hi there! What's your first name?");
+const lastName = prompt("What's your last name?");
+const output = document.querySelector("#greeting");
 
 if (firstName && lastName) {
   output.innerHTML =
@@ -92,9 +92,9 @@ if (firstName && lastName) {
 5. We can use the 'or' operator (`||`) to give users a default name, instead of just pleading with them to respond to our prompts. With this, we can also get rid of the `if` and `else` behavior to simplify our code! Make sure you understand how this 'default' behavior works:
 
 ```javascript
-var firstName = prompt("Hi there! What's your first name?") || "Visitor";
-var lastName = prompt("What's your last name?") || "McDefaultson";
-var output = document.querySelector("#greeting");
+const firstName = prompt("Hi there! What's your first name?") || "Visitor";
+const lastName = prompt("What's your last name?") || "McDefaultson";
+const output = document.querySelector("#greeting");
 
 output.innerHTML =
   "<p>Thanks for visiting, " + firstName + " " + lastName + ".</p>";
@@ -107,9 +107,9 @@ output.innerHTML =
 As we dig deeper into HTML-in-JavaScript, you'll notice that standard String concatenation gets to be a bit cumbersome. Instead of using the concatenation operator (`+`), most String manipulation in modern JS is done with [**template literals**](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) and String interpolation. The idea is that we can inject variables or expressions directly into a _template_, rather than piecing together substrings manually. The template literal version of the exercise above would look like this:
 
 ```javascript
-var firstName = prompt("Hi there! What's your first name?") || "Visitor";
-var lastName = prompt("What's your last name?") || "McDefaultson";
-var output = document.querySelector("#greeting");
+const firstName = prompt("Hi there! What's your first name?") || "Visitor";
+const lastName = prompt("What's your last name?") || "McDefaultson";
+const output = document.querySelector("#greeting");
 
 output.innerHTML = `<p>Thanks for visiting, ${firstName} ${lastName}.</p>`;
 ```
@@ -201,7 +201,7 @@ console.log(Navigation); // just to test that our import is working
 ```javascript
 import Navigation from "./components/Navigation";
 
-var initialHTML = document.body.innerHTML; // store the original HTML from the body
+const initialHTML = document.body.innerHTML; // store the original HTML from the body
 
 document.body.innerHTML = `${Navigation}${initialHTML}`;
 ```
@@ -214,7 +214,7 @@ import Header from "./components/Header";
 import Content from "./components/Content";
 import Footer from "./components/Footer";
 
-var initialHTML = document.body.innerHTML;
+const initialHTML = document.body.innerHTML;
 
 document.body.innerHTML = `
       ${Navigation}

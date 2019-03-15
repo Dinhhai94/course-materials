@@ -31,19 +31,19 @@ Complex or Composite data types represent **Collections** of data. The Complex d
 
 ```javascript
 //try this out in your console!
-var myArray = ["String", 23, "Another String", true, false];
+const myArray = ["String", 23, "Another String", true, false];
 console.log(myArray);
 ```
 
 Now try same thing with a mixture of variables and literals:
 
 ```javascript
-var myString = "String";
-var myNum = 23;
-var myBoo = true;
-var myUndef;
+const myString = "String";
+const myNum = 23;
+const myBoo = true;
+const myUndef;
 
-var myArray = [myString, myNum, "Another String", myBoo, myUndef, false];
+const myArray = [myString, myNum, "Another String", myBoo, myUndef, false];
 console.log(myArray);
 ```
 
@@ -60,7 +60,7 @@ Arrays are also _zero-indexed_, which means that the first piece of data in the 
 **Objects** are collections of data just like Arrays, but we can access data by _name_ instead of _sequence_. All names are themselves arbitrary Strings that you're free to make up as you see fit. Let's try to re-write part of `myArray` as an Object:
 
 ```javascript
-var myObject = {
+const myObject = {
   myString: "String",
   myNum: 23,
   myBoo: true
@@ -110,10 +110,10 @@ Let's try exploring your Portfolio project through the `document` Object!
      This means that we can assign these DOM nodes to variables and treat them just like any other Object or Array. To see how that works in action, try the following from the console:
 
 ```javascript
-var nav = document.querySelector("#nav");
-var navLinkArr = nav.querySelectorAll("li");
-var firstNavLink = navLinkArr[0];
-var secondNavLink = navLinkArr[1];
+const nav = document.querySelector("#nav");
+const navLinkArr = nav.querySelectorAll("li");
+const firstNavLink = navLinkArr[0];
+const secondNavLink = navLinkArr[1];
 
 firstNavLink.textContent;
 secondNavLink.textContent = "New Link Text";
@@ -129,16 +129,16 @@ Just like we did with the first `greeter` exercise, we can also manipulate the D
 2. Then we need to pick out the `#greeting` element of our HTML document and change its `.textContent` to include a greeting for our visitor. HINT:
 
 ```javascript
-var name = prompt("Hi there! What's your name?");
-var output = document.querySelector("#greeting");
+const name = prompt("Hi there! What's your name?");
+const output = document.querySelector("#greeting");
 output.textContent = "Thanks for visiting, " + name + ".";
 ```
 
 3. While `textContent` works, it would be nice if we could wrap our greeting in a `<p>` element to keep styling consistent. To do that, we'll use a different method attached to DOM nodes called `.innerHTML`. Try this:
 
 ```javascript
-var name = prompt("Hi there! What's your name?");
-var output = document.querySelector("#greeting");
+const name = prompt("Hi there! What's your name?");
+const output = document.querySelector("#greeting");
 output.innerHTML = "<p>Thanks for visiting, " + name + ".</p>";
 ```
 

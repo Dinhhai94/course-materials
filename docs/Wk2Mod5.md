@@ -78,11 +78,11 @@ Up to this point, we haven't been able to see any of our other pages. Let's see 
 
 ```javascript
 // change our original state to home-specific state
-var home = {
+const home = {
   title: "Welcome to my Savvy Coders Portfolio"
 };
 
-var root = document.querySelector("#root"); // this doesn't need to be queried every time we re-render
+const root = document.querySelector("#root"); // this doesn't need to be queried every time we re-render
 
 function render(state) {
   root.innerHTML = `
@@ -100,7 +100,7 @@ render(home); // start by rendering the landing page
 
 ```javascript
 // assuming your first link is to your blog page
-var blog = {
+const blog = {
   title: "Welcome to my blog!"
 };
 ```
@@ -200,7 +200,7 @@ That's neither `DRY` nor pretty... just look as those nasty selectors that we ne
 ```javascript
 // notice the capitalized property names!
 
-var state = {
+const state = {
   Blog: {
     title: "Welcome to my Blog"
   },
@@ -221,7 +221,7 @@ var state = {
 ```javascript
 function handleNavigation(event) {
   // pull the component name from the text in the anchor tag
-  var component = event.target.textContent;
+  const component = event.target.textContent;
 
   event.preventDefault();
 
@@ -266,7 +266,7 @@ function render(state) {
       ${Footer(state)}
     `;
 
-  var links = document.querySelectorAll("#navigation a");
+  const links = document.querySelectorAll("#navigation a");
 
   links[0].addEventListener("click", handleNavigation);
 

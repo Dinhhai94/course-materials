@@ -49,17 +49,17 @@ What's the answer? It's definitely NOT 4 like you or I might expect. And that's 
 
 Note that all strings have to have quotes (either single or double) around them. Words written without quotes are something else entirely...
 
-5. In the 'real world', programming implies that you can create a program to be used later, rather than simply typing in commands. To do that, we need a way to save these bits of data to memory. JavaScript lets us save values to **variables** using the `var` keyword. Try the following:
+5. In the 'real world', programming implies that you can create a program to be used later, rather than simply typing in commands. To do that, we need a way to save these bits of data to memory. JavaScript lets us save values to **variables** using either the `const`, `let` or  `var` **keywords.** Try the following:
 
 ```javascript
-var currentYear = 2016;
-var myCountry = "USA";
+const currentYear = 2016;
+let myCountry = "USA";
 var myPhrase = currentYear + " is an election year in the " + myCountry;
 console.log(myPhrase);
 ```
 
     A couple of things to notice about these commands:
-    + var and the name of the variable are separated by a space, and the variable name can't include spaces
+    + Our **keyword** and the name of the variable are separated by a space, and the variable name can't include spaces
     + variable values can be any data type (that we've covered so far)
     + variable values are assigned using the *assignment operator* (which looks like an equals sign to you and I).
     + the assignment 'phrase' ends with a semicolon. We end JavaScript 'sentences' with semicolons... always!
@@ -67,12 +67,16 @@ console.log(myPhrase);
     + We can access the value stored to the variable name by typing in that variable's name to the REPL.
     + To actually log the value to the Dev Console (much more useful in real-world applications), we can use the built in function `console.log([variable name])`
     + When we use the variable, we DON'T use quotation marks. Quotes mean Strings, and variables are variables, not strings of text.
+    + `const` indicates a value that we can't replace in memory. It's basically a 'constant.' So, if we do `const currentYear = 2017`, we will get an error.
+    + `let` and `var` __do__ allow the value to be replaced.
+    + `var` initializes all variables as `undefined` prior to JS reviewing and assigning the value we actually want.
+    + In this course, we will focus on using `const` and `let`, and we will consider `var` for legacy purposes.
 
 6. So now we have some saved data. Wouldn't it be nice if we could test that data? We can, in fact, using the _Boolean_ data type. Booleans only have two values: `true` or `false`. They can be stored as a variable of their own, or can be returned as a result of a test. Try the following:
 
 ```javascript
-var isTrue = true; //notice: no quotes around true!
-var isFalse = false;
+const isTrue = true; //notice: no quotes around true!
+const isFalse = false;
 2 === 2
 2 === '2'
 2 > 3
@@ -116,7 +120,7 @@ Now something should output each time that block of code is run, since it covers
 3. But this can be a real pain to re-type every time you want to check out your current country. What if we could save this block of code just like we could save chunks of data to variables? Luckily, we can do exactly that by creating a new function! Try this:
 
 ```javascript
-var freedomCheck = function() {
+const freedomCheck = function() {
   if (myCountry === "USA") console.log("Sweet Land of Liberty");
   else console.log("Sounds like you need some DEMOCRACY");
 };
@@ -170,7 +174,7 @@ What happened to the user input here? As of right now, nothing! Let's try this i
 
 ```html
 <script type="text/javascript">
-  var name = prompt('What is your name?');
+  const name = prompt('What is your name?');
 
   alert('Hello ' + name);
 </script>
@@ -182,7 +186,7 @@ Neat, huh? `prompt()` actually returns a String for us to play around with. We j
 
 ```html
 <script type="text/javascript">
-  var name = prompt('What is your name?');
+  const name = prompt('What is your name?');
 
   if(name === "") { // checks for an empty string
     name = prompt('What is your name, for real this time?');
@@ -196,9 +200,9 @@ Neat, huh? `prompt()` actually returns a String for us to play around with. We j
 
 ```html
 <script type="text/javascript">
-  var name = prompt('What is your name?');
+  const name = prompt('What is your name?');
 
-  var checkName = function(){
+  const checkName = function(){
     if(name === "") {
       name = prompt('What is your name, for real this time?');
 
@@ -218,9 +222,9 @@ Neat, huh? `prompt()` actually returns a String for us to play around with. We j
    2. Copy the contents of the `<script>` tag (NOT the `<script>` tag itself!) over to `index.js`. HINT: the entire document should look like:
 
    ```javascript
-   var name = prompt("What is your name?");
+   const name = prompt("What is your name?");
 
-   var checkName = function() {
+   const checkName = function() {
      if (name === "") {
        name = prompt("What is your name, for real this time?");
 
