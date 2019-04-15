@@ -41,8 +41,7 @@ Because each operating system is so different, we'll need to install a different
 
 - For Mac users, the Terminal application works well as a UNIX-compliant
   command-line.
-- If you would like a command-line application with more features, [iTerm2](https://www.iterm2.com/)
-  is the _de facto_ choice of many devs.
+- If you would like a command-line application with more features, [iTerm2](https://www.iterm2.com/) is the _de facto_ choice of many devs.
 - For some versions of macOS, you will also need to consent to using XCode
   features. To trigger this installation/consent process, type in `git --version` and hit `ENTER`. If a version number is output to the screen,
   you're good to go. Otherwise, follow the prompts to make sure that you're
