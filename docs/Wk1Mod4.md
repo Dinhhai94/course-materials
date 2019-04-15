@@ -185,9 +185,9 @@ As a quick rule of thumb, look at a selector, and put a number in the correct bo
 
 ![example specificity calculation](https://css-tricks.com/wp-content/csstricks-uploads/cssspecificity-calc-1.png)
 
-![example specificity calculation 2](https://css-tricks.com/wp-content/csstricks-uploads/cssspecificity-calc-2.png)
-
 In this example, there are more component parts in the second example, but the first is still more specific (and would take precendent over the second in the event of a rule collision) because of the power of the ID `#nav`
+
+![example specificity calculation 2](https://css-tricks.com/wp-content/csstricks-uploads/cssspecificity-calc-2.png)
 
 ---
 
