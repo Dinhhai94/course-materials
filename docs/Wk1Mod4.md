@@ -181,13 +181,24 @@ Up to this point, you've heard all about the 'cascade' in _Cascading Style Sheet
 
 ![specificity diagram](https://css-tricks.com/wp-content/csstricks-uploads/specificity-calculationbase.png)
 
-As a quick rule of thumb, look at a selector, and put a number in the correct box that corresponds to the number of each selector's component parts. As an example:
+As a quick rule of thumb, look at a selector, and put a number in the correct box that corresponds to the number of each selector's component parts. 
+
+In other words:
+
+  - If the element has inline styling, that automatically1 wins (1,0,0,0 points)
+  - For each ID value, apply 0,1,0,0 points
+  -For each class value (or pseudo-class or attribute selector), apply 0,0,1,0 points
+  -For each element reference, apply 0,0,0,1 point
+
+You can generally read the values as if they were just a number, like 1,0,0,0 is "1000", and so clearly wins over a specificity of 0,1,0,0 or "100". The commas are there to remind us that this isn't really a "base 10" system, in that you could technically have a specificity value of like 0,1,13,4 - and that "13" doesn't spill over like a base 10 system would. [Source](https://css-tricks.com/specifics-on-css-specificity/#article-header-id-0)
+
+As an example:
 
 ![example specificity calculation](https://css-tricks.com/wp-content/csstricks-uploads/cssspecificity-calc-1.png)
 
-![example specificity calculation 2](https://css-tricks.com/wp-content/csstricks-uploads/cssspecificity-calc-2.png)
-
 In this example, there are more component parts in the second example, but the first is still more specific (and would take precendent over the second in the event of a rule collision) because of the power of the ID `#nav`
+
+![example specificity calculation 2](https://css-tricks.com/wp-content/csstricks-uploads/cssspecificity-calc-2.png)
 
 ---
 
