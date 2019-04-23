@@ -74,8 +74,8 @@ The heart of your contact page will almost certainly be a form. Let's try out a 
 
   <label>What's this message about?
     <input type="radio" name="subject" value="professional" checked><span>I'd like to hire you!</span>
-    <input type="radio" name="subject" value="personal" checked><span>Personal message</span>
-    <input type="radio" name="subject" value="other" checked><span>Don't know/something else</span>
+    <input type="radio" name="subject" value="personal"><span>Personal message</span>
+    <input type="radio" name="subject" value="other"><span>Don't know/something else</span>
   </label>
 
   <input type="checkbox" name="optin" value="trusting" checked>Subscribe me to your newsletter!
