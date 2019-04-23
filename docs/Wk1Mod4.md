@@ -34,7 +34,7 @@ Let's create a new contact page for your website!
 2. Set up your new contact page to use the same stylesheet as the rest of your site. HINT:
 
 ```html
-<link type="text/css" rel="stylesheet" href="../css/style.css"/>
+<link type="text/css" rel="stylesheet" href="../css/style.css" />
 ```
 
 3. Now set up the rest of your page's structure, including a navigation bar, `.container` area, and footer (like the other pages in your portfolio site).
@@ -49,10 +49,10 @@ The heart of your contact page will almost certainly be a form. Let's try out a 
 
 ```html
 <form>
-  <input type="text">
-  <input type="password">
-  <input type="email">
-  <input type="submit">
+  <input type="text" />
+  <input type="password" />
+  <input type="email" />
+  <input type="submit" />
 </form>
 ```
 
@@ -61,25 +61,36 @@ The heart of your contact page will almost certainly be a form. Let's try out a 
 4. Now let's try a more complicated example. Replace the code from above with the following snippet. Try to re-type instead of copy->pasting!
 
 ```html
-  <!--
+<!--
   The action attribute defines where on the server the form data should be sent
   The method attribute specifies the HTTP method (GET or POST)
 -->
 
 <form action="form-responses/new" method="POST">
+  <input type="text" name="firstname" value="First Name" size="100" autofocus />
+  <input type="text" name="lastname" value="Last Name" size="100" />
+  <input type="email" name="userEmail" placeholder="your.email@example.com" />
 
-  <input type="text" name="firstname" value="First Name" size="100" autofocus>
-  <input type="text" name="lastname" value="Last Name" size="100">
-  <input type="email" name="userEmail" placeholder="your.email@example.com">
+  <p>What's this message about?</p>
 
-  <label>What's this message about?
-    <input type="radio" name="subject" value="professional" checked><span>I'd like to hire you!</span>
-    <input type="radio" name="subject" value="personal"><span>Personal message</span>
-    <input type="radio" name="subject" value="other"><span>Don't know/something else</span>
-  </label>
+  <div>
+    <input type="radio" name="subject" value="professional" id="pro" checked />
+    <label for="pro">I'd like to hire you!</label>
+  </div>
 
-  <input type="checkbox" name="optin" value="trusting" checked>Subscribe me to your newsletter!
-  <input type="checkbox" name="optout" value="skeptical" disabled>Cheeky checkbox...
+  <div>
+    <input type="radio" name="subject" value="personal" id="personal" />
+    <label for="personal">Personal message</label>
+  </div>
+  <div>
+    <input type="radio" name="subject" value="other" />
+    <label>Don't know/something else</label>
+  </div>
+
+  <input type="checkbox" name="optin" value="trusting" checked />Subscribe me to
+  your newsletter!
+  <input type="checkbox" name="optout" value="skeptical" disabled />Cheeky
+  checkbox...
 
   <label for="marketing">How did you hear about me?</label>
   <select name="marketing">
@@ -98,7 +109,7 @@ The heart of your contact page will almost certainly be a form. Let's try out a 
   </select>
 
   <textarea name="user_message" rows="8" cols="40"></textarea>
-  <input type="submit">
+  <input type="submit" />
 </form>
 ```
 
@@ -167,7 +178,7 @@ Let's add some form validation to your contact form.
 5. Change your opening `<form>` tag to implement [Formspree](http://formspree.io/), like so:
 
 ```html
-<form action="//formspree.io/your.email@example.com" method="POST">
+<form action="//formspree.io/your.email@example.com" method="POST"></form>
 ```
 
 6. Once your new-and-improved form works like you would like, stage, commit, push and deploy your site.
@@ -181,12 +192,12 @@ Up to this point, you've heard all about the 'cascade' in _Cascading Style Sheet
 
 ![specificity diagram](https://css-tricks.com/wp-content/csstricks-uploads/specificity-calculationbase.png)
 
-As a quick rule of thumb, look at a selector, and put a number in the correct box that corresponds to the number of each selector's component parts. 
+As a quick rule of thumb, look at a selector, and put a number in the correct box that corresponds to the number of each selector's component parts.
 
 In other words:
 
-  - If the element has inline styling, that automatically1 wins (1,0,0,0 points)
-  - For each ID value, apply 0,1,0,0 points
+- If the element has inline styling, that automatically1 wins (1,0,0,0 points)
+- For each ID value, apply 0,1,0,0 points
   -For each class value (or pseudo-class or attribute selector), apply 0,0,1,0 points
   -For each element reference, apply 0,0,0,1 point
 
