@@ -205,7 +205,7 @@ const state = {
     title: "Welcome to my Blog"
   },
   Home: {
-    title: "Wecome to my Portfolio"
+    title: "Welcome to my Portfolio"
   },
   Contact: {
     title: "Contact Me"

@@ -302,6 +302,8 @@ nav .dropdown {
 
 nav a:hover + .dropdown {
   display: block; // shows the any dropdown that is a direct sibling of a hovered anchor tag in the navigation bar
+#navigation a:hover + .dropdown {
+  display: block; // opens/displays only DIRECT SIBLING .dropdown when hovering over <a>
 }
 ```
 
