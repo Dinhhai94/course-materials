@@ -82,8 +82,8 @@ const isFalse = false;
 2 > 3
 2 < 3
 2 !== 3
-2 <== 2
-2 >== 2
+2 <= 2
+2 >= 2
 'hello' === 'hello'
 'hello' === 'Hello'
 console.log(isTrue === isFalse);
