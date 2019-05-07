@@ -127,14 +127,14 @@ Now, using the same sandbox page we used for Exercise 1, try the following:
 2. `append` a calling card with your name to the end of the page. HINT:
 
 ```javascript
-var callingCard = "<div><b>Alex was here</b></div>";
+const callingCard = "<div><b>Alex was here</b></div>";
 $("body").append(callingCard);
 ```
 
 3. `prepend` a greeting to the beginning of the page's `body`. HINT:
 
 ```javascript
-var greeting = "<h1>Welcome to the jQuery SandBox</h1>";
+const greeting = "<h1>Welcome to the jQuery SandBox</h1>";
 $("body").prepend(greeting);
 ```
 
@@ -164,7 +164,7 @@ We've already seen how to pass in _arguments_ to two functions: `.css()` and `.a
 You'll recall from earlier in the week that Objects are sets of key/value pairs that can be defined explicitly using curly brackets. e.g.:
 
 ```javascript
-var myObject = { propertyTheFirst: "This is a value", propertyTheSecond: "This is a different value" };
+const myObject = { propertyTheFirst: "This is a value", propertyTheSecond: "This is a different value" };
 ```
 
 So far we've been using methods on pre-built Objects (like the Object returned by `$()`) through dot notation. But we can also create Objects of our own to be passed into functions (inlucding `.css()` and `.animate()`). In this case, we'll use an Object to pass in a series of properties and values to change!
@@ -181,7 +181,7 @@ $("#change-me").css({
 });
 
 // separated
-var options = {
+const options = {
     "width": "80%",
     "margin-left": "auto",
     "margin-right": "auto"
@@ -199,7 +199,7 @@ $("#change-me").animate({
 });
 
 // separated
-var options = {
+const options = {
     "font-size": "300%",
     "margin-left": "200px",
     "padding": "50px"

@@ -5,7 +5,7 @@ Organizing code structures around Objects rather than functions is called Object
 As we've seen already, Objects can have keys which are Strings, and values which can be any data type: Strings, Numbers, Arrays, Objects... even functions!
 
 ```javascript
-var person = {
+const person = {
   name: "Bob",
   location: "Los Angeles",
   age: 56,
@@ -27,7 +27,7 @@ There are a number of powerful additions to this basic understanding of Objects 
 In the example above, `party` is a `function`. If a `function` is attached to an Object, we refer to that `function` as a _method_. While it's perfectly valid to notate the `party` method as above, we can also use a shorter syntax:
 
 ```javascript
-var person = {
+const person = {
   // other properties here
 
   party() {
@@ -41,7 +41,7 @@ And we can call this method by invoking `person.party()`. But what does this giv
 One of the big benefits of attaching methods to Objects is access to the _calling context_ (or parent Object) of that method through the `this` keyword. See if you can get the following to work:
 
 ```javascript
-var person = {
+const person = {
   name: "Bob",
 
   // other properties and methods
@@ -71,11 +71,11 @@ You should find that the above `function`, which doesn't appear to be attached t
 We can also change an Object's properties by referencing them with `this`:
 
 ```javascript
-var car = {
+const car = {
   type: "Honda Civic",
   position: 1,
   move() {
-    var prev = this.position;
+    let prev = this.position;
     this.position = this.position + 1;
     console.log(`${this.type} is moving from ${prev} to ${this.position}`);
   }
@@ -88,12 +88,12 @@ var car = {
 4. When a car moves, adjust its position by adding its speed. HINT:
 
 ```javascript
-var car = {
+const car = {
   type: "Honda Civic",
   position: 1,
   speed: 8,
   move() {
-    var prev = this.position;
+    let prev = this.position;
     this.position = this.position + this.speed;
     console.log(`${this.type} is moving from ${prev} to ${this.position}`);
   }
@@ -120,8 +120,8 @@ function Car(type, speed){
 This constructor gives us the ability to create a specific instance of this more general `Car` idea. To create that instance, we need to use a keyword that we saw previously when we set up our client side router: `new`. Try the following:
 
 ```javascript
-var civic = new Car("Honda Civic", 8);
-var camry = new Car("Toyota Camry", 7);
+const civic = new Car("Honda Civic", 8);
+const camry = new Car("Toyota Camry", 7);
 ```
 
 What are the data types of `civic` and `camry`? Hopefully, they're Objects that have similar properties (`speed`, `type`, and `position`). 
@@ -141,7 +141,7 @@ This is all well and good, but how do we implement new, shared behavior for our 
 ```javascript
 Car.prototype.move = function move(){
   // what is "this"?
-  var prev = this.position;
+  let prev = this.position;
   this.position = this.position + this.speed;
   console.log(`${this.type} is moving from ${prev} to ${this.position}`);
 }
@@ -171,7 +171,7 @@ class Car {
 
   // this attaches move to the Car prototype
   move() {
-    var prev = this.position;
+    let prev = this.position;
     this.position = this.position + this.speed;
     console.log(`${this.type} is moving from ${prev} to ${this.position}`);
   }
@@ -192,7 +192,7 @@ class Dragster extends Car {
   }
 }
 
-var dragster = new Dragster(100);
+const dragster = new Dragster(100);
 
 dragster.move(); // still works!
 dragster.pitStop(); // has access to same calling context
@@ -231,7 +231,7 @@ export default class Store {
 3. Now we should be able to replace our `import * as State` line in our projects's main `index.js` file with a single `import Store from './store'`. Then we can create a new store with:
 
 ```javascript
-var store = new Store();
+const store = new Store();
 ```
 
 4. We _could_, at this point, access `store.state` directly. But it's better if we restrict direct access to the `state` if we can. This will make our implementation of `state` easier to change later if we want, _decoupling_ our state from the use of that state in our application. To do that, we're going to implement a pattern that we've seen before when dealing with `event`s called the Listener pattern. One way to think about this pattern is to say that our application will _listen_ for changes in _state_. Let's create an Array of listeners managed by our Store like so:

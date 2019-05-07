@@ -34,7 +34,7 @@ Let's create a new contact page for your website!
 2. Set up your new contact page to use the same stylesheet as the rest of your site. HINT:
 
 ```html
-<link type="text/css" rel="stylesheet" href="../css/style.css"/>
+<link type="text/css" rel="stylesheet" href="../css/style.css" />
 ```
 
 3. Now set up the rest of your page's structure, including a navigation bar, `.container` area, and footer (like the other pages in your portfolio site).
@@ -49,10 +49,10 @@ The heart of your contact page will almost certainly be a form. Let's try out a 
 
 ```html
 <form>
-  <input type="text">
-  <input type="password">
-  <input type="email">
-  <input type="submit">
+  <input type="text" />
+  <input type="password" />
+  <input type="email" />
+  <input type="submit" />
 </form>
 ```
 
@@ -61,25 +61,36 @@ The heart of your contact page will almost certainly be a form. Let's try out a 
 4. Now let's try a more complicated example. Replace the code from above with the following snippet. Try to re-type instead of copy->pasting!
 
 ```html
-  <!--
+<!--
   The action attribute defines where on the server the form data should be sent
   The method attribute specifies the HTTP method (GET or POST)
 -->
 
 <form action="form-responses/new" method="POST">
+  <input type="text" name="firstname" value="First Name" size="100" autofocus />
+  <input type="text" name="lastname" value="Last Name" size="100" />
+  <input type="email" name="userEmail" placeholder="your.email@example.com" />
 
-  <input type="text" name="firstname" value="First Name" size="100" autofocus>
-  <input type="text" name="lastname" value="Last Name" size="100">
-  <input type="email" name="userEmail" placeholder="your.email@example.com">
+  <p>What's this message about?</p>
 
-  <label>What's this message about?
-    <input type="radio" name="subject" value="professional" checked><span>I'd like to hire you!</span>
-    <input type="radio" name="subject" value="personal" checked><span>Personal message</span>
-    <input type="radio" name="subject" value="other" checked><span>Don't know/something else</span>
-  </label>
+  <div>
+    <input type="radio" name="subject" value="professional" id="pro" checked />
+    <label for="pro">I'd like to hire you!</label>
+  </div>
 
-  <input type="checkbox" name="optin" value="trusting" checked>Subscribe me to your newsletter!
-  <input type="checkbox" name="optout" value="skeptical" disabled>Cheeky checkbox...
+  <div>
+    <input type="radio" name="subject" value="personal" id="personal" />
+    <label for="personal">Personal message</label>
+  </div>
+  <div>
+    <input type="radio" name="subject" value="other" />
+    <label>Don't know/something else</label>
+  </div>
+
+  <input type="checkbox" name="optin" value="trusting" checked />Subscribe me to
+  your newsletter!
+  <input type="checkbox" name="optout" value="skeptical" disabled />Cheeky
+  checkbox...
 
   <label for="marketing">How did you hear about me?</label>
   <select name="marketing">
@@ -98,7 +109,7 @@ The heart of your contact page will almost certainly be a form. Let's try out a 
   </select>
 
   <textarea name="user_message" rows="8" cols="40"></textarea>
-  <input type="submit">
+  <input type="submit" />
 </form>
 ```
 
@@ -167,11 +178,38 @@ Let's add some form validation to your contact form.
 5. Change your opening `<form>` tag to implement [Formspree](http://formspree.io/), like so:
 
 ```html
-<form action="//formspree.io/your.email@example.com" method="POST">
+<form action="//formspree.io/your.email@example.com" method="POST"></form>
 ```
 
 6. Once your new-and-improved form works like you would like, stage, commit, push and deploy your site.
 7. When your site is live, test out your form! You should get parsed responses from Formspree as soon as you confirm your email address.
+
+---
+
+## Specificity
+
+Up to this point, you've heard all about the 'cascade' in _Cascading Style Sheets_. That cascade refers to the way in which styles are applied in a cascading pattern of increasing [**specificity**](https://css-tricks.com/specifics-on-css-specificity/). Up to this point, you've heard the term "specificity" used colloquially, but here we're going to give you a quick way of putting a number value on a given selector's specificity.
+
+![specificity diagram](https://css-tricks.com/wp-content/csstricks-uploads/specificity-calculationbase.png)
+
+As a quick rule of thumb, look at a selector, and put a number in the correct box that corresponds to the number of each selector's component parts.
+
+In other words:
+
+- If the element has inline styling, that automatically1 wins (1,0,0,0 points)
+- For each ID value, apply 0,1,0,0 points
+  -For each class value (or pseudo-class or attribute selector), apply 0,0,1,0 points
+  -For each element reference, apply 0,0,0,1 point
+
+You can generally read the values as if they were just a number, like 1,0,0,0 is "1000", and so clearly wins over a specificity of 0,1,0,0 or "100". The commas are there to remind us that this isn't really a "base 10" system, in that you could technically have a specificity value of like 0,1,13,4 - and that "13" doesn't spill over like a base 10 system would. [Source](https://css-tricks.com/specifics-on-css-specificity/#article-header-id-0)
+
+As an example:
+
+![example specificity calculation](https://css-tricks.com/wp-content/csstricks-uploads/cssspecificity-calc-1.png)
+
+In this example, there are more component parts in the second example, but the first is still more specific (and would take precendent over the second in the event of a rule collision) because of the power of the ID `#nav`
+
+![example specificity calculation 2](https://css-tricks.com/wp-content/csstricks-uploads/cssspecificity-calc-2.png)
 
 ---
 
@@ -205,7 +243,7 @@ The layout above is a very common layout for blogs... much like the blog that we
 2. Let's change the unordered list (`<ul>`) of navigation links into an actual horizontal bar instead of a vertical bullet-pointed list. Try the following in your navigation bar (with a `class` of `navigation`, for this example):
 
 ```css
-#navigation > ul > li {
+nav > ul > li {
   display: inline;
   list-style: none;
 }
@@ -214,7 +252,7 @@ The layout above is a very common layout for blogs... much like the blog that we
 3. Now let's make our navigation bar 'sticky' by **fixing** its **position** in the viewport. Try the following CSS:
 
 ```css
-#navigation {
+nav {
   position: fixed;
   top: 0;
   left: 0;
@@ -224,7 +262,7 @@ The layout above is a very common layout for blogs... much like the blog that we
 4. Add a `margin-top` value to next page element to keep navigation from overlapping useful content. If the next section has a `class` of `header`, your CSS might look like this up to this point:
 
 ```css
-#navigation {
+nav {
   position: fixed;
   top: 0;
   left: 0;
@@ -232,12 +270,12 @@ The layout above is a very common layout for blogs... much like the blog that we
   width: 100vw;
 }
 
-#navigation > ul > li {
+nav > ul > li {
   display: inline;
   list-style: none;
 }
 
-.header {
+header {
   margin-top: 1.3em;
 }
 ```
@@ -258,32 +296,32 @@ The layout above is a very common layout for blogs... much like the blog that we
 6. There are two issues with this `dropdown` as-written: first, the dropdown is always visible. Second, the dropdown is affecting the height of the navigation bar, when we'd rather have the dropdown "float" over the rest of the content in the header. Let's tackle the first issue with `display` and `:hover`:
 
 ```css
-#navigation .dropdown {
+nav .dropdown {
   display: none; // this hides the dropdown menu by default
 }
 
-#navigation a:hover + .dropdown {
-  display: block; // opens/displays only DIRECT SIBLING .dropdown when hovering over <a>
+nav a:hover + .dropdown {
+  display: block; // shows the any dropdown that is a direct sibling of a hovered anchor tag in the navigation bar
 }
 ```
 
 7. But how to tackle the page flow issue? We can't use `position: fixed`, because we don't always know where this dropdown's associated `projects` link is going to be relative to the viewport. Instead, we'll use `position: absolute` in combination with `position: relative` to make sure that our dropdown menu "tracks" its parent.
 
 ```css
-#navigation > ul > li {
+nav > ul > li {
   position: relative; // required for absolute positioning
   display: inline;
   list-style: none;
 }
 
-#navigation .dropdown {
+nav .dropdown {
   position: absolute; // tracks nearest relatively-positioned ancestor
   top: 1em; // positions according to the ancestor
   right: 0;
   display: none;
 }
 
-#navigation a:hover + .dropdown {
+nav a:hover + .dropdown {
   display: block;
 }
 ```
@@ -292,7 +330,7 @@ The layout above is a very common layout for blogs... much like the blog that we
 1. Change your `#navigation` CSS to the following:
 
 ```css
-#navigation {
+nav {
   position: fixed;
   top: 0;
   left: 0;
@@ -304,7 +342,7 @@ The layout above is a very common layout for blogs... much like the blog that we
 2. If you haven't already, give the `<ul>` in your `#navigation` section a class of `.container` to center the useful links on a large screen. We also need to add some CSS to our `ul.container` element. CSS for the whole `#navigation` family is going to look like this:
 
 ```css
-#navigation {
+nav {
   position: fixed;
   top: 0;
   left: 0;
@@ -312,24 +350,24 @@ The layout above is a very common layout for blogs... much like the blog that we
   width: 100vw;
 }
 
-#navigation > ul > li {
+nav > ul > li {
   position: relative;
   display: inline;
   list-style: none;
 }
 
-#navigation .dropdown {
+nav .dropdown {
   position: absolute;
   top: 1em;
   right: 0;
   display: none;
 }
 
-#navigation a:hover + .dropdown {
+nav a:hover + .dropdown {
   display: block;
 }
 
-#navigation > ul.container {
+nav > ul.container {
   //these styles will extend the styles already contained in the .container class
   display: flex;
   flex-direction: row;

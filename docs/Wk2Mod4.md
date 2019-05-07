@@ -2,7 +2,7 @@
 
 ### Delving Deeper in to Functions
 
-We've already seen a variety of functions, from built-in functions like `console.log()`, to a few of our own built using `var functionName = function(){}`. We've also already learned how to _invoke_ or _execute_ functions with `()`, as well as passing in a few simple arguments (like we've done with `prompt("some string")`). Let's dig into these a bit deeper.
+We've already seen a variety of functions, from built-in functions like `console.log()`, to a few of our own built using `const functionName = function(){}`. We've also already learned how to _invoke_ or _execute_ functions with `()`, as well as passing in a few simple arguments (like we've done with `prompt("some string")`). Let's dig into these a bit deeper.
 
 ---
 
@@ -11,7 +11,7 @@ We've already seen a variety of functions, from built-in functions like `console
 Up to this point, we've been writing functions like this:
 
 ```javascript
-var someFunction = function someFunction() {};
+const someFunction = function someFunction() {};
 ```
 
 While it's clear what's going on here, we have another way writing functions that's a bit cleaner. It's called a _named functional expression_, and it looks like this:
@@ -20,7 +20,7 @@ While it's clear what's going on here, we have another way writing functions tha
 function someFunction() {}
 ```
 
-While there are some technical differences between the two ways of declaring functions, the latter is used much more widely than the former, and is generally a bit easier to read. As long as we treat the functional expression the same way we were treating it's `var`-based cousin, we should be fine (and save ourselves a few keystrokes in the process).
+While there are some technical differences between the two ways of declaring functions, the latter is used much more widely than the former, and is generally a bit easier to read. As long as we treat the functional expression the same way we were treating it's `const`-based cousin, we should be fine (and save ourselves a few keystrokes in the process).
 
 ### the `return` keyword
 
@@ -32,7 +32,7 @@ function greeter() {
 }
 
 // saving the return value
-var greeting = greeter();
+const greeting = greeter();
 
 // using the return value to compose larger expressions
 console.log(`${greeting}, nice to meet you.`);
@@ -45,25 +45,25 @@ The result of evaluating an expression consisting of a function reference follow
 
 ```javascript
 function sayingGenerator() {
-  var phrase = "Heeey, it's the Fonz.";
+  const phrase = "Heeey, it's the Fonz.";
   return phrase;
 }
 
 // What is the return value?
-var saying = sayingGenerator();
+const saying = sayingGenerator();
 
 function brokenSayingGenerator() {
-  var phrase = "Heey, it's the Fonz.";
+  const phrase = "Heey, it's the Fonz.";
   phrase;
 }
 
 // What about now?
-var brokenSaying = brokenSayingGenerator();
+const brokenSaying = brokenSayingGenerator();
 ```
 
 #### Portfolio Project 1:
 
-Refactor every instance of `var someFunction = function()` across your portfolio project into a named functional expression. Be sure to double-check that we haven't caused any regressions!
+Refactor every instance of `const someFunction = function()` across your portfolio project into a named functional expression. Be sure to double-check that we haven't caused any regressions!
 
 ---
 
@@ -103,7 +103,7 @@ function logAndReturn() {
 2. Store the `return` value as a variable `returnedValues`. HINT:
 
 ```javascript
-var returnedValues = logAndReturn();
+const returnedValues = logAndReturn();
 ```
 
 3. Pass that variable as an argument to a second invocation of `logAndReturn`. HINT:
@@ -138,7 +138,7 @@ function doubler(num) {
 }
 
 // is it ten?
-var shouldBeTen = doubler(5);
+const shouldBeTen = doubler(5);
 
 function doubleValueLogger(value1, value2) {
   console.log(value1, value2);
@@ -153,7 +153,7 @@ function add(num1, num2) {
   return num1 + num2;
 }
 
-var sum = add(7, 12);
+const sum = add(7, 12);
 ```
 
 ### Exercise 3
@@ -228,7 +228,7 @@ document.querySelector("#root").innerHTML = `
 2. We should try to think of our components as pure, "dumb" expressions of the state of our application. That application state could eventually get pretty complicated, so let's think of that state as an Object that can eventually store lots of data for us. Let's create that state Object in `index.js`, then pass that state to our component. In `index.js`:
 
 ```javascript
-var state = {
+const state = {
   title: "Welcome to Alex's Savvy Coders Portfolio"
 };
 

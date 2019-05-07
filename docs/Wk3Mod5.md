@@ -7,7 +7,7 @@ You've come a long way from your very first bits of code! As you've progressed, 
 1. First, we had plain-text content.
 2. Next, we added additional attributes and information to that content through HTML and CSS.
 3. Then we created our first transient statements of action vs content (e.g. `2 + 2`).
-4. Then we started adding these action statements to our static content (e.g. `var greeting = function(){ alert( "hello!" ) };`).
+4. Then we started adding these action statements to our static content (e.g. `const greeting = function(){ alert( "hello!" ) };`).
 5. Then we started dealing with the idea of responding to user state using an _imperative_ style of programming (e.g. `if` and `else` statements), but our program would only be run once per page load. These weren't applications as much as "scripts".
 6. Then we finally built our first truly interactive application once we got to _event-driven_ programming. Now we can respond to custom inputs from users, whenever those inputs happen!
 
@@ -15,7 +15,7 @@ One of the hallmarks of an interactive application is that we, as developers, ha
 
 ```javascript
 function randomFinish(label) {
-  var randomTime = Math.random() * 1000;
+  const randomTime = Math.random() * 1000;
 
   setTimeout(() => console.log(label + "is done!"), randomTime);
 }
@@ -35,7 +35,7 @@ We could use recursion to make sure that `randomFinish` always called the next i
 
 ```javascript
 function handleFinish( count ){
-    var label = `function ${count}`;
+    const label = `function ${count}`;
 
     console.log(`${label} is done!`);
 
@@ -45,7 +45,7 @@ function handleFinish( count ){
 };
 
 function randomFinish(count)
-    var randomTime = Math.random() * 1000;
+    const randomTime = Math.random() * 1000;
 
     setTimeout(
         () => handleFinish( count ),
@@ -72,7 +72,7 @@ That's a lot to take in, so let's see what our example above might look like wit
 
 ```javascript
 function handleFinish(count, resolve) {
-  var label = `function ${count}`;
+  const label = `function ${count}`;
 
   console.log(`${label} is done!`);
 
@@ -82,7 +82,7 @@ function handleFinish(count, resolve) {
 }
 
 function randomFinish(count) {
-  var randomTime = Math.random() * 1000;
+  const randomTime = Math.random() * 1000;
 
   return new Promise(resolve => { // the Promise constructor takes one argument: the function below
     // resolve is a function, too! reject is unused in this example
@@ -180,7 +180,7 @@ The code above defines a piece of our `state` Object just for our posts. If the 
 
 ```javascript
 axios.get("https://jsonplaceholder.typicode.com/posts").then(response => {
-  var params = router.lastRouteResolved().params;
+  const params = router.lastRouteResolved().params;
 
   response.data.forEach(post => state.posts.push(post));
 

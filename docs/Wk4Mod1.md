@@ -5,7 +5,7 @@ Remember our billion-dollar Bookstore Hack-A-Thon? This week, we're going to con
 1. Start where you left off with Part One of our bookstore project. We should have a number of books set up in an Array, plus a `form` element that can be used to add a new book to the existing product list. Remember, book Array (and Objects) should take the form:
 
 ```javascript
-var books = [
+const books = [
   {
     "id": 1,
     "name": "Lasagna: A Retrospective",
@@ -114,7 +114,7 @@ document
   .addEventListener(
     'submit',
     (event) => {
-      var newProduct = event
+      const newProduct = event
         .target
         .elements
         .reduce(
@@ -153,7 +153,7 @@ axios // don't forget to npm install this!
 9. This all works great for just books, but what if we wanted to add music to our store? We'll need another refactor! How could we re-organize our product data to account for the differences between types of products? Let's try adding our `books` Array to a new `products` Object that includes `books` and `albums` Arrays. HINT:
 
 ```javascript
-var products = {
+const products = {
   books: [book1, book2],
   albums: [album1, album2] // albums should be identical to book objects
 };
@@ -162,7 +162,7 @@ var products = {
 10. You'll be happy to see that there is an `/albums` route in our Savvy Coders API, too. But how do we render _both_ `books` and `albums` on initial page load? We could delay rendering _anything_ until we get both `books` and `albums`, but that doesn't make things better for our users. We could also delay rendering an _products_ until we have both books and albums, but that also delays our time-to-first-meaningful-interaction, irritating users. What if we rendered whatever came back first from our API, then re-render whenever the second batch comes in? Then we can use our `products` Object as a `state` store and do the following:
 
 ```javascript
-var products = {
+const products = {
   books: [],
   albums: []
 };
@@ -198,10 +198,10 @@ product[`${newProduct.type}s`].push(newProduct);
 12. Now let's let users filter between Books and Albums when they click on the `books` and `albums` links in the `Navigation` component. What might that look like? HINT:
 
 ```javascript
-var links = document.querySelectorAll("#navigation a");
+const links = document.querySelectorAll("#navigation a");
 
 links[0].addEventListener("click", event => {
-  var filteredProducts = {
+  const filteredProducts = {
     // why do we need to do this?
     books: products.books,
     albums: []
@@ -213,7 +213,7 @@ links[0].addEventListener("click", event => {
 });
 
 links[1].addEventListener("click", event => {
-  var filteredProducts = {
+  const filteredProducts = {
     books: [],
     albums: products.albums
   };
@@ -229,7 +229,7 @@ links[1].addEventListener("click", event => {
 ```javascript
 // form submit stuff here
 
-var pluralizedType = `${newProduct.type}s`;
+const pluralizedType = `${newProduct.type}s`;
 
 products[pluralizedType].push(newProduct);
 

@@ -57,7 +57,7 @@ Let's go through the following steps, dividing up tasks as a team, to get this n
 7. Now take all the information about our books and make them into JavaScript Objects. Create variables `book1`, `book2`, etc. Set each equal to an object with keys `name`, `author`, and `pictureUrl`, which hold string values, `price` and `id`, which holds a number value, and `sellingPoints`, which is an Array of Strings. EXAMPLE:
 
 ```javascript
-var book1 = {
+const book1 = {
     "id": 1,
     "name": "Lasagna: A Retrospective",
     "author": "Garfield"
@@ -83,8 +83,8 @@ document
     .addEventListener(
         'submit',
         (event) => {
-            var data = event.target.elements;
-            var newProduct = {
+            const data = event.target.elements;
+            const newProduct = {
                 'name': data[0].value,
                 'author': data[1].value,
                 'pictureURL': data[2].value,

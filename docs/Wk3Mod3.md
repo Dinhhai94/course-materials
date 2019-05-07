@@ -37,7 +37,7 @@ Let's see how these `import`/`export` variations might help us organize our larg
 When last we left our state tree, it was beginning to look something like this:
 
 ```javascript
-var states = {
+const states = {
   Home: {
     links: ["Blog", "Contact", "Projects"],
     title: "Welcome to my Portfolio"
@@ -175,9 +175,9 @@ import { lowerCase } from "lodash";
 import { lowerCase } from "lodash";
 
 function buildLinks(linkArray) {
-  var i = 0;
-  var links = "";
-  var link = "";
+  let i = 0;
+  let links = "";
+  let link = "";
 
   while (i < linkArray.length) {
     link = lowerCase(linkArray[i]);
@@ -199,7 +199,7 @@ function buildLinks(linkArray) {
 
 ```javascript
 function handleNavigation(event) {
-  var component = event.target.textContent;
+  const component = event.target.textContent;
 
   event.preventDefault();
 
@@ -230,7 +230,7 @@ import Navigo from "navigo";
 
 ```javascript
 // origin is required to help our router handle localhost addresses
-var router = new Navigo(window.location.origin);
+const router = new Navigo(window.location.origin);
 ```
 
 4. `router` works by chaining a number of different functions together (more on this idea of chaining functions later, too). The two that we'll use are `on` and `resolve`. `on` uses a callback structure: whenever a URL matches the pattern given to `on` as its first argument, the function provided as the second argument is called. We use `resolve` at the end of the chain to kick off the client-side routing process. Try this on `index.js`:
@@ -254,7 +254,7 @@ router
 
 ```javascript
 function handleRoute(params) {
-  var page = capitalize(params.page);
+  const page = capitalize(params.page);
 
   startApp(states[page]);
 }
@@ -288,9 +288,9 @@ Now we can add a special attribute to our generated links called `data-navigo` t
 
 ```javascript
 function buildLinks(linkArray) {
-  var i = 0;
-  var links = "";
-  var link = "";
+  let i = 0;
+  let links = "";
+  let link = "";
 
   while (i < linkArray.length) {
     link = lowerCase(link);
@@ -325,9 +325,9 @@ router
 
 ```javascript
 function buildLinks(linkArray) {
-  var i = 0;
-  var links = "";
-  var link = "";
+  let i = 0;
+  let links = "";
+  let link = "";
 
   while (i < linkArray.length) {
     if (linkArray[i] !== "Home") {
