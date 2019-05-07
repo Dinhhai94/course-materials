@@ -283,21 +283,6 @@ Today, we're going to take a look at inline styles. Inline styles are generally 
   </body>
 ```
 
-Try writing it out in a new HTML document in your `exercises` directory, then previewing the result in your browser.
-
-So what have we learned?
-
-1. The value of the HTML attribute named style styles HTML elements
-2. The styles are described using a language called CSS. Here are the rules of CSS:
-3. CSS rules are key-value pairs (similar to HTML attributes)
-4. The key represent the property to be changed (like 'color' or 'background-color')
-5. The value represents what it should be changed to ('blue' or 'red')
-6. The key and value are separated by a colon
-7. Each key-value pair is separated with a semi-colon
-8. Colors can be described by name, as eight digit hex (base 16) values between 0 (black) and F (white), or as Red Green Blue triplets from 0 to 255
-9. We can use the following css colors for our background-color and color attributes:
-   ![css color table](https://en.wikipedia.org/wiki/Web_colors#/media/File:SVG_Recognized_color_keyword_names.svg)
-
 ---
 
 #### Portfolio Project 3
