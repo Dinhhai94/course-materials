@@ -34,7 +34,7 @@ const userChoice = prompt("Choose Rock, Paper, or Scissors by typing 'R', 'P', o
 
 ```javascript
 const rng = Math.random();
-const computerChoice = "R";
+let computerChoice = "R";
 
 if(rng > 0.66) {
     computerChoice = "P";
