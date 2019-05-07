@@ -5,7 +5,7 @@
 The `while` loop looks a lot like an `if` statement. They both execute their associated code block based on the result of their conditional expression. The difference being, the `while` loop will repeatedly check its conditional expression and continue to run its code block as long as it evaluates to `true`. Give it a try:
 
 ```javascript
-const n = 0;
+let n = 0;
 
 console.log("I am called the Count... because I really love to count!");
 
@@ -26,7 +26,7 @@ Work through the following exercises as a group, implementing each in your devel
 1. **EXERCISE 1**: Create a `while` loop that logs numbers 1 through 10 to the console. HINT:
 
 ```javascript
-const n = 1;
+let n = 1;
 
 while (n <= 10) {
   console.log(n);
@@ -37,7 +37,7 @@ while (n <= 10) {
 2. **EXERCISE 2**: Create a `while` loop that logs every _even_ number from 2 through 20 to the console. HINT:
 
 ```javascript
-const n = 2;
+let n = 2;
 
 while (n <= 20) {
   console.log(n);
@@ -49,8 +49,8 @@ while (n <= 20) {
 
 ```javascript
 const n = 100;
-const i = 1;
-const sum = 0;
+let i = 1;
+let sum = 0;
 
 while (i < n) {
   sum += i;
@@ -62,8 +62,8 @@ while (i < n) {
 4. **EXERCISE 4**: Then, in addition to `console.log`-ing each iteration, append all lists to the document body. HINT (for exercise 1... try the others on your own):
 
 ```javascript
-const n = 1;
-const outputHtml = "<ul>";
+let n = 1;
+let outputHtml = "<ul>";
 
 while (n <= 10) {
   console.log(n);
@@ -79,8 +79,8 @@ document.body.innerHTML += outputHtml;
 5. **EXERCISE 5**: We can also combine `if` and `else` statements in our loops to respond to different input states. For this exercise, count _down_ from 15 by ones. For each number, log "even" or "odd" to the console and to a new div for Exercise 5. HINT:
 
 ```javascript
-const n = 15;
-const outputHtml = "<ul>";
+let n = 15;
+let outputHtml = "<ul>";
 
 while (n > 0) {
   console.log(n);
@@ -100,8 +100,8 @@ document.body.innerHTML += outputHTML;
 6. **EXERCISE 6**: Let's extend the idea of `if` and `else` in `while` loops with a pretty common exercise called FizzBuzz. For this exercise, log and output "Fizz" if a number is divisible by 3, "Buzz" if a number by 5, and "FizzBuzz" if a number is divisible by both 3 and 5. If a number is not divisible by 3 or 5, then just output the number. For this exercise, count up from 1 to 100. HINT:
 
 ```javascript
-const n = 1;
-const outputHtml = "<ul>";
+let n = 1;
+let outputHtml = "<ul>";
 
 while (n <= 100) {
   if (n % 3 === 0 && n % 5 == 0) {
@@ -164,7 +164,7 @@ function startApp(state) {
       ${footer(state)}
     `;
 
-  const i = 0;
+  let i = 0;
   const links = document.querySelectorAll("#navigation a");
 
   // every Array has a length property that we can access
@@ -180,8 +180,8 @@ function startApp(state) {
 
 ```javascript
 function buildLinks(linkArray) {
-  const i = 0;
-  const links = "";
+  let i = 0;
+  let links = "";
 
   while (i < linkArray.length) {
     links += `

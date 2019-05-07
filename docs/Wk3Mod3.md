@@ -175,9 +175,9 @@ import { lowerCase } from "lodash";
 import { lowerCase } from "lodash";
 
 function buildLinks(linkArray) {
-  const i = 0;
-  const links = "";
-  const link = "";
+  let i = 0;
+  let links = "";
+  let link = "";
 
   while (i < linkArray.length) {
     link = lowerCase(linkArray[i]);
@@ -288,9 +288,9 @@ Now we can add a special attribute to our generated links called `data-navigo` t
 
 ```javascript
 function buildLinks(linkArray) {
-  const i = 0;
-  const links = "";
-  const link = "";
+  let i = 0;
+  let links = "";
+  let link = "";
 
   while (i < linkArray.length) {
     link = lowerCase(link);
@@ -325,9 +325,9 @@ router
 
 ```javascript
 function buildLinks(linkArray) {
-  const i = 0;
-  const links = "";
-  const link = "";
+  let i = 0;
+  let links = "";
+  let link = "";
 
   while (i < linkArray.length) {
     if (linkArray[i] !== "Home") {

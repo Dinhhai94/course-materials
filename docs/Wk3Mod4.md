@@ -40,9 +40,9 @@ words.forEach(logMe);
 
 ```javascript
 function buildLinks(linkArray) {
-  const i = 0;
-  const links = "";
-  const route = ""; // changed for clarity
+  let i = 0;
+  let links = "";
+  let route = ""; // changed for clarity
 
   linkArray.forEach(link => {
     if (link !== "Home") {
@@ -75,7 +75,7 @@ Since JavaScript treats functions as first-class citizens, it can be treated as 
 Remember how `while` loops are avoided because of a floating count variable? e.g.
 
 ```javascript
-const i = 0; // awkward counter
+let i = 0; // awkward counter
 const limit = 10; // or some other number
 
 while (i < limit) {
@@ -136,7 +136,7 @@ Of the three functions we're learning today, `reduce` is the most complex, but i
 
 ```javascript
 const myArray = [1, 2, 3, 4, 5];
-const myArraySum = 0; // variable that keeps a sum of all values in myArray
+let myArraySum = 0; // variable that keeps a sum of all values in myArray
 
 myArray.forEach(num => {
   myArraySum += num;

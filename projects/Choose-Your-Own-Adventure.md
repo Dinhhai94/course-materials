@@ -9,7 +9,7 @@ Write a story into an HTML document on the basis of the user's responses to the 
 5. Use `prompt()` to lead visitors down different story paths. Something like this:
 
 ```javascript
-var response = prompt("You walk into a room with a chair and a window. Type 'sit' to sit in the chair, type 'gaze' to gaze wistfully out the window and sigh");
+let response = prompt("You walk into a room with a chair and a window. Type 'sit' to sit in the chair, type 'gaze' to gaze wistfully out the window and sigh");
 
 if(response === "sit"){
     response = prompt("Here's a new prompt, with new options");
@@ -28,15 +28,15 @@ At this point, we should have a single `runStory` function that looks something 
 
 ```javascript
 function runStory( branch ){
-    var chapter = story[branch];
-    var choices = chapter.choices;
-    var isValidChoice = false;
-    var choice;
+    const chapter = story[branch];
+    const choices = chapter.choices;
+    let isValidChoice = false;
+    let choice;
 
     if( choices ){
         choice = prompt( chapter.text );
 
-        for( var i = 0; i < choices.length; i++ ){
+        for( let i = 0; i < choices.length; i++ ){
             if( choice === choices[i] ){
                 isValidChoice = true;
             }
@@ -63,9 +63,9 @@ While this works, it has a complexity (or number of possible branches) of more t
 
 ```javascript
 function validateChoice( choice, choices ){
-  var isValidChoice = false;
+  let isValidChoice = false;
 
-  for( var i = 0; i < choices.length; i++ ){
+  for( let i = 0; i < choices.length; i++ ){
       if( choice === choices[i] ){
           isValidChoice = true;
       }
@@ -79,9 +79,9 @@ function validateChoice( choice, choices ){
 
 ```javascript
 function runStory( branch ){
-    var chapter = story[branch];
-    var choices = chapter.choices;
-    var choice;
+    const chapter = story[branch];
+    const choices = chapter.choices;
+    let choice;
 
     if( choices ){
         choice = prompt( chapter.text );
@@ -108,7 +108,7 @@ How about getting rid of the nested `if` statement entirely? Let's try it!
 
 ```javascript
 function handleChoices( choices ){
-    var choice = prompt( chapter.text );
+    const choice = prompt( chapter.text );
 
     if( validateChoice( choice, choices ) ){
         runStory( choice );
@@ -119,8 +119,8 @@ function handleChoices( choices ){
 }
 
 function runStory( branch ){
-    var chapter = story[branch];
-    var choices = chapter.choices;
+    const chapter = story[branch];
+    const choices = chapter.choices;
 
     if( choices ){
         handleChoices( choices );
