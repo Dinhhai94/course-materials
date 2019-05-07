@@ -67,9 +67,9 @@ console.log(myPhrase);
     + We can access the value stored to the variable name by typing in that variable's name to the REPL.
     + To actually log the value to the Dev Console (much more useful in real-world applications), we can use the built in function `console.log([variable name])`
     + When we use the variable, we DON'T use quotation marks. Quotes mean Strings, and variables are variables, not strings of text.
-    + `const` indicates a value that we can't replace in memory. It's basically a 'constant.' So, if we do `const currentYear = 2017`, we will get an error.
+    + `const` indicates a value that can't be reassigned. For example if we do: `const x = 3` and then try to do `x = 4` - that will not work. We can't replace the value in memory, although we'll see that we can change parts of complex data later on. 
     + `let` and `var` __do__ allow the value to be replaced.
-    + `var` initializes all variables as `undefined` prior to JS reviewing and assigning the value we actually want.
+    + All variables start off as `undefined` until we use the _assignment operator:_ `=`. 
     + In this course, we will focus on using `const` and `let`, and we will consider `var` for legacy purposes.
 
 6. So now we have some saved data. Wouldn't it be nice if we could test that data? We can, in fact, using the _Boolean_ data type. Booleans only have two values: `true` or `false`. They can be stored as a variable of their own, or can be returned as a result of a test. Try the following:
