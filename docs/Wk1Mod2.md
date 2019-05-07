@@ -58,7 +58,6 @@ The key realization here is that there is a 1:1 relationship between our file st
 ### HTML
 
 HTML (Hyper-Text Markup Language) is a markup language for describing the structure and content of web documents (web pages). It is comprised of markup tags and text content nested inside each other.
-![standard HTML structure](http://reactorprep.herokuapp.com/assets/images/html_breakdown.png).
 
 HTML tags are keywords (tag names) surrounded by angle brackets:
 
@@ -138,7 +137,7 @@ It's time to take a look at how browsers (like Chrome) render HTML content!
 ```
 
 2. Open up Chrome's Dev Tools and take a look at Elements and their associated STYLES:
-   ![dev tools](http://reactorprep.herokuapp.com/assets/images/elements.png)
+   ![dev tools](https://www.dropbox.com/s/2v91mwk7js0y9kd/Screenshot%202019-01-29%2020.29.15.png?dl=0)
 
 3. What `font-size` does the browser give an `<h1>` element by default?
 4. What `font-weight` does the browser give an `<h1>` element by default?
@@ -229,7 +228,7 @@ Then go to `localhost:8080/example.html` and answer the following:
 #### Attributes
 
 This link tag has an attribute whose name is `href` and whose value is a `url`:
-![anchor tag](http://reactorprep.herokuapp.com/assets/images/links.png)
+`<a href="http://www.somewebsite.com">Some text for user to see on page</a>`
 
 Attributes provide additional information about an element. They appear on the opening tag of the element and are made up of two parts: a **name** and a **value**, separated by an equals sign.
 
@@ -261,6 +260,195 @@ While it's possible to link to HTML documents in your website with any name (as 
 9. The social media links from `README.md`
 10. A "navigation list" at the top of your landing page, with links to 'Home' (`/`) and 'Projects' (`/projects`).
 11. At least one comment for future developers (or you!) using the syntax `<!-- comment text -->`
+
+---
+
+### Inline Styles
+
+There are three ways to give HTML content some styles:
+
+- inline styles (the `style` attribute)
+- style tags (`<style>` in document `<head>`)
+- stylesheets (external documents linked with `<link>`)
+
+Today, we're going to take a look at inline styles. Inline styles are generally avoided in production websites, but you'll still see them in the wild in old codebases or in some niche applications (like MailChimp templates). To get a feel for inline styles, take a look at the following code:
+
+```html
+  <body style="background-color:lightgrey">
+    <h1 style="color:blue">This is a heading</h1>
+    <h1 style="color:#AA22FF">Also a heading</h1>
+    <h1 style="color:rgb(0,255,255)">Moar!!</h1>
+    <p style="color:red;background-color:green">This is a paragraph.</p>
+    <img src="https://i.imgur.com/81qyN1y.jpg" style="height:100px;width:100px">
+  </body>
+```
+
+Try writing it out in a new HTML document in your `exercises` directory, then previewing the result in your browser.
+
+So what have we learned?
+
+1. The value of the HTML attribute named style styles HTML elements
+2. The styles are described using a language called CSS. Here are the rules of CSS:
+3. CSS rules are key-value pairs (similar to HTML attributes)
+4. The key represent the property to be changed (like 'color' or 'background-color')
+5. The value represents what it should be changed to ('blue' or 'red')
+6. The key and value are separated by a colon
+7. Each key-value pair is separated with a semi-colon
+8. Colors can be described by name, as eight digit hex (base 16) values between 0 (black) and F (white), or as Red Green Blue triplets from 0 to 255
+9. We can use the following css colors for our background-color and color attributes:
+   ![css color table](https://en.wikipedia.org/wiki/Web_colors#/media/File:SVG_Recognized_color_keyword_names.svg)
+
+---
+
+#### Portfolio Project 3
+
+Let's create a theme for your Portfolio Project's landing page.
+
+1. Use the following attributes somewhere on the page:
+
+- `background-color`
+- `color`
+- `width`
+- `height`
+
+2. Make sure that all styles are inlined with the syntax `style=" "`
+3. Stage and commit your changes using `git`.
+4. Push your committed changes to your GitHub account.
+
+---
+
+Let's try out a few more styles. We won't get to every CSS property today (or in this course), but you can always find an exhaustive and up-to-date list of every property at [this address](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference) Try out the following HTML in your browser:
+
+```html
+  <h1 style="font-family:verdana;color:orange;">This is a heading</h1>
+  <p style="color:green;">This <i style="color:orange;font-size:300%">is</i> a paragraph.</p>
+  <p style="color:green;">This <i style="font-size:300%;">is</i> a paragraph.</p>
+  <p style="color:green;font-size:40px;text-align:center;font-family:'Times New Roman';">This is a paragraph.</p>
+```
+
+What did we learn?
+
+1. Styles applied to parent elements effect their children (nested) elements, unless that style is overwritten.
+2. We can put a lot of styles on a single HTML element, but it gets messy.
+3. We can apply the same style to every tag of a particular type (all paragraphs should be green), but we have to reapply it on each element.
+
+The last two points are reasons why inlining styles is generally frowned upon. So how do we solve that problem?
+
+---
+
+### The `<style>` tag
+
+So let's begin to refactor the mess above. CSS rules can be applied to an HTML page by placing them inside a `<style>` element inside the `<head>` element of the page.
+
+We begin with a selector to indicate which elements the rules apply to. Then, inside of curly braces, we indicate how the elements should be styled. Declarations are split into two parts (a property and a value), are separated by a colon, and end with a semicolon, like so:
+
+```html
+<html>
+    <head>
+    <style>
+      h1 {
+        font-family: verdana;
+      }
+      p {
+        color: green;
+      }
+      i {
+        font-size: 300%;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 style="color:orange;">This is a heading</h1>
+    <p>This <i style="color:orange;">is</i> a paragraph.</p>
+    <p>This <i>is</i> a paragraph.</p>
+    <p style="font-size:300%;text-align:center;font-family:'Times New Roman';">This is by far the most important part of the page!</p>
+  </body>
+</html>
+```
+
+Ok, so far, so good. We have styles common to tags of the same type as shared styles. How can we represent all the extra styling on that last `<p>` tag?
+
+Every HTML element can carry an `id` attribute to uniquely identify it. No two elements on the same page may have the same value for their `id` attributes. The css selector to match for an `id` starts with a hash (`#`).
+
+Here's how we might apply extra styling to the important `<p>` tag in this example:
+
+```html
+<html>
+  <head>
+    <style>
+      h1 {
+        font-family: verdana;
+      }
+      p {
+        color: green;
+      }
+      i {
+        font-size: 300%;
+      }
+      #primary {
+        font-size: 300%;
+        text-align: center;
+        font-family: 'Times New Roman';
+      }
+    </style>
+  </head>
+  <body>
+    <h1 style="color:orange;">This is a heading</h1>
+    <p>This <i style="color:orange;">is</i> a paragraph.</p>
+    <p>This <i>is</i> a paragraph.</p>
+    <p id="primary">This is by far the most important part of the page!</p>
+  </body>
+</html>
+```
+
+Okay, now what about the two oranged elements?
+
+Every HTML element can also carry one or more `class` names in a `class` attribute to identify several elements as being different from the other elements on the page. The css selector to match for a class starts with a period (`.`). Here's how we might add a class to our example:
+
+```html
+<html>
+  <head>
+    <style>
+      h1 {
+          font-family: verdana;
+      }
+      p {
+        color: green;
+      }
+      .big {
+        font-size: 300%;
+      }
+      #primary {
+        text-align: center;
+        font-family: 'Times New Roman';
+      }
+      .important {
+        color: orange;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 class="important">This is a heading</h1>
+    <p>This <i class="important big">is</i> a paragraph.</p>
+    <p>This <i class="big">is</i> a paragraph.</p>
+    <p  id="primary" class="big">This is by far the most important part of the page!</p>
+  </body>
+<html>
+```
+
+Elements can have more than one class, but should only ever have a single id. Why is that?
+
+Now we have separated **presentation** from **content**. We can easily read the content of our HTML document without it being cluttered up with styles. By sharing styles we also save ourselves a lot of typing as we create larger and larger HTML documents.
+
+---
+
+#### Portfolio Project 4
+
+**You will be judged** by professional developers for placing styles directly on HTML elements. Let's fix your Portfolio Project to reflect proper CSS design patterns:
+
+1. Purge your landing page's HTML elements of `style=" "` attributes. Move all styling to a `<style>` tag in the `<head>`
+2. Look for (or change your code to create) opportunities to use `id` and `class` attributes.
+3. Stage, commit, push, and deploy your new Portfolio Site
 
 ---
 
