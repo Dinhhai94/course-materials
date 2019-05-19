@@ -32,7 +32,7 @@ window.history;
 1e4 * 2;
 ```
 
-    Now we're programming! The browser is responding to our demands when we give it an input with a **data type** of *Number*. The Number data type includes integers, floating-point numbers (i.e. decimals), and exponent notation (e.g. 1e4).
+Now we're programming! The browser is responding to our demands when we give it an input with a **data type** of *Number*. The Number data type includes integers, floating-point numbers (i.e. decimals), and exponent notation (e.g. 1e4).
 
 4. Mathematic operations are called using **operators** that we are all familiar with. These operators do different things for different data types, though. Try this:
 
@@ -58,19 +58,19 @@ var myPhrase = currentYear + " is an election year in the " + myCountry;
 console.log(myPhrase);
 ```
 
-    A couple of things to notice about these commands:
-    + Our **keyword** and the name of the variable are separated by a space, and the variable name can't include spaces
-    + variable values can be any data type (that we've covered so far)
-    + variable values are assigned using the *assignment operator* (which looks like an equals sign to you and I).
-    + the assignment 'phrase' ends with a semicolon. We end JavaScript 'sentences' with semicolons... always!
-    + the REPL outputs *undefined* after we define the variable. That's expected, since we're only saving that variable to memory.
-    + We can access the value stored to the variable name by typing in that variable's name to the REPL.
-    + To actually log the value to the Dev Console (much more useful in real-world applications), we can use the built in function `console.log([variable name])`
-    + When we use the variable, we DON'T use quotation marks. Quotes mean Strings, and variables are variables, not strings of text.
-    + `const` indicates a value that can't be reassigned. For example if we do: `const x = 3` and then try to do `x = 4` - that will not work. We can't replace the value in memory, although we'll see that we can change parts of complex data later on. 
-    + `let` and `var` __do__ allow the value to be replaced.
-    + All variables start off as `undefined` until we use the _assignment operator:_ `=`. 
-    + In this course, we will focus on using `const` and `let`, and we will consider `var` for legacy purposes.
+A couple of things to notice about these commands:
+  + Our **keyword** and the name of the variable are separated by a space, and the variable name can't include spaces
+  + variable values can be any data type (that we've covered so far)
+  + variable values are assigned using the *assignment operator* (which looks like an equals sign to you and I).
+  + the assignment 'phrase' ends with a semicolon. We end JavaScript 'sentences' with semicolons... always!
+  + the REPL outputs *undefined* after we define the variable. That's expected, since we're only saving that variable to memory.
+  + We can access the value stored to the variable name by typing in that variable's name to the REPL.
+  + To actually log the value to the Dev Console (much more useful in real-world applications), we can use the built in function `console.log([variable name])`
+  + When we use the variable, we DON'T use quotation marks. Quotes mean Strings, and variables are variables, not strings of text.
+  + `const` indicates a value that can't be reassigned. For example if we do: `const x = 3` and then try to do `x = 4` - that will not work. We can't replace the value in memory, although we'll see that we can change parts of complex data later on. 
+  + `let` and `var` __do__ allow the value to be replaced.
+  + All variables start off as `undefined` until we use the _assignment operator:_ `=`. 
+  + In this course, we will focus on using `const` and `let`, and we will consider `var` for legacy purposes.
 
 6. So now we have some saved data. Wouldn't it be nice if we could test that data? We can, in fact, using the _Boolean_ data type. Booleans only have two values: `true` or `false`. They can be stored as a variable of their own, or can be returned as a result of a test. Try the following:
 
