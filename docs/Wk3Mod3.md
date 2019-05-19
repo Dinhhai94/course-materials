@@ -245,7 +245,7 @@ You should see `hello home page!` whenever you visit the landing page of your ap
 
 ```javascript
 router
-  .on(":path", params => console.log(params.page))
+  .on(":page", params => console.log(params.page))
   .on("/", () => console.log("hello home page!"))
   .resolve();
 ```
