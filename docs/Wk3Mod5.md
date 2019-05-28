@@ -34,7 +34,7 @@ There's no guarantee that the `function`s would finish in order! How could we ha
 We could use recursion to make sure that `randomFinish` always called the next iteration in order, like so:
 
 ```javascript
-function handleFinish( count ){
+function handleFinish(count) {
     const label = `function ${count}`;
 
     console.log(`${label} is done!`);
@@ -44,7 +44,7 @@ function handleFinish( count ){
     }
 };
 
-function randomFinish(count)
+function randomFinish(count) {
     const randomTime = Math.random() * 1000;
 
     setTimeout(
