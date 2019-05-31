@@ -159,7 +159,7 @@ npm install --save axios
 ```javascript
 axios
   .get("https://jsonplaceholder.typicode.com/posts")
-  .then(response => console.log(response.posts));
+  .then(response => console.log(response.data.posts));
 ```
 
 3. That was easy! But now how do we use this data in our application? You'll recall that we've set up our entire application as a single relationship between our application `state` and the way that application is presented. So using this new data is as simple as augmenting our `state` and re-rendering the app. That will look something like this:
