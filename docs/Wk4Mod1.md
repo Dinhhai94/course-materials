@@ -159,7 +159,7 @@ const products = {
 };
 ```
 
-10. You'll be happy to see that there is an `/albums` route in our Savvy Coders API, too. But how do we render _both_ `books` and `albums` on initial page load? We could delay rendering _anything_ until we get both `books` and `albums`, but that doesn't make things better for our users. We could also delay rendering an _products_ until we have both books and albums, but that also delays our time-to-first-meaningful-interaction, irritating users. What if we rendered whatever came back first from our API, then re-render whenever the second batch comes in? Then we can use our `products` Object as a `state` store and do the following:
+10. You'll be happy to see that there is an `/albums` route in our Savvy Coders API, too. But how do we render _both_ `books` and `albums` on initial page load? We could delay rendering _anything_ until we get both `books` and `albums`, but that doesn't make things better for our users. We could also delay rendering _*all* products_ until we have both books and albums, but that also delays our time-to-first-meaningful-interaction, irritating users. What if we rendered whatever came back first from our API, then re-render whenever the second batch comes in? Then we can use our `products` Object as a `state` store and do the following:
 
 ```javascript
 const products = {
