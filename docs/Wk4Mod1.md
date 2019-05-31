@@ -140,7 +140,7 @@ document
 
 Now, _that_ is a fancy event handler. Make sure you understand it before we get much farther in this Hack-A-Thon!
 
-7. This is a lot of work for three books. What's the advantage to doing all of this work in JavaScript? While we could argue about the quality of the developer experience in JavaScript-land vs HTML-land, one this is certain: if we want to use _external_ data instead of hard-coded book Objects, we need to use JavaScript. More specifically, we need to use AJAX.
+7. This is a lot of work for three books. What's the advantage to doing all of this work in JavaScript? While we could argue about the quality of the developer experience in JavaScript-land vs HTML-land, one thing is certain: if we want to use _external_ data instead of hard-coded book Objects, we need to use JavaScript. More specifically, we need to use AJAX.
 
 We've set up an API to query at https://api.savvycoders.com/books that will return an Array of `book` Objects structured identically to the ones we've been hard-coding up to this point. See if you can render the bookstore with data from this API. HINT:
 
