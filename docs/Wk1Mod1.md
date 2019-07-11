@@ -58,6 +58,10 @@ Because each operating system is so different, we'll need to install a different
   search for "Git Bash". Use this command-line for the duration of this
   course.
 
+#### For All Platforms...
+
+...you could use [Hyper](https://hyper.is/), although some folks feel that it's a bit resource heavy. 🤷🏾‍♂️
+
 ### Interfacing with Computers
 
 The operating system is the program (series of instructions) that runs when you turn on your computer. It handles inputs (keyboard, mouse, camera, network connections) and outputs (monitor, speakers, network connections), manages shared access to computing resources and memory, and reads and writes data to the file system on behalf of any number of simultaneously running applications (web browser, code editor, terminal emulator, music player, etc). We interact with the computer through the operating system, usually by TYPING, TOUCHING, or CLICKING.
