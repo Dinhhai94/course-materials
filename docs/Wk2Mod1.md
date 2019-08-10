@@ -144,7 +144,7 @@ So the console is fun, but it's still not connected to the HTML that we know and
 1. In your landing page, at the bottom of the `<body>` tag, add the following:
 
 ```html
-<script type="text/javascript">
+<script>
   console.log('Hello world!');
 </script>
 ```
@@ -154,7 +154,7 @@ When you reload your preview page, you should see 'Hello world!' in your console
 2. The function `console.log()` is a built-in function recognized by browsers everywhere. Some functions are so commonly used that they're simply a part of the language spec... otherwise we'd have to replicate those functions in nearly every JavaScript project. Let's make our greeting a bit more obnoxious using the built-in function `alert()`.
 
 ```html
-<script type="text/javascript">
+<script>
   alert('Hello world!');
 </script>
 ```
@@ -164,7 +164,7 @@ You should notice that, just like `console.log()`, `alert()` takes a String of d
 3. What about user input? Luckily, we have another obnoxious built-in function called `prompt()`. This function can also take a String as an argument. Try this:
 
 ```html
-<script type="text/javascript">
+<script>
   prompt('What is your name?');
   alert('Hello World!');
 </script>
@@ -173,7 +173,7 @@ You should notice that, just like `console.log()`, `alert()` takes a String of d
 What happened to the user input here? As of right now, nothing! Let's try this instead:
 
 ```html
-<script type="text/javascript">
+<script>
   const name = prompt('What is your name?');
 
   alert('Hello ' + name);
@@ -185,7 +185,7 @@ Neat, huh? `prompt()` actually returns a String for us to play around with. We j
 4. This works great, but what happens when a user neglects to actually enter a value in the `prompt()`? Try it out! ... you should see that we still have an output of `Hello` (that's the word `Hello` with a single space after it). How could we check to make sure that a user isn't entering a blank name into the `prompt()`? How about something like this:
 
 ```html
-<script type="text/javascript">
+<script>
   const name = prompt('What is your name?');
 
   if(name === "") { // checks for an empty string
@@ -199,7 +199,7 @@ Neat, huh? `prompt()` actually returns a String for us to play around with. We j
 5. Notice that we can over-write the value of `name` at any point in our codebase, including when the `prompt()` returns an empty String. But what are some gaps in this implementation? For one, we probably want to check that the user is actually giving us a value _even if the user repeatedly chooses that empty value_. To do that, we need to do two things: First, we need to abstract our name-checking logic to a `function`, then we need to re-write our code such that the `function` calls itself until a condition is met. This is called recursion, and it looks like this:
 
 ```html
-<script type="text/javascript">
+<script>
   const name = prompt('What is your name?');
 
   const checkName = function(){
@@ -240,7 +240,7 @@ Neat, huh? `prompt()` actually returns a String for us to play around with. We j
    3. Modify the rest of your `<script>` tag in your landing page to look like this:
 
    ```html
-   <script type="text/javascript" src="index.js"></script>
+   <script src="index.js"></script>
    ```
 
    Now, when you reload the page, you should get the same result as when you in-lined all of your JavaScript.
