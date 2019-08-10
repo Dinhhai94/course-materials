@@ -34,7 +34,7 @@ Let's create a new contact page for your website!
 2. Set up your new contact page to use the same stylesheet as the rest of your site. HINT:
 
 ```html
-<link type="text/css" rel="stylesheet" href="../css/style.css" />
+<link rel="stylesheet" href="../css/style.css" />
 ```
 
 3. Now set up the rest of your page's structure, including a navigation bar, `.container` area, and footer (like the other pages in your portfolio site).

@@ -27,7 +27,7 @@ Remember the default styles applied to common elements like `<h1>` and `<ul>`? W
 To do this, we'll add `normalize.css` from CDNJS in the `head` of our HTML files, like so:
 
 ```html
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.css">
 ```
 
 ---

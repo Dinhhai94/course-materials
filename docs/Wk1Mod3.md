@@ -206,10 +206,10 @@ Let's create a stylesheet for our Portfolio Project that applies to all of our p
 
    ```html
    <!-- for your landing page -->
-   <link type="text/css" rel="stylesheet" href="css/style.css"/>
+   <link rel="stylesheet" href="css/style.css"/>
 
    <!-- for all other pages -->
-   <link type="text/css" rel="stylesheet" href="../css/style.css"/>
+   <link rel="stylesheet" href="../css/style.css"/>
    ```
 
    _Do you know why we need different `href` values for our landing page and our projects and blog pages?_
