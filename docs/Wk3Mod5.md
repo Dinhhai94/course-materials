@@ -150,7 +150,7 @@ The library that we'll use for the remainder of the course is called [axios](htt
 
 1. `axios` is a third-party library, so we'll need to include it as a dependency through `npm`:
 
-```
+```shell
 npm install --save axios
 ```
 

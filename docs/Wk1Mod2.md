@@ -34,7 +34,7 @@ If the initialization script has run correctly, we should have access to four ne
 
 At this point, you should have a single `index.html` file at the root of your project directory (`FirstnameLastname`). To start up a development server that behaves like Netlify would, run the following command in your terminal from _inside your project directory_:
 
-```
+```shell
 http-server
 ```
 

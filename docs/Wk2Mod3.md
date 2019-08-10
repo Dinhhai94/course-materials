@@ -13,7 +13,7 @@ While `if`, `else`, and `else if` combined with `===`, `<==`, `>==`, and `!==` c
 
 Try out some of the following in your console to see the results:
 
-```
+```javascript
 !true
 !false
 !!false
@@ -251,7 +251,7 @@ Pretty cool, huh? Now imagine that we could re-use these components across multi
 
 So far, our Netlify/GitHub integration has allowed us to seamlessly serve a new set of static assets (HTML files) without needing to directly access the server or infrastructure. But now, by bundling our applications from multiple modules into a single, distributable file, we've introduced a _build step_. This build step is required if we want to generate the same sorts of static assets that we've been writing by hand up to this point. To see what happens when we build static assets with `parcel`, try:
 
-```
+```shell
 npx parcel build index.html
 ```
 

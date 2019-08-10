@@ -107,7 +107,7 @@ export default `
 
 ...and re-`export` those `default`s with a name from `components/Pages/index.js`, e.g.:
 
-```
+```javascript
 export { default as Contact } from './Contact';
 ```
 
@@ -159,7 +159,7 @@ Let's go through two practical examples of using third-party dependencies to imp
 
 1. Install `lodash` by typing the following into your terminal:
 
-```
+```shell
 npm install --save lodash
 ```
 

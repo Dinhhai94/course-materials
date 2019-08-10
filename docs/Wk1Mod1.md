@@ -292,7 +292,7 @@ $ git status
 
 If you get `FATAL: FirstnameLastname is not a git repository`, something has gone wrong. If everything worked, you should see something like this:
 
-```
+```shell
 $ git status
 On branch master
 Initial commit
