@@ -163,11 +163,11 @@ At the end of the last exercise, your `render` function probably looked somethin
 ```javascript
 function render(state) {
   root.innerHTML = `
-      ${Navigation(state)}
-      ${Header(state)}
-      ${Content(state)}
-      ${Footer(state)}
-    `;
+    ${Navigation(state)}
+    ${Header(state)}
+    ${Content(state)}
+    ${Footer(state)}
+  `;
 
   document.querySelector("#navigation a").addEventListener("click", event => {
     event.preventDefault();
@@ -235,11 +235,11 @@ function handleNavigation(event) {
 ```javascript
 function render(state) {
   root.innerHTML = `
-      ${Navigation(state)}
-      ${Header(state)}
-      ${Content(state)}
-      ${Footer(state)}
-    `;
+    ${Navigation(state)}
+    ${Header(state)}
+    ${Content(state)}
+    ${Footer(state)}
+  `;
 
   document
     .querySelector("#navigation a")
@@ -260,11 +260,11 @@ function render(state) {
 ```javascript
 function render(state) {
   root.innerHTML = `
-      ${Navigation(state)}
-      ${Header(state)}
-      ${Content(state)}
-      ${Footer(state)}
-    `;
+    ${Navigation(state)}
+    ${Header(state)}
+    ${Content(state)}
+    ${Footer(state)}
+  `;
 
   const links = document.querySelectorAll("#navigation a");
 

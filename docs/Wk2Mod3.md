@@ -179,11 +179,11 @@ Let's take that markup and turn it into an JS module! In `Navigation.js`, conver
 ```javascript
 export default `
   <div id="navigation">
-      <ul>
-          <li>First</li>
-          <li>Second</li>
-          <li>Third</li>
-      </ul>
+    <ul>
+      <li>First</li>
+      <li>Second</li>
+      <li>Third</li>
+    </ul>
   </div>
 `;
 ```
@@ -217,12 +217,12 @@ import Footer from "./components/Footer";
 const initialHTML = document.body.innerHTML;
 
 document.body.innerHTML = `
-      ${Navigation}
-      ${Header}
-      ${Content}
-      ${Footer}
-      ${initialHTML} // we still need this
-    `;
+  ${Navigation}
+  ${Header}
+  ${Content}
+  ${Footer}
+  ${initialHTML} // we still need this
+`;
 ```
 
 7. You'll notice that we need to perform that somewhat-hacky `initialHTML` trick to make sure that our `<script>` tag isn't clobbered by our over-writing of the `body`'s `innerHTML`. Instead of doing that, let's wrap our visible application in a placeholder `div` with an `id` of `root`. That means adding `<div id="root"></div>` to your `index.html` and modifying your `index.js` to look something like:
@@ -234,11 +234,11 @@ import Content from "./components/Content";
 import Footer from "./components/Footer";
 
 document.querySelector("#root").innerHTML = `
-      ${Navigation}
-      ${Header}
-      ${Content}
-      ${Footer}
-    `;
+  ${Navigation}
+  ${Header}
+  ${Content}
+  ${Footer}
+`;
 ```
 
 > NOTE: don't forget to modify your CSS to keep your fancy grid aligned!

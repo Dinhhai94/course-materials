@@ -207,10 +207,10 @@ Our component library currently consists of four top-level components. So far, t
 ```javascript
 export default function Header() {
   return `
-        <div id="header">
-            <h1>Welcome to Alex's Savvy Coders Portfolio Project!</h1>
-        </div>
-    `;
+    <div id="header">
+      <h1>Welcome to Alex's Savvy Coders Portfolio Project!</h1>
+    </div>
+  `;
 }
 ```
 
@@ -218,11 +218,11 @@ export default function Header() {
 
 ```javascript
 document.querySelector("#root").innerHTML = `
-      ${Navigation}
-      ${Header()} // notice the invocation here
-      ${Content}
-      ${Footer}
-    `;
+  ${Navigation}
+  ${Header()} // notice the invocation here
+  ${Content}
+  ${Footer}
+`;
 ```
 
 2. We should try to think of our components as pure, "dumb" expressions of the state of our application. That application state could eventually get pretty complicated, so let's think of that state as an Object that can eventually store lots of data for us. Let's create that state Object in `index.js`, then pass that state to our component. In `index.js`:
@@ -245,10 +245,10 @@ document.querySelector("#root").innerHTML = `
 ```javascript
 export default function Header(state) {
   return `
-        <div id="header">
-            <h1>${state.title}</h1>
-        </div>
-    `;
+    <div id="header">
+      <h1>${state.title}</h1>
+    </div>
+  `;
 }
 ```
 
@@ -256,11 +256,11 @@ export default function Header(state) {
 
 ```javascript
 document.querySelector("#root").innerHTML = `
-      ${Navigation(state)}
-      ${Header(state)}
-      ${Content(state)}
-      ${Footer(state)}
-    `;
+  ${Navigation(state)}
+  ${Header(state)}
+  ${Content(state)}
+  ${Footer(state)}
+`;
 ```
 
 To make this a bit more useful, we need to learn a bit more about how users can interact with our application through [Events](https://developer.mozilla.org/en-US/docs/Web/Events).

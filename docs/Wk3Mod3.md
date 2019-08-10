@@ -128,10 +128,10 @@ import * as pages from "./Pages";
 
 export default function Content(state) {
   return `
-        <div id="content">
-            ${pages[state.body]} // why do we need square brackets?
-        </div>
-    `;
+    <div id="content">
+      ${pages[state.body]} // why do we need square brackets?
+    </div>
+  `;
 }
 ```
 
@@ -183,10 +183,10 @@ function buildLinks(linkArray) {
     link = lowerCase(linkArray[i]);
 
     links += `
-        <li>
-          <a href='/${link}'>${linkArray[i]}</a>
-        </li>
-      `;
+      <li>
+        <a href='/${link}'>${linkArray[i]}</a>
+      </li>
+    `;
 
     i++;
   }
@@ -274,11 +274,11 @@ router
 ```javascript
 function startApp(state) {
   rooter.innerHTML = `
-      ${Navigation(state)}
-      ${Header(state)}
-      ${Content(state)}
-      ${Footer(state)}
-    `;
+    ${Navigation(state)}
+    ${Header(state)}
+    ${Content(state)}
+    ${Footer(state)}
+  `;
 
   router.updatePageLinks(); // much simpler!
 }
@@ -296,12 +296,12 @@ function buildLinks(linkArray) {
     link = lowerCase(link);
 
     links += `
-            <li>
-                <a href='/${link}' data-navigo> // new attribute
-                    ${linkArray[i]}
-                </a>
-            </li>
-        `;
+      <li>
+        <a href='/${link}' data-navigo> // new attribute
+          ${linkArray[i]}
+        </a>
+      </li>
+    `;
 
     i++;
   }
@@ -337,12 +337,12 @@ function buildLinks(linkArray) {
     // what's the value of link here?
 
     links += `
-            <li>
-                <a href='/${lowerCase(link)}' data-navigo>
-                    ${linkArray[i]}
-                </a>
-            </li>
-        `;
+      <li>
+        <a href='/${lowerCase(link)}' data-navigo>
+          ${linkArray[i]}
+        </a>
+      </li>
+    `;
 
     i++;
   }

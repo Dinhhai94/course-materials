@@ -135,11 +135,11 @@ When we left off, our SPA's navigation code looked something like this:
 ```javascript
 function startApp(state) {
   root.innerHTML = `
-      ${Navigation(state)}
-      ${Header(state)}
-      ${Content(state)}
-      ${Footer(state)}
-    `;
+    ${Navigation(state)}
+    ${Header(state)}
+    ${Content(state)}
+    ${Footer(state)}
+  `;
 
   const links = document.querySelectorAll("#navigation a");
 
@@ -158,11 +158,11 @@ Not the worst code in the world, but it had two big problems: first, there could
 ```javascript
 function startApp(state) {
   root.innerHTML = `
-      ${navigation(state)}
-      ${header(state)}
-      ${content(state)}
-      ${footer(state)}
-    `;
+    ${navigation(state)}
+    ${header(state)}
+    ${content(state)}
+    ${footer(state)}
+  `;
 
   let i = 0;
   const links = document.querySelectorAll("#navigation a");
@@ -185,10 +185,10 @@ function buildLinks(linkArray) {
 
   while (i < linkArray.length) {
     links += `
-            <li>
-                <a href='/${linkArray[i]}'>${linkArray[i]}</a>
-            </li>
-        `;
+      <li>
+        <a href='/${linkArray[i]}'>${linkArray[i]}</a>
+      </li>
+    `;
 
     i++;
   }
@@ -199,11 +199,11 @@ function buildLinks(linkArray) {
 export default function Navigation(state) {
   return `
     <div id="navigation">
-        <ul>
-            ${buildLinks(state.links)}
-        </ul>
+      <ul>
+        ${buildLinks(state.links)}
+      </ul>
     </div>
-    `;
+  `;
 }
 ```
 

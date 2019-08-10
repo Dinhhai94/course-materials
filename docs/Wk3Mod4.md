@@ -50,12 +50,12 @@ function buildLinks(linkArray) {
     }
 
     links += `
-            <li>
-                <a href='/${route}' data-navigo>
-                    ${link}
-                </a>
-            </li>
-        `;
+      <li>
+        <a href='/${route}' data-navigo>
+          ${link}
+        </a>
+      </li>
+    `;
   });
 
   return links;
