@@ -34,7 +34,7 @@ Let's create a new contact page for your website!
 2. Set up your new contact page to use the same stylesheet as the rest of your site. HINT:
 
 ```html
-<link rel="stylesheet" href="../css/style.css" />
+<link rel="stylesheet" href="../css/style.css">
 ```
 
 3. Now set up the rest of your page's structure, including a navigation bar, `.container` area, and footer (like the other pages in your portfolio site).
@@ -49,10 +49,10 @@ The heart of your contact page will almost certainly be a form. Let's try out a 
 
 ```html
 <form>
-  <input type="text" />
-  <input type="password" />
-  <input type="email" />
-  <input type="submit" />
+  <input type="text">
+  <input type="password">
+  <input type="email">
+  <input type="submit">
 </form>
 ```
 
@@ -67,29 +67,29 @@ The heart of your contact page will almost certainly be a form. Let's try out a 
 -->
 
 <form action="form-responses/new" method="POST">
-  <input type="text" name="firstname" value="First Name" size="100" autofocus />
-  <input type="text" name="lastname" value="Last Name" size="100" />
-  <input type="email" name="userEmail" placeholder="your.email@example.com" />
+  <input type="text" name="firstname" value="First Name" size="100" autofocus>
+  <input type="text" name="lastname" value="Last Name" size="100">
+  <input type="email" name="userEmail" placeholder="your.email@example.com">
 
   <p>What's this message about?</p>
 
   <div>
-    <input type="radio" name="subject" value="professional" id="pro" checked />
+    <input type="radio" name="subject" value="professional" id="pro" checked>
     <label for="pro">I'd like to hire you!</label>
   </div>
 
   <div>
-    <input type="radio" name="subject" value="personal" id="personal" />
+    <input type="radio" name="subject" value="personal" id="personal">
     <label for="personal">Personal message</label>
   </div>
   <div>
-    <input type="radio" name="subject" value="other" />
+    <input type="radio" name="subject" value="other">
     <label>Don't know/something else</label>
   </div>
 
-  <input type="checkbox" name="optin" value="trusting" checked />Subscribe me to
+  <input type="checkbox" name="optin" value="trusting" checked>Subscribe me to
   your newsletter!
-  <input type="checkbox" name="optout" value="skeptical" disabled />Cheeky
+  <input type="checkbox" name="optout" value="skeptical" disabled>Cheeky
   checkbox...
 
   <label for="marketing">How did you hear about me?</label>
@@ -109,7 +109,7 @@ The heart of your contact page will almost certainly be a form. Let's try out a 
   </select>
 
   <textarea name="user_message" rows="8" cols="40"></textarea>
-  <input type="submit" />
+  <input type="submit">
 </form>
 ```
 
