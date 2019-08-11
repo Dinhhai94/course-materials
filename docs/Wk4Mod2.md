@@ -111,7 +111,7 @@ The car example above works well as long as we're dealing with a single type of 
 function Car(type, speed){
   // to what does "this" refer?
 
-  this.position = 1; 
+  this.position = 1;
   this.type = type;
   this.speed = speed;
 }
@@ -124,7 +124,7 @@ const civic = new Car("Honda Civic", 8);
 const camry = new Car("Toyota Camry", 7);
 ```
 
-What are the data types of `civic` and `camry`? Hopefully, they're Objects that have similar properties (`speed`, `type`, and `position`). 
+What are the data types of `civic` and `camry`? Hopefully, they're Objects that have similar properties (`speed`, `type`, and `position`).
 
 ---
 
@@ -239,7 +239,7 @@ Up to this point, we've been using a Plain Ol' JavaScript Object (sometimes call
    ```javascript
    export default class Store {
      constructor(){
-       this.listeners = []; 
+       this.listeners = [];
        this.state = {
          // same state stuff
        };
@@ -294,4 +294,3 @@ Up to this point, we've been using a Plain Ol' JavaScript Object (sometimes call
    ```
 
 You should now be able to represent every change in your application as a s`reducer` `function` passed to `store.dispatch` as an argument. See if you can make that work across you portfolio project!
-

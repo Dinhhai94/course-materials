@@ -243,7 +243,7 @@ The code above defines a piece of our `state` Object just for our posts. If the 
        </div>
      `;
    }
-   
+
    export default function Blog(state) {
      return state.posts.map(mapPost).join(""); // this condenses an Array into a String
    }

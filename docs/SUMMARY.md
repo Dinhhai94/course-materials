@@ -22,4 +22,3 @@
 * [Third-Party APIs and Auth](Wk4Mod3.md)
 * [Virtual DOM Diffing and Event Management](Wk4Mod4.md)
 * [Looking to the Future!](Wk4Mod5.md)
-

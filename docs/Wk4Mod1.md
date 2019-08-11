@@ -88,7 +88,7 @@ Remember our billion-dollar Bookstore Hack-A-Thon? This week, we're going to con
          <h2>${book.author}</h2>
          <h3>${book.price}</h3>
          <ol>
-           ${mapSellingPoints(book.sellingPoints)}        
+           ${mapSellingPoints(book.sellingPoints)}
          </ol>
          <img src="${book.pictureUrl}">
        </div>

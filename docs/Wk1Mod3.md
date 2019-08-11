@@ -333,7 +333,7 @@ Try putting a border around each "boxed" element while you try out a few of the 
 
     The same shorthand rules that worked for `padding` also work for `margin`.
 
-3.  We can also manually set the width and height of the element itself. 
+3.  We can also manually set the width and height of the element itself.
 
     ```css
     div {

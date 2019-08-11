@@ -88,7 +88,7 @@ This is pretty ungainly. Let's see if we can clean this up by extracting all of 
 
    ```javascript
    import * as states from "./store";
-   
+
    console.log(states); // what's the data type here?
    ```
 
@@ -200,9 +200,9 @@ Let's go through two practical examples of using third-party dependencies to imp
    ```javascript
    function handleNavigation(event) {
      const component = event.target.textContent;
-   
+
      event.preventDefault();
-   
+
      startApp(state[capitalize(component)]);
    }
    ```
@@ -251,7 +251,7 @@ It's very possible (and a fun bonus exercise) to use `window.location.pathname` 
    ```
 
 6. Now we have the ability to execute JavaScript in response to the URL. But what is it we actually want to do? Previously, we were using `handleNavigation` to navigate around through click events targets. Now, we can handle _routes_ a bit more fluidly. Let's refactor `handleNavigation` into a `handleRoute` function that looks something like this:
-   
+
    ```javascript
    function handleRoute(params) {
      const page = capitalize(params.page);

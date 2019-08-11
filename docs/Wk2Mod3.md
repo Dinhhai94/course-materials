@@ -255,7 +255,7 @@ So far, our Netlify/GitHub integration has allowed us to seamlessly serve a new 
 npx parcel build index.html
 ```
 
-If you've done this correctly, you should see a new `/dist/` directory that contains all of the HTML, CSS, and JavaScript that our project will need! 
+If you've done this correctly, you should see a new `/dist/` directory that contains all of the HTML, CSS, and JavaScript that our project will need!
 
 > NOTE: if the command above failed, it's almost certainly due to filepath issues. Make sure that your asset paths are _relative_ instead of absolute! Since Netlify's build process takes place on another machine, we can't be sure that that machine will treat the `/` the same way that we've come to expect from `http-server` and `parcel` on our local machines.
 

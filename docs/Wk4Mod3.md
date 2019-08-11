@@ -1,6 +1,6 @@
 ## Advanced API Integration
 
-We've seen how useful it can be to integrate other developers' code into our projects through the use of libraries and open-source modules. But it can also be helpful to leverage the same RESTful API pattern we saw in the Bookstore Hack-a-thon to include _data_ from third parties as well. 
+We've seen how useful it can be to integrate other developers' code into our projects through the use of libraries and open-source modules. But it can also be helpful to leverage the same RESTful API pattern we saw in the Bookstore Hack-a-thon to include _data_ from third parties as well.
 
 There are many open APIs, but most of them are not _quite_ as open as the bookstore hack-a-thon API that we worked with earlier. While computing power is cheap, it's not _free_, and most APIs require at least a little bit of hoop-jumping to get to their data.
 
@@ -8,7 +8,7 @@ There are many open APIs, but most of them are not _quite_ as open as the bookst
 
 ### Query Params
 
-In a RESTful API, a resource is usually accessed by name at a unique route, e.g. `https://api.savvycoders.com/books` vs `https://api.savvycoders.com/albums`. We know that these are going to be different "things", so they get different endpoints. But what about when we want to add some extra data to our "query" of this resource? One common pattern is to use a _query param_.You can see a query param in action when you perform a Google search, for example. If you search for "Adorable Puppies", your results page probably has a URL of something like `https://google.com/?q=Adorable+Puppies` (plus some other query params with info about you). Everything after the `?` represents a bit of extra information about your search! We might implement a similar pattern to filter our `/books` in the hack-a-thon API, e.g. `/books?author=Ernest+Hemingway`. 
+In a RESTful API, a resource is usually accessed by name at a unique route, e.g. `https://api.savvycoders.com/books` vs `https://api.savvycoders.com/albums`. We know that these are going to be different "things", so they get different endpoints. But what about when we want to add some extra data to our "query" of this resource? One common pattern is to use a _query param_.You can see a query param in action when you perform a Google search, for example. If you search for "Adorable Puppies", your results page probably has a URL of something like `https://google.com/?q=Adorable+Puppies` (plus some other query params with info about you). Everything after the `?` represents a bit of extra information about your search! We might implement a similar pattern to filter our `/books` in the hack-a-thon API, e.g. `/books?author=Ernest+Hemingway`.
 
 Let's see how `openweather.com` uses query params to protect and refine responses from their weather API.
 
