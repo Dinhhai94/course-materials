@@ -14,6 +14,10 @@ We have also just recently created a [📓](https://www.notion.so/codefinity/Sav
 
 This 📓 is set up to accomodate rapid changes as needed for the current cohort and also helps us test out new examples and explanations before they are adopted into the _official_ course materials.
 
+## Savvy Coders YouTube
+
+In the near future, some of our lessons will be posted on the YT channel. 👏🏾
+
 ---
 
 _To give credit where credit is due, this curriculum was originally crafted by [Alex Pearson](https://github.com/NAlexPear)._
