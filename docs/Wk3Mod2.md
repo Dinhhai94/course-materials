@@ -63,36 +63,36 @@ Work through the following exercises as a group, implementing each in your devel
 
    ```javascript
    let n = 1;
-   let outputHtml = "<ul>";
+   let outputHTML = "<ul>";
 
    while (n <= 10) {
      console.log(n);
-     ouputHtml += `<li>${n}</li>`;
+     outputHTML += `<li>${n}</li>`;
      n++;
    }
 
-   outputHtml += "</ul>";
+   outputHTML += "</ul>";
 
-   document.body.innerHTML += outputHtml;
+   document.body.innerHTML += outputHTML;
    ```
 
 5. **EXERCISE 5**: We can also combine `if` and `else` statements in our loops to respond to different input states. For this exercise, count _down_ from 15 by ones. For each number, log "even" or "odd" to the console and to a new div for Exercise 5. HINT:
 
    ```javascript
    let n = 15;
-   let outputHtml = "<ul>";
+   let outputHTML = "<ul>";
 
    while (n > 0) {
      console.log(n);
      if (n % 2 === 0) {
-       outputHtml += "<li>even</li>";
+       outputHTML += "<li>even</li>";
      } else {
-       outputHtml += "<li>odd</li>";
+       outputHTML += "<li>odd</li>";
      }
      n--;
    }
 
-   ouputHtml = "</ul>";
+   outputHTML = "</ul>";
 
    document.body.innerHTML += outputHTML;
    ```
@@ -101,27 +101,27 @@ Work through the following exercises as a group, implementing each in your devel
 
    ```javascript
    let n = 1;
-   let outputHtml = "<ul>";
+   let outputHTML = "<ul>";
 
    while (n <= 100) {
      if (n % 3 === 0 && n % 5 == 0) {
        console.log("FizzBuzz");
-       outputHtml += "<li>FizzBuzz</li>";
+       outputHTML += "<li>FizzBuzz</li>";
      } else if (n % 3 === 0) {
        console.log("Fizz");
-       outputHtml += "<li>Fizz</li>";
+       outputHTML += "<li>Fizz</li>";
      } else if (n % 5 === 0) {
        console.log("Buzz");
-       outputHtml += "<li>Buzz</li>";
+       outputHTML += "<li>Buzz</li>";
      } else {
        console.log(n);
-       ouputHtml += `<li>${n}</li>`;
+       outputHTML += `<li>${n}</li>`;
      }
 
      n++;
    }
 
-   ouputHtml = "</ul>";
+   outputHTML = "</ul>";
 
    document.body.innerHTML += outputHTML;
    ```
