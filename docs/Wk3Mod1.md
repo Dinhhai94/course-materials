@@ -88,7 +88,7 @@ Let's go through the following steps, dividing up tasks as a team, to get this n
                    'name': data[0].value,
                    'author': data[1].value,
                    'pictureURL': data[2].value,
-                   'price': data[3].value
+                   'price': data[3].value,
 
                    // we'll learn how to handle sellingPoints next
                    'sellingPoints': []
