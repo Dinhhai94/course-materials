@@ -1,8 +1,7 @@
 
 # Rock-Paper-Scissors
 
-### Exercise 1
-#### the Math Object
+## Exercise 1 - Math Object
 
 We've been using Objects pretty frequently already. Every time you've typed `document.querySelector()` or `console.log()`, you've been accessing functions that are attached to the `document` and `console` objects, respecively. These are built into the browser, and we can use any of the pre-built properties on these Objects using dot notation.
 
@@ -20,8 +19,7 @@ There are lots of additional Objects that come packaged within JavaScript, too. 
     Math.ceil( Math.random() * 10 )
 ```
 
-### Portfolio Project 2 (Bonus)
-#### Rock, Paper, Scissors
+## Portfolio Project 2 (Bonus) - Rock, Paper, Scissors
 
 Use `prompt()` to create a Rock, Paper, Scissors game for visitors to your portfolio.
 

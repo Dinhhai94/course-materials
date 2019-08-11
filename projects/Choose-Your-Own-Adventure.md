@@ -1,4 +1,4 @@
-## Choose-Your-Own-Adventure
+# Choose-Your-Own-Adventure
 
 Write a story into an HTML document on the basis of the user's responses to the prompts. The story will be a bit open-ended, but you should set up your game like so:
 
@@ -22,7 +22,7 @@ if(response === "sit"){
 
 ---
 
-### Testing Your Choose-Your-Own-Adventure Choices
+## Testing Your Choose-Your-Own-Adventure Choices
 
 At this point, we should have a single `runStory` function that looks something like this:
 
