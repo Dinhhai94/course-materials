@@ -23,11 +23,11 @@ OpenWeatherMap is a service that includes a free-to-use API that can give you in
 4. You should now be getting _some_ kind of response, but it's not very localized. How do we make our `weather` query more specific? Let's add a `zip` parameter and try again. You can chain together query params with an `&`, like so: `https://api.openweathermap.org/data/2.5/weather?APPID=$YOUR_API_KEY&zip=63108`
 5. That's more like it! How can we store this in application state? Let's try to `dispatch` an `action` in our project's `index.js` file, like so:
 
-```javascript
-axios
-  .get(/* your API endpoint from above */)
-  .then(response => store.dispatch(state => assign(state, { weather: response.data })));
-```
+   ```javascript
+   axios
+     .get(/* your API endpoint from above */)
+     .then(response => store.dispatch(state => assign(state, { weather: response.data })));
+   ```
 6. Now you can create a piece of state called `weather`, and you can consume that `weather` somewhere in your application! See if you can create a `Weather` component that displays the current weather somewhere on your homepage.
 
 ---
@@ -44,23 +44,26 @@ The GitHub API uses an `Authorization` header to restrict access to much of its 
 1. Sign up for a GitHub personal token. We'll use this token as an API key through the `Authorization` header.
 2. Let's see if you can query your own GitHub account for information about your public repositories with the following syntax:
 
-```javascript
-axios
-  .get('https://api.github.com/users/$YOUR_GITHUB_USERNAME/repos', {
-    'headers': {
-      'Authorization': `token ${$YOUR_API_KEY}`
-    }
-  })
-  .then(/* handle the response */);
-```
+   ```javascript
+   axios
+     .get('https://api.github.com/users/$YOUR_GITHUB_USERNAME/repos', {
+       'headers': {
+         'Authorization': `token ${$YOUR_API_KEY}`
+       }
+     })
+     .then(/* handle the response */);
+   ```
 3. But how, exactly, are we supposed to `handle the response`? By `dispatch`-ing a reducer function that applies this new data to state, e.g.:
-```javascript
-axios
-  .get('https://api.github.com/users/$YOUR_GITHUB_USERNAME/repos', {
-    'headers': {
-      'Authorization': `token ${$YOUR_API_KEY}`
-    }
-  })
-  .then(response => store.dispatch(state => assign(state, { repos: response.data })));
-```
+
+   ```javascript
+   axios
+     .get('https://api.github.com/users/$YOUR_GITHUB_USERNAME/repos', {
+       'headers': {
+         'Authorization': `token ${$YOUR_API_KEY}`
+       }
+     })
+     .then(response => store.dispatch(state =>
+         assign(state, { repos: response.data })
+     ));
+   ```
 4. BONUS: can you render that data with a `Repo` component? Where do you need to include that new piece of state?

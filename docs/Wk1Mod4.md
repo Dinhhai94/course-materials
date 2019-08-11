@@ -12,30 +12,30 @@ Let's create a new contact page for your website!
 
 1. Use the same method we've used for our `projects` and `blog` pages to create a `contact` page. When you're finished, your site's directory structure should look like this:
 
-```
-/ (root)
-|
-|-blog/
-|   |-index.html
-|
-|-contact/
-|   |-index.html
-|
-|-css/
-|   |-style.css
-|
-|-projects/
-|   |-index.html
-|
-|-index.html
-|-.git (hidden directory)
-```
+   ```
+   / (root)
+   |
+   |-blog/
+   |   |-index.html
+   |
+   |-contact/
+   |   |-index.html
+   |
+   |-css/
+   |   |-style.css
+   |
+   |-projects/
+   |   |-index.html
+   |
+   |-index.html
+   |-.git (hidden directory)
+   ```
 
 2. Set up your new contact page to use the same stylesheet as the rest of your site. HINT:
 
-```html
-<link rel="stylesheet" href="../css/style.css">
-```
+   ```html
+   <link rel="stylesheet" href="../css/style.css">
+   ```
 
 3. Now set up the rest of your page's structure, including a navigation bar, `.container` area, and footer (like the other pages in your portfolio site).
 
@@ -47,80 +47,81 @@ The heart of your contact page will almost certainly be a form. Let's try out a 
 
 1. Type out the following code in the content area of your contact page:
 
-```html
-<form>
-  <input type="text">
-  <input type="password">
-  <input type="email">
-  <input type="submit">
-</form>
-```
+   ```html
+   <form>
+     <input type="text">
+     <input type="password">
+     <input type="email">
+     <input type="submit">
+   </form>
+   ```
 
 2. Try working with each element to see what it does in a browser preview.
 3. Once everything is up-and-running, stage, commit, push, and deploy your website!
 4. Now let's try a more complicated example. Replace the code from above with the following snippet. Try to re-type instead of copy->pasting!
 
-```html
-<!--
-  The action attribute defines where on the server the form data should be sent
-  The method attribute specifies the HTTP method (GET or POST)
--->
+   ```html
+   <!--
+     The action attribute defines where on the server the form data should be sent
+     The method attribute specifies the HTTP method (GET or POST)
+   -->
 
-<form action="form-responses/new" method="POST">
-  <input type="text" name="firstname" value="First Name" size="100" autofocus>
-  <input type="text" name="lastname" value="Last Name" size="100">
-  <input type="email" name="userEmail" placeholder="your.email@example.com">
+   <form action="form-responses/new" method="POST">
+     <input type="text" name="firstname" value="First Name" size="100" autofocus>
+     <input type="text" name="lastname" value="Last Name" size="100">
+     <input type="email" name="userEmail" placeholder="your.email@example.com">
 
-  <p>What's this message about?</p>
+     <p>What's this message about?</p>
 
-  <div>
-    <input type="radio" name="subject" value="professional" id="pro" checked>
-    <label for="pro">I'd like to hire you!</label>
-  </div>
+     <div>
+       <input type="radio" name="subject" value="professional" id="pro" checked>
+       <label for="pro">I'd like to hire you!</label>
+     </div>
 
-  <div>
-    <input type="radio" name="subject" value="personal" id="personal">
-    <label for="personal">Personal message</label>
-  </div>
-  <div>
-    <input type="radio" name="subject" value="other">
-    <label>Don't know/something else</label>
-  </div>
+     <div>
+       <input type="radio" name="subject" value="personal" id="personal">
+       <label for="personal">Personal message</label>
+     </div>
 
-  <input type="checkbox" name="optin" value="trusting" checked>Subscribe me to
-  your newsletter!
-  <input type="checkbox" name="optout" value="skeptical" disabled>Cheeky
-  checkbox...
+     <div>
+       <input type="radio" name="subject" value="other">
+       <label>Don't know/something else</label>
+     </div>
 
-  <label for="marketing">How did you hear about me?</label>
-  <select name="marketing">
-    <optgroup label="Online">
-      <option value="social">Social Media (FB, Twitter, LinkedIn)</option>
-      <option value="github">Online Portfolio (GitHub)</option>
-      <option value="search">Search Engine</option>
-      <option value="email">Email</option>
-    </optgroup>
-    <optgroup label="In-Person">
-      <option value="networking">We met at a networking event</option>
-      <option value="referral">Personal referral</option>
-      <option value="random">We met somewhere else</option>
-    </optgroup>
-    <option value="other">Other</option>
-  </select>
+     <input type="checkbox" name="optin" value="trusting" checked>Subscribe me to
+     your newsletter!
+     <input type="checkbox" name="optout" value="skeptical" disabled>Cheeky
+     checkbox...
 
-  <textarea name="user_message" rows="8" cols="40"></textarea>
-  <input type="submit">
-</form>
-```
+     <label for="marketing">How did you hear about me?</label>
+     <select name="marketing">
+       <optgroup label="Online">
+         <option value="social">Social Media (FB, Twitter, LinkedIn)</option>
+         <option value="github">Online Portfolio (GitHub)</option>
+         <option value="search">Search Engine</option>
+         <option value="email">Email</option>
+       </optgroup>
+       <optgroup label="In-Person">
+         <option value="networking">We met at a networking event</option>
+         <option value="referral">Personal referral</option>
+         <option value="random">We met somewhere else</option>
+       </optgroup>
+       <option value="other">Other</option>
+     </select>
 
-Spend a little bit of time breaking and fixing the form above. Also try submitting the form... what happens?
+     <textarea name="user_message" rows="8" cols="40"></textarea>
+     <input type="submit">
+   </form>
+   ```
+
+   Spend a little bit of time breaking and fixing the form above. Also try submitting the form... what happens?
 
 5. Style the form a bit!
 
-- add `<br>` elements to separate inputs onto new lines
-- add some `<labels>` with either the wrapping syntax or the `for` attribute.
-- select individual inputs with the syntax `input[type="SPECIFIC TYPE HERE"]`. Types include `checkbox`, `radio`, and `text`.
-- try changing the `width`, `height`, `padding`, and `margins` of each element to make the form more read-able
+   - add `<br>` elements to separate inputs onto new lines
+   - add some `<labels>` with either the wrapping syntax or the `for` attribute.
+   - select individual inputs with the syntax `input[type="SPECIFIC TYPE HERE"]`. Types include `checkbox`, `radio`, and `text`.
+   - try changing the `width`, `height`, `padding`, and `margins` of each element to make the form more read-able
 
 ---
 
@@ -177,9 +178,9 @@ Let's add some form validation to your contact form.
 4. It can also be useful to check some boxes by default with `checked`.
 5. Change your opening `<form>` tag to implement [Formspree](http://formspree.io/), like so:
 
-```html
-<form action="//formspree.io/your.email@example.com" method="POST"></form>
-```
+   ```html
+   <form action="//formspree.io/your.email@example.com" method="POST"></form>
+   ```
 
 6. Once your new-and-improved form works like you would like, stage, commit, push and deploy your site.
 7. When your site is live, test out your form! You should get parsed responses from Formspree as soon as you confirm your email address.
@@ -242,140 +243,140 @@ The layout above is a very common layout for blogs... much like the blog that we
 
 2. Let's change the unordered list (`<ul>`) of navigation links into an actual horizontal bar instead of a vertical bullet-pointed list. Try the following in your navigation bar (with a `class` of `navigation`, for this example):
 
-```css
-nav > ul > li {
-  display: inline;
-  list-style: none;
-}
-```
+   ```css
+   nav > ul > li {
+     display: inline;
+     list-style: none;
+   }
+   ```
 
 3. Now let's make our navigation bar 'sticky' by **fixing** its **position** in the viewport. Try the following CSS:
 
-```css
-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-}
-```
+   ```css
+   nav {
+     position: fixed;
+     top: 0;
+     left: 0;
+   }
+   ```
 
 4. Add a `margin-top` value to next page element to keep navigation from overlapping useful content. If the next section has a `class` of `header`, your CSS might look like this up to this point:
 
-```css
-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 1.3em;
-  width: 100vw;
-}
+   ```css
+   nav {
+     position: fixed;
+     top: 0;
+     left: 0;
+     height: 1.3em;
+     width: 100vw;
+   }
 
-nav > ul > li {
-  display: inline;
-  list-style: none;
-}
+   nav > ul > li {
+     display: inline;
+     list-style: none;
+   }
 
-header {
-  margin-top: 1.3em;
-}
-```
+   header {
+     margin-top: 1.3em;
+   }
+   ```
 
 5. So how to add that dropdown menu? Let's start with the markup. First, imaginine a top-level navigation bar item called `projects`. We'll want to organize our markdown such that the dropdown menu is nested inside the `<li>` that displays the `projects` label. We'll also give the dropdown `<ul>` a class of `dropdown` for good measure.
 
-```html
-<li>
-  <a href="/projects">Projects</a>
-  <ul class="dropdown">
-    <li><a href="#">First Project</a></li>
-    <li><a href="#">Second Project</a></li>
-    <li><a href="#">Third Project</a></li>
-  </ul>
-</li>
-```
+   ```html
+   <li>
+     <a href="/projects">Projects</a>
+     <ul class="dropdown">
+       <li><a href="#">First Project</a></li>
+       <li><a href="#">Second Project</a></li>
+       <li><a href="#">Third Project</a></li>
+     </ul>
+   </li>
+   ```
 
 6. There are two issues with this `dropdown` as-written: first, the dropdown is always visible. Second, the dropdown is affecting the height of the navigation bar, when we'd rather have the dropdown "float" over the rest of the content in the header. Let's tackle the first issue with `display` and `:hover`:
 
-```css
-nav .dropdown {
-  display: none; // this hides the dropdown menu by default
-}
+   ```css
+   nav .dropdown {
+     display: none; // this hides the dropdown menu by default
+   }
 
-nav a:hover + .dropdown {
-  display: block; // shows the any dropdown that is a direct sibling of a hovered anchor tag in the navigation bar
-}
-```
+   nav a:hover + .dropdown {
+     display: block; // shows the any dropdown that is a direct sibling of a hovered anchor tag in the navigation bar
+   }
+   ```
 
 7. But how to tackle the page flow issue? We can't use `position: fixed`, because we don't always know where this dropdown's associated `projects` link is going to be relative to the viewport. Instead, we'll use `position: absolute` in combination with `position: relative` to make sure that our dropdown menu "tracks" its parent.
 
-```css
-nav > ul > li {
-  position: relative; // required for absolute positioning
-  display: inline;
-  list-style: none;
-}
+   ```css
+   nav > ul > li {
+     position: relative; // required for absolute positioning
+     display: inline;
+     list-style: none;
+   }
 
-nav .dropdown {
-  position: absolute; // tracks nearest relatively-positioned ancestor
-  top: 1em; // positions according to the ancestor
-  right: 0;
-  display: none;
-}
+   nav .dropdown {
+     position: absolute; // tracks nearest relatively-positioned ancestor
+     top: 1em; // positions according to the ancestor
+     right: 0;
+     display: none;
+   }
 
-nav a:hover + .dropdown {
-  display: block;
-}
-```
+   nav a:hover + .dropdown {
+     display: block;
+   }
+   ```
 
 7. Now it's time to fix our navigation menu to be a bit more responsive! To do that, we're going to use a newer CSS property called **flex-box**. Flex-box helps us align, justify, and wrap content within a container of variable width. Let's see if we can create a navigation menu that wraps automatically on smaller screens!
 1. Change your `#navigation` CSS to the following:
 
-```css
-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: auto;
-  width: 100vw;
-}
-```
+   ```css
+   nav {
+     position: fixed;
+     top: 0;
+     left: 0;
+     height: auto;
+     width: 100vw;
+   }
+   ```
 
 2. If you haven't already, give the `<ul>` in your `#navigation` section a class of `.container` to center the useful links on a large screen. We also need to add some CSS to our `ul.container` element. CSS for the whole `#navigation` family is going to look like this:
 
-```css
-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: auto;
-  width: 100vw;
-}
+   ```css
+   nav {
+     position: fixed;
+     top: 0;
+     left: 0;
+     height: auto;
+     width: 100vw;
+   }
 
-nav > ul > li {
-  position: relative;
-  display: inline;
-  list-style: none;
-}
+   nav > ul > li {
+     position: relative;
+     display: inline;
+     list-style: none;
+   }
 
-nav .dropdown {
-  position: absolute;
-  top: 1em;
-  right: 0;
-  display: none;
-}
+   nav .dropdown {
+     position: absolute;
+     top: 1em;
+     right: 0;
+     display: none;
+   }
 
-nav a:hover + .dropdown {
-  display: block;
-}
+   nav a:hover + .dropdown {
+     display: block;
+   }
 
-nav > ul.container {
-  //these styles will extend the styles already contained in the .container class
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  align-items: center;
-}
-```
+   nav > ul.container {
+     //these styles will extend the styles already contained in the .container class
+     display: flex;
+     flex-direction: row;
+     flex-wrap: wrap;
+     justify-content: space-around;
+     align-items: center;
+   }
+   ```
 
 Flex-Box works with the same parent-child relationship that we saw with `position: relative` and `position: absolute`. In this case, we're setting up `ul.container` as our parent element, and each `li` element inside as the children. The CSS rules added to `ul.container` have the following properties:
 

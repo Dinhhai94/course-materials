@@ -274,13 +274,13 @@ There are three ways to give HTML content some styles:
 Today, we're going to take a look at inline styles. Inline styles are generally avoided in production websites, but you'll still see them in the wild in old codebases or in some niche applications (like MailChimp templates). To get a feel for inline styles, take a look at the following code:
 
 ```html
-  <body style="background-color:lightgrey">
-    <h1 style="color:blue">This is a heading</h1>
-    <h1 style="color:#AA22FF">Also a heading</h1>
-    <h1 style="color:rgb(0,255,255)">Moar!!</h1>
-    <p style="color:red;background-color:green">This is a paragraph.</p>
-    <img src="https://i.imgur.com/81qyN1y.jpg" style="height:100px;width:100px">
-  </body>
+<body style="background-color:lightgrey">
+  <h1 style="color:blue">This is a heading</h1>
+  <h1 style="color:#AA22FF">Also a heading</h1>
+  <h1 style="color:rgb(0,255,255)">Moar!!</h1>
+  <p style="color:red;background-color:green">This is a paragraph.</p>
+  <img src="https://i.imgur.com/81qyN1y.jpg" style="height:100px;width:100px">
+</body>
 ```
 
 ---
@@ -305,10 +305,10 @@ Let's create a theme for your Portfolio Project's landing page.
 Let's try out a few more styles. We won't get to every CSS property today (or in this course), but you can always find an exhaustive and up-to-date list of every property at [this address](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference) Try out the following HTML in your browser:
 
 ```html
-  <h1 style="font-family:verdana;color:orange;">This is a heading</h1>
-  <p style="color:green;">This <i style="color:orange;font-size:300%">is</i> a paragraph.</p>
-  <p style="color:green;">This <i style="font-size:300%;">is</i> a paragraph.</p>
-  <p style="color:green;font-size:40px;text-align:center;font-family:'Times New Roman';">This is a paragraph.</p>
+<h1 style="font-family:verdana;color:orange;">This is a heading</h1>
+<p style="color:green;">This <i style="color:orange;font-size:300%">is</i> a paragraph.</p>
+<p style="color:green;">This <i style="font-size:300%;">is</i> a paragraph.</p>
+<p style="color:green;font-size:40px;text-align:center;font-family:'Times New Roman';">This is a paragraph.</p>
 ```
 
 What did we learn?
@@ -329,7 +329,7 @@ We begin with a selector to indicate which elements the rules apply to. Then, in
 
 ```html
 <html>
-    <head>
+  <head>
     <style>
       h1 {
         font-family: verdana;
@@ -395,7 +395,7 @@ Every HTML element can also carry one or more `class` names in a `class` attribu
   <head>
     <style>
       h1 {
-          font-family: verdana;
+        font-family: verdana;
       }
       p {
         color: green;
@@ -416,7 +416,7 @@ Every HTML element can also carry one or more `class` names in a `class` attribu
     <h1 class="important">This is a heading</h1>
     <p>This <i class="important big">is</i> a paragraph.</p>
     <p>This <i class="big">is</i> a paragraph.</p>
-    <p  id="primary" class="big">This is by far the most important part of the page!</p>
+    <p id="primary" class="big">This is by far the most important part of the page!</p>
   </body>
 <html>
 ```

@@ -72,11 +72,11 @@ Once the snippet above has been added to the `<head>`, you'll now have access to
 1. Apply a Google-hosted font to all of a single type of `h*` element. Make sure that font applies to every instance of that element across your site!
 2. Add social icons (like `.fas-github`) to your footer. Can you make them links to your actual social media profiles? HINT:
 
-```html
-<a href="some-social-media.com">
-    <i class="fas fas-some-social-media"></i>
-</a>
-```
+   ```html
+   <a href="some-social-media.com">
+     <i class="fas fas-some-social-media"></i>
+   </a>
+   ```
 
 ---
 
@@ -97,85 +97,85 @@ Currently, our page layouts are using a sticky navigation bar optimized for mobi
 1. Let's start by getting rid of all `position: fixed` and `width` rules on the `#navigation` and `#footer` elements. We'll delegate that responsibility to the grid!
 2. You'll notice that last step probably broke our layout a bit. Let's see if we can get that top-to-bottom flow back with `display: grid`. Start by adding the following CSS rules to the `body` of your page, like so:
 
-```css
-body {
-  display: grid;
-  grid-template-areas:
-    "navigation"
-    "header"
-    "content"
-    "footer";
-}
-```
+   ```css
+   body {
+     display: grid;
+     grid-template-areas:
+       "navigation"
+       "header"
+       "content"
+       "footer";
+   }
+   ```
 
 3. Look at that wild syntax! This will make more sense in a minute, but imagine each line as a row in our layout, and each set of quotes a column. So this is a four-row, single-column grid. Take a look at your developer tools in the browser: you'll notice that the names we've used above are also used to distinguish the areas of our layout. That'll come in handy soon!
 4. You'll also notice that our content is scrunched up towards the top of the page. Let's make sure that this `body` element is allowed to grow taller than the viewport, but is never smaller than 100% of the viewport height. That would mean that our `body` CSS is now:
 
-```css
-body {
-  display: grid;
-  grid-template-areas:
-    "navigation"
-    "header"
-    "content"
-    "footer"
-  min-height: 100vh;
-}
-```
+   ```css
+   body {
+     display: grid;
+     grid-template-areas:
+       "navigation"
+       "header"
+       "content"
+       "footer"
+     min-height: 100vh;
+   }
+   ```
 
 5. This is closer, but the content of each template area is taking up exactly 1/4 of the vertical height of the screen. That's not what we want, either! What we want is for every element to take up the minimum possible height allowed by its content, except for the `content` area, which should fill up whatever remains after the `navigation`, `header`, and `footer` areas have alloted space for their content. We can accomplish this with the `grid-template-rows` rule, which defines how our four rows should behave. In this case, our `body` CSS will now look like this:
 
-```css
-body {
-  display: grid;
-  grid-template-rows: min-content min-content auto min-content;
-  grid-template-areas:
-    "navigation"
-    "header"
-    "content"
-    "footer"
-  min-height: 100vh;
-}
-```
+   ```css
+   body {
+     display: grid;
+     grid-template-rows: min-content min-content auto min-content;
+     grid-template-areas:
+       "navigation"
+       "header"
+       "content"
+       "footer"
+     min-height: 100vh;
+   }
+   ```
 
 6. Now our spacing is correct, but we've lost the `fixed` behavior of our toolbars. But we can't use `position: fixed` on our navigation and footer sections, since that would pull those sections out of the grid that we just set up to control the relative dimensions of that element. Instead, we're going to use something called `position: sticky` to allow for our toolbars to "stick" to the edge of the viewport without destroying the grid. Try something like this:
 
-```css
-#navigation {
-  position: sticky;
-  top: 0;
-}
+   ```css
+   #navigation {
+     position: sticky;
+     top: 0;
+   }
 
-#footer {
-  bottom: 0;
-  position: sticky;
-}
-```
+   #footer {
+     bottom: 0;
+     position: sticky;
+   }
+   ```
 
 7. You'll recognize the `top` and `bottom` attributes from our previous efforts with `position: fixed`, but now those constraints only take affect when our element makes contact with the edge of a viewport. So we've regained, now, our previous feature set, but we haven't yet added a way of turning our navigation bar into a sidebar for wide screens. To do that, we'll need something called a **media query**, which will have the following format:
 
-```css
-@media (min-width: 612px) {
-  body {
-    // some CSS that only apply when the viewport width > 612px
-    background-color: hotpink;
-  }
-}
-```
+   ```css
+   @media (min-width: 612px) {
+     body {
+       // some CSS that only apply when the viewport width > 612px
+       background-color: hotpink;
+     }
+   }
+   ```
 
 8. Make sure to put the media query from step 7 at the very bottom of the page, since we don't want to battle specificity for these viewport-width-specific CSS rules! What rules could we modify to bring the navigation bar over to the side of our content? Try the following:
 
-```css
-@media (min-width: 612px) {
-  body {
-    grid-template-columns: 10rem auto;
-    grid-template-rows: min-content auto min-content;
-    grid-template-areas:
-      "navigation header"
-      "navigation content"
-      "navigation footer";
-  }
-}
-```
+   ```css
+   @media (min-width: 612px) {
+     body {
+       grid-template-columns: 10rem auto;
+       grid-template-rows: min-content auto min-content;
+       grid-template-areas:
+         "navigation header"
+         "navigation content"
+         "navigation footer";
+     }
+   }
+   ```
 
 9. And with that, we should now have containers that are mobile-responsive! Spend whatever time remains in class making sure that your dropdown menus and links to other pages still work, and make sure that these rules apply to your landing, blog, and project pages.

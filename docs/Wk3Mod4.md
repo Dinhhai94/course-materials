@@ -38,29 +38,29 @@ words.forEach(logMe);
 
 1. Let's turn the `while` loop in our `Navigation` component's `buildLinks` function into a `.forEach` loop instead! HINT:
 
-```javascript
-function buildLinks(linkArray) {
-  let i = 0;
-  let links = "";
-  let route = ""; // changed for clarity
+   ```javascript
+   function buildLinks(linkArray) {
+     let i = 0;
+     let links = "";
+     let route = ""; // changed for clarity
 
-  linkArray.forEach(link => {
-    if (link !== "Home") {
-      route = lowerCase(link);
-    }
+     linkArray.forEach(link => {
+       if (link !== "Home") {
+         route = lowerCase(link);
+       }
 
-    links += `
-      <li>
-        <a href='/${route}' data-navigo>
-          ${link}
-        </a>
-      </li>
-    `;
-  });
+       links += `
+         <li>
+           <a href='/${route}' data-navigo>
+             ${link}
+           </a>
+         </li>
+       `;
+     });
 
-  return links;
-}
-```
+     return links;
+   }
+   ```
 
 2. See if you can replace some of the other `while` loops you've created in the past with `.forEach`!
 

@@ -76,55 +76,55 @@ Up to this point, we haven't been able to see any of our other pages. Let's see 
 
 1. Let's start by wrapping all of our rendering logic into a single function:
 
-```javascript
-// change our original state to home-specific state
-const home = {
-  title: "Welcome to my Savvy Coders Portfolio"
-};
+   ```javascript
+   // change our original state to home-specific state
+   const home = {
+     title: "Welcome to my Savvy Coders Portfolio"
+   };
 
-const root = document.querySelector("#root"); // this doesn't need to be queried every time we re-render
+   const root = document.querySelector("#root"); // this doesn't need to be queried every time we re-render
 
-function render(state) {
-  root.innerHTML = `
-    ${Navigation(state)}
-    ${Header(state)}
-    ${Content(state)}
-    ${Footer(state)}
-  `;
-}
+   function render(state) {
+     root.innerHTML = `
+       ${Navigation(state)}
+       ${Header(state)}
+       ${Content(state)}
+       ${Footer(state)}
+     `;
+   }
 
-render(home); // start by rendering the landing page
-```
+   render(home); // start by rendering the landing page
+   ```
 
 2. If everything from part 1 went as planned, you should see no difference on your landing page. Let's start by coming up with a new state for your first link. Perhaps:
 
-```javascript
-// assuming your first link is to your blog page
-const blog = {
-  title: "Welcome to my blog!"
-};
-```
+   ```javascript
+   // assuming your first link is to your blog page
+   const blog = {
+     title: "Welcome to my blog!"
+   };
+   ```
 
 3. Now where should put our event listeners? We can't put them _before_ `render`, since we can't apply listeners to elements before they've been rendered. And we also need to _re-apply_ listeners after each render. That means that we should include the event listeners inside of `render`, but after `innerHTML` has been overwritten, _a la_:
 
-```javascript
-function render(state) {
-  root.innerHTML = `
-    ${Navigation(state)}
-    ${Header(state)}
-    ${Content(state)}
-    ${Footer(state)}
-  `;
+   ```javascript
+   function render(state) {
+     root.innerHTML = `
+       ${Navigation(state)}
+       ${Header(state)}
+       ${Content(state)}
+       ${Footer(state)}
+     `;
 
-  document
-    .querySelector("#navigation a") // grabs first link only
-    .addEventListener("click", event => {
-      event.preventDefault(); // stops page reload
+     document
+       .querySelector("#navigation a") // grabs first link only
+       .addEventListener("click", event => {
+         event.preventDefault(); // stops page reload
 
-      render(blog); // re-render on click
-    });
-}
-```
+         render(blog); // re-render on click
+       });
+   }
+   ```
 
 4. Let's repeat the process for your `contact` and `projects` links! As you work through this problem set, can you think of some limitations with this approach? Before we progress much further, we need to learn about `event.target`.
 
@@ -197,83 +197,83 @@ That's neither `DRY` nor pretty... just look as those nasty selectors that we ne
 
 1. First, let's refactor our states. You probably have four separate state Objects by this point. If we combine them into one flat state Object, then it will be easier to leverage the power of `event.target`. Let's do something like this:
 
-```javascript
-// notice the capitalized property names!
+   ```javascript
+   // notice the capitalized property names!
 
-const state = {
-  Blog: {
-    title: "Welcome to my Blog"
-  },
-  Home: {
-    title: "Welcome to my Portfolio"
-  },
-  Contact: {
-    title: "Contact Me"
-  },
-  Projects: {
-    title: "Check out my Projects"
-  }
-};
-```
+   const state = {
+     Blog: {
+       title: "Welcome to my Blog"
+     },
+     Home: {
+       title: "Welcome to my Portfolio"
+     },
+     Contact: {
+       title: "Contact Me"
+     },
+     Projects: {
+       title: "Check out my Projects"
+     }
+   };
+   ```
 
 2. Now we can extract the click event handler into its own function:
 
-```javascript
-function handleNavigation(event) {
-  // pull the component name from the text in the anchor tag
-  const component = event.target.textContent;
+   ```javascript
+   function handleNavigation(event) {
+     // pull the component name from the text in the anchor tag
+     const component = event.target.textContent;
 
-  event.preventDefault();
+     event.preventDefault();
 
-  // select a piece of the state tree by component
-  render(state[component]);
-}
-```
+     // select a piece of the state tree by component
+     render(state[component]);
+   }
+   ```
 
 3. This already helps us clean things up. Check out our new `render` function:
 
-```javascript
-function render(state) {
-  root.innerHTML = `
-    ${Navigation(state)}
-    ${Header(state)}
-    ${Content(state)}
-    ${Footer(state)}
-  `;
+   ```javascript
+   function render(state) {
+     root.innerHTML = `
+       ${Navigation(state)}
+       ${Header(state)}
+       ${Content(state)}
+       ${Footer(state)}
+     `;
 
-  document
-    .querySelector("#navigation a")
-    .addEventListener("click", handleNavigation);
+     document
+       .querySelector("#navigation a")
+       .addEventListener("click", handleNavigation);
 
-  document
-    .querySelector("#navigation li:nth-child(2) > a")
-    .addEventListener("click", handleNavigation);
+     document
+       .querySelector("#navigation li:nth-child(2) > a")
+       .addEventListener("click", handleNavigation);
 
-  document
-    .querySelector("#navigation li:nth-child(3) > a")
-    .addEventListener("click", handleNavigation);
-}
-```
+     document
+       .querySelector("#navigation li:nth-child(3) > a")
+       .addEventListener("click", handleNavigation);
+   }
+   ```
 
 4. Our last optimization will be to reduce the number of DOM queries every re-render. We're currently querying the entire `document` three times every time `render` is called. We can do better by using `querySelectorAll`, like so:
 
-```javascript
-function render(state) {
-  root.innerHTML = `
-    ${Navigation(state)}
-    ${Header(state)}
-    ${Content(state)}
-    ${Footer(state)}
-  `;
+   ```javascript
+   function render(state) {
+     root.innerHTML = `
+       ${Navigation(state)}
+       ${Header(state)}
+       ${Content(state)}
+       ${Footer(state)}
+     `;
 
-  const links = document.querySelectorAll("#navigation a");
+     const links = document.querySelectorAll("#navigation a");
 
-  links[0].addEventListener("click", handleNavigation);
+     links[0].addEventListener("click", handleNavigation);
 
-  links[1].addEventListener("click", handleNavigation);
+     links[1].addEventListener("click", handleNavigation);
 
-  links[2].addEventListener("click", handleNavigation);
-}
-```
+     links[2].addEventListener("click", handleNavigation);
+   }
+   ```
 
 Now we have a pretty clean navigation system that doesn't require page refreshes! How else can we improve on this system?

@@ -252,16 +252,16 @@ Let's get our feet wet with `git` by configuring our user identity.
 
 1. In any command prompt, type the following (using your name and email, of course):
 
-```shell
-$ git config --global user.name "Firstname Lastname"
-$ git config --global user.email "your.email@example.com"
-```
+   ```shell
+   $ git config --global user.name "Firstname Lastname"
+   $ git config --global user.email "your.email@example.com"
+   ```
 
 2. You can check all of your configuration settings by typing
 
-```shell
-$ git config --list
-```
+   ```shell
+   $ git config --list
+   ```
 
 That wasn't so bad, right?
 
@@ -272,75 +272,75 @@ That wasn't so bad, right?
 1. First, navigate to your `~/Code/SavvyCoders/FirstnameLastname` directory.
 2. Next, while still the `FirstnameLastname` directory, type the following:
 
-```shell
-$ git init
-```
+   ```shell
+   $ git init
+   ```
 
 3. That _should_ have created a `.git` folder, which is hidden by default. There are two ways to make sure that our `git init` command worked. Try these both out:
 
-- list all of the hidden folders (including `.git`) in `FirstnameLastname`:
+   - list all of the hidden folders (including `.git`) in `FirstnameLastname`:
 
-```shell
-$ ls -a
-```
+   ```shell
+   $ ls -a
+   ```
 
-You should see a folder called `.git` in the output.  Now try running a simple `git` command:
+   You should see a folder called `.git` in the output.  Now try running a simple `git` command:
 
-```shell
-$ git status
-```
+   ```shell
+   $ git status
+   ```
 
-If you get `FATAL: FirstnameLastname is not a git repository`, something has gone wrong. If everything worked, you should see something like this:
+   If you get `FATAL: FirstnameLastname is not a git repository`, something has gone wrong. If everything worked, you should see something like this:
 
-```shell
-$ git status
-On branch master
-Initial commit
-Untracked files:
-  (use "git add <file>..." to include in what will be committed)
-        README.md
-nothing added to commit but untracked files present (use "git add" to track)
-```
+   ```shell
+   $ git status
+   On branch master
+   Initial commit
+   Untracked files:
+     (use "git add <file>..." to include in what will be committed)
+           README.md
+   nothing added to commit but untracked files present (use "git add"    to track)
+   ```
 
 4. Once `git` is _initialized_ (`init` = initialize), we should be able start saving snapshots of our work. Before committing our work, though, we have to _stage_ our changes. You can do that with the following command:
 
-```shell
-$ git add .
-```
+   ```shell
+   $ git add .
+   ```
 
-That `.` at the end is very important! That's telling `git` to stage everything in the working directory at once. To make sure that everything worked, type in `git status` again. You should get output that looks something like this:
+   That `.` at the end is very important! That's telling `git` to stage everything in the working directory at once. To make sure that everything worked, type in `git status` again. You should get output that looks something like this:
 
-```shell
-$ git status
-On branch master
-Initial commit
-Changes to be committed:
-  (use "git rm --cached <file>..." to unstage)
-        new file:   README.md
-```
+   ```shell
+   $ git status
+   On branch master
+   Initial commit
+   Changes to be committed:
+     (use "git rm --cached <file>..." to unstage)
+           new file:   README.md
+   ```
 
 5. As nice as it is to get this far, we **still** haven't committed our changes yet. So we wouldn't be able to roll back to this point in the event of error, because `README.md` is still waiting to be fully committed. Let's do that with the following command:
 
-```shell
-$ git commit -m "First commit"
-```
+   ```shell
+   $ git commit -m "First commit"
+   ```
 
-`git` forces us to create a _commit message_ whenever a commit is made. This is a short snippet of text that helps you remember exactly what was changed in each commit. Normally committing and creating a commit are two different steps, but you can combine the two by adding the `-m` flag (for 'message'), followed by your custom commit message in quotation marks. If everything works as planned, you should see something like the following output:
+   `git` forces us to create a _commit message_ whenever a commit is made. This is a short snippet of text that helps you remember exactly what was changed in each commit. Normally committing and creating a commit are two different steps, but you can combine the two by adding the `-m` flag (for 'message'), followed by your custom commit message in quotation marks. If everything works as planned, you should see something like the following output:
 
-```shell
-$ git commit -m "First commit"
-[master (root-commit) ee6ac27] First commit
- 1 file changed, 3 insertions(+)
- create mode 100644 README.md
-```
+   ```shell
+   $ git commit -m "First commit"
+   [master (root-commit) ee6ac27] First commit
+    1 file changed, 3 insertions(+)
+    create mode 100644 README.md
+   ```
 
 6. Now if you run `git log`, you'll see a list containing your entire `git` history (it should be pretty short at the moment). But we still only have _one copy_ of our codebase. To back up our work, let's use GitHub! The first step is to [create a new repository on online GitHub account](https://help.github.com/articles/create-a-repo/).
 7. After you've created your new repository, you'll need to link that repo to your current project directory. You can do that with `git remote add origin https://github.com/YOURUSERNAME/YOUR-REPO-ADDRESS.git`. If you've done this correctly, you should see the word `origin` pop up in the command-line when you type `git remote`.
 8. Now we need to **push** our local commit (called 'First commit', containing only the README.md file) to the remote repository. To do that, enter the following command:
 
-```shell
-$ git push origin master
-```
+   ```shell
+   $ git push origin master
+   ```
 
 9. If that worked, you should see your `README.md` file appear in your GitHub GUI after a page refresh. Now you have two copies of your `git` repository... nice work!
 

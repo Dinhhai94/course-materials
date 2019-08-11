@@ -263,11 +263,11 @@ We'll want Netlify to be able to run a similar command on our behalf during the 
 
 1. First, we can leverage another feature of `npm`: the `scripts` hash. This piece of our `package.json` file allows us to run otherwise long commands from the command line using local project dependencies. So let's add a `build` command to `package.json`, such that your `scripts` configuration looks like this:
 
-```json
-{
-  "build": "parcel build index.html && cp _redirects ./dist/",
-}
-```
+   ```json
+   {
+     "build": "parcel build index.html && cp _redirects ./dist/",
+   }
+   ```
 
 > NOTE: we need to include `cp _redirects ./dist/` for reasons that will become clear soon.
 

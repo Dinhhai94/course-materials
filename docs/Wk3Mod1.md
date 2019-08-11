@@ -19,12 +19,12 @@ The following lists the core web development skills that you should feel comfort
 2. Pushing to GitHub and seeing it rendered on your repository's main page.
 3. Creating an HTML document using the following HTML tags:
 
-- `<html>`, `<head>`, `<title>`, `<body>`
-- header and paragraph tags
-- bold and italic tags
-- `<div>` and `<span>`
-- ordered and unordered lists
-- images and links
+   - `<html>`, `<head>`, `<title>`, `<body>`
+   - header and paragraph tags
+   - bold and italic tags
+   - `<div>` and `<span>`
+   - ordered and unordered lists
+   - images and links
 
 4. Using a style attribute on an HTML element, then a `<style>` tag in the head, then a `<link>` tag to a separate `.css` document to include CSS styles in your page.
 5. Refactoring your code to use classes and ids.
@@ -56,20 +56,20 @@ Let's go through the following steps, dividing up tasks as a team, to get this n
 6. Create a `<form>` element that will allow a user to input a new book (eventually). Make sure that each field has a `name` attribute that's _exactly the same_ as the corresponding property listed above (you'll see why in a minute).
 7. Now take all the information about our books and make them into JavaScript Objects. Create variables `book1`, `book2`, etc. Set each equal to an object with keys `name`, `author`, and `pictureUrl`, which hold string values, `price` and `id`, which holds a number value, and `sellingPoints`, which is an Array of Strings. EXAMPLE:
 
-```javascript
-const book1 = {
-    "id": 1,
-    "name": "Lasagna: A Retrospective",
-    "author": "Garfield"
-    "pictureUrl": "http://graphics8.nytimes.com/images/2015/10/15/dining/15RECIPE20DIN/15RECIPE20DIN-articleLarge.jpg",
-    "price": 24,
-    "sellingPoints": [
-        "Lasagna is delicious.",
-        "The essential guide to Italian casseroles of all types.",
-        "Real G's move silent, like Lasagna. -Lil Wayne"
-    ]
-}
-```
+   ```javascript
+   const book1 = {
+       "id": 1,
+       "name": "Lasagna: A Retrospective",
+       "author": "Garfield"
+       "pictureUrl": "http://graphics8.nytimes.com/images/2015/10/15/   dining/15RECIPE20DIN/15RECIPE20DIN-articleLarge.jpg",
+       "price": 24,
+       "sellingPoints": [
+           "Lasagna is delicious.",
+           "The essential guide to Italian casseroles of all types.",
+           "Real G's move silent, like Lasagna. -Lil Wayne"
+       ]
+   }
+   ```
 
 8. Create a `Book` stateless functional component that takes in a book Object (like the one above) and outputs that book's information in card-like markup.
 9. Make sure that the `Book` component has corresponding styles!
@@ -77,29 +77,29 @@ const book1 = {
 11. Instead of `import`-ing `Book` into `Content`, let's feed all of the book Objects into `Content` in `index.js`. How could you organize those book Objects into a single complex data type to give to `Content`? And how could we handle that complex data type in `Content`
 12. Now let's make this form work! We'll do that by hooking into the `submit` event:
 
-```javascript
-document
-    .querySelector('form')
-    .addEventListener(
-        'submit',
-        (event) => {
-            const data = event.target.elements;
-            const newProduct = {
-                'name': data[0].value,
-                'author': data[1].value,
-                'pictureURL': data[2].value,
-                'price': data[3].value
+   ```javascript
+   document
+       .querySelector('form')
+       .addEventListener(
+           'submit',
+           (event) => {
+               const data = event.target.elements;
+               const newProduct = {
+                   'name': data[0].value,
+                   'author': data[1].value,
+                   'pictureURL': data[2].value,
+                   'price': data[3].value
 
-                // we'll learn how to handle sellingPoints next
-                'sellingPoints': []
-            };
+                   // we'll learn how to handle sellingPoints next
+                   'sellingPoints': []
+               };
 
-            // this might be a hint for number 11
-            booksArray[booksArray.length] = newProduct;
+               // this might be a hint for number 11
+               booksArray[booksArray.length] = newProduct;
 
-            render(booksArray);
-        }
-    );
-```
+               render(booksArray);
+           }
+       );
+   ```
 
 In whatever time remains, make sure that this bookstore looks as good as we can make it!

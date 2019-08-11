@@ -35,25 +35,25 @@ We could use recursion to make sure that `randomFinish` always called the next i
 
 ```javascript
 function handleFinish(count) {
-    const label = `function ${count}`;
+  const label = `function ${count}`;
 
-    console.log(`${label} is done!`);
+  console.log(`${label} is done!`);
 
-    if( count < 3 ){
-        randomFinish( count + 1 );
-    }
+  if (count < 3) {
+    randomFinish(count + 1);
+  }
 };
 
 function randomFinish(count) {
-    const randomTime = Math.random() * 1000;
+  const randomTime = Math.random() * 1000;
 
-    setTimeout(
-        () => handleFinish( count ),
-        randomTime
-    );
+  setTimeout(
+    () => handleFinish count),
+    randomTime
+  );
 };
 
-randomFinish( 1 );
+randomFinish(1);
 ```
 
 While the above _works_, it's not a great solution for a couple of reasons. First, the handling of our function happens within the function itself, which is probably no good. What happens when the spec for these functions changes? What if other functions _also_ depend on `randomFinish`... will those functions be added to `handleFinish` as well?
@@ -130,11 +130,11 @@ Luckily, most browsers have implemented at least a part of the new [Fetch API](h
 
 1. Try the following anywhere in your developer console:
 
-```javascript
-fetch("https://jsonplaceholder.typicode.com/posts")
-  .then(response => response.json())
-  .then(json => console.log(json));
-```
+   ```javascript
+   fetch("https://jsonplaceholder.typicode.com/posts")
+     .then(response => response.json())
+     .then(json => console.log(json));
+   ```
 
 2. You should have noticed a slight delay before the data was output to your console as a fully-parsed JavaScript Object. That's pretty neat! Now see if you can repeat that process for some of the other JSON placeholder resources.
 
@@ -150,103 +150,103 @@ The library that we'll use for the remainder of the course is called [axios](htt
 
 1. `axios` is a third-party library, so we'll need to include it as a dependency through `npm`:
 
-```shell
-npm install --save axios
-```
+   ```shell
+   npm install --save axios
+   ```
 
 2. Let's re-write the first part of Exercise 1 with `axios`. You'll notice that it looks pretty similar, but doesn't require `fetch`'s unwrapping/JSON parsing step:
 
-```javascript
-axios
-  .get("https://jsonplaceholder.typicode.com/posts")
-  .then(response => console.log(response.data.posts));
-```
+   ```javascript
+   axios
+     .get("https://jsonplaceholder.typicode.com/posts")
+     .then(response => console.log(response.data.posts));
+   ```
 
 3. That was easy! But now how do we use this data in our application? You'll recall that we've set up our entire application as a single relationship between our application `state` and the way that application is presented. So using this new data is as simple as augmenting our `state` and re-rendering the app. That will look something like this:
 
-```javascript
-import * as states from "./store";
+   ```javascript
+   import * as states from "./store";
 
-state.posts = []; // initializes empty piece of state
+   state.posts = []; // initializes empty piece of state
 
-axios
-  .get("https://jsonplaceholder.typicode.com/posts")
-  .then(response => response.data.forEach(post => state.posts.push(post)));
-```
+   axios
+    .get("https://jsonplaceholder.typicode.com/posts")
+    .then(response => response.data.forEach(post => state.posts.push(post)));
+   ```
 
 The code above defines a piece of our `state` Object just for our posts. If the `Blog` page is the first thing to be rendered, there won't be any errors on initial page load, and there will be a slight delay while all of the posts are fetched.
 
 4. The next thing is to re-render the application with the updated state! You'll recall that the router is handling most of our application rendering, so let's leverage that route handling to re-render the application once we've received some data from this external API:
 
-```javascript
-axios.get("https://jsonplaceholder.typicode.com/posts").then(response => {
-  const params = router.lastRouteResolved().params;
+   ```javascript
+   axios.get("https://jsonplaceholder.typicode.com/posts").then(response => {
+     const params = router.lastRouteResolved().params;
 
-  response.data.forEach(post => state.posts.push(post));
+     response.data.forEach(post => state.posts.push(post));
 
-  if (params) {
-    // required for the home page
-    handleRoute(params);
-  }
-});
-```
+     if (params) {
+       // required for the home page
+       handleRoute(params);
+     }
+   });
+   ```
 
-This uses `lastRouteResolved` to query the router for the last route that's been handled (which is the same thing as "the current page" from the user's perspective), then sends those `params` down the pipeline to route handler after the `state` has been augmented with our new `post` data.
+   This uses `lastRouteResolved` to query the router for the last route that's been handled (which is the same thing as "the current page" from the user's perspective), then sends those `params` down the pipeline to route handler after the `state` has been augmented with our new `post` data.
 
 5. Now our `startApp` function is being called at the correct time, but what about our stateless functional components? How can we use our existing components to parse this new piece of the `state` tree? Don't forget that it's components all the way down! Let's see what happens when we turn the `body` components that we made earlier into a functional component that can handle `state` as well. Our `Content` component becomes:
 
-```javascript
-import * as pages from "./Pages";
+   ```javascript
+   import * as pages from "./Pages";
 
-export default function Content(state) {
-  return `
-    <div>
-      ${pages[state.body](state)} // pass that state!
-    </div>
-  `;
-}
-```
+   export default function Content(state) {
+     return `
+       <div>
+         ${pages[state.body](state)} // pass that state!
+       </div>
+     `;
+   }
+   ```
 
-You should see some `Blog is not a function` errors until we change the `Blog` component into a stateless functional component, e.g.:
+   You should see some `Blog is not a function` errors until we change the `Blog` component into a stateless functional component, e.g.:
 
-```javascript
-export default function Blog(state) {
-  return state
-    .posts
-    .??? // what to do here?
-}
-```
+   ```javascript
+   export default function Blog(state) {
+     return state
+       .posts
+       .??? // what to do here?
+   }
+   ```
 
 6. But what to do with these `posts` now? What we really want to do is _transform_ these post Objects into a single post String, right? To do that, let's create another function that we can use to generate individual posts. Something like:
 
-```javascript
-function mapPost(post) {
-  return `
-    <div>
-      <h3>${post.title}</h3>
-      <p>${post.body}</p>
-    </div>
-  `;
-}
-```
+   ```javascript
+   function mapPost(post) {
+     return `
+       <div>
+         <h3>${post.title}</h3>
+         <p>${post.body}</p>
+       </div>
+     `;
+   }
+   ```
 
-Notice how any function that generates new markup follows a similar pattern: `state` (or a piece of `state`) in, HTML (as a JavaScript String) out.
+   Notice how any function that generates new markup follows a similar pattern: `state` (or a piece of `state`) in, HTML (as a JavaScript String) out.
 
 7. To bring it all together, our new `Blog` function becomes:
 
-```javascript
-function mapPost(post) {
-  return `
-    <div>
-      <h3>${post.title}</h3>
-      <p>${post.body}</p>
-    </div>
-  `;
-}
-
-export default function Blog(state) {
-  return state.posts.map(mapPost).join(""); // this condenses an Array into a String
-}
-```
+   ```javascript
+   function mapPost(post) {
+     return `
+       <div>
+         <h3>${post.title}</h3>
+         <p>${post.body}</p>
+       </div>
+     `;
+   }
+   
+   export default function Blog(state) {
+     return state.posts.map(mapPost).join(""); // this condenses an Array into a String
+   }
+   ```
 
 Now we see how to render subcomponents through the entire component tree _and_ we see how to do it with asynchronous data. This is a big part of being a web developer, and you should feel accomplished for getting to this point!

@@ -92,25 +92,25 @@ inspector("hello", 7, true, undefined, null, 3 + 12, "nice to" + " meet you");
 
 1. In your dev console, create a function `logAndReturn` that `console.log`s all of its inputs and then `return`s them. HINT:
 
-```javascript
-function logAndReturn() {
-  console.log(arguments);
+   ```javascript
+   function logAndReturn() {
+     console.log(arguments);
 
-  return arguments;
-}
-```
+     return arguments;
+   }
+   ```
 
 2. Store the `return` value as a variable `returnedValues`. HINT:
 
-```javascript
-const returnedValues = logAndReturn();
-```
+   ```javascript
+   const returnedValues = logAndReturn();
+   ```
 
 3. Pass that variable as an argument to a second invocation of `logAndReturn`. HINT:
 
-```javascript
-logAndReturn(returnedValues);
-```
+   ```javascript
+   logAndReturn(returnedValues);
+   ```
 
 ---
 
@@ -162,35 +162,35 @@ const sum = add(7, 12);
 
 1. Write a function called `tripler` that takes a number and returns triple the value. HINT:
 
-```javascript
-function tripler(num) {
-  return num * 3;
-}
-```
+   ```javascript
+   function tripler(num) {
+     return num * 3;
+   }
+   ```
 
 2. Create a function `multiply` that takes two numbers as inputs and returns their product. HINT:
 
-```javascript
-function multiply(num1, num2) {
-  return num1 * num2;
-}
-```
+   ```javascript
+   function multiply(num1, num2) {
+     return num1 * num2;
+   }
+   ```
 
 3. Create a function `divide` that takes two numbers as inputs and returns the result of dividing the first by the second
 
-```javascript
-function divide(num1, num2) {
-  return num1 / num2;
-}
-```
+   ```javascript
+   function divide(num1, num2) {
+     return num1 / num2;
+   }
+   ```
 
 4. Create a function `remainder` that takes two numbers as inputs and returns the result of modulo the first by the second
 
-```javascript
-function remainder(num1, num2) {
-  return num1 % num2;
-}
-```
+   ```javascript
+   function remainder(num1, num2) {
+     return num1 % num2;
+   }
+   ```
 
 5. Using only the functions you wrote above, and no operators, calculate the value of tripling 5, multiplying that by 12, dividing by 2 and then finding the remainder of dividing that by 3.
 
@@ -204,64 +204,64 @@ Our component library currently consists of four top-level components. So far, t
 
 1. Let's start with the `Header` component, since that will almost always need to change in response to the current page. The first thing that we should do is `export` a `function` that `return`s the original HTML string. Something like:
 
-```javascript
-export default function Header() {
-  return `
-    <div id="header">
-      <h1>Welcome to Alex's Savvy Coders Portfolio Project!</h1>
-    </div>
-  `;
-}
-```
+   ```javascript
+   export default function Header() {
+     return `
+       <div id="header">
+         <h1>Welcome to Alex's Savvy Coders Portfolio Project!</h1>
+       </div>
+     `;
+   }
+   ```
 
-...which we can use in our `index.js` file with:
+   ...which we can use in our `index.js` file with:
 
-```javascript
-document.querySelector("#root").innerHTML = `
-  ${Navigation}
-  ${Header()} // notice the invocation here
-  ${Content}
-  ${Footer}
-`;
-```
+   ```javascript
+   document.querySelector("#root").innerHTML = `
+     ${Navigation}
+     ${Header()} // notice the invocation here
+     ${Content}
+     ${Footer}
+   `;
+   ```
 
 2. We should try to think of our components as pure, "dumb" expressions of the state of our application. That application state could eventually get pretty complicated, so let's think of that state as an Object that can eventually store lots of data for us. Let's create that state Object in `index.js`, then pass that state to our component. In `index.js`:
 
-```javascript
-const state = {
-  title: "Welcome to Alex's Savvy Coders Portfolio"
-};
+   ```javascript
+   const state = {
+     title: "Welcome to Alex's Savvy Coders Portfolio"
+   };
 
-document.querySelector("#root").innerHTML = `
-      ${Navigation}
-      ${Header(state)} // notice the use of state
-      ${Content}
-      ${Footer}
-    `;
-```
+   document.querySelector("#root").innerHTML = `
+         ${Navigation}
+         ${Header(state)} // notice the use of state
+         ${Content}
+         ${Footer}
+       `;
+   ```
 
-...and in `Header.js`:
+   ...and in `Header.js`:
 
-```javascript
-export default function Header(state) {
-  return `
-    <div id="header">
-      <h1>${state.title}</h1>
-    </div>
-  `;
-}
-```
+   ```javascript
+   export default function Header(state) {
+     return `
+       <div id="header">
+         <h1>${state.title}</h1>
+       </div>
+     `;
+   }
+   ```
 
 3. Let's turn every other component into a functional component to be invoked with a `state` argument (even if we don't actually respond to any part of that state just yet). By the time we're done, our application markup generator should look like:
 
-```javascript
-document.querySelector("#root").innerHTML = `
-  ${Navigation(state)}
-  ${Header(state)}
-  ${Content(state)}
-  ${Footer(state)}
-`;
-```
+   ```javascript
+   document.querySelector("#root").innerHTML = `
+     ${Navigation(state)}
+     ${Header(state)}
+     ${Content(state)}
+     ${Footer(state)}
+   `;
+   ```
 
 To make this a bit more useful, we need to learn a bit more about how users can interact with our application through [Events](https://developer.mozilla.org/en-US/docs/Web/Events).
 
@@ -299,9 +299,11 @@ As you see in the examples above, they can be fairly tedious to write out. To he
 
 ```javascript
 // original syntax
-document.querySelector("div").addEventListener("click", function logOnClick() {
-  console.log("A div has been clicked!");
-});
+document
+  .querySelector("div")
+  .addEventListener("click", function logOnClick() {
+    console.log("A div has been clicked!");
+  });
 
 // arrow function
 document
