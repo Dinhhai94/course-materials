@@ -147,8 +147,8 @@ Now let's try to `.reduce()` this array from left to right in a similar way. `.r
 
 ```javascript
 const myArray = [1, 2, 3, 4, 5];
-const myArraySum = myArray.reduce((previousValue, currentValue) => {
-  return previousValue + currentValue;
+const myArraySum = myArray.reduce((total, currentValue) => {
+  return total + currentValue;
 });
 ```
 
