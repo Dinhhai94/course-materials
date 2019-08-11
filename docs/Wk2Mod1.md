@@ -174,7 +174,7 @@ What happened to the user input here? As of right now, nothing! Let's try this i
 
 ```html
 <script>
-  const name = prompt('What is your name?');
+  let name = prompt('What is your name?');
 
   alert('Hello ' + name);
 </script>
@@ -186,7 +186,7 @@ Neat, huh? `prompt()` actually returns a String for us to play around with. We j
 
    ```html
    <script>
-     const name = prompt('What is your name?');
+     let name = prompt('What is your name?');
 
      if(name === "") { // checks for an empty string
        name = prompt('What is your name, for real this time?');
@@ -200,7 +200,7 @@ Neat, huh? `prompt()` actually returns a String for us to play around with. We j
 
    ```html
    <script>
-     const name = prompt('What is your name?');
+     let name = prompt('What is your name?');
 
      const checkName = function(){
        if(name === "") {
@@ -222,7 +222,7 @@ Neat, huh? `prompt()` actually returns a String for us to play around with. We j
    2. Copy the contents of the `<script>` tag (NOT the `<script>` tag itself!) over to `index.js`. HINT: the entire document should look like:
 
    ```javascript
-   const name = prompt("What is your name?");
+   let name = prompt("What is your name?");
 
    const checkName = function() {
      if (name === "") {
