@@ -38,29 +38,29 @@ words.forEach(logMe);
 
 1. Let's turn the `while` loop in our `Navigation` component's `buildLinks` function into a `.forEach` loop instead! HINT:
 
-```javascript
-function buildLinks(linkArray) {
-  let i = 0;
-  let links = "";
-  let route = ""; // changed for clarity
+   ```javascript
+   function buildLinks(linkArray) {
+     let i = 0;
+     let links = "";
+     let route = ""; // changed for clarity
 
-  linkArray.forEach(link => {
-    if (link !== "Home") {
-      route = lowerCase(link);
-    }
+     linkArray.forEach(link => {
+       if (link !== "Home") {
+         route = lowerCase(link);
+       }
 
-    links += `
-            <li>
-                <a href='/${route}' data-navigo>
-                    ${link}
-                </a>
-            </li>
-        `;
-  });
+       links += `
+         <li>
+           <a href='/${route}' data-navigo>
+             ${link}
+           </a>
+         </li>
+       `;
+     });
 
-  return links;
-}
-```
+     return links;
+   }
+   ```
 
 2. See if you can replace some of the other `while` loops you've created in the past with `.forEach`!
 
@@ -147,14 +147,14 @@ Now let's try to `.reduce()` this array from left to right in a similar way. `.r
 
 ```javascript
 const myArray = [1, 2, 3, 4, 5];
-const myArraySum = myArray.reduce((previousValue, currentValue) => {
-  return previousValue + currentValue;
+const myArraySum = myArray.reduce((total, currentValue) => {
+  return total + currentValue;
 });
 ```
 
 ### More Exercises:
 
-1. Write a function that takes an array of values and returns an boolean representing if the word "hello" exists in the array. HINT: test each element with a loop!
+1. Write a function that takes an array of values and returns an boolean representing if the word "hello" exists in the array.
 2. Write a function that takes an array of values and a target value and returns how many times that target value exists in the array.
 3. Write a function that takes an array and returns a new array containing only the values at odd indexes in that array.
 4. Write a function called sumArray that takes an array of numbers and returns the sum of all of those numbers added together.

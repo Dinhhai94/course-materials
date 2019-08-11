@@ -13,7 +13,7 @@ While `if`, `else`, and `else if` combined with `===`, `<==`, `>==`, and `!==` c
 
 Try out some of the following in your console to see the results:
 
-```
+```javascript
 !true
 !false
 !!false
@@ -179,11 +179,11 @@ Let's take that markup and turn it into an JS module! In `Navigation.js`, conver
 ```javascript
 export default `
   <div id="navigation">
-      <ul>
-          <li>First</li>
-          <li>Second</li>
-          <li>Third</li>
-      </ul>
+    <ul>
+      <li>First</li>
+      <li>Second</li>
+      <li>Third</li>
+    </ul>
   </div>
 `;
 ```
@@ -217,12 +217,12 @@ import Footer from "./components/Footer";
 const initialHTML = document.body.innerHTML;
 
 document.body.innerHTML = `
-      ${Navigation}
-      ${Header}
-      ${Content}
-      ${Footer}
-      ${initialHTML} // we still need this
-    `;
+  ${Navigation}
+  ${Header}
+  ${Content}
+  ${Footer}
+  ${initialHTML} // we still need this
+`;
 ```
 
 7. You'll notice that we need to perform that somewhat-hacky `initialHTML` trick to make sure that our `<script>` tag isn't clobbered by our over-writing of the `body`'s `innerHTML`. Instead of doing that, let's wrap our visible application in a placeholder `div` with an `id` of `root`. That means adding `<div id="root"></div>` to your `index.html` and modifying your `index.js` to look something like:
@@ -234,11 +234,11 @@ import Content from "./components/Content";
 import Footer from "./components/Footer";
 
 document.querySelector("#root").innerHTML = `
-      ${Navigation}
-      ${Header}
-      ${Content}
-      ${Footer}
-    `;
+  ${Navigation}
+  ${Header}
+  ${Content}
+  ${Footer}
+`;
 ```
 
 > NOTE: don't forget to modify your CSS to keep your fancy grid aligned!
@@ -251,11 +251,11 @@ Pretty cool, huh? Now imagine that we could re-use these components across multi
 
 So far, our Netlify/GitHub integration has allowed us to seamlessly serve a new set of static assets (HTML files) without needing to directly access the server or infrastructure. But now, by bundling our applications from multiple modules into a single, distributable file, we've introduced a _build step_. This build step is required if we want to generate the same sorts of static assets that we've been writing by hand up to this point. To see what happens when we build static assets with `parcel`, try:
 
-```
+```shell
 npx parcel build index.html
 ```
 
-If you've done this correctly, you should see a new `/dist/` directory that contains all of the HTML, CSS, and JavaScript that our project will need! 
+If you've done this correctly, you should see a new `/dist/` directory that contains all of the HTML, CSS, and JavaScript that our project will need!
 
 > NOTE: if the command above failed, it's almost certainly due to filepath issues. Make sure that your asset paths are _relative_ instead of absolute! Since Netlify's build process takes place on another machine, we can't be sure that that machine will treat the `/` the same way that we've come to expect from `http-server` and `parcel` on our local machines.
 
@@ -263,11 +263,11 @@ We'll want Netlify to be able to run a similar command on our behalf during the 
 
 1. First, we can leverage another feature of `npm`: the `scripts` hash. This piece of our `package.json` file allows us to run otherwise long commands from the command line using local project dependencies. So let's add a `build` command to `package.json`, such that your `scripts` configuration looks like this:
 
-```json
-{
-  "build": "parcel build index.html && cp _redirects ./dist/",
-}
-```
+   ```json
+   {
+     "build": "parcel build index.html && cp _redirects ./dist/",
+   }
+   ```
 
 > NOTE: we need to include `cp _redirects ./dist/` for reasons that will become clear soon.
 

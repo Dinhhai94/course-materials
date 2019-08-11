@@ -19,26 +19,26 @@ The Dev Console is a JavaScript REPL ("Read Evaluate Print Loop") that is just w
 1. Remember the DOM? Let's see if we have access to it by typing `window.document` into the REPL. What's the output?
 2. We also have access to data outside of the DOM (in the BOM or "Browser Object Model"). This information is held in the `window` object. Try out a few of these:
 
-```javascript
-window.location;
-window.history;
-```
+   ```javascript
+   window.location;
+   window.history;
+   ```
 
 3. While that's pretty neat, we're still just looking around. Let's try interacting with the REPL! Try out the following:
 
-```javascript
-2 + 2;
-2 * 5;
-1e4 * 2;
-```
+   ```javascript
+   2 + 2;
+   2 * 5;
+   1e4 * 2;
+   ```
 
 Now we're programming! The browser is responding to our demands when we give it an input with a **data type** of *Number*. The Number data type includes integers, floating-point numbers (i.e. decimals), and exponent notation (e.g. 1e4).
 
 4. Mathematic operations are called using **operators** that we are all familiar with. These operators do different things for different data types, though. Try this:
 
-```javascript
-"2" + "2";
-```
+   ```javascript
+   "2" + "2";
+   ```
 
 What's the answer? It's definitely NOT 4 like you or I might expect. And that's because 2 is not the same thing as '2'. 2 is a number, while '2' is a string of text, or the _character_ 2. And for text (with a data type of _String_), the + operator is actually for _concatenation_. It turns multiple Strings into one output string. Try the following:
 
@@ -51,12 +51,12 @@ Note that all strings have to have quotes (either single or double) around them.
 
 5. In the 'real world', programming implies that you can create a program to be used later, rather than simply typing in commands. To do that, we need a way to save these bits of data to memory. JavaScript lets us save values to **variables** using either the `const`, `let` or  `var` **keywords.** Try the following:
 
-```javascript
-const currentYear = 2016;
-let myCountry = "USA";
-var myPhrase = currentYear + " is an election year in the " + myCountry;
-console.log(myPhrase);
-```
+   ```javascript
+   const currentYear = 2016;
+   let myCountry = "USA";
+   var myPhrase = currentYear + " is an election year in the " +    myCountry;
+   console.log(myPhrase);
+   ```
 
 A couple of things to notice about these commands:
   + Our **keyword** and the name of the variable are separated by a space, and the variable name can't include spaces
@@ -67,27 +67,27 @@ A couple of things to notice about these commands:
   + We can access the value stored to the variable name by typing in that variable's name to the REPL.
   + To actually log the value to the Dev Console (much more useful in real-world applications), we can use the built in function `console.log([variable name])`
   + When we use the variable, we DON'T use quotation marks. Quotes mean Strings, and variables are variables, not strings of text.
-  + `const` indicates a value that can't be reassigned. For example if we do: `const x = 3` and then try to do `x = 4` - that will not work. We can't replace the value in memory, although we'll see that we can change parts of complex data later on. 
+  + `const` indicates a value that can't be reassigned. For example if we do: `const x = 3` and then try to do `x = 4` - that will not work. We can't replace the value in memory, although we'll see that we can change parts of complex data later on.
   + `let` and `var` __do__ allow the value to be replaced.
-  + All variables start off as `undefined` until we use the _assignment operator:_ `=`. 
+  + All variables start off as `undefined` until we use the _assignment operator:_ `=`.
   + In this course, we will focus on using `const` and `let`, and we will consider `var` for legacy purposes.
 
 6. So now we have some saved data. Wouldn't it be nice if we could test that data? We can, in fact, using the _Boolean_ data type. Booleans only have two values: `true` or `false`. They can be stored as a variable of their own, or can be returned as a result of a test. Try the following:
 
-```javascript
-const isTrue = true; //notice: no quotes around true!
-const isFalse = false;
-2 === 2
-2 === '2'
-2 > 3
-2 < 3
-2 !== 3
-2 <= 2
-2 >= 2
-'hello' === 'hello'
-'hello' === 'Hello'
-console.log(isTrue === isFalse);
-```
+   ```javascript
+   const isTrue = true; //notice: no quotes around true!
+   const isFalse = false;
+   2 === 2
+   2 === '2'
+   2 > 3
+   2 < 3
+   2 !== 3
+   2 <= 2
+   2 >= 2
+   'hello' === 'hello'
+   'hello' === 'Hello'
+   console.log(isTrue === isFalse);
+   ```
 
 ### Exercise 2
 
@@ -97,34 +97,34 @@ Now we have bits of data stored in memory for us to manipulate, which is nice. B
 
 1. The key to control flow are `if`, `else`, and `else if` statements, built on the Boolean data type. These statements allow us to perform a Boolean test, then give different outputs based on the results of that test. Try the following in your console:
 
-```javascript
-if (myCountry === "USA") {
-  console.log("Sweet Land of Liberty");
-}
-```
+   ```javascript
+   if (myCountry === "USA") {
+     console.log("Sweet Land of Liberty");
+   }
+   ```
 
 This is a Boolean test that should output a string to the console when `myCountry` is set to `'USA'`. If there's any other value stored to `myCoutry`, then nothing will be output at all.
 
 2. Let's try to account for every other condition with an `else` clause, like so:
 
-```javascript
-if (myCountry === "USA") {
-  console.log("Sweet Land of Liberty");
-} else {
-  console.log("Sounds like you need some DEMOCRACY");
-}
-```
+   ```javascript
+   if (myCountry === "USA") {
+     console.log("Sweet Land of Liberty");
+   } else {
+     console.log("Sounds like you need some DEMOCRACY");
+   }
+   ```
 
 Now something should output each time that block of code is run, since it covers every possible condition!
 
 3. But this can be a real pain to re-type every time you want to check out your current country. What if we could save this block of code just like we could save chunks of data to variables? Luckily, we can do exactly that by creating a new function! Try this:
 
-```javascript
-const freedomCheck = function() {
-  if (myCountry === "USA") console.log("Sweet Land of Liberty");
-  else console.log("Sounds like you need some DEMOCRACY");
-};
-```
+   ```javascript
+   const freedomCheck = function() {
+     if (myCountry === "USA") console.log("Sweet Land of Liberty");
+     else console.log("Sounds like you need some DEMOCRACY");
+   };
+   ```
 
 Now we have our test available whenever we'd like to call it again, saved just like any other variable. Now try the following, and see what happens:
 
@@ -143,38 +143,38 @@ So the console is fun, but it's still not connected to the HTML that we know and
 
 1. In your landing page, at the bottom of the `<body>` tag, add the following:
 
-```html
-<script type="text/javascript">
-  console.log('Hello world!');
-</script>
-```
+   ```html
+   <script>
+     console.log('Hello world!');
+   </script>
+   ```
 
 When you reload your preview page, you should see 'Hello world!' in your console. You've now added JavaScript to your page!
 
 2. The function `console.log()` is a built-in function recognized by browsers everywhere. Some functions are so commonly used that they're simply a part of the language spec... otherwise we'd have to replicate those functions in nearly every JavaScript project. Let's make our greeting a bit more obnoxious using the built-in function `alert()`.
 
-```html
-<script type="text/javascript">
-  alert('Hello world!');
-</script>
-```
+   ```html
+   <script>
+     alert('Hello world!');
+   </script>
+   ```
 
 You should notice that, just like `console.log()`, `alert()` takes a String of data as an _argument_, listed between the parens when the function is invoked. We'll learn much more about arguments later, but just remember for the time being that arguments are the bits of data that are passed directly into a function without needing to be saved to a _global_ variable accessible by every other function (like `myCountry` was in the previous example).
 
 3. What about user input? Luckily, we have another obnoxious built-in function called `prompt()`. This function can also take a String as an argument. Try this:
 
-```html
-<script type="text/javascript">
-  prompt('What is your name?');
-  alert('Hello World!');
-</script>
-```
+   ```html
+   <script>
+     prompt('What is your name?');
+     alert('Hello World!');
+   </script>
+   ```
 
 What happened to the user input here? As of right now, nothing! Let's try this instead:
 
 ```html
-<script type="text/javascript">
-  const name = prompt('What is your name?');
+<script>
+  let name = prompt('What is your name?');
 
   alert('Hello ' + name);
 </script>
@@ -184,37 +184,37 @@ Neat, huh? `prompt()` actually returns a String for us to play around with. We j
 
 4. This works great, but what happens when a user neglects to actually enter a value in the `prompt()`? Try it out! ... you should see that we still have an output of `Hello` (that's the word `Hello` with a single space after it). How could we check to make sure that a user isn't entering a blank name into the `prompt()`? How about something like this:
 
-```html
-<script type="text/javascript">
-  const name = prompt('What is your name?');
+   ```html
+   <script>
+     let name = prompt('What is your name?');
 
-  if(name === "") { // checks for an empty string
-    name = prompt('What is your name, for real this time?');
-  }
+     if(name === "") { // checks for an empty string
+       name = prompt('What is your name, for real this time?');
+     }
 
-  alert('Hello ' + name);
-</script>
-```
+     alert('Hello ' + name);
+   </script>
+   ```
 
 5. Notice that we can over-write the value of `name` at any point in our codebase, including when the `prompt()` returns an empty String. But what are some gaps in this implementation? For one, we probably want to check that the user is actually giving us a value _even if the user repeatedly chooses that empty value_. To do that, we need to do two things: First, we need to abstract our name-checking logic to a `function`, then we need to re-write our code such that the `function` calls itself until a condition is met. This is called recursion, and it looks like this:
 
-```html
-<script type="text/javascript">
-  const name = prompt('What is your name?');
+   ```html
+   <script>
+     let name = prompt('What is your name?');
 
-  const checkName = function(){
-    if(name === "") {
-      name = prompt('What is your name, for real this time?');
+     const checkName = function(){
+       if(name === "") {
+         name = prompt('What is your name, for real this time?');
 
-      checkName(); // repeats until a name exists
-    }
-  }
+         checkName(); // repeats until a name exists
+       }
+     }
 
-  checkName(); // kicks off the name-checking the first time
+     checkName(); // kicks off the name-checking the first time
 
-  alert('Hello ' + name);
-</script>
-```
+     alert('Hello ' + name);
+   </script>
+   ```
 
 6. Now we've implemented a bit of 'inline' JavaScript on our page! Just like working with CSS, though, it's more typical to see scripts in their own separate document. This is especially important for large codebases with thousands of lines of JavaScript code. Let's try it with our greeter page:
 
@@ -222,7 +222,7 @@ Neat, huh? `prompt()` actually returns a String for us to play around with. We j
    2. Copy the contents of the `<script>` tag (NOT the `<script>` tag itself!) over to `index.js`. HINT: the entire document should look like:
 
    ```javascript
-   const name = prompt("What is your name?");
+   let name = prompt("What is your name?");
 
    const checkName = function() {
      if (name === "") {
@@ -240,7 +240,7 @@ Neat, huh? `prompt()` actually returns a String for us to play around with. We j
    3. Modify the rest of your `<script>` tag in your landing page to look like this:
 
    ```html
-   <script type="text/javascript" src="index.js"></script>
+   <script src="index.js"></script>
    ```
 
    Now, when you reload the page, you should get the same result as when you in-lined all of your JavaScript.
