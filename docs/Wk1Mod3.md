@@ -11,12 +11,12 @@ There are three ways to give HTML content some styles:
 Today, we're going to take a look at inline styles. Inline styles are generally avoided in production websites, but you'll still see them in the wild in old codebases or in some niche applications (like MailChimp templates). To get a feel for inline styles, take a look at the following code:
 
 ```html
-  <body style="background-color:lightgrey">
-    <h1 style="color:blue">This is a heading</h1>
-    <h1 style="color:#AA22FF">Also a heading</h1>
-    <h1 style="color:rgb(0,255,255)">Moar!!</h1>
-    <p style="color:red;background-color:green">This is a paragraph.</p>
-    <img src="https://i.imgur.com/81qyN1y.jpg" style="height:100px;width:100px">
+  <body style="background-color:lightgrey;">
+    <h1 style="color:blue;">This is a heading</h1>
+    <h1 style="color:#AA22FF;">Also a heading</h1>
+    <h1 style="color:rgb(0,255,255);">Moar!!</h1>
+    <p style="color:red; background-color:green;">This is a paragraph.</p>
+    <img src="https://i.imgur.com/81qyN1y.jpg" style="height:100px; width:100px;">
   </body>
 ```
 
@@ -98,7 +98,7 @@ We begin with a selector to indicate which elements the rules apply to. Then, in
     <h1 style="color:orange;">This is a heading</h1>
     <p>This <i style="color:orange;">is</i> a paragraph.</p>
     <p>This <i>is</i> a paragraph.</p>
-    <p style="font-size:300%;text-align:center;font-family:'Times New Roman';">This is by far the most important part of the page!</p>
+    <p style="font-size:300%; text-align:center; font-family:'Times New Roman';">This is by far the most important part of the page!</p>
   </body>
 </html>
 ```

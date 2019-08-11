@@ -305,10 +305,10 @@ Let's create a theme for your Portfolio Project's landing page.
 Let's try out a few more styles. We won't get to every CSS property today (or in this course), but you can always find an exhaustive and up-to-date list of every property at [this address](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference) Try out the following HTML in your browser:
 
 ```html
-  <h1 style="font-family:verdana;color:orange;">This is a heading</h1>
-  <p style="color:green;">This <i style="color:orange;font-size:300%">is</i> a paragraph.</p>
+  <h1 style="font-family:verdana; color:orange;">This is a heading</h1>
+  <p style="color:green;">This <i style="color:orange; font-size:300%">is</i> a paragraph.</p>
   <p style="color:green;">This <i style="font-size:300%;">is</i> a paragraph.</p>
-  <p style="color:green;font-size:40px;text-align:center;font-family:'Times New Roman';">This is a paragraph.</p>
+  <p style="color:green; font-size:40px; text-align:center; font-family:'Times New Roman';">This is a paragraph.</p>
 ```
 
 What did we learn?
@@ -346,7 +346,7 @@ We begin with a selector to indicate which elements the rules apply to. Then, in
     <h1 style="color:orange;">This is a heading</h1>
     <p>This <i style="color:orange;">is</i> a paragraph.</p>
     <p>This <i>is</i> a paragraph.</p>
-    <p style="font-size:300%;text-align:center;font-family:'Times New Roman';">This is by far the most important part of the page!</p>
+    <p style="font-size:300%; text-align:center; font-family:'Times New Roman';">This is by far the most important part of the page!</p>
   </body>
 </html>
 ```
