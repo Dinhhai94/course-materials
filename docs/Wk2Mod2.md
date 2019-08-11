@@ -109,15 +109,15 @@ Let's try exploring your Portfolio project through the `document` Object!
    - `querySelectorAll()` returns an array-like list of DOM nodes (where `querySelector()` only returns the first node that matches the selector).
      This means that we can assign these DOM nodes to variables and treat them just like any other Object or Array. To see how that works in action, try the following from the console:
 
-```javascript
-const nav = document.querySelector("#nav");
-const navLinkArr = nav.querySelectorAll("li");
-const firstNavLink = navLinkArr[0];
-const secondNavLink = navLinkArr[1];
+      ```javascript
+      const nav = document.querySelector("#nav");
+      const navLinkArr = nav.querySelectorAll("li");
+      const firstNavLink = navLinkArr[0];
+      const secondNavLink = navLinkArr[1];
 
-firstNavLink.textContent;
-secondNavLink.textContent = "New Link Text";
-```
+      firstNavLink.textContent;
+      secondNavLink.textContent = "New Link Text";
+      ```
 
 ### Portfolio Project 1
 
@@ -128,18 +128,18 @@ Just like we did with the first `greeter` exercise, we can also manipulate the D
 1. At the top of your content section, add a new `<div>` with the attribute `id='greeting'`.
 2. Then we need to pick out the `#greeting` element of our HTML document and change its `.textContent` to include a greeting for our visitor. HINT:
 
-```javascript
-const name = prompt("Hi there! What's your name?");
-const output = document.querySelector("#greeting");
-output.textContent = "Thanks for visiting, " + name + ".";
-```
+   ```javascript
+   const name = prompt("Hi there! What's your name?");
+   const output = document.querySelector("#greeting");
+   output.textContent = "Thanks for visiting, " + name + ".";
+   ```
 
 3. While `textContent` works, it would be nice if we could wrap our greeting in a `<p>` element to keep styling consistent. To do that, we'll use a different method attached to DOM nodes called `.innerHTML`. Try this:
 
-```javascript
-const name = prompt("Hi there! What's your name?");
-const output = document.querySelector("#greeting");
-output.innerHTML = "<p>Thanks for visiting, " + name + ".</p>";
-```
+   ```javascript
+   const name = prompt("Hi there! What's your name?");
+   const output = document.querySelector("#greeting");
+   output.innerHTML = "<p>Thanks for visiting, " + name + ".</p>";
+   ```
 
 4. Now you can add some specific styles to `#greeting p` to make your greeting section look nice! Once your greeting area looks good, `add`, `commit`, `push`, and `deploy` your changes.

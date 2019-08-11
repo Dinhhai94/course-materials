@@ -57,10 +57,10 @@ Let's create a theme for your Portfolio Project's landing page.
 Let's try out a few more styles. We won't get to every CSS property today (or in this course), but you can always find an exhaustive and up-to-date list of every property at [this address](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference) Try out the following HTML in your browser:
 
 ```html
-  <h1 style="font-family:verdana;color:orange;">This is a heading</h1>
-  <p style="color:green;">This <i style="color:orange;font-size:300%">is</i> a paragraph.</p>
-  <p style="color:green;">This <i style="font-size:300%;">is</i> a paragraph.</p>
-  <p style="color:green;font-size:40px;text-align:center;font-family:'Times New Roman';">This is a paragraph.</p>
+<h1 style="font-family:verdana;color:orange;">This is a heading</h1>
+<p style="color:green;">This <i style="color:orange;font-size:300%">is</i> a paragraph.</p>
+<p style="color:green;">This <i style="font-size:300%;">is</i> a paragraph.</p>
+<p style="color:green;font-size:40px;text-align:center;font-family:'Times New Roman';">This is a paragraph.</p>
 ```
 
 What did we learn?
@@ -81,7 +81,7 @@ We begin with a selector to indicate which elements the rules apply to. Then, in
 
 ```html
 <html>
-    <head>
+  <head>
     <style>
       h1 {
         font-family: verdana;
@@ -147,7 +147,7 @@ Every HTML element can also carry one or more `class` names in a `class` attribu
   <head>
     <style>
       h1 {
-          font-family: verdana;
+        font-family: verdana;
       }
       p {
         color: green;
@@ -168,7 +168,7 @@ Every HTML element can also carry one or more `class` names in a `class` attribu
     <h1 class="important">This is a heading</h1>
     <p>This <i class="important big">is</i> a paragraph.</p>
     <p>This <i class="big">is</i> a paragraph.</p>
-    <p  id="primary" class="big">This is by far the most important part of the page!</p>
+    <p id="primary" class="big">This is by far the most important part of the page!</p>
   </body>
 <html>
 ```
@@ -206,10 +206,10 @@ Let's create a stylesheet for our Portfolio Project that applies to all of our p
 
    ```html
    <!-- for your landing page -->
-   <link type="text/css" rel="stylesheet" href="css/style.css"/>
+   <link rel="stylesheet" href="css/style.css">
 
    <!-- for all other pages -->
-   <link type="text/css" rel="stylesheet" href="../css/style.css"/>
+   <link rel="stylesheet" href="../css/style.css">
    ```
 
    _Do you know why we need different `href` values for our landing page and our projects and blog pages?_
@@ -333,14 +333,14 @@ Try putting a border around each "boxed" element while you try out a few of the 
 
     The same shorthand rules that worked for `padding` also work for `margin`.
 
-3.  We can also manually set the width and height of the element itself. 
+3.  We can also manually set the width and height of the element itself.
 
-        ```css
-        div {
-            width: 300px;
-            height: 200px;
-        }
-        ```
+    ```css
+    div {
+      width: 300px;
+      height: 200px;
+    }
+    ```
 
     **What's the difference?** Check it out in the Elements panel of Chrome Dev Tools to inspect the spacing around the element.
 
@@ -378,7 +378,7 @@ As our documents grow, we'll need to leverage more complex CSS selection syntax.
 
    ```css
    * {
-     //css that applies to every element
+     /* css that applies to every element */
    }
    ```
 
@@ -386,7 +386,7 @@ As our documents grow, we'll need to leverage more complex CSS selection syntax.
 
    ```css
    div.container {
-     //css that only applies to divs with a class of 'container'
+     /* css that only applies to divs with a class of 'container' */
    }
    ```
 
@@ -394,8 +394,8 @@ As our documents grow, we'll need to leverage more complex CSS selection syntax.
 
    ```css
    div > p {
-     //css that only applies to direct child elements (no grand-children) of an element
-     //in this case, all of the child paragraph elements of divs across the page
+     /* css that only applies to direct child elements (no grand-children) of an element */
+     /* in this case, all of the child paragraph elements of divs across the page */
    }
    ```
 
@@ -403,9 +403,9 @@ As our documents grow, we'll need to leverage more complex CSS selection syntax.
 
    ```css
    div p {
-     //css that applies to all descendants of an element of a certain type
-     //in this case, all paragraph elements of divs across the page (even if they're nested in
-     //other elements, like spans or lists)
+     /* css that applies to all descendants of an element of a certain type */
+     /* in this case, all paragraph elements of divs across the page
+        (even if they're nested in other elements, like spans or lists) */
    }
    ```
 
@@ -413,7 +413,7 @@ As our documents grow, we'll need to leverage more complex CSS selection syntax.
 
 ```css
 div + footer {
-  //css that applies to the first footer sibling of a div
+  /* css that applies to the first footer sibling of a div */
 }
 ```
 
@@ -421,7 +421,7 @@ div + footer {
 
 ```css
 div ~ img {
-  //css that applies to all images that are siblings to divs
+  /* css that applies to all images that are siblings to divs */
 }
 ```
 
@@ -437,7 +437,7 @@ There are some selectors that can be used to make some very basic calculations a
 
    ```css
    li:first-child {
-     // applies to the first list item of every list
+     /* applies to the first list item of every list */
    }
    ```
 
@@ -445,7 +445,7 @@ There are some selectors that can be used to make some very basic calculations a
 
    ```css
    li:last-child {
-     // applies to the last list item of every list
+     /* applies to the last list item of every list */
    }
    ```
 
@@ -453,7 +453,7 @@ There are some selectors that can be used to make some very basic calculations a
 
    ```css
    li:nth-child(2) {
-     // applies to the second list item of every list
+     /* applies to the second list item of every list */
    }
    ```
 
@@ -461,7 +461,7 @@ There are some selectors that can be used to make some very basic calculations a
 
    ```css
    li:nth-child(2n) {
-     // applies to every other list item of every list
+     /* applies to every other list item of every list */
    }
    ```
 
@@ -469,6 +469,6 @@ There are some selectors that can be used to make some very basic calculations a
 
    ```css
    li:hover {
-     // applies to every list item the user is hovering over
+     /* applies to every list item the user is hovering over */
    }
    ```

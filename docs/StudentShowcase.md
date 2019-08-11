@@ -64,16 +64,3 @@ Make sure that you have all of that content in before you start to style the pag
 4. Be sure to commit your work periodically, submit new features as pull requests, and `fetch` data from the `merged` repository after every pull request.
 
 When class is done, your instructor will deploy your site through Netlify for your viewing pleasure. Good luck!
-
-
-
-
-
-
-
-
-
-
-
-
-

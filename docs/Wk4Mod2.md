@@ -111,7 +111,7 @@ The car example above works well as long as we're dealing with a single type of 
 function Car(type, speed){
   // to what does "this" refer?
 
-  this.position = 1; 
+  this.position = 1;
   this.type = type;
   this.speed = speed;
 }
@@ -124,7 +124,7 @@ const civic = new Car("Honda Civic", 8);
 const camry = new Car("Toyota Camry", 7);
 ```
 
-What are the data types of `civic` and `camry`? Hopefully, they're Objects that have similar properties (`speed`, `type`, and `position`). 
+What are the data types of `civic` and `camry`? Hopefully, they're Objects that have similar properties (`speed`, `type`, and `position`).
 
 ---
 
@@ -210,88 +210,87 @@ Up to this point, we've been using a Plain Ol' JavaScript Object (sometimes call
 
 1. Instead of `export`-ing a number of different pieces of our state tree from `store/index.js`, let's `export` a single `class` called `Store` by default. Something like:
 
-```javascript
-export default class Store {};
-```
+   ```javascript
+   export default class Store {};
+   ```
 
 2. Next, we'll need to create a `constructor` that bundles up all of the pieces of state that we were previously exporting into an internal `state` property, e.g.:
 
-```javascript
-export default class Store {
-  constructor(){
-    this.state = {
-      Home: Home,
-      Blog: Blog,
-      // etc etc
-    }
-  }
-}
-```
+   ```javascript
+   export default class Store {
+     constructor(){
+       this.state = {
+         Home: Home,
+         Blog: Blog,
+         // etc etc
+       }
+     }
+   }
+   ```
 
 3. Now we should be able to replace our `import * as State` line in our projects's main `index.js` file with a single `import Store from './store'`. Then we can create a new store with:
 
-```javascript
-const store = new Store();
-```
+   ```javascript
+   const store = new Store();
+   ```
 
 4. We _could_, at this point, access `store.state` directly. But it's better if we restrict direct access to the `state` if we can. This will make our implementation of `state` easier to change later if we want, _decoupling_ our state from the use of that state in our application. To do that, we're going to implement a pattern that we've seen before when dealing with `event`s called the Listener pattern. One way to think about this pattern is to say that our application will _listen_ for changes in _state_. Let's create an Array of listeners managed by our Store like so:
 
-```javascript
-export default class Store {
-  constructor(){
-    this.listeners = []; 
-    this.state = {
-      // same state stuff
-    };
-  }
+   ```javascript
+   export default class Store {
+     constructor(){
+       this.listeners = [];
+       this.state = {
+         // same state stuff
+       };
+     }
 
-  addStateListener(listener){
-    // listener should be a function
-    this.listeners.push(listener);
-  }
-}
-```
+     addStateListener(listener){
+       // listener should be a function
+       this.listeners.push(listener);
+     }
+   }
+   ```
 
 5. Thinking about how listeners work, it makes sense that _render_ is the primary listener of application state, i.e. when state updates, we want to re-render! So add the following to the bottom of your main `index.js` file before the `router` is configured or activated:
 
-```javascript
-store.addStateListener(render);
+   ```javascript
+   store.addStateListener(render);
 
-// router stuff here
-```
+   // router stuff here
+   ```
 
 6. At this point, we have a state to update, and we have a way of adding functions that should be called when that state updates, but we don't yet have a way of updating that state. The way that we're going to update state is with a special method called `dispatch`. The idea here is that we're going to _dispatch_ an _action_ that will modify our application state and call our listeners with our newly-updated state:
 
-```javascript
-export default class Store {
-  constructor {
-    this.listeners = [];
-    this.state = {
-      // state stuff
-    };
-  }
+   ```javascript
+   export default class Store {
+     constructor {
+       this.listeners = [];
+       this.state = {
+         // state stuff
+       };
+     }
 
-  addStateListener(listener){
-    this.listeners.push(listener);
-  }
+     addStateListener(listener){
+       this.listeners.push(listener);
+     }
 
-  dispatch(reducer){
-    // a reducer is a pure function
-    // it takes in state and returns a new state
-    this.state = reducer(this.state);
+     dispatch(reducer){
+       // a reducer is a pure function
+       // it takes in state and returns a new state
+       this.state = reducer(this.state);
 
-    // call each listener with updated state
-    this.listeners.forEach(listener => listener(this.state));
-  }
-}
-```
+       // call each listener with updated state
+       this.listeners.forEach(listener => listener(this.state));
+     }
+   }
+   ```
 7. Now, every change that we make to state can be done through `store`'s `dispatch` method! The only requirement is that we pass in a valid `reducer`, where a `reducer` is a pure `function` that takes in a state and returns a new state. So `handleRoute` might be refactored into something like this:
 
-```javascript
-function handleRoute(params) {
-  store.dispatch(state => assign(state, { active: params.page }));
-};
-```
+   ```javascript
+   function handleRoute(params) {
+     store.dispatch(state => assign(state, { active: params.page }));
+   };
+   ```
 
 You should now be able to represent every change in your application as a s`reducer` `function` passed to `store.dispatch` as an argument. See if you can make that work across you portfolio project!
-

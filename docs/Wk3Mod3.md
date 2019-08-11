@@ -68,72 +68,72 @@ This is pretty ungainly. Let's see if we can clean this up by extracting all of 
 1. To start, let's create a directory called `store` that will contain all of our `state`s. Inside that `store` directory, create a single `index.js` file. This file will act similarly to the way the `index.html` does for HTML documents: our bundler will, by default, look for that `index` if no explicit file path is provided.
 2. Inside of `store`, let's create a separate JavaScript file for each part of our state tree, That means new `Home`, `Blog`, `Contact`, and `Projects` files. Each of these files should have a single `default` export of a single Object. That Object should represent that single piece of the original state tree. So, for example, the `Blog` module would look like this:
 
-```javascript
-export default {
-  links: ["Home", "Contact", "Projects"],
-  title: "Welcome to my Blog"
-};
-```
+   ```javascript
+   export default {
+     links: ["Home", "Contact", "Projects"],
+     title: "Welcome to my Blog"
+   };
+   ```
 
 3. Once every state module has been created, we can re-export each of those modules with a name in `store/index.js`. The syntax for one of those re-exports would be `export { default as SomeName } from './some-location';`. See if you can re-export all of these pieces of our state tree with this syntax! HINT:
 
-```javascript
-export { default as Blog } from "./Blog";
-export { default as Contact } from "./Contact";
-export { default as Home } from "./Home";
-export { default as Projects } from "./Projects";
-```
+   ```javascript
+   export { default as Blog } from "./Blog";
+   export { default as Contact } from "./Contact";
+   export { default as Home } from "./Home";
+   export { default as Projects } from "./Projects";
+   ```
 
 4. Now that this base module has been set up we should be able to `import` our states through the module system. In this case, we would like to `import` _all_ of the states in one big glob using the `* as name` syntax. Try the following in your root-level `index.js` file, and see if you can figure out what the data type of `states` will be:
 
-```javascript
-import * as states from "./store";
+   ```javascript
+   import * as states from "./store";
 
-console.log(states); // what's the data type here?
-```
+   console.log(states); // what's the data type here?
+   ```
 
 5. We should now be able to access any piece of our `states` tree, just as before! Except that this time, all of the complexity of our application state is hidden away behind our module system (which is a _good_ thing).
 6. Now that we've ironed out navigation, let's see if we can finally get our _content_ to change in response to our user input! You should still have HTML files that represent content for your `Blog`, `Content`, and `Projects` landing pages that we haven't yet incorporated into our new Single-Page architecture. Let's convert those pieces of HTML into their own `component`s. To start, let's create a `Pages` directory inside our `components` directory. This is a common pattern when dealing with a group of similar components. In this case, we're grouping all of the different page-level (or content-level) templates.
 7. Let's repeat the export pattern from our `states`. That means creating an `index.js` file next to a `Blog.js`, `Contact.js`, `Home.js`, and `Projects.js` file inside of `components/Pages`. Each Page component should `export` some HTML as a template literal, e.g.:
 
-```javascript
-export default `
-  <form>
-    <input type="text" name="test">
-    <input type="submit">
-  </form>
-`;
-```
+   ```javascript
+   export default `
+     <form>
+       <input type="text" name="test">
+       <input type="submit">
+     </form>
+   `;
+   ```
 
-...and re-`export` those `default`s with a name from `components/Pages/index.js`, e.g.:
+   ...and re-`export` those `default`s with a name from `components/Pages/index.js`, e.g.:
 
-```
-export { default as Contact } from './Contact';
-```
+   ```javascript
+   export { default as Contact } from './Contact';
+   ```
 
 8. Now each `state` component can point to a component from the `components/Pages` directory. Let's use a String to connect that content to each state component as a `body` property. For example, our `Blog` state might become:
 
-```javascript
-export default {
-  body: "Blog",
-  links: ["Home", "Contact", "Projects"],
-  title: "Welcome to my Blog"
-};
-```
+   ```javascript
+   export default {
+     body: "Blog",
+     links: ["Home", "Contact", "Projects"],
+     title: "Welcome to my Blog"
+   };
+   ```
 
 9. Once you've associated some content with each piece of the state tree, it's time to change our `Content` component to allow for variation in the `body` property of a `state` parameter. That means our `Content` component becomes:
 
-```javascript
-import * as pages from "./Pages";
+   ```javascript
+   import * as pages from "./Pages";
 
-export default function Content(state) {
-  return `
-        <div id="content">
-            ${pages[state.body]} // why do we need square brackets?
-        </div>
-    `;
-}
-```
+   export default function Content(state) {
+     return `
+       <div id="content">
+         ${pages[state.body]} // why do we need square brackets?
+       </div>
+     `;
+   }
+   ```
 
 Now you should have a Single-Page application that behaves almost exactly like our old HTML page-based site, but with a lot more flexibility and some real performance wins for our users.
 
@@ -159,53 +159,53 @@ Let's go through two practical examples of using third-party dependencies to imp
 
 1. Install `lodash` by typing the following into your terminal:
 
-```
-npm install --save lodash
-```
+   ```shell
+   npm install --save lodash
+   ```
 
 2. And just like that, we should be able to `import` individual helper functions in any of our own modules. Try adding this to the top of `Navigation.js`:
 
-```javascript
-import { lowerCase } from "lodash";
-```
+   ```javascript
+   import { lowerCase } from "lodash";
+   ```
 
 3. `lowerCase` is a function that turns any String into its lower-cased variant. Since lower-case routes are much more common than the upper-case routes that we've been using so far, let's turn our `buildLinks` function into something that looks like this instead:
 
-```javascript
-import { lowerCase } from "lodash";
+   ```javascript
+   import { lowerCase } from "lodash";
 
-function buildLinks(linkArray) {
-  let i = 0;
-  let links = "";
-  let link = "";
+   function buildLinks(linkArray) {
+     let i = 0;
+     let links = "";
+     let link = "";
 
-  while (i < linkArray.length) {
-    link = lowerCase(linkArray[i]);
+     while (i < linkArray.length) {
+       link = lowerCase(linkArray[i]);
 
-    links += `
-        <li>
-          <a href='/${link}'>${linkArray[i]}</a>
-        </li>
-      `;
+       links += `
+         <li>
+           <a href='/${link}'>${linkArray[i]}</a>
+         </li>
+       `;
 
-    i++;
-  }
+       i++;
+     }
 
-  return links;
-}
-```
+     return links;
+   }
+   ```
 
 4. Along with the changes to `buildLinks`, we'll also need to capitalize our component names in `handleNavigation` in our `index.js` file. That's as simple as adding `import { capitalize } from 'lodash';` to the top of the file before modifying `handleNavigation` to be:
 
-```javascript
-function handleNavigation(event) {
-  const component = event.target.textContent;
+   ```javascript
+   function handleNavigation(event) {
+     const component = event.target.textContent;
 
-  event.preventDefault();
+     event.preventDefault();
 
-  startApp(state[capitalize(component)]);
-}
-```
+     startApp(state[capitalize(component)]);
+   }
+   ```
 
 Not a bad way to offload some of that complexity to a library maintainer, right?
 
@@ -222,133 +222,133 @@ It's very possible (and a fun bonus exercise) to use `window.location.pathname` 
 1. Let's start by installing the `navigo` library with `npm install --save navigo`
 2. We should now be able to import the default `Navigo` [constructor](https://css-tricks.com/understanding-javascript-constructors/) at the top of our `index.js` file with:
 
-```javascript
-import Navigo from "navigo";
-```
+   ```javascript
+   import Navigo from "navigo";
+   ```
 
 3. `Navigo` is a special type of function that can be used to create a new Object (more on these later). To create the `router` Object that we'll use to route requests, create a `router` variable like so:
 
-```javascript
-// origin is required to help our router handle localhost addresses
-const router = new Navigo(window.location.origin);
-```
+   ```javascript
+   // origin is required to help our router handle localhost addresses
+   const router = new Navigo(window.location.origin);
+   ```
 
 4. `router` works by chaining a number of different functions together (more on this idea of chaining functions later, too). The two that we'll use are `on` and `resolve`. `on` uses a callback structure: whenever a URL matches the pattern given to `on` as its first argument, the function provided as the second argument is called. We use `resolve` at the end of the chain to kick off the client-side routing process. Try this on `index.js`:
 
-```javascript
-router.on("/", () => console.log("hello home page!")).resolve();
-```
+   ```javascript
+   router.on("/", () => console.log("hello home page!")).resolve();
+   ```
 
-You should see `hello home page!` whenever you visit the landing page of your application.
+   You should see `hello home page!` whenever you visit the landing page of your application.
 
 5. `on` also allows us to capture routes as something called _params_ (short for parameters) using a special syntax (but one that's common among routers of all types). Try experimenting with this setup:
 
-```javascript
-router
-  .on(":page", params => console.log(params.page))
-  .on("/", () => console.log("hello home page!"))
-  .resolve();
-```
+   ```javascript
+   router
+     .on(":page", params => console.log(params.page))
+     .on("/", () => console.log("hello home page!"))
+     .resolve();
+   ```
 
 6. Now we have the ability to execute JavaScript in response to the URL. But what is it we actually want to do? Previously, we were using `handleNavigation` to navigate around through click events targets. Now, we can handle _routes_ a bit more fluidly. Let's refactor `handleNavigation` into a `handleRoute` function that looks something like this:
 
-```javascript
-function handleRoute(params) {
-  const page = capitalize(params.page);
+   ```javascript
+   function handleRoute(params) {
+     const page = capitalize(params.page);
 
-  startApp(states[page]);
-}
-```
+     startApp(states[page]);
+   }
+   ```
 
-...which we can apply to the `:pages` route as a callback, like so:
+   ...which we can apply to the `:pages` route as a callback, like so:
 
-```javascript
-router
-  .on("/:path", handleRoute)
-  .on("/", () => console.log("hello home page!"))
-  .resolve();
-```
+   ```javascript
+   router
+     .on("/:path", handleRoute)
+     .on("/", () => console.log("hello home page!"))
+     .resolve();
+   ```
 
 7. We should now be able to use the URL to navigate between application states... pretty cool! But we're not done yet. What if we want to be able to navigate to different URLs using the links in our `Navigation` component? Right now, we're hijacking that process with custom event listeners, so our URL isn't changing at all. Luckily, `navigo` gives us a helper function to let us handle those anchor tags without reloading the page (and without the custom event listeners). Let's start by refactoring your `startApp` function to something a bit more simple:
 
-```javascript
-function startApp(state) {
-  rooter.innerHTML = `
-      ${Navigation(state)}
-      ${Header(state)}
-      ${Content(state)}
-      ${Footer(state)}
-    `;
+   ```javascript
+   function startApp(state) {
+     rooter.innerHTML = `
+       ${Navigation(state)}
+       ${Header(state)}
+       ${Content(state)}
+       ${Footer(state)}
+     `;
 
-  router.updatePageLinks(); // much simpler!
-}
-```
+     router.updatePageLinks(); // much simpler!
+   }
+   ```
 
-Now we can add a special attribute to our generated links called `data-navigo` to allow our `router` to "hijack" these anchor tags. That would mean that our `buildLinks` function in `Navigation` is as simple as:
+   Now we can add a special attribute to our generated links called `data-navigo` to allow our `router` to "hijack" these anchor tags. That would mean that our `buildLinks` function in `Navigation` is as simple as:
 
-```javascript
-function buildLinks(linkArray) {
-  let i = 0;
-  let links = "";
-  let link = "";
+   ```javascript
+   function buildLinks(linkArray) {
+     let i = 0;
+     let links = "";
+     let link = "";
 
-  while (i < linkArray.length) {
-    link = lowerCase(link);
+     while (i < linkArray.length) {
+       link = lowerCase(link);
 
-    links += `
-            <li>
-                <a href='/${link}' data-navigo> // new attribute
-                    ${linkArray[i]}
-                </a>
-            </li>
-        `;
+       links += `
+         <li>
+           <a href='/${link}' data-navigo> // new attribute
+             ${linkArray[i]}
+           </a>
+         </li>
+       `;
 
-    i++;
-  }
+       i++;
+     }
 
-  return links;
-}
-```
+     return links;
+   }
+   ```
 
-Now most of our links should be navigable using client-side routing!
+   Now most of our links should be navigable using client-side routing!
 
 8. You may have noticed that "most" from above. What's the bug? You'll notice that we're currently handling our landing page (the `/` route) with a `console.log` statement. What we'd _really_ like to do is start our application with the `Home` branch of the `state` tree. So let's modify our routing to account for users navigating to our landing page:
 
-```javascript
-router
-  .on("/:page", handleRoute)
-  .on("/", () => startApp(states["Home"]))
-  .resolve();
-```
+   ```javascript
+   router
+     .on("/:page", handleRoute)
+     .on("/", () => startApp(states["Home"]))
+     .resolve();
+   ```
 
 9. Almost done now! The last bug: you'll notice that any `Home` link actually links to `/home` on click. Instead of doing that, let's route all `Home` links to `/`, which is our actual home page. We'll do that over in `Navigation.js`'s `buildLinks` function by doing a quick refactor to:
 
-```javascript
-function buildLinks(linkArray) {
-  let i = 0;
-  let links = "";
-  let link = "";
+   ```javascript
+   function buildLinks(linkArray) {
+     let i = 0;
+     let links = "";
+     let link = "";
 
-  while (i < linkArray.length) {
-    if (linkArray[i] !== "Home") {
-      link = linkArray[i];
-    }
+     while (i < linkArray.length) {
+       if (linkArray[i] !== "Home") {
+         link = linkArray[i];
+       }
 
-    // what's the value of link here?
+       // what's the value of link here?
 
-    links += `
-            <li>
-                <a href='/${lowerCase(link)}' data-navigo>
-                    ${linkArray[i]}
-                </a>
-            </li>
-        `;
+       links += `
+         <li>
+           <a href='/${lowerCase(link)}' data-navigo>
+             ${linkArray[i]}
+           </a>
+         </li>
+       `;
 
-    i++;
-  }
+       i++;
+     }
 
-  return links;
-}
-```
+     return links;
+   }
+   ```
 
 And there you have it! Now you have a fully-operational SPA, ready for your users with lightning-fast navigation.
