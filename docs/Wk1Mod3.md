@@ -378,7 +378,7 @@ As our documents grow, we'll need to leverage more complex CSS selection syntax.
 
    ```css
    * {
-     //css that applies to every element
+     /* css that applies to every element */
    }
    ```
 
@@ -386,7 +386,7 @@ As our documents grow, we'll need to leverage more complex CSS selection syntax.
 
    ```css
    div.container {
-     //css that only applies to divs with a class of 'container'
+     /* css that only applies to divs with a class of 'container' */
    }
    ```
 
@@ -394,8 +394,8 @@ As our documents grow, we'll need to leverage more complex CSS selection syntax.
 
    ```css
    div > p {
-     //css that only applies to direct child elements (no grand-children) of an element
-     //in this case, all of the child paragraph elements of divs across the page
+     /* css that only applies to direct child elements (no grand-children) of an element */
+     /* in this case, all of the child paragraph elements of divs across the page */
    }
    ```
 
@@ -403,9 +403,9 @@ As our documents grow, we'll need to leverage more complex CSS selection syntax.
 
    ```css
    div p {
-     //css that applies to all descendants of an element of a certain type
-     //in this case, all paragraph elements of divs across the page (even if they're nested in
-     //other elements, like spans or lists)
+     /* css that applies to all descendants of an element of a certain type */
+     /* in this case, all paragraph elements of divs across the page
+        (even if they're nested in other elements, like spans or lists) */
    }
    ```
 
@@ -413,7 +413,7 @@ As our documents grow, we'll need to leverage more complex CSS selection syntax.
 
 ```css
 div + footer {
-  //css that applies to the first footer sibling of a div
+  /* css that applies to the first footer sibling of a div */
 }
 ```
 
@@ -421,7 +421,7 @@ div + footer {
 
 ```css
 div ~ img {
-  //css that applies to all images that are siblings to divs
+  /* css that applies to all images that are siblings to divs */
 }
 ```
 
@@ -437,7 +437,7 @@ There are some selectors that can be used to make some very basic calculations a
 
    ```css
    li:first-child {
-     // applies to the first list item of every list
+     /* applies to the first list item of every list */
    }
    ```
 
@@ -445,7 +445,7 @@ There are some selectors that can be used to make some very basic calculations a
 
    ```css
    li:last-child {
-     // applies to the last list item of every list
+     /* applies to the last list item of every list */
    }
    ```
 
@@ -453,7 +453,7 @@ There are some selectors that can be used to make some very basic calculations a
 
    ```css
    li:nth-child(2) {
-     // applies to the second list item of every list
+     /* applies to the second list item of every list */
    }
    ```
 
@@ -461,7 +461,7 @@ There are some selectors that can be used to make some very basic calculations a
 
    ```css
    li:nth-child(2n) {
-     // applies to every other list item of every list
+     /* applies to every other list item of every list */
    }
    ```
 
@@ -469,6 +469,6 @@ There are some selectors that can be used to make some very basic calculations a
 
    ```css
    li:hover {
-     // applies to every list item the user is hovering over
+     /* applies to every list item the user is hovering over */
    }
    ```

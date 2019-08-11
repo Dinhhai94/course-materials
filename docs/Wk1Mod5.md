@@ -157,7 +157,7 @@ Currently, our page layouts are using a sticky navigation bar optimized for mobi
    ```css
    @media (min-width: 612px) {
      body {
-       // some CSS that only apply when the viewport width > 612px
+       /* some CSS that only apply when the viewport width > 612px */
        background-color: hotpink;
      }
    }

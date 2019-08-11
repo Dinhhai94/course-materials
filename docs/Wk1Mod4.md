@@ -298,11 +298,11 @@ The layout above is a very common layout for blogs... much like the blog that we
 
    ```css
    nav .dropdown {
-     display: none; // this hides the dropdown menu by default
+     display: none; /* this hides the dropdown menu by default */
    }
 
    nav a:hover + .dropdown {
-     display: block; // shows the any dropdown that is a direct sibling of a hovered anchor tag in the navigation bar
+     display: block; /* shows the any dropdown that is a direct sibling of a hovered anchor tag in the navigation bar */
    }
    ```
 
@@ -310,14 +310,14 @@ The layout above is a very common layout for blogs... much like the blog that we
 
    ```css
    nav > ul > li {
-     position: relative; // required for absolute positioning
+     position: relative; /* required for absolute positioning */
      display: inline;
      list-style: none;
    }
 
    nav .dropdown {
-     position: absolute; // tracks nearest relatively-positioned ancestor
-     top: 1em; // positions according to the ancestor
+     position: absolute; /* tracks nearest relatively-positioned ancestor */
+     top: 1em; /* positions according to the ancestor */
      right: 0;
      display: none;
    }
@@ -369,7 +369,7 @@ The layout above is a very common layout for blogs... much like the blog that we
    }
 
    nav > ul.container {
-     //these styles will extend the styles already contained in the .container class
+     /* these styles will extend the styles already contained in the .container class */
      display: flex;
      flex-direction: row;
      flex-wrap: wrap;
