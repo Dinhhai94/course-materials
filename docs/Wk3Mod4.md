@@ -154,7 +154,7 @@ const myArraySum = myArray.reduce((total, currentValue) => {
 
 ### More Exercises:
 
-1. Write a function that takes an array of values and returns an boolean representing if the word "hello" exists in the array. HINT: test each element with a loop!
+1. Write a function that takes an array of values and returns an boolean representing if the word "hello" exists in the array.
 2. Write a function that takes an array of values and a target value and returns how many times that target value exists in the array.
 3. Write a function that takes an array and returns a new array containing only the values at odd indexes in that array.
 4. Write a function called sumArray that takes an array of numbers and returns the sum of all of those numbers added together.
