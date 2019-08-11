@@ -118,7 +118,7 @@ Currently, our page layouts are using a sticky navigation bar optimized for mobi
        "navigation"
        "header"
        "content"
-       "footer"
+       "footer";
      min-height: 100vh;
    }
    ```
@@ -133,7 +133,7 @@ Currently, our page layouts are using a sticky navigation bar optimized for mobi
        "navigation"
        "header"
        "content"
-       "footer"
+       "footer";
      min-height: 100vh;
    }
    ```
