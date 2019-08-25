@@ -24,6 +24,8 @@ We'll set them up together as we work through tonight's materials.
 
 ### Building a Dev Environment
 
+*Update:* The Savvy Coders 📓 now has a [video series](https://www.notion.so/codefinity/Setting-up-a-Local-Dev-Environment-97de62a546f943fbbc7a246b4785a343) that you can work through before reading through this.
+
 Whenever we work on a project, we want to make sure that we are using a consistent set of tools. But installing those tools in a way that is consistent across operating systems is a tough problem! Most web developers use tools that are modeled after the UNIX family of operating systems. These tools are usually packaged as a form of **terminal emulator**.
 
 Because each operating system is so different, we'll need to install a different set of tools to emulate the UNIX terminal through our command-line (more on "command-lines" and "terminals" in a minute):
