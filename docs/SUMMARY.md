@@ -3,7 +3,7 @@
 * [Introduction](README.md)
 * [Local Dev Environment and First Steps](1.md)
 * [Markdown and `git`](2.md)
-* [HTML and local development](Wk1Mod2.md)
+* [Local Development, Packages and Linters](3.md)
 * [CSS and larger documents](Wk1Mod3.md)
 * [Forms and positioning](Wk1Mod4.md)
 * [Dependencies, Flexbox, and Grids](Wk1Mod5.md)
