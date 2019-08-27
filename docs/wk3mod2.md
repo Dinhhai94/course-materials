@@ -1,3 +1,5 @@
+# Loops
+
 ## `while`
 
 ### Fun with loops!
@@ -34,7 +36,7 @@ while (n <= 10) {
 }
 ```
 
-2. **EXERCISE 2**: Create a `while` loop that logs every _even_ number from 2 through 20 to the console. HINT:
+1. **EXERCISE 2**: Create a `while` loop that logs every _even_ number from 2 through 20 to the console. HINT:
 
 ```javascript
 var n = 2;
@@ -45,7 +47,7 @@ while (n <= 20) {
 }
 ```
 
-3. **EXERCISE 3**: Create a `while` loop that `console.log`s a running total of the cumulative sum of numbers from 1 to `n`. HINT:
+1. **EXERCISE 3**: Create a `while` loop that `console.log`s a running total of the cumulative sum of numbers from 1 to `n`. HINT:
 
 ```javascript
 var n = 100;
@@ -59,7 +61,7 @@ while (i < n) {
 }
 ```
 
-4. **EXERCISE 4**: Then, in addition to `console.log`-ing each iteration, append all lists to the document body. HINT (for exercise 1... try the others on your own):
+1. **EXERCISE 4**: Then, in addition to `console.log`-ing each iteration, append all lists to the document body. HINT \(for exercise 1... try the others on your own\):
 
 ```javascript
 var n = 1;
@@ -76,7 +78,7 @@ outputHtml += "</ul>";
 document.body.innerHTML += outputHtml;
 ```
 
-5. **EXERCISE 5**: We can also combine `if` and `else` statements in our loops to respond to different input states. For this exercise, count _down_ from 15 by ones. For each number, log "even" or "odd" to the console and to a new div for Exercise 5. HINT:
+1. **EXERCISE 5**: We can also combine `if` and `else` statements in our loops to respond to different input states. For this exercise, count _down_ from 15 by ones. For each number, log "even" or "odd" to the console and to a new div for Exercise 5. HINT:
 
 ```javascript
 var n = 15;
@@ -97,7 +99,7 @@ ouputHtml = "</ul>";
 document.body.innerHTML += outputHTML;
 ```
 
-6. **EXERCISE 6**: Let's extend the idea of `if` and `else` in `while` loops with a pretty common exercise called FizzBuzz. For this exercise, log and output "Fizz" if a number is divisible by 3, "Buzz" if a number by 5, and "FizzBuzz" if a number is divisible by both 3 and 5. If a number is not divisible by 3 or 5, then just output the number. For this exercise, count up from 1 to 100. HINT:
+1. **EXERCISE 6**: Let's extend the idea of `if` and `else` in `while` loops with a pretty common exercise called FizzBuzz. For this exercise, log and output "Fizz" if a number is divisible by 3, "Buzz" if a number by 5, and "FizzBuzz" if a number is divisible by both 3 and 5. If a number is not divisible by 3 or 5, then just output the number. For this exercise, count up from 1 to 100. HINT:
 
 ```javascript
 var n = 1;
@@ -151,7 +153,7 @@ function startApp(state) {
 }
 ```
 
-Not the worst code in the world, but it had two big problems: first, there could only ever be three navigation links (no more, no less). And those navigation links couldn't change like our page title could. Let's see if we can make this code cleaner and more versatile with a `while` loop.
+Not the worst code in the world, but it had two big problems: first, there could only ever be three navigation links \(no more, no less\). And those navigation links couldn't change like our page title could. Let's see if we can make this code cleaner and more versatile with a `while` loop.
 
 1. Use a `while` loop to add a `click` event listener to every anchor tag in the `navigation` element.
 
@@ -176,7 +178,7 @@ function startApp(state) {
 }
 ```
 
-2. Much better! And what about varying the links themselves? How about letting our `Navigation` extract those from our `state`s. In `Navigation.js`:
+1. Much better! And what about varying the links themselves? How about letting our `Navigation` extract those from our `state`s. In `Navigation.js`:
 
 ```javascript
 function buildLinks(linkArray) {
@@ -207,4 +209,5 @@ export default function Navigation(state) {
 }
 ```
 
-3. Then we just need to include an Array of `links` in each state Object. Give it a try!
+1. Then we just need to include an Array of `links` in each state Object. Give it a try!
+
