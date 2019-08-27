@@ -1,7 +1,8 @@
 # Summary
 
 * [Introduction](README.md)
-* [Getting Started](Wk1Mod1.md)
+* [Local Dev Environment and First Steps](1.md)
+* [Markdown and `git`](2.md)
 * [HTML and local development](Wk1Mod2.md)
 * [CSS and larger documents](Wk1Mod3.md)
 * [Forms and positioning](Wk1Mod4.md)
