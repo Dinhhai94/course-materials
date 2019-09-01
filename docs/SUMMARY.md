@@ -5,6 +5,7 @@
 * [Markdown and git](2.md)
 * [Local Development, Packages and Linters](3.md)
 * [HTML](4.md)
+* [Mobile-First, Responsive Web Design - HTML](5.md)
 * [CSS and larger documents](wk1mod3.md)
 * [Forms and positioning](wk1mod4.md)
 * [Dependencies, Flexbox, and Grids](wk1mod5.md)
