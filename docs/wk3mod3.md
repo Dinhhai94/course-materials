@@ -1,10 +1,10 @@
-## Third-Party Dependencies
+# npm and Advanced Modules
 
-### Advanced modules and library usage
+## Advanced modules and library usage
 
 One of the wonderful things about the modern JavaScript ecosystem is that there are literally _thousands_ of libraries for us to use, solving any number of complex problems we might encounter in the realm of web development. Learning how to install, manage, and `import` these third-party dependencies is a key part of being an effective web developer.
 
-### More Modules
+## More Modules
 
 You'll recall that we've been working with our own library of components through `import`-ing and `export`-ing `default` chunks of JavaScript. But there are a few variations on this these syntaxes that will help us keep our code organized as our applications begin to pull in third-party dependencies. Here's a quick overview:
 
@@ -30,9 +30,9 @@ export 'tool';
 
 Let's see how these `import`/`export` variations might help us organize our large state and content trees in our portfolio projects.
 
-### Portfolio Project 1
+## Portfolio Project 1
 
-#### Modular State and Content
+### Modular State and Content
 
 When last we left our state tree, it was beginning to look something like this:
 
@@ -92,8 +92,8 @@ This is pretty ungainly. Let's see if we can clean this up by extracting all of 
    console.log(states); // what's the data type here?
    ```
 
-5. We should now be able to access any piece of our `states` tree, just as before! Except that this time, all of the complexity of our application state is hidden away behind our module system (which is a _good_ thing).
-6. Now that we've ironed out navigation, let's see if we can finally get our _content_ to change in response to our user input! You should still have HTML files that represent content for your `Blog`, `Content`, and `Projects` landing pages that we haven't yet incorporated into our new Single-Page architecture. Let's convert those pieces of HTML into their own `component`s. To start, let's create a `Pages` directory inside our `components` directory. This is a common pattern when dealing with a group of similar components. In this case, we're grouping all of the different page-level (or content-level) templates.
+5. We should now be able to access any piece of our `states` tree, just as before! Except that this time, all of the complexity of our application state is hidden away behind our module system \(which is a _good_ thing\).
+6. Now that we've ironed out navigation, let's see if we can finally get our _content_ to change in response to our user input! You should still have HTML files that represent content for your `Blog`, `Content`, and `Projects` landing pages that we haven't yet incorporated into our new Single-Page architecture. Let's convert those pieces of HTML into their own `component`s. To start, let's create a `Pages` directory inside our `components` directory. This is a common pattern when dealing with a group of similar components. In this case, we're grouping all of the different page-level \(or content-level\) templates.
 7. Let's repeat the export pattern from our `states`. That means creating an `index.js` file next to a `Blog.js`, `Contact.js`, `Home.js`, and `Projects.js` file inside of `components/Pages`. Each Page component should `export` some HTML as a template literal, e.g.:
 
    ```javascript
@@ -137,9 +137,9 @@ This is pretty ungainly. Let's see if we can clean this up by extracting all of 
 
 Now you should have a Single-Page application that behaves almost exactly like our old HTML page-based site, but with a lot more flexibility and some real performance wins for our users.
 
-### Dependencies
+## Dependencies
 
-We've already worked with "dependencies" during our time with CSS. A _dependency_ is any piece of code (regardless of language) provided by a third-party upon which our project depends. Previous dependencies were included through `<link>` tags in our HTML files, and were retrieved from a Content Delivery Network (e.g. CDNJS). These dependencies included things like CSS reset libraries (normalize.css), fonts, and icons.
+We've already worked with "dependencies" during our time with CSS. A _dependency_ is any piece of code \(regardless of language\) provided by a third-party upon which our project depends. Previous dependencies were included through `<link>` tags in our HTML files, and were retrieved from a Content Delivery Network \(e.g. CDNJS\). These dependencies included things like CSS reset libraries \(normalize.css\), fonts, and icons.
 
 In the realm of JavaScript, the number of possible dependencies is **much** larger than we've encountered in CSS-land. While we could include many third-party libraries from a CDN using a `<script>` tag, there are a couple of good reasons not to:
 
@@ -149,17 +149,17 @@ In the realm of JavaScript, the number of possible dependencies is **much** larg
 
 Let's go through two practical examples of using third-party dependencies to improve navigation for our users!
 
-### `lodash`
+## `lodash`
 
 [`lodash`](https://lodash.com/docs/4.17.10) is a library of useful utility functions that make working with collections of data much easier. On top of the collections helpers, though, there are a number of functions that make working with Strings just a bit easier.
 
-### Portfolio Project 2
+## Portfolio Project 2
 
-#### lowercased routes
+### lowercased routes
 
 1. Install `lodash` by typing the following into your terminal:
 
-   ```shell
+   ```text
    npm install --save lodash
    ```
 
@@ -209,15 +209,15 @@ Let's go through two practical examples of using third-party dependencies to imp
 
 Not a bad way to offload some of that complexity to a library maintainer, right?
 
-### Routing and `navigo`
+## Routing and `navigo`
 
-While our SPA has some nice performance benefits for users (once our JavaScript has loaded) and some nice features during development (from automatic re-bundling and hot-module reloading), there's a major drawback for those visiting our application for the first time: as written, there's no way to navigate _directly_ to any "page" other than the landing page/`Home` component. That's because our JavaScript application no longer differentiates between any URL paths; `localhost:1234` is treated the same as `localhost:1234/blog` and `localhost:1234/whatever`. To capture these URLs and treat them correctly, we need a [client-side router](https://medium.com/@wilbo/server-side-vs-client-side-routing-71d710e9227f) that listens for changes to the URL and responds with our `startApp` function called with the correct `state`.
+While our SPA has some nice performance benefits for users \(once our JavaScript has loaded\) and some nice features during development \(from automatic re-bundling and hot-module reloading\), there's a major drawback for those visiting our application for the first time: as written, there's no way to navigate _directly_ to any "page" other than the landing page/`Home` component. That's because our JavaScript application no longer differentiates between any URL paths; `localhost:1234` is treated the same as `localhost:1234/blog` and `localhost:1234/whatever`. To capture these URLs and treat them correctly, we need a [client-side router](https://medium.com/@wilbo/server-side-vs-client-side-routing-71d710e9227f) that listens for changes to the URL and responds with our `startApp` function called with the correct `state`.
 
-It's very possible (and a fun bonus exercise) to use `window.location.pathname` to create a very basic client-side router, but we can make things easier on ourselves by leveraging the work of others. For this project, we'll use [navigo](https://github.com/krasimir/navigo).
+It's very possible \(and a fun bonus exercise\) to use `window.location.pathname` to create a very basic client-side router, but we can make things easier on ourselves by leveraging the work of others. For this project, we'll use [navigo](https://github.com/krasimir/navigo).
 
-### Portfolio Project 3
+## Portfolio Project 3
 
-#### Routing with `navigo`
+### Routing with `navigo`
 
 1. Let's start by installing the `navigo` library with `npm install --save navigo`
 2. We should now be able to import the default `Navigo` [constructor](https://css-tricks.com/understanding-javascript-constructors/) at the top of our `index.js` file with:
@@ -226,14 +226,14 @@ It's very possible (and a fun bonus exercise) to use `window.location.pathname` 
    import Navigo from "navigo";
    ```
 
-3. `Navigo` is a special type of function that can be used to create a new Object (more on these later). To create the `router` Object that we'll use to route requests, create a `router` variable like so:
+3. `Navigo` is a special type of function that can be used to create a new Object \(more on these later\). To create the `router` Object that we'll use to route requests, create a `router` variable like so:
 
    ```javascript
    // origin is required to help our router handle localhost addresses
    const router = new Navigo(window.location.origin);
    ```
 
-4. `router` works by chaining a number of different functions together (more on this idea of chaining functions later, too). The two that we'll use are `on` and `resolve`. `on` uses a callback structure: whenever a URL matches the pattern given to `on` as its first argument, the function provided as the second argument is called. We use `resolve` at the end of the chain to kick off the client-side routing process. Try this on `index.js`:
+4. `router` works by chaining a number of different functions together \(more on this idea of chaining functions later, too\). The two that we'll use are `on` and `resolve`. `on` uses a callback structure: whenever a URL matches the pattern given to `on` as its first argument, the function provided as the second argument is called. We use `resolve` at the end of the chain to kick off the client-side routing process. Try this on `index.js`:
 
    ```javascript
    router.on("/", () => console.log("hello home page!")).resolve();
@@ -241,7 +241,7 @@ It's very possible (and a fun bonus exercise) to use `window.location.pathname` 
 
    You should see `hello home page!` whenever you visit the landing page of your application.
 
-5. `on` also allows us to capture routes as something called _params_ (short for parameters) using a special syntax (but one that's common among routers of all types). Try experimenting with this setup:
+5. `on` also allows us to capture routes as something called _params_ \(short for parameters\) using a special syntax \(but one that's common among routers of all types\). Try experimenting with this setup:
 
    ```javascript
    router
@@ -269,7 +269,7 @@ It's very possible (and a fun bonus exercise) to use `window.location.pathname` 
      .resolve();
    ```
 
-7. We should now be able to use the URL to navigate between application states... pretty cool! But we're not done yet. What if we want to be able to navigate to different URLs using the links in our `Navigation` component? Right now, we're hijacking that process with custom event listeners, so our URL isn't changing at all. Luckily, `navigo` gives us a helper function to let us handle those anchor tags without reloading the page (and without the custom event listeners). Let's start by refactoring your `startApp` function to something a bit more simple:
+7. We should now be able to use the URL to navigate between application states... pretty cool! But we're not done yet. What if we want to be able to navigate to different URLs using the links in our `Navigation` component? Right now, we're hijacking that process with custom event listeners, so our URL isn't changing at all. Luckily, `navigo` gives us a helper function to let us handle those anchor tags without reloading the page \(and without the custom event listeners\). Let's start by refactoring your `startApp` function to something a bit more simple:
 
    ```javascript
    function startApp(state) {
@@ -312,7 +312,7 @@ It's very possible (and a fun bonus exercise) to use `window.location.pathname` 
 
    Now most of our links should be navigable using client-side routing!
 
-8. You may have noticed that "most" from above. What's the bug? You'll notice that we're currently handling our landing page (the `/` route) with a `console.log` statement. What we'd _really_ like to do is start our application with the `Home` branch of the `state` tree. So let's modify our routing to account for users navigating to our landing page:
+8. You may have noticed that "most" from above. What's the bug? You'll notice that we're currently handling our landing page \(the `/` route\) with a `console.log` statement. What we'd _really_ like to do is start our application with the `Home` branch of the `state` tree. So let's modify our routing to account for users navigating to our landing page:
 
    ```javascript
    router
@@ -352,3 +352,4 @@ It's very possible (and a fun bonus exercise) to use `window.location.pathname` 
    ```
 
 And there you have it! Now you have a fully-operational SPA, ready for your users with lightning-fast navigation.
+

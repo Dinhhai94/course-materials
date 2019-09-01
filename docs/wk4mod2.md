@@ -1,6 +1,6 @@
-## Object-Oriented Programming
+# class, prototype, and Object-Oriented Programming
 
-Organizing code structures around Objects rather than functions is called Object-Oriented Programming (or OOP).
+Organizing code structures around Objects rather than functions is called Object-Oriented Programming \(or OOP\).
 
 As we've seen already, Objects can have keys which are Strings, and values which can be any data type: Strings, Numbers, Arrays, Objects... even functions!
 
@@ -20,9 +20,9 @@ const person = {
 };
 ```
 
-There are a number of powerful additions to this basic understanding of Objects that allow us to more meaningfully group the _data_ that represents a thing to the _actions_ (called "methods") that operate on or are associated with those other pieces of data.
+There are a number of powerful additions to this basic understanding of Objects that allow us to more meaningfully group the _data_ that represents a thing to the _actions_ \(called "methods"\) that operate on or are associated with those other pieces of data.
 
-### Methods and `this`
+## Methods and `this`
 
 In the example above, `party` is a `function`. If a `function` is attached to an Object, we refer to that `function` as a _method_. While it's perfectly valid to notate the `party` method as above, we can also use a shorter syntax:
 
@@ -36,9 +36,9 @@ const person = {
 }
 ```
 
-And we can call this method by invoking `person.party()`. But what does this give us (besides a bit of organizational and semantic clarity)?
+And we can call this method by invoking `person.party()`. But what does this give us \(besides a bit of organizational and semantic clarity\)?
 
-One of the big benefits of attaching methods to Objects is access to the _calling context_ (or parent Object) of that method through the `this` keyword. See if you can get the following to work:
+One of the big benefits of attaching methods to Objects is access to the _calling context_ \(or parent Object\) of that method through the `this` keyword. See if you can get the following to work:
 
 ```javascript
 const person = {
@@ -62,11 +62,9 @@ function logDefaultContext(){
 
 You should find that the above `function`, which doesn't appear to be attached to any Object, does have a default calling context that's built into the browser. What's the value of that context?
 
----
+## Exercise 1
 
-### Exercise 1
-
-#### Here in my car
+### Here in my car
 
 We can also change an Object's properties by referencing them with `this`:
 
@@ -84,7 +82,7 @@ const car = {
 
 1. Invoke `car`'s `move` method and see what happens.
 2. Invoke it a few more times. Then check its `position` property.
-3. Add a `speed` property (an integer) to car.
+3. Add a `speed` property \(an integer\) to car.
 4. When a car moves, adjust its position by adding its speed. HINT:
 
 ```javascript
@@ -100,9 +98,7 @@ const car = {
 };
 ```
 
----
-
-### Constructor `function`s
+## Constructor `function`s
 
 The car example above works well as long as we're dealing with a single type of car. But what if we'd like to share properties and methods of cars amongst a number of more specific types of cars? To put it another way: how can we treact "car" as a category of things, and than create specific _instances_ of that category later on? The answer is to _construct_ an _instance_ of a car Object. One way that we can do that is with something called a _constructor `function`_, which might look like this:
 
@@ -124,17 +120,15 @@ const civic = new Car("Honda Civic", 8);
 const camry = new Car("Toyota Camry", 7);
 ```
 
-What are the data types of `civic` and `camry`? Hopefully, they're Objects that have similar properties (`speed`, `type`, and `position`).
+What are the data types of `civic` and `camry`? Hopefully, they're Objects that have similar properties \(`speed`, `type`, and `position`\).
 
----
-
-### `prototype` and inheritance
+## `prototype` and inheritance
 
 But what of our `move()` method? These newly-constructed cars have a consistent set of properties, which is nice, but they don't yet share a consistent set of behaviors. We _could_, if we wanted to, define a `move` function on the constructor. But it's more ideomatic for each `Car` to _inherit_ behaviors.
 
-Most OOP languages have a concept of inheritance. JavaScript is a bit unique among programming languages in that Objects inherit behaviors from something called a `prototype`. Every Object has at least one `prototype`, which is itself an Object. Every instance of constructed Object has a prototype that is inherited from its constructor. To put it another way: if you look at the `__proto__` property of your `civic` Object in your developer tools, you should see that `__proto__` (short for `prototype`) is listed as `Car`. `Car`, too, has its own `__proto__`, which is listed as `Object`. And that `Object` `prototype` has a number of methods attached to it that can be implemented by _any_ Object in JavaScript.
+Most OOP languages have a concept of inheritance. JavaScript is a bit unique among programming languages in that Objects inherit behaviors from something called a `prototype`. Every Object has at least one `prototype`, which is itself an Object. Every instance of constructed Object has a prototype that is inherited from its constructor. To put it another way: if you look at the `__proto__` property of your `civic` Object in your developer tools, you should see that `__proto__` \(short for `prototype`\) is listed as `Car`. `Car`, too, has its own `__proto__`, which is listed as `Object`. And that `Object` `prototype` has a number of methods attached to it that can be implemented by _any_ Object in JavaScript.
 
-This is what we refer to as a `prototype` chain! Every Object can (and does) inherit behavior from the `prototype` chain, even without explicit instantiation in a constructor.
+This is what we refer to as a `prototype` chain! Every Object can \(and does\) inherit behavior from the `prototype` chain, even without explicit instantiation in a constructor.
 
 This is all well and good, but how do we implement new, shared behavior for our instances of `Car`? The answer is that we modify the `Car`'s attached `prototype` Object directly:
 
@@ -150,13 +144,11 @@ Car.prototype.move = function move(){
 Now you should notice the following:
 
 1. `civic.move()` and `camry.move()` work without modifying the constructor or re-instantiating our individual cars.
-2. the `this` in `move` still refers to the correct instance! This is why `this` is referred to as a `function`'s _calling context_: it matches the Object that _calls_ the function, rather than the Object to which that `function` is directly attached (which is, in this case, `Car.prototype`)
+2. the `this` in `move` still refers to the correct instance! This is why `this` is referred to as a `function`'s _calling context_: it matches the Object that _calls_ the function, rather than the Object to which that `function` is directly attached \(which is, in this case, `Car.prototype`\)
 
 > NOTE: Try creating an Array. Notice that any Array that you create has a `prototype` chain, too. What does that tell us about Arrays?
 
----
-
-### `class`
+## `class`
 
 For decades, Object-Oriented Programming in JavaScript was built around constructor `function`s and direct `prototype` modification. This worked, but was very cumbersome to write and maintain when compared to other programming languages. To make OOP a bit easier for web developers, JavaScript now has a `class` keyword that allows us to re-write our `Car` constructor + `prototype` mangling as follows
 
@@ -200,13 +192,11 @@ dragster.pitStop(); // has access to same calling context
 
 Try a few more examples with other categories of things that we might represent abstractly with Objects and `class`es. Maybe Users, Actions, Components, or Forms... the possibilities are endless!
 
----
+## Portfolio Project 1
 
-### Portfolio Project 1
+### `Store` and uni-directional data flow
 
-#### `Store` and uni-directional data flow
-
-Up to this point, we've been using a Plain Ol' JavaScript Object (sometimes called a "POJO") to hold all of our application state. This is an important pattern that we should continue to use! Unfortunately, the rules that govern how that state changes is pretty lax, and is scattered throughout the application. Let's refactor that state into a `class` that manages both application data and how that application data is modified.
+Up to this point, we've been using a Plain Ol' JavaScript Object \(sometimes called a "POJO"\) to hold all of our application state. This is an important pattern that we should continue to use! Unfortunately, the rules that govern how that state changes is pretty lax, and is scattered throughout the application. Let's refactor that state into a `class` that manages both application data and how that application data is modified.
 
 1. Instead of `export`-ing a number of different pieces of our state tree from `store/index.js`, let's `export` a single `class` called `Store` by default. Something like:
 
@@ -285,6 +275,7 @@ Up to this point, we've been using a Plain Ol' JavaScript Object (sometimes call
      }
    }
    ```
+
 7. Now, every change that we make to state can be done through `store`'s `dispatch` method! The only requirement is that we pass in a valid `reducer`, where a `reducer` is a pure `function` that takes in a state and returns a new state. So `handleRoute` might be refactored into something like this:
 
    ```javascript
@@ -294,3 +285,4 @@ Up to this point, we've been using a Plain Ol' JavaScript Object (sometimes call
    ```
 
 You should now be able to represent every change in your application as a s`reducer` `function` passed to `store.dispatch` as an argument. See if you can make that work across you portfolio project!
+

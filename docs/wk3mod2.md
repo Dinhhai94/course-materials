@@ -1,3 +1,5 @@
+# Loops
+
 ## `while`
 
 ### Fun with loops!
@@ -59,7 +61,7 @@ Work through the following exercises as a group, implementing each in your devel
    }
    ```
 
-4. **EXERCISE 4**: Then, in addition to `console.log`-ing each iteration, append all lists to the document body. HINT (for exercise 1... try the others on your own):
+4. **EXERCISE 4**: Then, in addition to `console.log`-ing each iteration, append all lists to the document body. HINT \(for exercise 1... try the others on your own\):
 
    ```javascript
    let n = 1;
@@ -151,7 +153,7 @@ function startApp(state) {
 }
 ```
 
-Not the worst code in the world, but it had two big problems: first, there could only ever be three navigation links (no more, no less). And those navigation links couldn't change like our page title could. Let's see if we can make this code cleaner and more versatile with a `while` loop.
+Not the worst code in the world, but it had two big problems: first, there could only ever be three navigation links \(no more, no less\). And those navigation links couldn't change like our page title could. Let's see if we can make this code cleaner and more versatile with a `while` loop.
 
 1. Use a `while` loop to add a `click` event listener to every anchor tag in the `navigation` element.
 
@@ -208,3 +210,4 @@ Not the worst code in the world, but it had two big problems: first, there could
    ```
 
 3. Then we just need to include an Array of `links` in each state Object. Give it a try!
+

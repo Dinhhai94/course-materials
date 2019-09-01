@@ -1,4 +1,4 @@
-# Welcome to the Savvy Coders Course Materials
+# Introduction
 
 ## We're Glad You're Here
 
@@ -6,7 +6,7 @@ Over the next few weeks, we're going to learn a _lot_ of new things. Most of tho
 
 ## Addl. Info
 
-As the world of web development continually changes (mostly for the better), so will these _official_ course materials. The education team at Savvy Coders is committed to continually updating things with fresh new examples and explanations. However, most major changes will take place at deliberate times, usually in between cohorts.
+As the world of web development continually changes \(mostly for the better\), so will these _official_ course materials. The education team at Savvy Coders is committed to continually updating things with fresh new examples and explanations. However, most major changes will take place at deliberate times, usually in between cohorts.
 
 ## Savvy Coders 'Companion'
 
@@ -18,6 +18,5 @@ This notebook is set up to accomodate rapid changes as needed for the current co
 
 In the near future, some of our lessons will be posted on the YT channel.
 
----
+_To give credit where credit is due, this curriculum was originally crafted by_ [_Alex Pearson_](https://github.com/NAlexPear)_._
 
-_To give credit where credit is due, this curriculum was originally crafted by [Alex Pearson](https://github.com/NAlexPear)._

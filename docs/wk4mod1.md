@@ -1,8 +1,8 @@
-## Building a Bookstore Part 2
+# Hack-a-thon \#3: Building an Async Bookstore
 
 Remember our billion-dollar Bookstore Hack-A-Thon? This week, we're going to connect the Bookstore to an honest-to-goodness RESTful JSON API. Good Luck:
 
-1. Start where you left off with Part One of our bookstore project. We should have a number of books set up in an Array, plus a `form` element that can be used to add a new book to the existing product list. Remember, book Array (and Objects) should take the form:
+1. Start where you left off with Part One of our bookstore project. We should have a number of books set up in an Array, plus a `form` element that can be used to add a new book to the existing product list. Remember, book Array \(and Objects\) should take the form:
 
    ```javascript
    const books = [
@@ -140,9 +140,9 @@ Remember our billion-dollar Bookstore Hack-A-Thon? This week, we're going to con
 
 Now, _that_ is a fancy event handler. Make sure you understand it before we get much farther in this Hack-A-Thon!
 
-7. This is a lot of work for three books. What's the advantage to doing all of this work in JavaScript? While we could argue about the quality of the developer experience in JavaScript-land vs HTML-land, one thing is certain: if we want to use _external_ data instead of hard-coded book Objects, we need to use JavaScript. More specifically, we need to use AJAX.
+1. This is a lot of work for three books. What's the advantage to doing all of this work in JavaScript? While we could argue about the quality of the developer experience in JavaScript-land vs HTML-land, one thing is certain: if we want to use _external_ data instead of hard-coded book Objects, we need to use JavaScript. More specifically, we need to use AJAX.
 
-We've set up an API to query at https://api.savvycoders.com/books that will return an Array of `book` Objects structured identically to the ones we've been hard-coding up to this point. See if you can render the bookstore with data from this API. HINT:
+We've set up an API to query at [https://api.savvycoders.com/books](https://api.savvycoders.com/books) that will return an Array of `book` Objects structured identically to the ones we've been hard-coding up to this point. See if you can render the bookstore with data from this API. HINT:
 
 ```javascript
 axios // don't forget to npm install this!
@@ -150,7 +150,7 @@ axios // don't forget to npm install this!
   .then(response => render(response.data));
 ```
 
-9. This all works great for just books, but what if we wanted to add music to our store? We'll need another refactor! How could we re-organize our product data to account for the differences between types of products? Let's try adding our `books` Array to a new `products` Object that includes `books` and `albums` Arrays. HINT:
+1. This all works great for just books, but what if we wanted to add music to our store? We'll need another refactor! How could we re-organize our product data to account for the differences between types of products? Let's try adding our `books` Array to a new `products` Object that includes `books` and `albums` Arrays. HINT:
 
    ```javascript
    const products = {
@@ -159,24 +159,24 @@ axios // don't forget to npm install this!
    };
    ```
 
-10. You'll be happy to see that there is an `/albums` route in our Savvy Coders API, too. But how do we render _both_ `books` and `albums` on initial page load? We could delay rendering _anything_ until we get both `books` and `albums`, but that doesn't make things better for our users. We could also delay rendering _*all* products_ until we have both books and albums, but that also delays our time-to-first-meaningful-interaction, irritating users. What if we rendered whatever came back first from our API, then re-render whenever the second batch comes in? Then we can use our `products` Object as a `state` store and do the following:
+2. You'll be happy to see that there is an `/albums` route in our Savvy Coders API, too. But how do we render _both_ `books` and `albums` on initial page load? We could delay rendering _anything_ until we get both `books` and `albums`, but that doesn't make things better for our users. We could also delay rendering _all products_ until we have both books and albums, but that also delays our time-to-first-meaningful-interaction, irritating users. What if we rendered whatever came back first from our API, then re-render whenever the second batch comes in? Then we can use our `products` Object as a `state` store and do the following:
 
    ```javascript
    const products = {
-     books: [],
-     albums: []
+    books: [],
+    albums: []
    };
 
    axios.get("https://api.savvycoders.com/books").then(response => {
-     response.data.forEach(book => products.books.push(book));
+    response.data.forEach(book => products.books.push(book));
 
-     render(products);
+    render(products);
    });
 
    axios.get("https://api.savvycoders.com/albums").then(response => {
-     response.data.forEach(album => products.albums.push(album));
+    response.data.forEach(album => products.albums.push(album));
 
-     render(products);
+    render(products);
    });
 
    render(products); // this should be the first render
@@ -184,7 +184,7 @@ axios // don't forget to npm install this!
 
    You should also need to modify the `Content`
 
-11. If everything went as planned, you should have a variety of different products rendered on the page! But now our `form` is broken again... we'll push _every_ product to the `books` Array, which wouldn't make much sense. Let's add an `input` of type `radio` to let users choose between types of `book` or `album`, then modify our form's `submit` event handler to account for the new field. It should be a one-line change! HINT:
+3. If everything went as planned, you should have a variety of different products rendered on the page! But now our `form` is broken again... we'll push _every_ product to the `books` Array, which wouldn't make much sense. Let's add an `input` of type `radio` to let users choose between types of `book` or `album`, then modify our form's `submit` event handler to account for the new field. It should be a one-line change! HINT:
 
    ```javascript
    // form submit event stuff
@@ -195,36 +195,36 @@ axios // don't forget to npm install this!
    // even more form submit event stuff
    ```
 
-12. Now let's let users filter between Books and Albums when they click on the `books` and `albums` links in the `Navigation` component. What might that look like? HINT:
+4. Now let's let users filter between Books and Albums when they click on the `books` and `albums` links in the `Navigation` component. What might that look like? HINT:
 
    ```javascript
    const links = document.querySelectorAll("#navigation a");
 
    links[0].addEventListener("click", event => {
-     const filteredProducts = {
-       // why do we need to do this?
-       books: products.books,
-       albums: []
-     };
+    const filteredProducts = {
+      // why do we need to do this?
+      books: products.books,
+      albums: []
+    };
 
-     event.preventDefault();
+    event.preventDefault();
 
-     render(filteredProducts);
+    render(filteredProducts);
    });
 
    links[1].addEventListener("click", event => {
-     const filteredProducts = {
-       books: [],
-       albums: products.albums
-     };
+    const filteredProducts = {
+      books: [],
+      albums: products.albums
+    };
 
-     event.preventDefault();
+    event.preventDefault();
 
-     render(filteredProducts);
+    render(filteredProducts);
    });
    ```
 
-13. Now our bookstore has quite a few features! It's missing _one last thing_ (besides, you know, a checkout system, or a business plan): notice that new books that we add don't yet persist beyond page refreshes. We can still pull down data from our API, but that data doesn't reflect any of the work that we've done so far! Let's fix that with a `POST` request to our API in the form's event handler. What does this do?
+5. Now our bookstore has quite a few features! It's missing _one last thing_ \(besides, you know, a checkout system, or a business plan\): notice that new books that we add don't yet persist beyond page refreshes. We can still pull down data from our API, but that data doesn't reflect any of the work that we've done so far! Let's fix that with a `POST` request to our API in the form's event handler. What does this do?
 
    ```javascript
    // form submit stuff here
@@ -240,11 +240,11 @@ axios // don't forget to npm install this!
 
 Once this is done, we should be able to persist our product data between page refreshes. Go team!
 
-14. In the time remaining (or as extra credit on your own), see if you can implement some of the following features:
+1. In the time remaining \(or as extra credit on your own\), see if you can implement some of the following features:
+   * Can you filter `products` by `title` using a Search `input` and a `keyup` event listener?
+   * Can you delete books from the front end on `click`?
+   * Can you delete books from the back-end database using a `DELETE` request \(e.g. `axios.delete`\)?
+   * Can you add the ability to edit books on the front end?
+   * Can you persist book edits to the API using a `PATCH` request \(e.g. `axios.patch`\)?
+   * Can you add loading indicators using Font Awesome spinners and fa-spin?
 
-   - Can you filter `products` by `title` using a Search `input` and a `keyup` event listener?
-   - Can you delete books from the front end on `click`?
-   - Can you delete books from the back-end database using a `DELETE` request (e.g. `axios.delete`)?
-   - Can you add the ability to edit books on the front end?
-   - Can you persist book edits to the API using a `PATCH` request (e.g. `axios.patch`)?
-   - Can you add loading indicators using Font Awesome spinners and fa-spin?

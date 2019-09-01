@@ -1,29 +1,29 @@
-## Intro to JavaScript pt. 2
+# Complex Data Types and DOM Interactions
 
-### complex data types and DOM interactions
+## complex data types and DOM interactions
 
 After the last module, we've mastered the art of the irritating pop-up. But how do we add more complex functionality to our `.js` projects? And how do we make that added complexity appear in the visible fold?
 
-### Exercise 0
+## Exercise 0
 
-#### Setting up your Linter
+### Setting up your Linter
 
-Now that we're editing standalone JavaScript files, we get to use one of the most important tools in the developer's arsenal: the _linter_. This tool will point at grammatical and syntactical errors in our JavaScript as we write it, and fix most errors on save (rather than forcing us to chase down wayward commas, parens, or curly brackets).
+Now that we're editing standalone JavaScript files, we get to use one of the most important tools in the developer's arsenal: the _linter_. This tool will point at grammatical and syntactical errors in our JavaScript as we write it, and fix most errors on save \(rather than forcing us to chase down wayward commas, parens, or curly brackets\).
 
 Configuration of our linter is driven by a `.eslintrc` file. This should have been built and configured during the second class where we installed our project dependencies with `init.sh`, but double-check that you do, in fact, have that configuration file.
 
-### Exercise 1
+## Exercise 1
 
-#### Complex Data Types
+### Complex Data Types
 
 Let's revisit some of the Primitive Data types we covered in the last module:
 
 1. **String**, e.g. `"Hello", "1", or ""`
 2. **Number**, e.g. `1`, `1239`, `1.2`, or `1e4`
 3. **Boolean**, e.g. `true` or `false`
-4. `undefined` <- that's, right _undefined_. In JavaScript, undefined values have their own data type!
+4. `undefined` &lt;- that's, right _undefined_. In JavaScript, undefined values have their own data type!
 
-Primitive data types like we covered in the last module are meant to represent a single piece of discrete data. It can be a large piece (think of War and Peace as a single String), but it's still just one item.
+Primitive data types like we covered in the last module are meant to represent a single piece of discrete data. It can be a large piece \(think of War and Peace as a single String\), but it's still just one item.
 
 Complex or Composite data types represent **Collections** of data. The Complex data types of JavaScript are Array and Object. We'll dig much deeper into both of these data types later, but for now, let's learn how to construct them using _Literal Notation_.
 
@@ -49,13 +49,13 @@ console.log(myArray);
 
 The output should be exactly the same for both of those examples!
 
-Just like we can invoke a function using parens (e.g. `prompt()`), we can access data in an array using _bracket notation_. Try it out on `myArray`:
+Just like we can invoke a function using parens \(e.g. `prompt()`\), we can access data in an array using _bracket notation_. Try it out on `myArray`:
 
 ```javascript
 console.log(myArray[0] + " and " + myArray[2]);
 ```
 
-Arrays are also _zero-indexed_, which means that the first piece of data in the collection has a position of 0 (instead of 1). We'll see a lot more of this later. For now, it's enough to just recognize an array when you see one!
+Arrays are also _zero-indexed_, which means that the first piece of data in the collection has a position of 0 \(instead of 1\). We'll see a lot more of this later. For now, it's enough to just recognize an array when you see one!
 
 **Objects** are collections of data just like Arrays, but we can access data by _name_ instead of _sequence_. All names are themselves arbitrary Strings that you're free to make up as you see fit. Let's try to re-write part of `myArray` as an Object:
 
@@ -79,11 +79,11 @@ Dot notation for the above example would be something like:
 console.log(myObject.myNum); // 23
 ```
 
-Hopefully you recognize that we've already been working with built-in Objects, including `window` and `console`. Typing `window.location` was accessing the `location` property of the `window` Object provided by the browser. `console.log()` invokes the `log` function contained in a `console` Object provided by the browser. `window` and `console` are part of the BOM, or Browser Object Model (notice the 'Object' part of that). It's the collection of all of the data and built-in functions provided by the browser, that we can access at any time.
+Hopefully you recognize that we've already been working with built-in Objects, including `window` and `console`. Typing `window.location` was accessing the `location` property of the `window` Object provided by the browser. `console.log()` invokes the `log` function contained in a `console` Object provided by the browser. `window` and `console` are part of the BOM, or Browser Object Model \(notice the 'Object' part of that\). It's the collection of all of the data and built-in functions provided by the browser, that we can access at any time.
 
-### Exercise 2
+## Exercise 2
 
-#### JavaScript, the DOM, and YOU
+### JavaScript, the DOM, and YOU
 
 While using BOM data is extremely useful, most of what users really care about happens inside the DOM: the _Document Object Model_. We can access the DOM by using the provided `document` Object.
 
@@ -105,11 +105,10 @@ Let's try exploring your Portfolio project through the `document` Object!
    ```
 
 3. `querySelector()` and `querySelectorAll()` are both functions accessible through the `document` Object. Every modern browser will expose these functions for you to use! You'll also notice that they each return a different type of complex data type:
-   - `querySelector()` returns a single DOM node, which is an Object that contains all of the same useful functions that we saw in the `document` Object (including `querySelector()`!)
-   - `querySelectorAll()` returns an array-like list of DOM nodes (where `querySelector()` only returns the first node that matches the selector).
-     This means that we can assign these DOM nodes to variables and treat them just like any other Object or Array. To see how that works in action, try the following from the console:
+   * `querySelector()` returns a single DOM node, which is an Object that contains all of the same useful functions that we saw in the `document` Object \(including `querySelector()`!\)
+   * `querySelectorAll()` returns an array-like list of DOM nodes \(where `querySelector()` only returns the first node that matches the selector\). This means that we can assign these DOM nodes to variables and treat them just like any other Object or Array. To see how that works in action, try the following from the console:
 
-      ```javascript
+     ```javascript
       const nav = document.querySelector("#nav");
       const navLinkArr = nav.querySelectorAll("li");
       const firstNavLink = navLinkArr[0];
@@ -117,13 +116,13 @@ Let's try exploring your Portfolio project through the `document` Object!
 
       firstNavLink.textContent;
       secondNavLink.textContent = "New Link Text";
-      ```
+     ```
 
-### Portfolio Project 1
+## Portfolio Project 1
 
-#### Greeter 2.0
+### Greeter 2.0
 
-Just like we did with the first `greeter` exercise, we can also manipulate the DOM through JavaScript files (instead of the console). To explore this further, let's add a new-and-improved greeter to your landing page in your Portfolio Project!
+Just like we did with the first `greeter` exercise, we can also manipulate the DOM through JavaScript files \(instead of the console\). To explore this further, let's add a new-and-improved greeter to your landing page in your Portfolio Project!
 
 1. At the top of your content section, add a new `<div>` with the attribute `id='greeting'`.
 2. Then we need to pick out the `#greeting` element of our HTML document and change its `.textContent` to include a greeting for our visitor. HINT:
@@ -143,3 +142,4 @@ Just like we did with the first `greeter` exercise, we can also manipulate the D
    ```
 
 4. Now you can add some specific styles to `#greeting p` to make your greeting section look nice! Once your greeting area looks good, `add`, `commit`, `push`, and `deploy` your changes.
+

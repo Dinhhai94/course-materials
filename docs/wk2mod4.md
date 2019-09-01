@@ -1,12 +1,12 @@
+# Complex functions
+
 ## Fun with Functions
 
 ### Delving Deeper in to Functions
 
-We've already seen a variety of functions, from built-in functions like `console.log()`, to a few of our own built using `const functionName = function(){}`. We've also already learned how to _invoke_ or _execute_ functions with `()`, as well as passing in a few simple arguments (like we've done with `prompt("some string")`). Let's dig into these a bit deeper.
+We've already seen a variety of functions, from built-in functions like `console.log()`, to a few of our own built using `const functionName = function(){}`. We've also already learned how to _invoke_ or _execute_ functions with `()`, as well as passing in a few simple arguments \(like we've done with `prompt("some string")`\). Let's dig into these a bit deeper.
 
----
-
-### a new syntax (part 1)
+### a new syntax \(part 1\)
 
 Up to this point, we've been writing functions like this:
 
@@ -20,7 +20,7 @@ While it's clear what's going on here, we have another way writing functions tha
 function someFunction() {}
 ```
 
-While there are some technical differences between the two ways of declaring functions, the latter is used much more widely than the former, and is generally a bit easier to read. As long as we treat the functional expression the same way we were treating it's `const`-based cousin, we should be fine (and save ourselves a few keystrokes in the process).
+While there are some technical differences between the two ways of declaring functions, the latter is used much more widely than the former, and is generally a bit easier to read. As long as we treat the functional expression the same way we were treating it's `const`-based cousin, we should be fine \(and save ourselves a few keystrokes in the process\).
 
 ### the `return` keyword
 
@@ -64,8 +64,6 @@ const brokenSaying = brokenSayingGenerator();
 #### Portfolio Project 1:
 
 Refactor every instance of `const someFunction = function()` across your portfolio project into a named functional expression. Be sure to double-check that we haven't caused any regressions!
-
----
 
 ### Arguments
 
@@ -112,11 +110,9 @@ inspector("hello", 7, true, undefined, null, 3 + 12, "nice to" + " meet you");
    logAndReturn(returnedValues);
    ```
 
----
-
 ### Parameters
 
-It's unwieldy to work with the arguments keyword directly. Usually we use named parameters to give our inputs (arguments) variable names for the length of the function invocation
+It's unwieldy to work with the arguments keyword directly. Usually we use named parameters to give our inputs \(arguments\) variable names for the length of the function invocation
 
 ```javascript
 function valueLogger(value) {
@@ -194,8 +190,6 @@ const sum = add(7, 12);
 
 5. Using only the functions you wrote above, and no operators, calculate the value of tripling 5, multiplying that by 12, dividing by 2 and then finding the remainder of dividing that by 3.
 
----
-
 ### Portfolio Project 2
 
 #### Functional Components
@@ -252,7 +246,7 @@ Our component library currently consists of four top-level components. So far, t
    }
    ```
 
-3. Let's turn every other component into a functional component to be invoked with a `state` argument (even if we don't actually respond to any part of that state just yet). By the time we're done, our application markup generator should look like:
+3. Let's turn every other component into a functional component to be invoked with a `state` argument \(even if we don't actually respond to any part of that state just yet\). By the time we're done, our application markup generator should look like:
 
    ```javascript
    document.querySelector("#root").innerHTML = `
@@ -264,8 +258,6 @@ Our component library currently consists of four top-level components. So far, t
    ```
 
 To make this a bit more useful, we need to learn a bit more about how users can interact with our application through [Events](https://developer.mozilla.org/en-US/docs/Web/Events).
-
----
 
 ### Events
 
@@ -289,13 +281,11 @@ document
   });
 ```
 
----
-
-### A new syntax (part 2)
+### A new syntax \(part 2\)
 
 When a function is used as a callback, it's often written inline as in the example above. These function traditionally don't have names of their own, and are instead referred to as **anonymous functions**.
 
-As you see in the examples above, they can be fairly tedious to write out. To help with this (and with the binding of the `this` keyword, which we'll cover later), JavaScript has given us a new syntax for anonymous functions called "arrow" syntax. It looks like this:
+As you see in the examples above, they can be fairly tedious to write out. To help with this \(and with the binding of the `this` keyword, which we'll cover later\), JavaScript has given us a new syntax for anonymous functions called "arrow" syntax. It looks like this:
 
 ```javascript
 // original syntax
@@ -314,3 +304,4 @@ document
 ## Portfolio Project 3
 
 See if you can add some `click` event listeners that log different page names to the console when a navigation bar link is clicked. HINT: be sure to add your event listeners _after_ the `innerHTML` of the `#root` element has been set!
+
