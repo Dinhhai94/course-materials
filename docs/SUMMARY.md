@@ -6,7 +6,7 @@
 * [Local Development, Packages and Linters](3.md)
 * [HTML](4.md)
 * [Mobile-First, Responsive Web Design - HTML](5.md)
-* [CSS](6.md)
+* [CSS - Overview](6.md)
 * [Forms and positioning](wk1mod4.md)
 * [Dependencies, Flexbox, and Grids](wk1mod5.md)
 * [Hack-a-thon \#1: Student Showcase](studentshowcase.md)
