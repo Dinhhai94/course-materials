@@ -7,6 +7,7 @@
 * [HTML](4.md)
 * [Mobile-First, Responsive Web Design - HTML](5.md)
 * [CSS - Overview](6.md)
+* [CSS - Practical Applications]
 * [Forms and positioning](wk1mod4.md)
 * [Dependencies, Flexbox, and Grids](wk1mod5.md)
 * [Hack-a-thon \#1: Student Showcase](studentshowcase.md)
