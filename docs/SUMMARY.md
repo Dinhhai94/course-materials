@@ -10,7 +10,7 @@
 * [CSS - Practical Applications](7.md)
 * [CSS - Mobile View](8.md)
 * [CSS - Tablet/Desktop View](9.md)
-* [CSS - Forms](10.md)
+<!-- * [CSS - Forms](10.md) -->
 * [Hack-a-thon \#1: Student Showcase](studentshowcase.md)
 * [Intro to JavaScript](11.md)
 * [Complex Data Types and DOM Interactions](wk2mod2.md)
