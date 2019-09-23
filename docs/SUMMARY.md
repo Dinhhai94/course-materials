@@ -13,6 +13,7 @@
 <!-- * [CSS - Forms](10.md) -->
 * [Hack-a-thon \#1: Student Showcase](studentshowcase.md)
 * [Intro to JavaScript](11.md)
+* [JS Practice](12.md)
 * [Complex Data Types and DOM Interactions](wk2mod2.md)
 * [Modules and Bundlers](wk2mod3.md)
 * [Complex functions](wk2mod4.md)
